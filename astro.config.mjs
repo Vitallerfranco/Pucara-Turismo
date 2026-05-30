@@ -3,6 +3,10 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  base: '/Pucara-Turismo',
+  base: '/Pucara-Turismo',
+  integrations: [react()],
+  output: 'static',
   integrations: [react()],
 
   output: 'static',
@@ -36,3 +40,4 @@ export default defineConfig({
     shikiConfig: { theme: 'github-dark' }
   },
 });
+
