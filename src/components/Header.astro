@@ -16,17 +16,9 @@ const { scrolled = false } = Astro.props;
 >
   <div class="container-gutter w-full flex items-center justify-between">
     {/* Logo */}
-    <a href="/Pucara-Turismo/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-      <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-        <span class="text-white font-bold text-xl">🏔️</span>
-      </div>
-      <span class:list={[
-        "font-montserrat font-800 text-xl tracking-tight",
-        scrolled ? "text-black" : "text-white"
-      ]}>
-        Pucará
-      </span>
-    </a>
+    <a href="/Pucara-Turismo/" class="flex items-center hover:opacity-80 transition-opacity">
+  <img src="/Pucara-Turismo/logo.png" alt="Pucará Turismo" class="h-12 w-auto" />
+</a>
 
     {/* Navigation */}
     <nav class="hidden md:flex items-center gap-8">
