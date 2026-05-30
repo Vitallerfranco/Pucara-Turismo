@@ -237,7 +237,7 @@ export default function Recomendador() {
                   </div>
 
                   <a
-                    href={`/paquetes/${match.paquete.slug}`}
+                    href={`/Pucara-Turismo/paquetes/${match.paquete.slug}`}
                     className="btn btn-primary btn-sm inline-block"
                   >
                     Ver detalles →
@@ -277,3 +277,4 @@ export default function Recomendador() {
     </div>
   );
 }
+
