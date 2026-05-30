@@ -12,6 +12,11 @@ export default defineConfig({
   },
 
   vite: {
+    resolve: {
+      alias: {
+        '@styles': '/src/styles'
+      }
+    },
     plugins: [tailwindcss()],
     ssr: {
       external: ['sharp']
