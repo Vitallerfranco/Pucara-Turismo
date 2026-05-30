@@ -1,3 +1,4 @@
+export const prerender = false;
 import type { APIRoute } from 'astro';
 import paquetesData from '@/data/paquetes.json';
 
@@ -36,3 +37,4 @@ export const GET: APIRoute = async ({ params }) => {
     });
   }
 };
+
