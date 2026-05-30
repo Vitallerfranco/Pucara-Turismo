@@ -19,7 +19,7 @@ const { titulo, descripcion, icono = '✨', numero, valor } = Astro.props;
 </div>
 
 <style>
-  @reference "@styles/globals.css";
+  @reference "../styles/globals.css";
   .stat-card {
     @apply relative bg-gradient-to-br from-slate-50 to-slate-100 p-6 rounded-2xl border border-slate-200 text-center overflow-hidden hover:border-orange-300 transition-all duration-300 hover:shadow-lg;
   }
@@ -48,5 +48,6 @@ const { titulo, descripcion, icono = '✨', numero, valor } = Astro.props;
     @apply text-sm text-slate-600;
   }
 </style>
+
 
 

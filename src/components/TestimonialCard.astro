@@ -35,7 +35,7 @@ const { nombre, viaje, foto = '👤', rating, texto } = Astro.props;
 </div>
 
 <style>
-  @reference "@styles/globals.css";
+  @reference "../styles/globals.css";
   .testimonial-card {
     @apply bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300;
   }
@@ -44,5 +44,6 @@ const { nombre, viaje, foto = '👤', rating, texto } = Astro.props;
     @apply w-12 h-12 rounded-full bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center flex-shrink-0;
   }
 </style>
+
 
 
