@@ -1,12 +1,16 @@
-export const prerender = false;
-import type { APIRoute } from 'astro';
+import type { APIRoute, GetStaticPaths } from 'astro';
 import paquetesData from '@/data/paquetes.json';
+
+export const getStaticPaths = (() => {
+  return paquetesData.paquetes.map((p) => ({
+    params: { id: p.slug },
+  }));
+}) satisfies GetStaticPaths;
 
 export const GET: APIRoute = async ({ params }) => {
   try {
     const slug = params.id;
     const paquete = paquetesData.paquetes.find((p) => p.slug === slug);
-
     if (!paquete) {
       return new Response(JSON.stringify({
         success: false,
@@ -16,7 +20,6 @@ export const GET: APIRoute = async ({ params }) => {
         headers: { 'Content-Type': 'application/json' },
       });
     }
-
     return new Response(JSON.stringify({
       success: true,
       data: paquete,
@@ -37,4 +40,3 @@ export const GET: APIRoute = async ({ params }) => {
     });
   }
 };
-
