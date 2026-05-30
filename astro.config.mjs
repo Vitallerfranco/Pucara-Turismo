@@ -4,7 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   base: '/Pucara-Turismo',
+  trailingSlash: 'always',
   base: '/Pucara-Turismo',
+  trailingSlash: 'always',
   integrations: [react()],
   output: 'static',
   integrations: [react()],
@@ -40,4 +42,5 @@ export default defineConfig({
     shikiConfig: { theme: 'github-dark' }
   },
 });
+
 

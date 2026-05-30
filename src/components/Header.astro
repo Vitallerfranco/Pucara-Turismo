@@ -16,7 +16,7 @@ const { scrolled = false } = Astro.props;
 >
   <div class="container-gutter w-full flex items-center justify-between">
     {/* Logo */}
-    <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+    <a href="/Pucara-Turismo/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
       <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
         <span class="text-white font-bold text-xl">🏔️</span>
       </div>
@@ -31,7 +31,7 @@ const { scrolled = false } = Astro.props;
     {/* Navigation */}
     <nav class="hidden md:flex items-center gap-8">
       <a 
-        href="/destinos"
+        href="/Pucara-Turismo/destinos"
         class:list={[
           "text-sm font-medium transition-colors",
           scrolled ? "text-slate-700 hover:text-orange-500" : "text-white/85 hover:text-orange-300"
@@ -40,7 +40,7 @@ const { scrolled = false } = Astro.props;
         Destinos
       </a>
       <a 
-        href="/paquetes"
+        href="/Pucara-Turismo/paquetes"
         class:list={[
           "text-sm font-medium transition-colors",
           scrolled ? "text-slate-700 hover:text-orange-500" : "text-white/85 hover:text-orange-300"
@@ -49,7 +49,7 @@ const { scrolled = false } = Astro.props;
         Paquetes
       </a>
       <a 
-        href="/#faq"
+        href="/Pucara-Turismo/#faq"
         class:list={[
           "text-sm font-medium transition-colors",
           scrolled ? "text-slate-700 hover:text-orange-500" : "text-white/85 hover:text-orange-300"
@@ -58,7 +58,7 @@ const { scrolled = false } = Astro.props;
         Preguntas
       </a>
       <a 
-        href="/#sobre"
+        href="/Pucara-Turismo/#sobre"
         class:list={[
           "text-sm font-medium transition-colors",
           scrolled ? "text-slate-700 hover:text-orange-500" : "text-white/85 hover:text-orange-300"
@@ -86,3 +86,4 @@ const { scrolled = false } = Astro.props;
     padding-right: var(--gutter);
   }
 </style>
+
