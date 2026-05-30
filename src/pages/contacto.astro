@@ -1,0 +1,195 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FormMini from '@components/FormMini.jsx';
+import CTASection from '@components/CTASection.astro';
+
+const contactos = [
+  {
+    tipo: 'WhatsApp',
+    valor: '+54 9 11 5000-0000',
+    icono: '💬',
+    enlace: 'https://wa.me/5491150000000'
+  },
+  {
+    tipo: 'Email',
+    valor: 'info@pucaraturismo.com',
+    icono: '📧',
+    enlace: 'mailto:info@pucaraturismo.com'
+  },
+  {
+    tipo: 'Horarios',
+    valor: 'Lunes a Viernes: 9:00-18:00 hs',
+    icono: '🕐',
+    enlace: '#'
+  },
+  {
+    tipo: 'Ubicación',
+    valor: 'San Salvador de Jujuy, Argentina',
+    icono: '📍',
+    enlace: '#'
+  }
+];
+---
+
+<BaseLayout 
+  title="Contacto - Pucará Turismo"
+  description="Ponte en contacto con nosotros para consultas, reservas o más información sobre nuestros viajes"
+>
+  <!-- Hero -->
+  <section class="pt-32 pb-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Ponte en Contacto</h1>
+      <p class="text-xl text-slate-600">
+        ¿Preguntas? Estamos aquí para ayudarte a planificar tu viaje perfecto
+      </p>
+    </div>
+  </section>
+
+  <!-- Formulario -->
+  <section class="py-16 px-6 max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Formulario -->
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Envía un mensaje</h2>
+        <form class="space-y-4" method="POST" action="/api/contacto">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Nombre</label>
+            <input
+              type="text"
+              name="nombre"
+              required
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+              placeholder="tu@email.com"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Teléfono</label>
+            <input
+              type="tel"
+              name="telefono"
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+              placeholder="+54 9 11 ..."
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Asunto</label>
+            <select name="asunto" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 bg-white cursor-pointer">
+              <option value="">Selecciona un asunto</option>
+              <option value="consulta">Consulta general</option>
+              <option value="reserva">Consulta sobre reserva</option>
+              <option value="problema">Reportar un problema</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Mensaje</label>
+            <textarea
+              name="mensaje"
+              rows="5"
+              required
+              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 resize-none"
+              placeholder="Cuéntanos con qué podemos ayudarte..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+          >
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Información de Contacto -->
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Contáctanos</h2>
+        <div class="space-y-6">
+          {contactos.map(contacto => (
+            <a
+              href={contacto.enlace}
+              class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 hover:border-orange-300 hover:bg-orange-50 transition-all duration-300"
+            >
+              <span class="text-3xl">{contacto.icono}</span>
+              <div>
+                <h3 class="font-bold text-slate-900">{contacto.tipo}</h3>
+                <p class="text-slate-600">{contacto.valor}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- FAQ Rápido -->
+        <div class="mt-8 pt-8 border-t border-slate-200">
+          <h3 class="font-bold text-slate-900 mb-4">¿Preguntas frecuentes?</h3>
+          <details class="space-y-3">
+            <summary class="cursor-pointer font-medium text-slate-900 hover:text-orange-600">¿Cuánto tiempo responden?</summary>
+            <p class="text-slate-600 pl-4">Respondemos en menos de 2 horas durante horario de oficina.</p>
+          </details>
+          <details class="space-y-3 pt-3">
+            <summary class="cursor-pointer font-medium text-slate-900 hover:text-orange-600">¿Puedo hablar con alguien directamente?</summary>
+            <p class="text-slate-600 pl-4">¡Claro! Enviamos nuestro WhatsApp - es la forma más rápida.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa -->
+  <section class="py-16 px-6 bg-slate-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Ubicación</h2>
+      <div class="rounded-xl overflow-hidden shadow-lg h-96 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+        <p class="text-slate-600 text-lg">📍 San Salvador de Jujuy, Argentina</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <CTASection
+    titulo="¿Listo para tu próxima aventura?"
+    descripcion="Nuestro equipo está esperando para ayudarte a planificar el viaje de tus sueños"
+    boton="Reservar Ahora"
+    enlace="/paquetes"
+    tipo="gradient"
+  />
+</BaseLayout>
+
+<style>
+  details {
+    @apply bg-slate-50 p-4 rounded-lg border border-slate-200;
+  }
+
+  details[open] {
+    @apply border-orange-300 bg-orange-50;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: '▶ ';
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: #f97316;
+  }
+
+  details[open] summary::before {
+    content: '▼ ';
+  }
+</style>

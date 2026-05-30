@@ -1,0 +1,88 @@
+---
+export interface Props {
+  nombre: string;
+  label: string;
+  opciones: Array<{ valor: string; etiqueta: string }>;
+  placeholder?: string;
+  requerido?: boolean;
+  valor?: string;
+  error?: string;
+  ayuda?: string;
+}
+
+const {
+  nombre,
+  label,
+  opciones,
+  placeholder,
+  requerido = false,
+  valor = '',
+  error,
+  ayuda
+} = Astro.props;
+---
+
+<div class="select-group">
+  <label for={nombre} class="select-label">
+    {label}
+    {requerido && <span class="select-requerido">*</span>}
+  </label>
+
+  <select
+    id={nombre}
+    name={nombre}
+    value={valor}
+    required={requerido}
+    class={`select-field ${error ? 'select-error' : ''}`}
+  >
+    {placeholder && (
+      <option value="" disabled selected>
+        {placeholder}
+      </option>
+    )}
+    {opciones.map(op => (
+      <option value={op.valor}>{op.etiqueta}</option>
+    ))}
+  </select>
+
+  {ayuda && <p class="select-ayuda">{ayuda}</p>}
+  {error && <p class="select-mensaje-error">{error}</p>}
+</div>
+
+<style>
+  .select-group {
+    @apply flex flex-col gap-2 mb-4;
+  }
+
+  .select-label {
+    @apply font-medium text-slate-700 text-sm;
+  }
+
+  .select-requerido {
+    @apply text-red-500;
+  }
+
+  .select-field {
+    @apply w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all duration-200 text-slate-900 bg-white cursor-pointer appearance-none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .select-field:disabled {
+    @apply bg-slate-100 cursor-not-allowed;
+  }
+
+  .select-field.select-error {
+    @apply border-red-500 focus:ring-red-200;
+  }
+
+  .select-ayuda {
+    @apply text-xs text-slate-500;
+  }
+
+  .select-mensaje-error {
+    @apply text-xs text-red-500 font-medium;
+  }
+</style>

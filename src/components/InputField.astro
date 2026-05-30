@@ -1,0 +1,83 @@
+---
+export interface Props {
+  nombre: string;
+  label: string;
+  tipo?: 'text' | 'email' | 'tel' | 'number' | 'date';
+  placeholder?: string;
+  requerido?: boolean;
+  valor?: string;
+  error?: string;
+  ayuda?: string;
+  minimo?: number;
+  maximo?: number;
+}
+
+const {
+  nombre,
+  label,
+  tipo = 'text',
+  placeholder,
+  requerido = false,
+  valor = '',
+  error,
+  ayuda,
+  minimo,
+  maximo
+} = Astro.props;
+---
+
+<div class="input-group">
+  <label for={nombre} class="input-label">
+    {label}
+    {requerido && <span class="input-requerido">*</span>}
+  </label>
+
+  <input
+    id={nombre}
+    name={nombre}
+    type={tipo}
+    value={valor}
+    placeholder={placeholder}
+    required={requerido}
+    min={minimo}
+    max={maximo}
+    class={`input-field ${error ? 'input-error' : ''}`}
+  />
+
+  {ayuda && <p class="input-ayuda">{ayuda}</p>}
+  {error && <p class="input-mensaje-error">{error}</p>}
+</div>
+
+<style>
+  .input-group {
+    @apply flex flex-col gap-2 mb-4;
+  }
+
+  .input-label {
+    @apply font-medium text-slate-700 text-sm;
+  }
+
+  .input-requerido {
+    @apply text-red-500;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all duration-200 text-slate-900 placeholder-slate-400;
+  }
+
+  .input-field:disabled {
+    @apply bg-slate-100 cursor-not-allowed;
+  }
+
+  .input-field.input-error {
+    @apply border-red-500 focus:ring-red-200;
+  }
+
+  .input-ayuda {
+    @apply text-xs text-slate-500;
+  }
+
+  .input-mensaje-error {
+    @apply text-xs text-red-500 font-medium;
+  }
+</style>

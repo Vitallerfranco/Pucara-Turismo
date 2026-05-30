@@ -1,0 +1,127 @@
+---
+import type { Paquete } from '@/types';
+import { formatPrice, getTimeAgo, getWhatsappLink } from '@/lib/utils';
+
+interface Props {
+  paquete: Paquete;
+  whatsappPhone?: string;
+}
+
+const { paquete, whatsappPhone = '5491150000000' } = Astro.props;
+const precioTotal = paquete.precioBase + paquete.gastosAdmin;
+const cuposLibres = Math.max(0, paquete.cuposPorSalida - 8); // Simulado
+const ocupacion = Math.round((8 / paquete.cuposPorSalida) * 100);
+const cuposCritico = cuposLibres <= 3;
+
+const whatsappMsg = `Hola, quiero reservar:
+📌 ${paquete.titulo}
+📅 ${paquete.proximaSalida}
+👥 Pasajeros: (a confirmar)
+💰 ${formatPrice(precioTotal)} por persona
+
+¿Disponibilidad y próximos pasos?`;
+---
+
+<div class="card group hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+  {/* Image container */}
+  <div class="relative overflow-hidden aspect-video bg-slate-200">
+    <img 
+      src={paquete.imagenPrincipal}
+      alt={paquete.titulo}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+    
+    {/* Urgency badge */}
+    {cuposCritico && (
+      <div class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+        🔥 ÚLTIMAS {cuposLibres} PLAZAS
+      </div>
+    )}
+
+    {/* Rating */}
+    <div class="absolute top-3 right-3 bg-white/95 backdrop-blur rounded-lg px-2 py-1 text-xs font-semibold flex items-center gap-1">
+      ⭐ {paquete.rating} ({paquete.reviews})
+    </div>
+
+    {/* Occupancy bar */}
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
+      <div 
+        class="h-full transition-all duration-300"
+        style={{ 
+          width: `${ocupacion}%`,
+          backgroundColor: ocupacion < 50 ? '#10b981' : ocupacion < 80 ? '#f59e0b' : '#ef4444'
+        }}
+      ></div>
+    </div>
+  </div>
+
+  {/* Content */}
+  <div class="flex-1 p-5 flex flex-col">
+    {/* Header */}
+    <div class="mb-3">
+      <h3 class="text-lg font-bold text-slate-900 mb-1 line-clamp-2">
+        {paquete.titulo}
+      </h3>
+      <p class="text-sm text-slate-500 mb-3">
+        📍 {paquete.tipo === 'full_day' ? 'Full Day' : `${paquete.duracionDias}d/${paquete.duracionNoches}n`}
+      </p>
+    </div>
+
+    {/* Description */}
+    <p class="text-sm text-slate-600 mb-4 line-clamp-2 flex-1">
+      {paquete.descripcionCorta}
+    </p>
+
+    {/* Includes */}
+    <div class="mb-4 pb-4 border-b border-slate-100">
+      <div class="flex flex-wrap gap-2">
+        {paquete.incluye.slice(0, 3).map((item) => (
+          <span key={item} class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">
+            ✓ {item}
+          </span>
+        ))}
+        {paquete.incluye.length > 3 && (
+          <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">
+            +{paquete.incluye.length - 3} más
+          </span>
+        )}
+      </div>
+    </div>
+
+    {/* Last reservation */}
+    {/* <p class="text-xs text-slate-400 mb-4 italic">
+      Última reserva hace 2 horas
+    </p> */}
+
+    {/* Price */}
+    <div class="mb-4">
+      <p class="text-xs text-slate-500 mb-1">Precio por persona</p>
+      <div class="flex items-baseline gap-2">
+        <span class="text-2xl font-bold text-slate-900">
+          {formatPrice(paquete.precioBase)}
+        </span>
+        <span class="text-sm text-slate-500">
+          + {formatPrice(paquete.gastosAdmin)} gastos
+        </span>
+      </div>
+    </div>
+
+    {/* CTA Buttons */}
+    <div class="flex gap-2">
+      <a 
+        href={`/paquetes/${paquete.slug}`}
+        class="flex-1 btn btn-secondary btn-sm text-center"
+      >
+        Ver detalles
+      </a>
+      <a 
+        href={`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(whatsappMsg)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 btn btn-primary btn-sm text-center"
+      >
+        Reservar
+      </a>
+    </div>
+  </div>
+</div>

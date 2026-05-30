@@ -1,0 +1,84 @@
+{
+  "destinos": [
+    {
+      "id": "jujuy-salinas",
+      "nombre": "Salinas Grandes",
+      "provincia": "Jujuy",
+      "slug": "salinas-grandes",
+      "descripcionCorta": "Una de las maravillas naturales del mundo. Llanura blanca a 3,656 metros de altura.",
+      "descripcionLarga": "Las Salinas Grandes es un salar ubicado en el departamento de Cochinoca, en la provincia de Jujuy, Argentina. Con una extensión de 6,000 km² y una altura de 3,656 metros sobre el nivel del mar, es la segunda salina más grande del mundo. Su blancura deslumbrante y sus formaciones geológicas únicas la convierten en un destino imprescindible.",
+      "imagen": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
+      "atractivos": ["Salinas blancas", "Laguna ceñida", "Miradores", "Fotografía"],
+      "mejorEpoca": ["abril", "mayo", "octubre", "noviembre"],
+      "clima": {
+        "tempMin": 2,
+        "tempMax": 15,
+        "descripcion": "Frío en altura, cielos despejados"
+      }
+    },
+    {
+      "id": "jujuy-purmamarca",
+      "nombre": "Purmamarca",
+      "provincia": "Jujuy",
+      "slug": "purmamarca",
+      "descripcionCorta": "La capital de la Paleta del Pintor. Cerro de los Siete Colores que cambia de color con la luz.",
+      "descripcionLarga": "Purmamarca es un pueblo ubicado en la Quebrada de Humahuaca, famoso por el Cerro de los Siete Colores, una formación geológica única que cambia de tonalidad según la hora del día. Su plaza central rodeada de araucarias y sus arquitecturas coloniales la hacen un destino culturalmente rico.",
+      "imagen": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&h=800&fit=crop",
+      "atractivos": ["Cerro de los Siete Colores", "Plaza central", "Iglesia de Santa Rosa", "Mercado artesanal"],
+      "mejorEpoca": ["marzo", "abril", "mayo", "octubre"],
+      "clima": {
+        "tempMin": 8,
+        "tempMax": 22,
+        "descripcion": "Templado, variable según la hora"
+      }
+    },
+    {
+      "id": "salta-cafayate",
+      "nombre": "Cafayate",
+      "provincia": "Salta",
+      "slug": "cafayate",
+      "descripcionCorta": "Ruta del vino y bodegas premium. Paisajes de montaña y viñedos Malbec.",
+      "descripcionLarga": "Cafayate es un municipio conocido por sus bodegas y viñedos de alta montaña. Ubicado en los Valles Calchaquíes, ofrece una experiencia enológica única, rodeado de formaciones rocosas coloridas y un clima ideal para la producción de vinos premium.",
+      "imagen": "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&h=800&fit=crop",
+      "atractivos": ["Bodegas", "Garganta de las Conchas", "Viñedos", "Gastronomía"],
+      "mejorEpoca": ["marzo", "abril", "septiembre", "octubre"],
+      "clima": {
+        "tempMin": 6,
+        "tempMax": 24,
+        "descripcion": "Templado, ideal para viñedos"
+      }
+    },
+    {
+      "id": "misiones-iguazu",
+      "nombre": "Cataratas del Iguazú",
+      "provincia": "Misiones",
+      "slug": "iguazu",
+      "descripcionCorta": "Una de las Siete Maravillas Naturales. Cascadas espectaculares compartidas con Brasil y Paraguay.",
+      "descripcionLarga": "Las Cataratas del Iguazú son una de las maravillas naturales más espectaculares del mundo. Con 275 cascadas distribuidas en un semicírculo, crean un paisaje de incomparable belleza. Ubicadas en la frontera entre Argentina, Brasil y Paraguay, ofrecen vistas desde múltiples ángulos.",
+      "imagen": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&h=800&fit=crop",
+      "atractivos": ["Cataratas", "Lado argentino", "Lado brasileño", "Tren de la selva"],
+      "mejorEpoca": ["marzo", "abril", "mayo", "septiembre"],
+      "clima": {
+        "tempMin": 14,
+        "tempMax": 28,
+        "descripcion": "Tropical, cálido y húmedo"
+      }
+    },
+    {
+      "id": "rio-negro-bariloche",
+      "nombre": "Bariloche",
+      "provincia": "Río Negro",
+      "slug": "bariloche",
+      "descripcionCorta": "Puerta de la Patagonia. Lagos cristalinos, bosques y montañas nevadas.",
+      "descripcionLarga": "San Carlos de Bariloche es la puerta de entrada a la Patagonia Argentina. Rodeada de lagos cristalinos, bosques de arrayanes y montañas nevadas, ofrece una experiencia única de naturaleza virgen. Ideal para aventura, fotografía y relajación.",
+      "imagen": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&h=800&fit=crop",
+      "atractivos": ["Circuito Chico", "Lago Nahuel Huapi", "Cerro Campanario", "Chocolate artesanal"],
+      "mejorEpoca": ["diciembre", "enero", "febrero", "julio"],
+      "clima": {
+        "tempMin": -5,
+        "tempMax": 20,
+        "descripcion": "Frío en invierno, templado en verano"
+      }
+    }
+  ]
+}

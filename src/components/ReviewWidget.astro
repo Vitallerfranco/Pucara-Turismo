@@ -1,0 +1,134 @@
+---
+export interface Props {
+  paqueteId?: string;
+  limite?: number;
+}
+
+const { paqueteId, limite = 3 } = Astro.props;
+
+// Datos de ejemplo - serán reemplazados con datos reales de Supabase
+const reviews = [
+  {
+    id: 1,
+    autor: "María García",
+    destino: "Salinas Grandes",
+    rating: 5,
+    texto: "¡Increíble experiencia! Sonia fue muy atenta y todo salió perfecto. Volvería sin dudarlo.",
+    fecha: "Hace 2 semanas"
+  },
+  {
+    id: 2,
+    autor: "Juan López",
+    destino: "Iguazú",
+    rating: 5,
+    texto: "Las cataratas son majestuosas y el tour fue muy bien organizado. 100% recomendado.",
+    fecha: "Hace 1 mes"
+  },
+  {
+    id: 3,
+    autor: "Carlos Rodríguez",
+    destino: "Mendoza",
+    rating: 4,
+    texto: "Excelente viaje. La bodega fue lo mejor. Solo mejoraría los traslados.",
+    fecha: "Hace 6 semanas"
+  }
+];
+
+const displayReviews = reviews.slice(0, limite);
+---
+
+<div class="reviews-widget">
+  <h3 class="reviews-titulo">📸 Lo que dicen nuestros viajeros</h3>
+  
+  <div class="reviews-grid">
+    {displayReviews.map(review => (
+      <div class="review-item">
+        <div class="review-header">
+          <div class="review-avatar">{review.autor.charAt(0)}</div>
+          <div class="review-info">
+            <p class="review-autor">{review.autor}</p>
+            <p class="review-fecha">{review.fecha}</p>
+          </div>
+        </div>
+
+        <div class="review-rating">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span class={i < review.rating ? 'text-orange-500' : 'text-slate-300'}>★</span>
+          ))}
+        </div>
+
+        <p class="review-destino">📍 {review.destino}</p>
+        <p class="review-texto">"{review.texto}"</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="reviews-footer">
+    <p class="reviews-stats">
+      <strong>4.9/5</strong> en base a <strong>247 reseñas</strong> verificadas
+    </p>
+    <a href="#reservas" class="reviews-cta">Ver más reseñas →</a>
+  </div>
+</div>
+
+<style>
+  .reviews-widget {
+    @apply bg-white rounded-2xl p-8 border border-slate-200;
+  }
+
+  .reviews-titulo {
+    @apply text-2xl font-bold text-slate-900 mb-6;
+  }
+
+  .reviews-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-6;
+  }
+
+  .review-item {
+    @apply bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-orange-300 transition-all duration-300 hover:shadow-md;
+  }
+
+  .review-header {
+    @apply flex items-center gap-3 mb-3;
+  }
+
+  .review-avatar {
+    @apply w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-500 text-white flex items-center justify-center font-bold text-sm flex-shrink-0;
+  }
+
+  .review-info {
+    @apply flex-1;
+  }
+
+  .review-autor {
+    @apply font-semibold text-slate-900 text-sm;
+  }
+
+  .review-fecha {
+    @apply text-xs text-slate-500;
+  }
+
+  .review-rating {
+    @apply flex gap-1 mb-2;
+  }
+
+  .review-destino {
+    @apply text-sm text-orange-600 font-medium mb-2;
+  }
+
+  .review-texto {
+    @apply text-sm text-slate-700 italic leading-relaxed;
+  }
+
+  .reviews-footer {
+    @apply text-center py-4 border-t border-slate-200;
+  }
+
+  .reviews-stats {
+    @apply text-slate-600 mb-3;
+  }
+
+  .reviews-cta {
+    @apply inline-block text-orange-600 hover:text-orange-700 font-semibold transition-colors;
+  }
+</style>

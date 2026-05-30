@@ -1,0 +1,106 @@
+---
+export interface Props {
+  titulo: string;
+  descripcion?: string;
+  boton: string;
+  enlace: string;
+  tipo?: 'primary' | 'secondary' | 'gradient';
+  imagen?: string;
+  alineacion?: 'left' | 'right' | 'center';
+}
+
+const { 
+  titulo, 
+  descripcion, 
+  boton, 
+  enlace, 
+  tipo = 'gradient',
+  imagen,
+  alineacion = 'center'
+} = Astro.props;
+---
+
+<section class={`cta-section cta-${tipo} cta-align-${alineacion}`}>
+  {imagen && <div class="cta-image">{imagen}</div>}
+  <div class="cta-content">
+    <h2 class="cta-titulo">{titulo}</h2>
+    {descripcion && <p class="cta-descripcion">{descripcion}</p>}
+    <a href={enlace} class="cta-button">
+      {boton}
+      <span class="cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    @apply py-12 px-6 rounded-2xl flex items-center justify-center gap-8;
+  }
+
+  .cta-gradient {
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg;
+  }
+
+  .cta-primary {
+    @apply bg-orange-500 text-white;
+  }
+
+  .cta-secondary {
+    @apply bg-slate-100 text-slate-900 border-2 border-slate-300;
+  }
+
+  .cta-align-left {
+    @apply text-left;
+  }
+
+  .cta-align-right {
+    @apply flex-row-reverse;
+  }
+
+  .cta-content {
+    @apply flex-1;
+  }
+
+  .cta-titulo {
+    @apply text-3xl font-bold mb-3;
+  }
+
+  .cta-descripcion {
+    @apply text-lg opacity-90 mb-6;
+  }
+
+  .cta-button {
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-semibold transition-all duration-300 hover:gap-3;
+  }
+
+  .cta-secondary .cta-button {
+    @apply bg-orange-500 text-white hover:bg-orange-600;
+  }
+
+  .cta-arrow {
+    @apply inline-block;
+  }
+
+  .cta-image {
+    @apply flex-1 text-6xl text-center opacity-80;
+  }
+
+  @media (max-width: 768px) {
+    .cta-section {
+      @apply flex-col text-center;
+    }
+
+    .cta-align-left,
+    .cta-align-right {
+      @apply text-center flex-col;
+    }
+
+    .cta-titulo {
+      @apply text-2xl;
+    }
+
+    .cta-descripcion {
+      @apply text-base;
+    }
+  }
+</style>

@@ -1,0 +1,248 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FormMini from '@/components/FormMini.jsx';
+import destinosData from '@/data/destinos.json';
+import paquetesData from '@/data/paquetes.json';
+
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+
+export function getStaticPaths() {
+  return destinosData.destinos.map((destino) => ({
+    params: { slug: destino.slug },
+    props: { destino },
+  }));
+}
+
+const { destino } = Astro.props;
+
+if (!destino) {
+  return Astro.redirect('/destinos');
+}
+
+// Get related packages
+const paquetesRelacionados = paquetesData.paquetes.filter(
+  (p) => p.destino === destino.id
+);
+---
+
+<BaseLayout 
+  title={destino.nombre}
+  description={destino.descripcionCorta}
+  image={destino.imagen}
+  type="article"
+>
+  {/* Hero */}
+  <section class="relative w-full h-96 md:h-screen md:max-h-[600px] overflow-hidden">
+    <img 
+      src={destino.imagen}
+      alt={destino.nombre}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+    
+    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12 text-white">
+      <div class="container-gutter">
+        <p class="text-lg text-orange-300 font-semibold mb-2">📍 {destino.provincia}</p>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4">{destino.nombre}</h1>
+        <p class="text-xl text-white/90 max-w-2xl">
+          {destino.descripcionCorta}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Main content */}
+  <section class="section-space bg-white">
+    <div class="container-gutter max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+      {/* Left column */}
+      <div class="lg:col-span-2 space-y-12">
+        {/* Overview */}
+        <div>
+          <h2 class="mb-4">Sobre este destino</h2>
+          <p class="text-lg text-slate-700 leading-relaxed">
+            {destino.descripcionLarga}
+          </p>
+        </div>
+
+        {/* Climate */}
+        <div>
+          <h2 class="mb-6">Clima y mejor época para visitar</h2>
+          <div class="card p-8 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+              <div class="text-center">
+                <p class="text-sm text-slate-600 mb-2">Temperatura mínima</p>
+                <p class="text-3xl font-bold text-blue-600">{destino.clima.tempMin}°C</p>
+              </div>
+              <div class="text-center">
+                <p class="text-sm text-slate-600 mb-2">Temperatura máxima</p>
+                <p class="text-3xl font-bold text-blue-600">{destino.clima.tempMax}°C</p>
+              </div>
+              <div class="text-center md:col-span-1">
+                <p class="text-3xl mb-2">🌡️</p>
+                <p class="text-sm text-slate-600">Promedio anual</p>
+              </div>
+            </div>
+            <p class="text-slate-700 leading-relaxed">
+              {destino.clima.descripcion}
+            </p>
+          </div>
+        </div>
+
+        {/* Attractions */}
+        <div>
+          <h2 class="mb-6">Atractivos principales</h2>
+          <div class="space-y-3">
+            {destino.atractivos.map((atractivo, idx) => (
+              <div 
+                key={idx}
+                class="flex items-start gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-orange-300 transition-colors"
+              >
+                <div class="text-2xl flex-shrink-0 w-10 h-10 flex items-center justify-center">
+                  {idx === 0 && '🏔️'}
+                  {idx === 1 && '🌄'}
+                  {idx === 2 && '🏞️'}
+                  {idx === 3 && '⛰️'}
+                  {idx >= 4 && '🎯'}
+                </div>
+                <div>
+                  <p class="font-semibold text-slate-900">{atractivo}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Best time to visit */}
+        <div>
+          <h2 class="mb-6">Mejor época para visitar</h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {destino.mejorEpoca.map((epoca) => (
+              <div key={epoca} class="card p-4 text-center border-2 border-orange-200 bg-orange-50">
+                <p class="font-semibold text-slate-900 capitalize">{epoca}</p>
+                <p class="text-2xl mt-2">
+                  {epoca === 'verano' && '☀️'}
+                  {epoca === 'invierno' && '❄️'}
+                  {epoca === 'primavera' && '🌸'}
+                  {epoca === 'otono' && '🍂'}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick info */}
+        <div class="bg-slate-50 rounded-lg p-8 border border-slate-200">
+          <h3 class="font-bold text-lg mb-4">📋 Información útil</h3>
+          <ul class="space-y-3 text-slate-700">
+            <li class="flex items-start gap-3">
+              <span class="text-xl">✈️</span>
+              <span>Accesible por vuelos nacionales desde Buenos Aires</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-xl">🏨</span>
+              <span>Amplia variedad de alojamientos (hotel, cabaña, lodge)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-xl">🍽️</span>
+              <span>Gastronomía regional auténtica</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-xl">📱</span>
+              <span>Cobertura de celular y conexión a internet disponibles</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Right column - Sidebar */}
+      <div class="lg:col-span-1">
+        <div class="sticky top-24 space-y-6">
+          {/* Contact card */}
+          <div class="card p-6 bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200">
+            <h3 class="font-bold text-lg mb-4">¿Quieres visitar {destino.nombre}?</h3>
+            <p class="text-slate-700 mb-6 text-sm">
+              Consulta disponibilidad de paquetes para este destino.
+            </p>
+            
+            {/* Contact form */}
+            <FormMini 
+              client:load
+              whatsappPhone="5491150000000"
+              placeholder="Tu nombre y teléfono"
+            />
+          </div>
+
+          {/* Packages for this destination */}
+          {paquetesRelacionados.length > 0 && (
+            <div>
+              <h3 class="font-bold text-lg mb-4">Paquetes disponibles</h3>
+              <div class="space-y-3">
+                {paquetesRelacionados.map((paquete) => (
+                  <a 
+                    key={paquete.id}
+                    href={`/paquetes/${paquete.slug}`}
+                    class="card p-4 hover:shadow-md transition-shadow group"
+                  >
+                    <p class="font-semibold text-slate-900 group-hover:text-orange-600 transition-colors text-sm">
+                      {paquete.titulo}
+                    </p>
+                    <p class="text-xs text-slate-500 mt-1">
+                      {paquete.duracionDias}d / {paquete.duracionNoches}n
+                    </p>
+                    <p class="text-sm font-bold text-slate-900 mt-2">
+                      ${paquete.precioBase + paquete.gastosAdmin}
+                    </p>
+                  </a>
+                ))}
+              </div>
+              <a 
+                href="/paquetes"
+                class="block mt-4 text-center text-orange-600 font-semibold hover:text-orange-700"
+              >
+                Ver todos →
+              </a>
+            </div>
+          )}
+
+          {/* Trust badges */}
+          <div class="space-y-3 text-sm text-slate-600">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">✓</span>
+              <span>Tours verificados</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">✓</span>
+              <span>Guías locales expertos</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">✓</span>
+              <span>100% seguro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="section-space bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+    <div class="container-gutter max-w-3xl mx-auto text-center">
+      <h2 class="mb-4">¿Listo para explorar {destino.nombre}?</h2>
+      <p class="text-xl text-white/90 mb-8">
+        Nuestros expertos te arman el viaje perfecto.
+      </p>
+      <a 
+        href={`https://wa.me/5491150000000?text=Hola,%20quiero%20información%20sobre%20viajes%20a%20${destino.nombre}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn bg-white text-orange-600 hover:bg-slate-100 btn-lg"
+      >
+        💬 Consultar ahora
+      </a>
+    </div>
+  </section>
+</BaseLayout>

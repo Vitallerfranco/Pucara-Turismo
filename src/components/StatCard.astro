@@ -1,0 +1,49 @@
+---
+export interface Props {
+  titulo: string;
+  descripcion: string;
+  icono?: string;
+  numero?: number;
+  valor: string;
+}
+
+const { titulo, descripcion, icono = '✨', numero, valor } = Astro.props;
+---
+
+<div class="stat-card">
+  {numero && <span class="stat-number">{numero}</span>}
+  <div class="stat-icon">{icono}</div>
+  <h3 class="stat-titulo">{titulo}</h3>
+  <p class="stat-valor">{valor}</p>
+  <p class="stat-descripcion">{descripcion}</p>
+</div>
+
+<style>
+  .stat-card {
+    @apply relative bg-gradient-to-br from-slate-50 to-slate-100 p-6 rounded-2xl border border-slate-200 text-center overflow-hidden hover:border-orange-300 transition-all duration-300 hover:shadow-lg;
+  }
+
+  .stat-card:hover {
+    @apply from-orange-50 to-slate-50;
+  }
+
+  .stat-number {
+    @apply absolute top-4 right-4 text-4xl font-bold text-orange-100 opacity-50;
+  }
+
+  .stat-icon {
+    @apply text-4xl mb-3;
+  }
+
+  .stat-titulo {
+    @apply font-bold text-slate-900 mb-2;
+  }
+
+  .stat-valor {
+    @apply text-2xl font-bold text-orange-600 mb-2;
+  }
+
+  .stat-descripcion {
+    @apply text-sm text-slate-600;
+  }
+</style>

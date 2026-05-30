@@ -1,0 +1,196 @@
+{
+  "paquetes": [
+    {
+      "id": "pkg-001",
+      "slug": "salinas-grandes-5d",
+      "titulo": "Salinas Grandes",
+      "tipo": "viaje_completo",
+      "destino": "jujuy-salinas",
+      "duracionDias": 5,
+      "duracionNoches": 4,
+      "precioBase": 280000,
+      "gastosAdmin": 10000,
+      "descripcionCorta": "Aventura a las Salinas más grandes del mundo. Paquete completo con hotel y guía especializado.",
+      "descripcionLarga": "Descubre una de las maravillas naturales del planeta. Nuestro paquete incluye alojamiento en hotel 3 estrellas, todas las comidas, transporte privado y guía especializado en geología y naturaleza. Viviras la experiencia de caminar sobre una llanura blanca a más de 3,600 metros de altura.",
+      "incluye": ["transporte", "desayuno", "almuerzo", "cena", "guia", "alojamiento", "seguro"],
+      "imagenPrincipal": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
+      "imagenes": [
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
+        "https://images.unsplash.com/photo-1520763185298-1b434c919eba?w=800&q=80"
+      ],
+      "rating": 4.9,
+      "reviews": 247,
+      "cuposPorSalida": 20,
+      "proximaSalida": "2026-07-15",
+      "frecuenciaSalidas": "semanal",
+      "tags": ["naturaleza", "altura", "fotografia", "aventura"],
+      "itinerario": [
+        "Recepción en Purmamarca y traslado a Salinas Grandes",
+        "Visita guiada a Salinas y formaciones geológicas",
+        "Laguna Ceñida y miradores panorámicos",
+        "Retorno a Purmamarca, visita a tiendas de artesanías",
+        "Despedida y retorno a punto de partida"
+      ]
+    },
+    {
+      "id": "pkg-002",
+      "slug": "iguazu-4d",
+      "titulo": "Cataratas del Iguazú",
+      "tipo": "viaje_completo",
+      "destino": "misiones-iguazu",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 320000,
+      "gastosAdmin": 10000,
+      "descripcionCorta": "Las Siete Maravillas. Cataratas espectaculares con vistas desde lado argentino y brasileño.",
+      "descripcionLarga": "Vive la magia de las Cataratas del Iguazú, una de las maravillas naturales del mundo. Incluye alojamiento frente al Parque Nacional, visitas guiadas al lado argentino y brasileño, todas las comidas y un experiencia que nunca olvidarás.",
+      "incluye": ["transporte", "desayuno", "almuerzo", "cena", "guia", "alojamiento", "seguro", "paseo-lancha"],
+      "imagenPrincipal": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&h=800&fit=crop",
+      "imagenes": [
+        "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80",
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+      ],
+      "rating": 5.0,
+      "reviews": 189,
+      "cuposPorSalida": 15,
+      "proximaSalida": "2026-07-10",
+      "frecuenciaSalidas": "quincenal",
+      "tags": ["naturaleza", "aventura", "fotografia", "familia"],
+      "itinerario": [
+        "Llegada al hotel frente al Parque Nacional",
+        "Visita guiada lado argentino (Garganta del Diablo)",
+        "Paseo en lancha por el río Iguazú",
+        "Visita lado brasileño (vista panorámica)",
+        "Despedida y retorno"
+      ]
+    },
+    {
+      "id": "pkg-003",
+      "slug": "full-day-tigre-delta",
+      "titulo": "Full Day: Tigre y Delta",
+      "tipo": "full_day",
+      "destino": "buenos-aires",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 28000,
+      "gastosAdmin": 6000,
+      "descripcionCorta": "Mañana de excursión al Tigre. Lancha por el Delta, almuerzo en restaurante típico.",
+      "descripcionLarga": "Disfruta de una mañana mágica en el Tigre y su Delta. Salida desde el oeste del GBA en transporte privado, navegación por los canales más bellos, almuerzo en restaurante con vista al río y retorno al punto de partida.",
+      "incluye": ["transporte", "almuerzo", "guia", "lancha"],
+      "imagenPrincipal": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=800&fit=crop",
+      "imagenes": [
+        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+      ],
+      "rating": 4.8,
+      "reviews": 134,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-06-01",
+      "frecuenciaSalidas": "semanal",
+      "tags": ["naturaleza", "familia", "relax"],
+      "itinerario": [
+        "Salida a las 08:00 desde zona oeste",
+        "Travesía en lancha por los canales del Delta",
+        "Almuerzo en restaurante con vista al río",
+        "Tiempo libre para paseos",
+        "Retorno a punto de partida (17:00)"
+      ]
+    },
+    {
+      "id": "pkg-004",
+      "slug": "mendoza-alta-montana",
+      "titulo": "Mendoza y Alta Montaña",
+      "tipo": "viaje_completo",
+      "destino": "mendoza",
+      "duracionDias": 5,
+      "duracionNoches": 4,
+      "precioBase": 310000,
+      "gastosAdmin": 10000,
+      "descripcionCorta": "Vinos premium y Aconcagua. Hotel boutique, tour en bodega y vista a la montaña más alta de América.",
+      "descripcionLarga": "Combinación perfecta de experiencia enológica y aventura en montaña. Alojamiento en hotel boutique en Mendoza ciudad, tour en bodega premium con cata de vinos, tour a Alta Montaña con vista al Aconcagua (6,961m), y gastronomía de clase mundial.",
+      "incluye": ["transporte", "desayuno", "almuerzo", "cena", "guia", "alojamiento", "bodega", "seguro"],
+      "imagenPrincipal": "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1200&h=800&fit=crop",
+      "imagenes": [
+        "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80",
+        "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80"
+      ],
+      "rating": 4.95,
+      "reviews": 156,
+      "cuposPorSalida": 18,
+      "proximaSalida": "2026-07-08",
+      "frecuenciaSalidas": "quincenal",
+      "tags": ["naturaleza", "vino", "gourmet", "aventura"],
+      "itinerario": [
+        "Vuelo a Mendoza, recepción en hotel boutique",
+        "Tour en bodega premium con cata",
+        "Excursión Alta Montaña: Camino del Aconcagua",
+        "Día libre: spa, taller de cocina o tour adicional",
+        "Vuelo retorno"
+      ]
+    },
+    {
+      "id": "pkg-005",
+      "slug": "cordoba-sierras",
+      "titulo": "Córdoba y Sierras",
+      "tipo": "viaje_completo",
+      "destino": "cordoba",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 195000,
+      "gastosAdmin": 10000,
+      "descripcionCorta": "Sierras de Córdoba. La Cumbrecita, Mina Clavero y pueblos coloniales.",
+      "descripcionLarga": "Descubre los pueblos mágicos de las Sierras Cordobesas. Alojamiento en Villa Carlos Paz, visitas a La Cumbrecita (pueblo en la montaña), Mina Clavero (balnearios naturales), y tours por la arquitectura colonial. Naturaleza serrana a solo 800km de Buenos Aires.",
+      "incluye": ["transporte", "desayuno", "almuerzo", "cena", "guia", "alojamiento"],
+      "imagenPrincipal": "https://images.unsplash.com/photo-1548940740-204726a19be3?w=1200&h=800&fit=crop",
+      "imagenes": [
+        "https://images.unsplash.com/photo-1548940740-204726a19be3?w=800&q=80",
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+      ],
+      "rating": 4.7,
+      "reviews": 98,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-07-05",
+      "frecuenciaSalidas": "semanal",
+      "tags": ["naturaleza", "arquitectura", "familia", "relax"],
+      "itinerario": [
+        "Traslado a Villa Carlos Paz",
+        "Visita a La Cumbrecita (pueblo en la montaña)",
+        "Tour por Mina Clavero y balnearios naturales",
+        "Paseo por pueblo colonial de La Falda",
+        "Retorno a punto de partida"
+      ]
+    },
+    {
+      "id": "pkg-006",
+      "slug": "full-day-colonia",
+      "titulo": "Full Day: Colonia del Sacramento",
+      "tipo": "full_day",
+      "destino": "colonia",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 45000,
+      "gastosAdmin": 6000,
+      "descripcionCorta": "Viaje a Uruguay. Colonia del Sacramento: pueblo colonial, río y gastronomía.",
+      "descripcionLarga": "Cruzá el Río de la Plata hacia Uruguay. Travesía en buque moderno a Colonia del Sacramento, recorrido guiado por el pueblo histórico, almuerzo en restaurante local, y retorno al atardecer. Ideal para parejas y familias.",
+      "incluye": ["transporte", "almuerzo", "guia", "buque"],
+      "imagenPrincipal": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop",
+      "imagenes": [
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+      ],
+      "rating": 4.6,
+      "reviews": 76,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-06-02",
+      "frecuenciaSalidas": "semanal",
+      "tags": ["historia", "arquitectura", "relax", "gastronomia"],
+      "itinerario": [
+        "Salida desde puerto con buque moderno",
+        "Travesía Río de la Plata (50 min)",
+        "Recorrido por casco histórico de Colonia",
+        "Almuerzo en restaurante tradicional",
+        "Tiempo libre para compras",
+        "Retorno a Buenos Aires (17:00)"
+      ]
+    }
+  ]
+}

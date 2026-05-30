@@ -1,0 +1,218 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import PaqueteCard from '@/components/PaqueteCard.astro';
+import Recomendador from '@/components/Recomendador.jsx';
+import paquetesData from '@/data/paquetes.json';
+
+const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
+---
+
+<BaseLayout 
+  title="Viajes al Norte Argentino"
+  description="Descubre Salinas Grandes, Iguazú, Mendoza y más. Paquetes turísticos completos con coordinador experto en WhatsApp."
+>
+  <Hero />
+
+  {/* Recomendador widget */}
+  <section id="recomendador" class="section-space bg-gradient-to-b from-slate-50 to-white">
+    <div class="container-gutter max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="mb-4">🎯 Descubre tu viaje perfecto</h2>
+        <p class="text-slate-600 text-lg">
+          Responde 5 preguntas y te recomendaremos los paquetes ideales para vos.
+        </p>
+      </div>
+      <Recomendador client:load />
+    </div>
+  </section>
+
+  {/* Featured packages */}
+  <section class="section-space bg-gradient-to-b from-white to-slate-50">
+    <div class="container-gutter">
+      <div class="text-center mb-12">
+        <h2 class="mb-4">Paquetes destacados</h2>
+        <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+          Nuestros viajes más populares. Salidas semanales y con garantía de coordinación en WhatsApp.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {paquetesDestacados.map((paquete) => (
+          <PaqueteCard paquete={paquete} whatsappPhone="5491150000000" />
+        ))}
+      </div>
+
+      <div class="text-center">
+        <a href="/paquetes" class="btn btn-primary btn-lg">
+          Ver todos los paquetes →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Why choose us */}
+  <section id="sobre" class="section-space bg-white">
+    <div class="container-gutter max-w-5xl">
+      <h2 class="text-center mb-12">¿Por qué elegir Pucará Turismo?</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
+            🧑‍💼
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Coordinador dedicado</h3>
+            <p class="text-slate-600">Sonia te responde en WhatsApp en menos de 5 minutos. Antes, durante y después del viaje.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
+            ⭐
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Rating 4.9/5</h3>
+            <p class="text-slate-600">Más de 8,000 viajeros satisfechos. Reseñas reales en Google y TripAdvisor.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
+            🛡️
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">100% seguro</h3>
+            <p class="text-slate-600">Certificado ATTA. Seguro de viaje incluido. Pago seguro con todas las garantías.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
+            📍
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">Expertos locales</h3>
+            <p class="text-slate-600">15+ años. Conocemos el norte argentino como la palma de la mano.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 md:p-12 text-center">
+        <h3 class="text-2xl font-bold mb-4">¿Necesitas ayuda?</h3>
+        <p class="text-slate-700 mb-6">
+          Chatea con Sonia ahora. Ella te ayuda a elegir el viaje perfecto para vos.
+        </p>
+        <a 
+          href="https://wa.me/5491150000000?text=Hola%20Sonia,%20quiero%20consultar%20opciones%20de%20viaje"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-lg"
+        >
+          💬 Consultar ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section id="faq" class="section-space bg-slate-50">
+    <div class="container-gutter max-w-3xl">
+      <h2 class="text-center mb-12">Preguntas frecuentes</h2>
+
+      <div class="space-y-4">
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">❓</span>
+            ¿Cuánto tiempo toma confirmar una reserva?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Generalmente en menos de 24 horas. Sonia revisa disponibilidad, coordina con los proveedores y te envía el detalle completo por WhatsApp.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">💰</span>
+            ¿Qué métodos de pago aceptan?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Transferencia bancaria, tarjeta de crédito/débito (hasta 12 cuotas), efectivo, Mercado Pago y billeteras virtuales.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">🛫</span>
+            ¿Incluye pasajes aéreos?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Los paquetes incluyen traslados terrestres. Los vuelos se cotizan por separado según origen y fechas. Consultá con Sonia.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">📱</span>
+            ¿Puedo cambiar fechas después de reservar?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Sí, pero sujeto a disponibilidad. Hay penalizaciones si es muy cercano a la salida. Contáctanos para evaluar opciones.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">📍</span>
+            ¿De dónde salen los viajes?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Desde Buenos Aires (zona oeste). Algunos paquetes permiten encontrarse en origen (Jujuy, Mendoza, etc).
+          </div>
+        </details>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-slate-600 mb-4">¿Más dudas?</p>
+        <a 
+          href="https://wa.me/5491150000000"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          Preguntale a Sonia
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Final */}
+  <section class="section-space bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container-gutter relative z-10 text-center max-w-3xl mx-auto">
+      <h2 class="mb-4 text-4xl md:text-5xl">Reservá tu viaje hoy</h2>
+      <p class="text-xl mb-8 text-white/90">
+        Últimas 3 salidas del mes. Sonia responde en WhatsApp.
+      </p>
+      <a 
+        href="https://wa.me/5491150000000?text=Hola%20Sonia,%20quiero%20reservar%20un%20viaje"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn bg-white text-orange-600 hover:bg-slate-100 btn-lg"
+      >
+        💬 Consultar disponibilidad
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,52 @@
+{
+  "extras": [
+    {
+      "id": "extra-001",
+      "nombre": "Traslado Privado",
+      "descripcion": "Traslado desde tu domicilio al punto de salida",
+      "precio": 5000,
+      "tipo": "transporte",
+      "aplicableA": ["pkg-001", "pkg-002", "pkg-003", "pkg-004", "pkg-005", "pkg-006"]
+    },
+    {
+      "id": "extra-002",
+      "nombre": "Seguro Viaje Adicional",
+      "descripcion": "Cobertura ampliada: cancelación, asistencia médica, pérdida de equipaje",
+      "precio": 8000,
+      "tipo": "seguro",
+      "aplicableA": ["pkg-001", "pkg-002", "pkg-004", "pkg-005"]
+    },
+    {
+      "id": "extra-003",
+      "nombre": "Almuerzo Premium",
+      "descripcion": "Upgrade a restaurante de lujo en lugar de almuerzo regular",
+      "precio": 12000,
+      "tipo": "alojamiento",
+      "aplicableA": ["pkg-001", "pkg-002", "pkg-004", "pkg-005"]
+    },
+    {
+      "id": "extra-004",
+      "nombre": "Acompañante Fotógrafo",
+      "descripcion": "Fotógrafo profesional para tu viaje + fotos digitales",
+      "precio": 15000,
+      "tipo": "actividad",
+      "aplicableA": ["pkg-001", "pkg-002", "pkg-004"]
+    },
+    {
+      "id": "extra-005",
+      "nombre": "Experiencia de Vino",
+      "descripcion": "Cata en bodega premium con sommelier",
+      "precio": 10000,
+      "tipo": "actividad",
+      "aplicableA": ["pkg-004"]
+    },
+    {
+      "id": "extra-006",
+      "nombre": "Spa y Relax",
+      "descripcion": "Sesión de spa en hotel (masaje + sauna + jacuzzi)",
+      "precio": 8000,
+      "tipo": "alojamiento",
+      "aplicableA": ["pkg-004", "pkg-005"]
+    }
+  ]
+}

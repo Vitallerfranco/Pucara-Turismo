@@ -1,0 +1,105 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PaqueteCard from '@/components/PaqueteCard.astro';
+import Filtros from '@/components/Filtros.jsx';
+import paquetesData from '@/data/paquetes.json';
+
+const paquetes = paquetesData.paquetes;
+---
+
+<BaseLayout 
+  title="Todos nuestros paquetes turísticos"
+  description="Descubre todos nuestros paquetes de viajes al norte argentino. Filtra por duración, presupuesto y tipo de viaje."
+>
+  {/* Header section */}
+  <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white pt-24 pb-12">
+    <div class="container-gutter">
+      <h1 class="mb-4">Nuestros Paquetes</h1>
+      <p class="text-xl text-slate-100 max-w-2xl">
+        Desde full days hasta viajes de 5 días. Encuentra tu próxima aventura.
+      </p>
+    </div>
+  </section>
+
+  {/* Filters and results */}
+  <section class="section-space bg-white">
+    <div class="container-gutter">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Sidebar - Filters */}
+        <div class="lg:col-span-1">
+          <div class="sticky top-24">
+            <Filtros client:load />
+          </div>
+        </div>
+
+        {/* Main content - Cards */}
+        <div class="lg:col-span-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="paquetes-grid">
+            {paquetes.map((paquete) => (
+              <PaqueteCard paquete={paquete} whatsappPhone="5491150000000" />
+            ))}
+          </div>
+
+          {/* No results message */}
+          <div id="no-results" class="hidden text-center py-12">
+            <p class="text-2xl font-bold text-slate-900 mb-4">
+              No encontramos paquetes que coincidan
+            </p>
+            <p class="text-slate-600 mb-6">
+              Intenta ajustar los filtros o contáctanos directamente por WhatsApp
+            </p>
+            <a 
+              href="https://wa.me/5491150000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              💬 Contactar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA section */}
+  <section class="section-space bg-orange-50">
+    <div class="container-gutter max-w-3xl mx-auto text-center">
+      <h2 class="mb-4">¿No encuentras lo que buscas?</h2>
+      <p class="text-lg text-slate-700 mb-8">
+        Armamos viajes a medida. Cuéntanos qué tenés en mente y lo hacemos posible.
+      </p>
+      <a 
+        href="https://wa.me/5491150000000?text=Hola%20Sonia,%20me%20gustaría%20armar%20un%20viaje%20a%20medida"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary btn-lg"
+      >
+        💬 Consultar viaje personalizado
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Grid animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #paquetes-grid > * {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+</style>
+
+<script>
+  // Update grid when filters change (could integrate with a state management system)
+  console.log('Paquetes page loaded');
+</script>

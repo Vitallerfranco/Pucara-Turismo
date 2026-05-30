@@ -1,0 +1,236 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FormReserva from '@/components/FormReserva.jsx';
+import paquetesData from '@/data/paquetes.json';
+import extrasData from '@/data/extras.json';
+import { formatPrice } from '@/lib/utils';
+
+interface Props {
+  params: {
+    id: string;
+  };
+}
+
+export function getStaticPaths() {
+  return paquetesData.paquetes.map((paquete) => ({
+    params: { id: paquete.slug },
+    props: { paquete },
+  }));
+}
+
+const { paquete } = Astro.props;
+
+if (!paquete) {
+  return Astro.redirect('/paquetes');
+}
+
+// Get applicable extras
+const extrasAplicables = extrasData.extras.filter((e) =>
+  e.aplicableA.includes(paquete.id)
+);
+
+const totalPrice = paquete.precioBase + paquete.gastosAdmin;
+---
+
+<BaseLayout 
+  title={paquete.titulo}
+  description={paquete.descripcionCorta}
+  image={paquete.imagenPrincipal}
+  type="article"
+>
+  {/* Hero with image */}
+  <section class="relative w-full h-96 md:h-screen md:max-h-[600px] overflow-hidden">
+    <img 
+      src={paquete.imagenPrincipal}
+      alt={paquete.titulo}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+    
+    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12 text-white">
+      <div class="container-gutter max-w-5xl">
+        <div class="flex flex-wrap gap-3 mb-4">
+          {paquete.tags.map((tag) => (
+            <span key={tag} class="bg-orange-500/80 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{paquete.titulo}</h1>
+        <div class="flex flex-wrap gap-6 text-lg">
+          <div>📅 {paquete.duracionDias}d / {paquete.duracionNoches}n</div>
+          <div>⭐ {paquete.rating} ({paquete.reviews} reseñas)</div>
+          <div>💰 {formatPrice(totalPrice)} por persona</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Main content */}
+  <section class="section-space bg-white">
+    <div class="container-gutter max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+      {/* Left column - Info */}
+      <div class="lg:col-span-2 space-y-12">
+        {/* Overview */}
+        <div>
+          <h2 class="mb-4">Descripción</h2>
+          <p class="text-lg text-slate-700 leading-relaxed mb-4">
+            {paquete.descripcionLarga}
+          </p>
+        </div>
+
+        {/* Itinerary */}
+        <div>
+          <h2 class="mb-6">Itinerario</h2>
+          <div class="space-y-4">
+            {paquete.itinerario.map((dia, idx) => (
+              <div key={idx} class="card p-4 md:p-6 border-l-4 border-orange-500">
+                <div class="flex gap-4">
+                  <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-orange-600">
+                    {idx + 1}
+                  </div>
+                  <div class="pt-1">
+                    <p class="text-slate-900">{dia}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* What's included */}
+        <div>
+          <h2 class="mb-6">¿Qué incluye?</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {paquete.incluye.map((item) => (
+              <div key={item} class="flex items-center gap-3 p-4 bg-green-50 rounded-lg border border-green-200">
+                <span class="text-2xl">✓</span>
+                <span class="font-semibold text-slate-900 capitalize">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Image gallery */}
+        {paquete.imagenes && paquete.imagenes.length > 0 && (
+          <div>
+            <h2 class="mb-6">Galería</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {paquete.imagenes.map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`${paquete.titulo} - Foto ${idx + 1}`}
+                  class="w-full h-64 object-cover rounded-xl"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* FAQ */}
+        <div>
+          <h2 class="mb-6">Preguntas frecuentes</h2>
+          <div class="space-y-3">
+            <details class="group card p-6 cursor-pointer">
+              <summary class="font-bold flex items-center gap-4">
+                <span>¿Puedo cambiar de fecha?</span>
+                <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="mt-4 text-slate-600">
+                Sí, sujeto a disponibilidad. Contacta con Sonia por WhatsApp para consultar opciones.
+              </div>
+            </details>
+
+            <details class="group card p-6 cursor-pointer">
+              <summary class="font-bold flex items-center gap-4">
+                <span>¿Qué pasa si viajo con menores?</span>
+                <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="mt-4 text-slate-600">
+                Aplicamos descuentos especiales para menores de 12 años. Consulta en WhatsApp.
+              </div>
+            </details>
+
+            <details class="group card p-6 cursor-pointer">
+              <summary class="font-bold flex items-center gap-4">
+                <span>¿Se puede cancelar?</span>
+                <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="mt-4 text-slate-600">
+                Sí. Consulta nuestra política de cancelación: hasta 30 días antes = reembolso completo.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      {/* Right column - Booking form */}
+      <div class="lg:col-span-1">
+        <div class="sticky top-24 space-y-6">
+          {/* Price card */}
+          <div class="card p-6 bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200">
+            <p class="text-sm text-slate-600 mb-2">Precio por persona</p>
+            <div class="text-3xl font-bold text-slate-900 mb-4">
+              {formatPrice(totalPrice)}
+            </div>
+            <div class="space-y-2 text-sm text-slate-700 mb-4 pb-4 border-b border-orange-200">
+              <div class="flex justify-between">
+                <span>Paquete base:</span>
+                <span class="font-semibold">{formatPrice(paquete.precioBase)}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Gastos admin:</span>
+                <span class="font-semibold">{formatPrice(paquete.gastosAdmin)}</span>
+              </div>
+            </div>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2 text-green-700">✓ Seguro incluido</div>
+              <div class="flex items-center gap-2 text-green-700">✓ Guía profesional</div>
+              <div class="flex items-center gap-2 text-green-700">✓ Coordinador WhatsApp</div>
+            </div>
+          </div>
+
+          {/* Urgency */}
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+            <p class="text-red-700 font-bold">
+              🔥 Últimas {paquete.cuposPorSalida - 5} plazas disponibles
+            </p>
+            <p class="text-sm text-red-600 mt-1">
+              Próxima salida: {new Date(paquete.proximaSalida).toLocaleDateString('es-AR')}
+            </p>
+          </div>
+
+          {/* Booking form */}
+          <FormReserva 
+            client:load
+            paquete={paquete}
+            extras={extrasAplicables}
+            whatsappPhone="5491150000000"
+          />
+
+          {/* Alternative CTA */}
+          <div class="text-center space-y-3 pt-4 border-t">
+            <p class="text-sm text-slate-600">¿Preguntas? Consulta directamente:</p>
+            <a 
+              href={`https://wa.me/5491150000000?text=Hola,%20me%20interesa%20el%20paquete%20${paquete.titulo}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline w-full"
+            >
+              💬 Hablar con Sonia
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Related packages */}
+  <section class="section-space bg-slate-50">
+    <div class="container-gutter">
+      <h2 class="text-center mb-12">Otros paquetes que te pueden interesar</h2>
+      {/* Could add related packages here */}
+    </div>
+  </section>
+</BaseLayout>
