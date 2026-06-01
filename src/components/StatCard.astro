@@ -21,31 +21,27 @@ const { titulo, descripcion, icono = '✨', numero, valor } = Astro.props;
 <style>
   @reference "../styles/globals.css";
   .stat-card {
-    @apply relative bg-gradient-to-br from-slate-50 to-slate-100 p-6 rounded-2xl border border-slate-200 text-center overflow-hidden hover:border-orange-300 transition-all duration-300 hover:shadow-lg;
-  }
-
-  .stat-card:hover {
-    @apply from-orange-50 to-slate-50;
+    @apply relative bg-gradient-to-br from-orange-50 to-slate-50 p-8 rounded-xl border border-orange-200 text-center overflow-hidden hover:border-orange-400 hover:from-orange-100 hover:to-orange-50 transition-all duration-300 hover:shadow-lg hover:scale-105;
   }
 
   .stat-number {
-    @apply absolute top-4 right-4 text-4xl font-bold text-orange-100 opacity-50;
+    @apply absolute top-4 right-4 text-5xl font-bold text-orange-100 opacity-40;
   }
 
   .stat-icon {
-    @apply text-4xl mb-3;
+    @apply text-5xl mb-4;
   }
 
   .stat-titulo {
-    @apply font-bold text-slate-900 mb-2;
+    @apply font-bold text-slate-900 mb-2.5 text-lg;
   }
 
   .stat-valor {
-    @apply text-2xl font-bold text-orange-600 mb-2;
+    @apply text-3xl font-bold text-orange-600 mb-3;
   }
 
   .stat-descripcion {
-    @apply text-sm text-slate-600;
+    @apply text-sm text-slate-600 leading-relaxed;
   }
 </style>
 

@@ -36,57 +36,57 @@ const contactos = [
   description="Ponte en contacto con nosotros para consultas, reservas o más información sobre nuestros viajes"
 >
   <!-- Hero -->
-  <section class="pt-32 pb-16 px-6">
+  <section class="pt-32 pb-20 px-6 bg-gradient-to-b from-orange-50 to-white">
     <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Ponte en Contacto</h1>
-      <p class="text-xl text-slate-600">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Ponte en Contacto</h1>
+      <p class="text-lg md:text-xl text-slate-600 leading-relaxed">
         ¿Preguntas? Estamos aquí para ayudarte a planificar tu viaje perfecto
       </p>
     </div>
   </section>
 
   <!-- Formulario -->
-  <section class="py-16 px-6 max-w-4xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-12">
+  <section class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16">
       <!-- Formulario -->
       <div>
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Envía un mensaje</h2>
-        <form class="space-y-4" method="POST" action="/api/contacto">
+        <h2 class="text-3xl font-bold text-slate-900 mb-8">Envía un mensaje</h2>
+        <form class="space-y-5" method="POST" action="/api/contacto">
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Nombre</label>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre</label>
             <input
               type="text"
               name="nombre"
               required
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300"
               placeholder="Tu nombre"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
             <input
               type="email"
               name="email"
               required
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300"
               placeholder="tu@email.com"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Teléfono</label>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Teléfono</label>
             <input
               type="tel"
               name="telefono"
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300"
               placeholder="+54 9 11 ..."
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Asunto</label>
-            <select name="asunto" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 bg-white cursor-pointer">
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Asunto</label>
+            <select name="asunto" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300 bg-white cursor-pointer">
               <option value="">Selecciona un asunto</option>
               <option value="consulta">Consulta general</option>
               <option value="reserva">Consulta sobre reserva</option>
@@ -96,19 +96,19 @@ const contactos = [
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Mensaje</label>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Mensaje</label>
             <textarea
               name="mensaje"
               rows="5"
               required
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 resize-none"
+              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300 resize-none"
               placeholder="Cuéntanos con qué podemos ayudarte..."
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
           >
             Enviar Mensaje
           </button>
@@ -117,14 +117,14 @@ const contactos = [
 
       <!-- Información de Contacto -->
       <div>
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Contáctanos</h2>
-        <div class="space-y-6">
+        <h2 class="text-3xl font-bold text-slate-900 mb-8">Contáctanos</h2>
+        <div class="space-y-5">
           {contactos.map(contacto => (
             <a
               href={contacto.enlace}
-              class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 hover:border-orange-300 hover:bg-orange-50 transition-all duration-300"
+              class="flex items-start gap-4 p-6 rounded-xl border border-slate-200 hover:border-orange-400 hover:bg-orange-50 hover:shadow-md transition-all duration-300 group"
             >
-              <span class="text-3xl">{contacto.icono}</span>
+              <span class="text-3xl group-hover:scale-110 transition-transform duration-300">{contacto.icono}</span>
               <div>
                 <h3 class="font-bold text-slate-900">{contacto.tipo}</h3>
                 <p class="text-slate-600">{contacto.valor}</p>
@@ -134,16 +134,24 @@ const contactos = [
         </div>
 
         <!-- FAQ Rápido -->
-        <div class="mt-8 pt-8 border-t border-slate-200">
-          <h3 class="font-bold text-slate-900 mb-4">¿Preguntas frecuentes?</h3>
-          <details class="space-y-3">
-            <summary class="cursor-pointer font-medium text-slate-900 hover:text-orange-600">¿Cuánto tiempo responden?</summary>
-            <p class="text-slate-600 pl-4">Respondemos en menos de 2 horas durante horario de oficina.</p>
-          </details>
-          <details class="space-y-3 pt-3">
-            <summary class="cursor-pointer font-medium text-slate-900 hover:text-orange-600">¿Puedo hablar con alguien directamente?</summary>
-            <p class="text-slate-600 pl-4">¡Claro! Enviamos nuestro WhatsApp - es la forma más rápida.</p>
-          </details>
+        <div class="mt-10 pt-10 border-t border-slate-200">
+          <h3 class="font-bold text-slate-900 mb-5">¿Preguntas frecuentes?</h3>
+          <div class="space-y-4">
+            <details class="group cursor-pointer">
+              <summary class="font-medium text-slate-900 hover:text-orange-600 transition-colors duration-300 flex items-center gap-2">
+                <span class="group-open:rotate-180 transition-transform duration-300">▼</span>
+                ¿Cuánto tiempo responden?
+              </summary>
+              <p class="text-slate-600 pl-6 mt-3 leading-relaxed">Respondemos en menos de 2 horas durante horario de oficina.</p>
+            </details>
+            <details class="group cursor-pointer">
+              <summary class="font-medium text-slate-900 hover:text-orange-600 transition-colors duration-300 flex items-center gap-2">
+                <span class="group-open:rotate-180 transition-transform duration-300">▼</span>
+                ¿Puedo hablar con alguien directamente?
+              </summary>
+              <p class="text-slate-600 pl-6 mt-3 leading-relaxed">¡Claro! Enviamos nuestro WhatsApp - es la forma más rápida.</p>
+            </details>
+          </div>
         </div>
       </div>
     </div>

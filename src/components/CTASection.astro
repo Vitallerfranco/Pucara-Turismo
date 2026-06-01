@@ -35,19 +35,19 @@ const {
 <style>
   @reference "../styles/globals.css";
   .cta-section {
-    @apply py-12 px-6 rounded-2xl flex items-center justify-center gap-8;
+    @apply py-16 md:py-20 px-6 md:px-12 rounded-2xl flex items-center justify-center gap-10 shadow-lg;
   }
 
   .cta-gradient {
-    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg;
+    @apply bg-gradient-to-r from-orange-500 via-orange-450 to-orange-600 text-white hover:shadow-xl transition-all duration-300;
   }
 
   .cta-primary {
-    @apply bg-orange-500 text-white;
+    @apply bg-orange-500 text-white hover:shadow-lg;
   }
 
   .cta-secondary {
-    @apply bg-slate-100 text-slate-900 border-2 border-slate-300;
+    @apply bg-slate-100 text-slate-900 border-2 border-slate-300 hover:border-orange-400 hover:shadow-md;
   }
 
   .cta-align-left {
@@ -63,32 +63,36 @@ const {
   }
 
   .cta-titulo {
-    @apply text-3xl font-bold mb-3;
+    @apply text-3xl md:text-4xl font-bold mb-4 leading-tight;
   }
 
   .cta-descripcion {
-    @apply text-lg opacity-90 mb-6;
+    @apply text-base md:text-lg opacity-95 mb-8 leading-relaxed font-medium;
   }
 
   .cta-button {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-semibold transition-all duration-300 hover:gap-3;
+    @apply inline-flex items-center gap-2 px-8 py-3.5 bg-white/25 hover:bg-white/35 rounded-lg font-semibold transition-all duration-300 hover:gap-3 border border-white/20 hover:shadow-md hover:scale-105;
   }
 
   .cta-secondary .cta-button {
-    @apply bg-orange-500 text-white hover:bg-orange-600;
+    @apply bg-orange-500 text-white hover:bg-orange-600 border-orange-600 hover:shadow-lg hover:scale-105;
   }
 
   .cta-arrow {
-    @apply inline-block;
+    @apply inline-block transition-transform duration-300;
+  }
+
+  .cta-button:hover .cta-arrow {
+    @apply translate-x-1;
   }
 
   .cta-image {
-    @apply flex-1 text-6xl text-center opacity-80;
+    @apply flex-1 text-6xl md:text-7xl text-center opacity-75 hover:opacity-100 transition-opacity duration-300;
   }
 
   @media (max-width: 768px) {
     .cta-section {
-      @apply flex-col text-center;
+      @apply flex-col text-center gap-6 py-14;
     }
 
     .cta-align-left,

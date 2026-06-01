@@ -12,7 +12,7 @@ const { items } = Astro.props;
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <ol class="flex items-center gap-2 flex-wrap">
     {items.map((item, index) => (
-      <li class="flex items-center gap-2">
+      <li class="flex items-center gap-2.5">
         {item.href ? (
           <a href={item.href} class="breadcrumb-link">{item.label}</a>
         ) : (
@@ -27,19 +27,19 @@ const { items } = Astro.props;
 <style>
   @reference "../styles/globals.css";
   .breadcrumbs {
-    @apply py-4 px-6 bg-slate-50 rounded-lg border border-slate-200 mb-6;
+    @apply py-4 px-6 bg-slate-50 rounded-xl border border-slate-200 mb-8;
   }
 
   .breadcrumb-link {
-    @apply text-orange-600 hover:text-orange-700 font-medium transition-colors;
+    @apply text-orange-600 hover:text-orange-700 font-semibold transition-colors duration-300;
   }
 
   .breadcrumb-current {
-    @apply text-slate-900 font-semibold;
+    @apply text-slate-900 font-bold;
   }
 
   .breadcrumb-separator {
-    @apply text-slate-400;
+    @apply text-slate-300;
   }
 </style>
 

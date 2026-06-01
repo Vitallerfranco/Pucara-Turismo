@@ -1,86 +1,90 @@
----
----
+<section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0e0e0e]">
 
-<section class="relative w-full h-screen min-h-[800px] overflow-hidden flex items-center justify-center">
-  {/* Background image with overlay */}
-  <div class="absolute inset-0 z-0">
-    <img 
-      src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop"
-      alt="Hero background"
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40"></div>
+  {/* Línea decorativa sutil */}
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:1px; height:100%; background:linear-gradient(to bottom, transparent, rgba(255,152,0,0.12), transparent);"></div>
+    <div style="position:absolute; top:50%; left:0; width:100%; height:1px; background:linear-gradient(to right, transparent, rgba(255,152,0,0.08), transparent);"></div>
   </div>
 
   {/* Content */}
-  <div class="relative z-10 container-gutter text-center text-white max-w-3xl mx-auto">
-    <div class="mb-6 inline-block px-4 py-2 bg-orange-500/20 border border-orange-400/30 rounded-full backdrop-blur">
-      <span class="text-sm font-semibold text-orange-200">✨ +15 años organizando viajes memorables</span>
+  <div class="relative z-10 container-gutter text-center text-white max-w-3xl mx-auto py-24 px-6">
+
+    {/* Badge */}
+    <div class="mb-10 inline-flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full">
+      <!-- Icono estrella simple -->
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span class="text-xs font-medium text-white/50 tracking-widest uppercase">+15 años organizando viajes memorables</span>
     </div>
 
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-      El Mejor Viaje al<br />
-      <span class="text-orange-300">Norte Argentino</span>
+    {/* H1 */}
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
+      Viajá con<br />
+      <span class="text-orange-400">Pucará Turismo</span>
     </h1>
 
-    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-      Salinas Grandes, Jujuy, Salta, Mendoza... Sin estrés. Con expertos. 
-      <br />
-      <strong>Respuesta en WhatsApp en menos de 5 minutos.</strong>
+    <p class="text-base sm:text-lg text-white/40 mb-4 max-w-xl mx-auto leading-relaxed font-light">
+      Paquetes grupales desde zona oeste del GBA.<br />
+      Mar del Plata, Colón, Termas, Sierras y más.
+    </p>
+    <p class="text-sm text-white/60 mb-12 font-medium">
+      Consultá disponibilidad por WhatsApp.
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a 
-        href="#recomendador"
-        class="btn btn-primary btn-lg"
+    {/* Botones */}
+    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-20">
+      <a
+        href="/Pucara-Turismo/paquetes"
+        class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold rounded-lg transition-colors duration-200"
       >
-        🎯 Descubre tu viaje perfecto
+        <!-- Icono calendario -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Ver paquetes disponibles
       </a>
-      <a 
-        href="https://wa.me/5491150000000?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad"
+      <a
+        href="https://wa.me/5491134952847?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn btn-outline btn-lg"
+        class="inline-flex items-center gap-2.5 px-6 py-3.5 border border-white/15 hover:border-white/30 text-white/70 hover:text-white text-sm font-semibold rounded-lg transition-all duration-200"
       >
-        💬 Hablar con Sonia
+        <!-- Icono mensaje -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Consultar por WhatsApp
       </a>
     </div>
 
-    {/* Urgency badge */}
-    <div class="mt-12 pt-8 border-t border-white/20">
-      <p class="text-sm text-orange-200 font-semibold mb-4">
-        🔥 Últimas 3 salidas este mes - Se agota rápido
-      </p>
-      <div class="flex justify-center gap-6 flex-wrap">
+    {/* Stats */}
+    <div class="pt-10 border-t border-white/8">
+      <div class="flex justify-center gap-12 sm:gap-20 flex-wrap">
         <div class="text-center">
-          <div class="text-2xl font-bold">+8,000</div>
-          <p class="text-white/70 text-sm">Viajeros satisfechos</p>
+          <div class="text-3xl font-bold text-orange-400 mb-1 tabular-nums">15</div>
+          <p class="text-white/30 text-xs tracking-wide uppercase">Años de experiencia</p>
         </div>
         <div class="text-center">
-          <div class="text-2xl font-bold">100%</div>
-          <p class="text-white/70 text-sm">Con guía y coordinador</p>
+          <div class="text-3xl font-bold text-orange-400 mb-1">HAT</div>
+          <p class="text-white/30 text-xs tracking-wide uppercase">Travel SRL · Leg. 15157</p>
         </div>
         <div class="text-center">
-          <div class="text-2xl font-bold">4.9/5</div>
-          <p class="text-white/70 text-sm">Rating promedio</p>
+          <div class="text-3xl font-bold text-orange-400 mb-1">100%</div>
+          <p class="text-white/30 text-xs tracking-wide uppercase">Viajes coordinados</p>
         </div>
       </div>
     </div>
   </div>
 
   {/* Scroll indicator */}
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-    <div class="w-6 h-10 border-2 border-white rounded-full flex items-center justify-center">
-      <div class="w-1 h-2 bg-white rounded-full animate-pulse"></div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <div class="w-5 h-9 border border-white/20 rounded-full flex items-start justify-center pt-1.5">
+      <div class="w-0.5 h-2 bg-white/30 rounded-full animate-bounce"></div>
     </div>
   </div>
+
 </section>
-
-<style>
-  @media (max-height: 600px) {
-    section {
-     min-height: 0;
-    }
-  }
-</style>
-

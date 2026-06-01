@@ -27,6 +27,33 @@ if (!destino) {
 const paquetesRelacionados = paquetesData.paquetes.filter(
   (p) => p.destino === destino.id
 );
+
+// Minimal SVG icons
+const icons = {
+  pin: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>`,
+  mountain: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3L2 21h20L14 3z"/><path d="M11 9l-3 12"/></svg>`,
+  sunrise: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M20 12h2M19.07 4.93l-2.83 2.83"/><path d="M5 19h14"/><path d="M8 15a4 4 0 0 1 8 0"/></svg>`,
+  landscape: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 13l5-5 4 4 3-3 5 5"/></svg>`,
+  peak: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 22h20z"/></svg>`,
+  compass: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg>`,
+  thermometerMin: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>`,
+  thermometerMax: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/><line x1="10" y1="9" x2="10" y2="9"/><line x1="10" y1="6" x2="10" y2="6"/></svg>`,
+  thermometer: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>`,
+  plane: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2s-4 0-5.5 1.5L10 7 1.8 5.2l-1 1 7 4-1.5 1.5-4-1-1 1 5.5 3.5 3.5 5.5 1-1-1-4 1.5-1.5 4 7 1-1z"/></svg>`,
+  hotel: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M6 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M10 14h4"/><path d="M10 10h4"/></svg>`,
+  fork: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>`,
+  wifi: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>`,
+  clipboard: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>`,
+  check: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  chat: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  arrow: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`,
+  sun: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`,
+  snowflake: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5l-5 5-5-5"/><path d="M7 19l5-5 5 5"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M19 7l-5 5 5 5"/><path d="M5 17l5-5-5-5"/></svg>`,
+  flower: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2a4 4 0 0 1 4 4c0 2-1.5 3.5-4 4-2.5-.5-4-2-4-4a4 4 0 0 1 4-4z"/><path d="M12 22a4 4 0 0 1-4-4c0-2 1.5-3.5 4-4 2.5.5 4 2 4 4a4 4 0 0 1-4 4z"/><path d="M2 12a4 4 0 0 1 4-4c2 0 3.5 1.5 4 4-.5 2.5-2 4-4 4a4 4 0 0 1-4-4z"/><path d="M22 12a4 4 0 0 1-4 4c-2 0-3.5-1.5-4-4 .5-2.5 2-4 4-4a4 4 0 0 1 4 4z"/></svg>`,
+  leaf: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.34C3 20.5 3 22 3 22s9-1 14-9c.5-.85.86-1.76 1-2.67"/><path d="M21 3c-3 0-7 2-9 6 2-1 5-1 7 1"/></svg>`,
+};
+
+const attractionIcons = [icons.mountain, icons.sunrise, icons.landscape, icons.peak, icons.compass];
 ---
 
 <BaseLayout 
@@ -46,7 +73,10 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
     
     <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12 text-white">
       <div class="container-gutter">
-        <p class="text-lg text-orange-300 font-semibold mb-2">📍 {destino.provincia}</p>
+        <p class="text-lg text-orange-300 font-semibold mb-2 flex items-center gap-1.5">
+          <span class="inline-flex text-orange-400" set:html={icons.pin} />
+          {destino.provincia}
+        </p>
         <h1 class="text-5xl md:text-6xl font-bold mb-4">{destino.nombre}</h1>
         <p class="text-xl text-white/90 max-w-2xl">
           {destino.descripcionCorta}
@@ -81,9 +111,9 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
                 <p class="text-sm text-slate-600 mb-2">Temperatura máxima</p>
                 <p class="text-3xl font-bold text-blue-600">{destino.clima.tempMax}°C</p>
               </div>
-              <div class="text-center md:col-span-1">
-                <p class="text-3xl mb-2">🌡️</p>
-                <p class="text-sm text-slate-600">Promedio anual</p>
+              <div class="text-center md:col-span-1 flex flex-col items-center justify-center">
+                <span class="inline-flex text-blue-400" set:html={icons.thermometer} />
+                <p class="text-sm text-slate-600 mt-1">Promedio anual</p>
               </div>
             </div>
             <p class="text-slate-700 leading-relaxed">
@@ -101,12 +131,8 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
                 key={idx}
                 class="flex items-start gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-orange-300 transition-colors"
               >
-                <div class="text-2xl flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                  {idx === 0 && '🏔️'}
-                  {idx === 1 && '🌄'}
-                  {idx === 2 && '🏞️'}
-                  {idx === 3 && '⛰️'}
-                  {idx >= 4 && '🎯'}
+                <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center text-orange-500">
+                  <span set:html={attractionIcons[Math.min(idx, attractionIcons.length - 1)]} />
                 </div>
                 <div>
                   <p class="font-semibold text-slate-900">{atractivo}</p>
@@ -121,14 +147,14 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
           <h2 class="mb-6">Mejor época para visitar</h2>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             {destino.mejorEpoca.map((epoca) => (
-              <div key={epoca} class="card p-4 text-center border-2 border-orange-200 bg-orange-50">
+              <div key={epoca} class="card p-4 text-center border-2 border-orange-200 bg-orange-50 flex flex-col items-center gap-2">
                 <p class="font-semibold text-slate-900 capitalize">{epoca}</p>
-                <p class="text-2xl mt-2">
-                  {epoca === 'verano' && '☀️'}
-                  {epoca === 'invierno' && '❄️'}
-                  {epoca === 'primavera' && '🌸'}
-                  {epoca === 'otono' && '🍂'}
-                </p>
+                <span class="inline-flex text-orange-400">
+                  {epoca === 'verano' && <span set:html={icons.sun} />}
+                  {epoca === 'invierno' && <span set:html={icons.snowflake} />}
+                  {epoca === 'primavera' && <span set:html={icons.flower} />}
+                  {epoca === 'otono' && <span set:html={icons.leaf} />}
+                </span>
               </div>
             ))}
           </div>
@@ -136,22 +162,25 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
 
         {/* Quick info */}
         <div class="bg-slate-50 rounded-lg p-8 border border-slate-200">
-          <h3 class="font-bold text-lg mb-4">📋 Información útil</h3>
+          <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <span class="text-orange-500" set:html={icons.clipboard} />
+            Información útil
+          </h3>
           <ul class="space-y-3 text-slate-700">
             <li class="flex items-start gap-3">
-              <span class="text-xl">✈️</span>
+              <span class="text-slate-400 mt-0.5" set:html={icons.plane} />
               <span>Accesible por vuelos nacionales desde Buenos Aires</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-xl">🏨</span>
+              <span class="text-slate-400 mt-0.5" set:html={icons.hotel} />
               <span>Amplia variedad de alojamientos (hotel, cabaña, lodge)</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-xl">🍽️</span>
+              <span class="text-slate-400 mt-0.5" set:html={icons.fork} />
               <span>Gastronomía regional auténtica</span>
             </li>
             <li class="flex items-start gap-3">
-              <span class="text-xl">📱</span>
+              <span class="text-slate-400 mt-0.5" set:html={icons.wifi} />
               <span>Cobertura de celular y conexión a internet disponibles</span>
             </li>
           </ul>
@@ -185,25 +214,29 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
                   <a 
                     key={paquete.id}
                     href={`/paquetes/${paquete.slug}`}
-                    class="card p-4 hover:shadow-md transition-shadow group"
+                    class="card p-4 hover:shadow-md transition-shadow group flex items-center justify-between"
                   >
-                    <p class="font-semibold text-slate-900 group-hover:text-orange-600 transition-colors text-sm">
-                      {paquete.titulo}
-                    </p>
-                    <p class="text-xs text-slate-500 mt-1">
-                      {paquete.duracionDias}d / {paquete.duracionNoches}n
-                    </p>
-                    <p class="text-sm font-bold text-slate-900 mt-2">
-                      ${paquete.precioBase + paquete.gastosAdmin}
-                    </p>
+                    <div>
+                      <p class="font-semibold text-slate-900 group-hover:text-orange-600 transition-colors text-sm">
+                        {paquete.titulo}
+                      </p>
+                      <p class="text-xs text-slate-500 mt-1">
+                        {paquete.duracionDias}d / {paquete.duracionNoches}n
+                      </p>
+                      <p class="text-sm font-bold text-slate-900 mt-2">
+                        ${paquete.precioBase + paquete.gastosAdmin}
+                      </p>
+                    </div>
+                    <span class="text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" set:html={icons.arrow} />
                   </a>
                 ))}
               </div>
               <a 
                 href="/paquetes"
-                class="block mt-4 text-center text-orange-600 font-semibold hover:text-orange-700"
+                class="flex items-center gap-1 mt-4 justify-center text-orange-600 font-semibold hover:text-orange-700"
               >
-                Ver todos →
+                Ver todos
+                <span set:html={icons.arrow} />
               </a>
             </div>
           )}
@@ -211,15 +244,15 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
           {/* Trust badges */}
           <div class="space-y-3 text-sm text-slate-600">
             <div class="flex items-center gap-2">
-              <span class="text-lg">✓</span>
+              <span class="text-orange-500" set:html={icons.check} />
               <span>Tours verificados</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-lg">✓</span>
+              <span class="text-orange-500" set:html={icons.check} />
               <span>Guías locales expertos</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-lg">✓</span>
+              <span class="text-orange-500" set:html={icons.check} />
               <span>100% seguro</span>
             </div>
           </div>
@@ -239,9 +272,10 @@ const paquetesRelacionados = paquetesData.paquetes.filter(
         href={`https://wa.me/5491150000000?text=Hola,%20quiero%20información%20sobre%20viajes%20a%20${destino.nombre}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn bg-white text-orange-600 hover:bg-slate-100 btn-lg"
+        class="btn bg-white text-orange-600 hover:bg-slate-100 btn-lg inline-flex items-center gap-2"
       >
-        💬 Consultar ahora
+        <span set:html={icons.chat} />
+        Consultar ahora
       </a>
     </div>
   </section>

@@ -17,6 +17,18 @@ export default {
           900: '#6b2e00',
           950: '#3d1a00'
         },
+        yellow: {
+          50: '#fffef2',
+          100: '#fffce0',
+          200: '#fff8c0',
+          300: '#fff4a0',
+          400: '#ffeb3b',
+          500: '#ffd700',
+          600: '#ffc000',
+          700: '#ffb300',
+          800: '#ff9800',
+          900: '#ff6d00',
+        },
         slate: {
           50: '#fafafa',
           100: '#f5f5f5',
@@ -33,6 +45,7 @@ export default {
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
       fontSize: {
@@ -47,19 +60,25 @@ export default {
         '5xl': ['3rem', { lineHeight: '1' }],
       },
       spacing: {
-        gutter: 'clamp(1rem, 5vw, 5rem)',
+        gutter: 'clamp(1.5rem, 5vw, 6rem)',
         section: 'clamp(3rem, 10vw, 8rem)',
       },
       borderRadius: {
-        DEFAULT: '12px',
-        lg: '20px',
+        DEFAULT: '10px',
+        sm: '6px',
+        md: '12px',
+        lg: '16px',
+        xl: '20px',
+        '2xl': '24px',
         full: '9999px'
       },
       boxShadow: {
+        xs: '0 1px 8px rgba(0,0,0,0.04)',
         sm: '0 2px 12px rgba(0,0,0,0.06)',
-        md: '0 8px 32px rgba(0,0,0,0.10)',
-        lg: '0 20px 60px rgba(0,0,0,0.14)',
-        xl: '0 24px 48px rgba(0,0,0,0.18)',
+        md: '0 8px 24px rgba(0,0,0,0.10)',
+        lg: '0 12px 32px rgba(0,0,0,0.12)',
+        xl: '0 20px 48px rgba(0,0,0,0.14)',
+        '2xl': '0 24px 64px rgba(0,0,0,0.16)',
       },
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',

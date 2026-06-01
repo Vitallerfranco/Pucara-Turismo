@@ -1,105 +1,277 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PaqueteCard from '@/components/PaqueteCard.astro';
-import Filtros from '@/components/Filtros.jsx';
+import Filtros from '@/components/Filtros.tsx';
 import paquetesData from '@/data/paquetes.json';
 
 const paquetes = paquetesData.paquetes;
 ---
 
-<BaseLayout 
+<BaseLayout
   title="Todos nuestros paquetes turísticos"
-  description="Descubre todos nuestros paquetes de viajes al norte argentino. Filtra por duración, presupuesto y tipo de viaje."
+  description="Descubre todos nuestros paquetes de viajes. Filtra por duración, presupuesto y tipo de viaje."
 >
-  {/* Header section */}
-  <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white pt-24 pb-12">
-    <div class="container-gutter">
-      <h1 class="mb-4">Nuestros Paquetes</h1>
-      <p class="text-xl text-slate-100 max-w-2xl">
-        Desde full days hasta viajes de 5 días. Encuentra tu próxima aventura.
+
+  <!-- Header -->
+  <section class="pk-header">
+    <div class="pk-header-inner">
+      <p class="pk-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Salidas desde zona oeste · Todo incluido
       </p>
+      <h1 class="pk-title">Nuestros <span class="pk-accent">Paquetes</span></h1>
+      <p class="pk-sub">Desde full days hasta viajes de 5 días. Encuentra tu próxima aventura.</p>
     </div>
   </section>
 
-  {/* Filters and results */}
-  <section class="section-space bg-white">
-    <div class="container-gutter">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Sidebar - Filters */}
-        <div class="lg:col-span-1">
-          <div class="sticky top-24">
+  <!-- Filtros + Grid -->
+  <section class="pk-body">
+    <div class="pk-container">
+      <div class="pk-layout">
+
+        <!-- Sidebar filtros -->
+        <aside class="pk-sidebar">
+          <div class="pk-sidebar-sticky">
             <Filtros client:load />
           </div>
-        </div>
+        </aside>
 
-        {/* Main content - Cards */}
-        <div class="lg:col-span-3">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="paquetes-grid">
+        <!-- Grid de cards -->
+        <div class="pk-main">
+          <div class="pk-grid" id="paquetes-grid">
             {paquetes.map((paquete) => (
               <PaqueteCard paquete={paquete} whatsappPhone="5491150000000" />
             ))}
           </div>
 
-          {/* No results message */}
-          <div id="no-results" class="hidden text-center py-12">
-            <p class="text-2xl font-bold text-slate-900 mb-4">
-              No encontramos paquetes que coincidan
-            </p>
-            <p class="text-slate-600 mb-6">
-              Intenta ajustar los filtros o contáctanos directamente por WhatsApp
-            </p>
-            <a 
+          <!-- Sin resultados -->
+          <div id="no-results" class="pk-empty hidden">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <p class="pk-empty-title">No encontramos paquetes que coincidan</p>
+            <p class="pk-empty-sub">Ajustá los filtros o consultanos directamente</p>
+            <a
               href="https://wa.me/5491150000000"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn-primary"
+              class="pk-wa-btn"
             >
-              💬 Contactar
+              Contactar por WhatsApp
             </a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  {/* CTA section */}
-  <section class="section-space bg-orange-50">
-    <div class="container-gutter max-w-3xl mx-auto text-center">
-      <h2 class="mb-4">¿No encuentras lo que buscas?</h2>
-      <p class="text-lg text-slate-700 mb-8">
-        Armamos viajes a medida. Cuéntanos qué tenés en mente y lo hacemos posible.
-      </p>
-      <a 
-        href="https://wa.me/5491150000000?text=Hola%20Sonia,%20me%20gustaría%20armar%20un%20viaje%20a%20medida"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-primary btn-lg"
-      >
-        💬 Consultar viaje personalizado
-      </a>
+  <!-- CTA -->
+  <section class="pk-cta-section">
+    <div class="pk-cta-inner">
+      <div class="pk-cta-box">
+        <div class="pk-cta-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="pk-cta-text">
+          <h3>¿No encontrás lo que buscás?</h3>
+          <p>Armamos viajes a medida. Contanos qué tenés en mente y lo hacemos posible.</p>
+        </div>
+        <a
+          href="https://wa.me/5491150000000?text=Hola%2C%20me%20gustar%C3%ADa%20armar%20un%20viaje%20a%20medida"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pk-cta-btn"
+        >
+          Consultar viaje personalizado
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
+
 </BaseLayout>
 
 <style>
-  /* Grid animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* ── Paleta dark ── */
+  :root {
+    --pk-bg: #0a0a0a;
+    --pk-surface: #111111;
+    --pk-border: #1e1e1e;
+    --pk-orange: #e8622a;
+    --pk-orange-hover: #cf5523;
+    --pk-text: #ffffff;
+    --pk-muted: #555555;
+    --pk-subtle: #333333;
   }
 
-  #paquetes-grid > * {
-    animation: fadeIn 0.3s ease-out forwards;
+  /* ── Header ── */
+  .pk-header {
+    background: var(--pk-bg);
+    padding: 96px 24px 56px;
+    border-bottom: 1px solid var(--pk-border);
+  }
+  .pk-header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .pk-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pk-muted);
+    margin: 0 0 18px;
+  }
+  .pk-title {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800;
+    color: var(--pk-text);
+    line-height: 1.1;
+    margin: 0 0 14px;
+  }
+  .pk-accent { color: var(--pk-orange); }
+  .pk-sub {
+    font-size: 16px;
+    color: var(--pk-muted);
+    margin: 0;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  /* ── Body layout ── */
+  .pk-body {
+    background: var(--pk-bg);
+    padding: 40px 0 80px;
+  }
+  .pk-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .pk-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── Sidebar ── */
+  .pk-sidebar-sticky {
+    position: sticky;
+    top: 96px;
+  }
+
+  /* ── Grid ── */
+  .pk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .pk-grid > * {
+    animation: pk-fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes pk-fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Sin resultados ── */
+  .pk-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 80px 0;
+    color: var(--pk-muted);
+    text-align: center;
+  }
+  .pk-empty.hidden { display: none; }
+  .pk-empty-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--pk-text);
+    margin: 0;
+  }
+  .pk-empty-sub {
+    font-size: 14px;
+    color: var(--pk-muted);
+    margin: 0;
+  }
+  .pk-wa-btn {
+    margin-top: 8px;
+    background: var(--pk-orange);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .pk-wa-btn:hover { background: var(--pk-orange-hover); }
+
+  /* ── CTA ── */
+  .pk-cta-section {
+    background: var(--pk-bg);
+    border-top: 1px solid var(--pk-border);
+    padding: 48px 24px 64px;
+  }
+  .pk-cta-inner { max-width: 1280px; margin: 0 auto; }
+  .pk-cta-box {
+    background: var(--pk-surface);
+    border: 1px solid var(--pk-border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .pk-cta-icon {
+    width: 50px; height: 50px;
+    background: #181818;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--pk-orange);
+    flex-shrink: 0;
+  }
+  .pk-cta-text { flex: 1; min-width: 180px; }
+  .pk-cta-text h3 {
+    font-size: 16px; font-weight: 600; color: var(--pk-text); margin: 0 0 5px;
+  }
+  .pk-cta-text p { font-size: 13px; color: var(--pk-muted); margin: 0; }
+  .pk-cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--pk-orange); color: #fff;
+    font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: 8px;
+    text-decoration: none; white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .pk-cta-btn:hover { background: var(--pk-orange-hover); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .pk-layout {
+      grid-template-columns: 1fr;
+    }
+    .pk-sidebar-sticky { position: static; }
+    .pk-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .pk-grid { grid-template-columns: 1fr; }
+    .pk-cta-box { flex-direction: column; align-items: flex-start; }
   }
 </style>
-
-<script>
-  // Update grid when filters change (could integrate with a state management system)
-  console.log('Paquetes page loaded');
-</script>

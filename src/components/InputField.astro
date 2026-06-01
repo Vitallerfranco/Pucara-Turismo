@@ -45,43 +45,52 @@ const {
   />
 
   {ayuda && <p class="input-ayuda">{ayuda}</p>}
-  {error && <p class="input-mensaje-error">{error}</p>}
+  {error && (
+    <p class="input-mensaje-error">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      {error}
+    </p>
+  )}
 </div>
 
 <style>
   @reference "../styles/globals.css";
+
   .input-group {
-    @apply flex flex-col gap-2 mb-4;
+    @apply flex flex-col gap-1.5 mb-5;
   }
 
   .input-label {
-    @apply font-medium text-slate-700 text-sm;
+    @apply text-xs font-medium text-white/50 uppercase tracking-widest;
   }
 
   .input-requerido {
-    @apply text-red-500;
+    @apply text-orange-400 ml-0.5;
   }
 
   .input-field {
-    @apply w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all duration-200 text-slate-900 placeholder-slate-400;
+    @apply w-full px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-white/20
+           focus:border-orange-500/60 focus:outline-none focus:ring-2 focus:ring-orange-500/15
+           transition-all duration-200 text-sm;
   }
 
   .input-field:disabled {
-    @apply bg-slate-100 cursor-not-allowed;
+    @apply opacity-30 cursor-not-allowed;
   }
 
   .input-field.input-error {
-    @apply border-red-500 focus:ring-red-200;
+    @apply border-red-500/50 focus:ring-red-500/15;
   }
 
   .input-ayuda {
-    @apply text-xs text-slate-500;
+    @apply text-xs text-white/25 leading-relaxed;
   }
 
   .input-mensaje-error {
-    @apply text-xs text-red-500 font-medium;
+    @apply flex items-center gap-1.5 text-xs text-red-400 font-medium;
   }
 </style>
-
-
-

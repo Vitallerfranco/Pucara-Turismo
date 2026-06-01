@@ -1,124 +1,285 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import destinosData from '@/data/destinos.json';
+import PaqueteCard from '@/components/PaqueteCard.astro';
+import paquetesData from '@/data/paquetes.json';
 
-const destinos = destinosData.destinos;
+const paquetes = paquetesData.paquetes;
+
+// Categorías únicas para filtro
+const tipos = ['todos', ...new Set(paquetes.map((p: any) => p.tipo).filter(Boolean))] as string[];
+
+const tipoLabel: Record<string, string> = {
+  todos: 'Todos',
+  full_day: 'Full Day',
+  escapada: 'Escapada',
+  vacaciones: 'Vacaciones',
+  aventura: 'Aventura',
+};
 ---
 
-<BaseLayout 
-  title="Destinos turísticos del norte argentino"
-  description="Explora los mejores destinos del norte argentino: Salinas Grandes, Iguazú, Mendoza, Córdoba y más."
+<BaseLayout
+  title="Paquetes de viaje | Pucará Turismo"
+  description="Todos nuestros paquetes con salida desde zona oeste. Transporte, hotel y más incluido."
 >
-  {/* Header section */}
-  <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white pt-24 pb-12">
-    <div class="container-gutter">
-      <h1 class="mb-4">Nuestros Destinos</h1>
-      <p class="text-xl text-slate-100 max-w-2xl">
-        Conoce los lugares más hermosos del norte argentino. Desde montañas hasta cataratas.
+
+  <!-- ── Header ── -->
+  <section class="pk-header">
+    <div class="pk-container">
+      <p class="pk-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Salidas desde zona oeste · Todo incluido
+      </p>
+      <h1 class="pk-title">
+        Nuestros <span class="pk-accent">paquetes</span>
+      </h1>
+      <p class="pk-sub">
+        Viajá con todo organizado. Elegí por duración, destino o presupuesto.
       </p>
     </div>
   </section>
 
-  {/* Destinations grid */}
-  <section class="section-space bg-white">
-    <div class="container-gutter">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {destinos.map((destino) => (
-          <a 
-            href={`/destinos/${destino.slug}`}
-            class="group card overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full"
-          >
-            {/* Image */}
-            <div class="relative overflow-hidden aspect-video bg-slate-200">
-              <img 
-                src={destino.imagen}
-                alt={destino.nombre}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+  <!-- ── Filtros ── -->
+  {tipos.length > 2 && (
+    <section class="pk-filtros-section">
+      <div class="pk-container">
+        <div class="pk-filtros" role="tablist" aria-label="Filtrar por tipo de paquete">
+          {tipos.map((tipo) => (
+            <button
+              class={`pk-filtro-btn${tipo === 'todos' ? ' pk-filtro-active' : ''}`}
+              data-tipo={tipo}
+              role="tab"
+              aria-selected={tipo === 'todos' ? 'true' : 'false'}
+            >
+              {tipoLabel[tipo] ?? tipo}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── Grid ── -->
+  <section class="pk-grid-section">
+    <div class="pk-container">
+      {paquetes.length === 0 ? (
+        <div class="pk-empty">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <p>No hay paquetes disponibles por el momento.</p>
+        </div>
+      ) : (
+        <div class="pk-grid" id="paquetes-grid">
+          {paquetes.map((paquete: any) => (
+            <div class="pk-item" data-tipo={paquete.tipo ?? 'todos'}>
+              <PaqueteCard paquete={paquete} />
             </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
 
-            {/* Content */}
-            <div class="flex-1 p-6 flex flex-col">
-              <div class="mb-2">
-                <p class="text-sm text-orange-600 font-semibold uppercase">{destino.provincia}</p>
-                <h3 class="text-2xl font-bold text-slate-900 group-hover:text-orange-500 transition-colors">
-                  {destino.nombre}
-                </h3>
-              </div>
-
-              <p class="text-slate-600 mb-4 flex-1">
-                {destino.descripcionCorta}
-              </p>
-
-              {/* Climate */}
-              <div class="bg-slate-50 rounded-lg p-3 mb-4 border border-slate-200">
-                <p class="text-xs text-slate-600 mb-2 font-semibold">CLIMA</p>
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-sm text-slate-500">Min:</p>
-                    <p class="font-bold text-slate-900">{destino.clima.tempMin}°C</p>
-                  </div>
-                  <div class="text-center">
-                    <p class="text-2xl">🌡️</p>
-                  </div>
-                  <div>
-                    <p class="text-sm text-slate-500">Max:</p>
-                    <p class="font-bold text-slate-900">{destino.clima.tempMax}°C</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Attractions count */}
-              <div class="flex items-center gap-2 text-sm text-slate-600">
-                <span>📍 {destino.atractivos.length} atractivos</span>
-              </div>
-
-              {/* CTA */}
-              <div class="mt-4 pt-4 border-t border-slate-200">
-                <span class="inline-flex items-center text-orange-600 font-semibold group-hover:gap-2 transition-all">
-                  Explorar
-                  <span class="ml-2">→</span>
-                </span>
-              </div>
-            </div>
-          </a>
-        ))}
+  <!-- ── CTA consulta ── -->
+  <section class="pk-cta-section">
+    <div class="pk-container">
+      <div class="pk-cta-box">
+        <div class="pk-cta-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="pk-cta-text">
+          <h3>¿No encontrás lo que buscás?</h3>
+          <p>Armamos paquetes a medida según tu destino, presupuesto y fechas.</p>
+        </div>
+        <a href="/Pucara-Turismo/#recomendador" class="pk-cta-btn">
+          Usar recomendador
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
 
-  {/* CTA section */}
-  <section class="section-space bg-orange-50">
-    <div class="container-gutter max-w-3xl mx-auto text-center">
-      <h2 class="mb-4">¿No sabes cuál elegir?</h2>
-      <p class="text-lg text-slate-700 mb-8">
-        Usa nuestro recomendador para encontrar tu destino perfecto.
-      </p>
-      <a 
-        href="/Pucara-Turismo/#recomendador"
-        class="btn btn-primary btn-lg"
-      >
-        🎯 Ir al recomendador
-      </a>
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* ── Base ── */
+  .pk-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
-  .card {
-    animation: fadeIn 0.4s ease-out forwards;
+  /* ── Header ── */
+  .pk-header {
+    background: #0a0a0a;
+    padding: 96px 24px 52px;
+  }
+  .pk-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #444;
+    margin: 0 0 18px;
+  }
+  .pk-title {
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin: 0 0 16px;
+  }
+  .pk-accent { color: #e8622a; }
+  .pk-sub {
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    max-width: 440px;
+    line-height: 1.6;
+  }
+
+  /* ── Filtros ── */
+  .pk-filtros-section {
+    background: #0a0a0a;
+    padding: 0 24px 36px;
+  }
+  .pk-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pk-filtro-btn {
+    background: #141414;
+    border: 1px solid #1f1f1f;
+    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .pk-filtro-btn:hover {
+    border-color: #2e2e2e;
+    color: #bbb;
+  }
+  .pk-filtro-active,
+  .pk-filtro-btn.pk-filtro-active {
+    background: #e8622a !important;
+    border-color: #e8622a !important;
+    color: #fff !important;
+  }
+
+  /* ── Grid ── */
+  .pk-grid-section {
+    background: #0a0a0a;
+    padding: 0 24px 80px;
+  }
+  .pk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .pk-item {
+    transition: opacity 0.2s;
+  }
+  .pk-item.pk-hidden { display: none; }
+
+  /* Estado vacío */
+  .pk-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 80px 0;
+    color: #333;
+    text-align: center;
+  }
+  .pk-empty p { font-size: 15px; color: #444; margin: 0; }
+
+  /* ── CTA ── */
+  .pk-cta-section {
+    background: #0a0a0a;
+    padding: 0 24px 80px;
+  }
+  .pk-cta-box {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .pk-cta-icon {
+    width: 50px;
+    height: 50px;
+    background: #181818;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8622a;
+    flex-shrink: 0;
+  }
+  .pk-cta-text { flex: 1; min-width: 180px; }
+  .pk-cta-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 5px;
+  }
+  .pk-cta-text p { font-size: 13px; color: #555; margin: 0; }
+  .pk-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8622a;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .pk-cta-btn:hover { background: #cf5523; }
+
+  @media (max-width: 600px) {
+    .pk-grid { grid-template-columns: 1fr; }
+    .pk-cta-box { flex-direction: column; align-items: flex-start; }
   }
 </style>
 
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.pk-filtro-btn');
+  const items = document.querySelectorAll<HTMLElement>('.pk-item');
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tipo = btn.dataset.tipo;
+      btns.forEach((b) => {
+        b.classList.remove('pk-filtro-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('pk-filtro-active');
+      btn.setAttribute('aria-selected', 'true');
+      items.forEach((item) => {
+        const match = tipo === 'todos' || item.dataset.tipo === tipo;
+        item.classList.toggle('pk-hidden', !match);
+      });
+    });
+  });
+</script>

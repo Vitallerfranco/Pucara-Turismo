@@ -11,7 +11,7 @@ const { nombre, viaje, foto = '👤', rating, texto } = Astro.props;
 ---
 
 <div class="testimonial-card">
-  <div class="flex items-center gap-3 mb-4">
+  <div class="flex items-center gap-3 mb-5">
     <div class="avatar">
       {typeof foto === 'string' && foto.length === 2 ? (
         <span class="text-2xl">{foto}</span>
@@ -20,12 +20,12 @@ const { nombre, viaje, foto = '👤', rating, texto } = Astro.props;
       )}
     </div>
     <div>
-      <h4 class="font-bold text-slate-900">{nombre}</h4>
-      <p class="text-sm text-slate-500">{viaje}</p>
+      <h4 class="font-bold text-slate-900 leading-tight">{nombre}</h4>
+      <p class="text-xs text-slate-500 font-medium">{viaje}</p>
     </div>
   </div>
 
-  <div class="flex gap-1 mb-3">
+  <div class="flex gap-1 mb-4">
     {Array.from({ length: 5 }).map((_, i) => (
       <span class={i < rating ? 'text-orange-500' : 'text-slate-300'}>★</span>
     ))}
@@ -37,11 +37,11 @@ const { nombre, viaje, foto = '👤', rating, texto } = Astro.props;
 <style>
   @reference "../styles/globals.css";
   .testimonial-card {
-    @apply bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300;
+    @apply bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300;
   }
 
   .avatar {
-    @apply w-12 h-12 rounded-full bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center flex-shrink-0;
+    @apply w-12 h-12 rounded-full bg-gradient-to-br from-orange-200 to-orange-100 flex items-center justify-center flex-shrink-0 border-2 border-orange-300;
   }
 </style>
 
