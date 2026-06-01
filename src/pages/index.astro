@@ -6,11 +6,12 @@ import Recomendador from '@/components/Recomendador.jsx';
 import paquetesData from '@/data/paquetes.json';
 
 const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
+const WA = "5491134952847";
 ---
 
 <BaseLayout 
-  title="Viajes al Norte Argentino"
-  description="Descubre Salinas Grandes, Iguazú, Mendoza y más. Paquetes turísticos completos con coordinador experto en WhatsApp."
+  title="Paquetes Turísticos desde Buenos Aires"
+  description="Viajes grupales desde zona oeste de Buenos Aires. Mar del Plata, Colón, Río Hondo, San Bernardo y más. 15 años llevando gente de viaje."
 >
   <Hero />
 
@@ -18,9 +19,9 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
   <section id="recomendador" class="section-space bg-gradient-to-b from-slate-50 to-white">
     <div class="container-gutter max-w-3xl mx-auto">
       <div class="text-center mb-12">
-        <h2 class="mb-4">🎯 Descubre tu viaje perfecto</h2>
+        <h2 class="mb-4">🎯 Encontrá tu viaje ideal</h2>
         <p class="text-slate-600 text-lg">
-          Responde 5 preguntas y te recomendaremos los paquetes ideales para vos.
+          Respondé unas preguntas y te recomendamos el paquete perfecto para vos.
         </p>
       </div>
       <Recomendador client:load />
@@ -33,13 +34,13 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
       <div class="text-center mb-12">
         <h2 class="mb-4">Paquetes destacados</h2>
         <p class="text-slate-600 text-lg max-w-2xl mx-auto">
-          Nuestros viajes más populares. Salidas semanales y con garantía de coordinación en WhatsApp.
+          Nuestros viajes más populares. Salidas desde zona oeste con todo incluido.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {paquetesDestacados.map((paquete) => (
-          <PaqueteCard paquete={paquete} whatsappPhone="5491150000000" />
+          <PaqueteCard paquete={paquete} whatsappPhone={WA} />
         ))}
       </div>
 
@@ -59,41 +60,41 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div class="flex gap-4">
           <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
-            🧑‍💼
+            🗓️
           </div>
           <div>
-            <h3 class="font-bold mb-2">Coordinador dedicado</h3>
-            <p class="text-slate-600">Sonia te responde en WhatsApp en menos de 5 minutos. Antes, durante y después del viaje.</p>
+            <h3 class="font-bold mb-2">15 años de experiencia</h3>
+            <p class="text-slate-600">Desde Ituzaingó llevamos gente de viaje por todo el país. Sabemos lo que funciona y lo que no.</p>
           </div>
         </div>
 
         <div class="flex gap-4">
           <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
-            ⭐
+            💬
           </div>
           <div>
-            <h3 class="font-bold mb-2">Rating 4.9/5</h3>
-            <p class="text-slate-600">Más de 8,000 viajeros satisfechos. Reseñas reales en Google y TripAdvisor.</p>
+            <h3 class="font-bold mb-2">Atención por WhatsApp</h3>
+            <p class="text-slate-600">Nuestros vendedores te responden rápido. Antes de reservar, durante el viaje y cuando volvés.</p>
           </div>
         </div>
 
         <div class="flex gap-4">
           <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
-            🛡️
+            🚌
           </div>
           <div>
-            <h3 class="font-bold mb-2">100% seguro</h3>
-            <p class="text-slate-600">Certificado ATTA. Seguro de viaje incluido. Pago seguro con todas las garantías.</p>
+            <h3 class="font-bold mb-2">Salidas desde zona oeste</h3>
+            <p class="text-slate-600">Partís desde Ituzaingó y alrededores. Sin traslados complicados ni puntos de encuentro lejanos.</p>
           </div>
         </div>
 
         <div class="flex gap-4">
           <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">
-            📍
+            ✅
           </div>
           <div>
-            <h3 class="font-bold mb-2">Expertos locales</h3>
-            <p class="text-slate-600">15+ años. Conocemos el norte argentino como la palma de la mano.</p>
+            <h3 class="font-bold mb-2">Todo incluido, sin sorpresas</h3>
+            <p class="text-slate-600">Hotel, transporte, comidas y actividades en un solo precio. Sabés lo que pagás desde el primer día.</p>
           </div>
         </div>
       </div>
@@ -101,12 +102,12 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
       <div class="divider"></div>
 
       <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 md:p-12 text-center">
-        <h3 class="text-2xl font-bold mb-4">¿Necesitas ayuda?</h3>
+        <h3 class="text-2xl font-bold mb-4">¿Tenés alguna duda?</h3>
         <p class="text-slate-700 mb-6">
-          Chatea con Sonia ahora. Ella te ayuda a elegir el viaje perfecto para vos.
+          Escribinos por WhatsApp y uno de nuestros vendedores te ayuda a elegir el viaje ideal.
         </p>
         <a 
-          href="https://wa.me/5491150000000?text=Hola%20Sonia,%20quiero%20consultar%20opciones%20de%20viaje"
+          href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20opciones%20de%20viaje`}
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-primary btn-lg"
@@ -125,56 +126,45 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
       <div class="space-y-4">
         <details class="group card p-6 cursor-pointer">
           <summary class="font-bold text-lg flex items-center gap-4">
-            <span class="text-xl">❓</span>
-            ¿Cuánto tiempo toma confirmar una reserva?
-            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <div class="mt-4 text-slate-600 leading-relaxed">
-            Generalmente en menos de 24 horas. Sonia revisa disponibilidad, coordina con los proveedores y te envía el detalle completo por WhatsApp.
-          </div>
-        </details>
-
-        <details class="group card p-6 cursor-pointer">
-          <summary class="font-bold text-lg flex items-center gap-4">
-            <span class="text-xl">💰</span>
-            ¿Qué métodos de pago aceptan?
-            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <div class="mt-4 text-slate-600 leading-relaxed">
-            Transferencia bancaria, tarjeta de crédito/débito (hasta 12 cuotas), efectivo, Mercado Pago y billeteras virtuales.
-          </div>
-        </details>
-
-        <details class="group card p-6 cursor-pointer">
-          <summary class="font-bold text-lg flex items-center gap-4">
-            <span class="text-xl">🛫</span>
-            ¿Incluye pasajes aéreos?
-            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <div class="mt-4 text-slate-600 leading-relaxed">
-            Los paquetes incluyen traslados terrestres. Los vuelos se cotizan por separado según origen y fechas. Consultá con Sonia.
-          </div>
-        </details>
-
-        <details class="group card p-6 cursor-pointer">
-          <summary class="font-bold text-lg flex items-center gap-4">
-            <span class="text-xl">📱</span>
-            ¿Puedo cambiar fechas después de reservar?
-            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <div class="mt-4 text-slate-600 leading-relaxed">
-            Sí, pero sujeto a disponibilidad. Hay penalizaciones si es muy cercano a la salida. Contáctanos para evaluar opciones.
-          </div>
-        </details>
-
-        <details class="group card p-6 cursor-pointer">
-          <summary class="font-bold text-lg flex items-center gap-4">
-            <span class="text-xl">📍</span>
+            <span class="text-xl">+</span>
             ¿De dónde salen los viajes?
             <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <div class="mt-4 text-slate-600 leading-relaxed">
-            Desde Buenos Aires (zona oeste). Algunos paquetes permiten encontrarse en origen (Jujuy, Mendoza, etc).
+            Todos nuestros viajes salen desde Ituzaingó, zona oeste del GBA. Consultanos por el punto de encuentro exacto según el paquete.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">+</span>
+            ¿Cómo reservo un lugar?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Escribinos por WhatsApp o Instagram. Te confirmamos disponibilidad y te explicamos cómo abonar la seña para asegurar tu lugar.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">+</span>
+            ¿Qué incluyen los paquetes?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Cada paquete detalla exactamente qué incluye: transporte, alojamiento, comidas y actividades. Revisá el detalle de cada viaje antes de reservar.
+          </div>
+        </details>
+
+        <details class="group card p-6 cursor-pointer">
+          <summary class="font-bold text-lg flex items-center gap-4">
+            <span class="text-xl">+</span>
+            ¿Puedo viajar solo/sola?
+            <span class="ml-auto group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-slate-600 leading-relaxed">
+            Sí, muchos de nuestros pasajeros viajan solos. Tenemos paquetes especiales para solos y solas como el de Colón. Los viajes grupales son ideales para conocer gente nueva.
           </div>
         </details>
       </div>
@@ -182,12 +172,12 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
       <div class="mt-12 text-center">
         <p class="text-slate-600 mb-4">¿Más dudas?</p>
         <a 
-          href="https://wa.me/5491150000000"
+          href={`https://wa.me/${WA}`}
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-primary"
         >
-          Preguntale a Sonia
+          💬 Escribinos por WhatsApp
         </a>
       </div>
     </div>
@@ -201,12 +191,12 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
     </div>
 
     <div class="container-gutter relative z-10 text-center max-w-3xl mx-auto">
-      <h2 class="mb-4 text-4xl md:text-5xl">Reservá tu viaje hoy</h2>
+      <h2 class="mb-4 text-4xl md:text-5xl">¿Te vas de viaje?</h2>
       <p class="text-xl mb-8 text-white/90">
-        Últimas 3 salidas del mes. Sonia responde en WhatsApp.
+        Consultá disponibilidad ahora. Los cupos se llenan rápido.
       </p>
       <a 
-        href="https://wa.me/5491150000000?text=Hola%20Sonia,%20quiero%20reservar%20un%20viaje"
+        href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad`}
         target="_blank"
         rel="noopener noreferrer"
         class="btn bg-white text-orange-600 hover:bg-slate-100 btn-lg"
@@ -216,4 +206,3 @@ const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
     </div>
   </section>
 </BaseLayout>
-
