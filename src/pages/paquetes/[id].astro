@@ -10,7 +10,7 @@ export function getStaticPaths() {
   return paquetes.map((paquete) => ({
     // IMPORTANTE: 'id' tiene que coincidir con el nombre de tu archivo [id].astro
     // Si en tu JSON el identificador "colon-termas-finde" se llama "slug", cambialo a paquete.slug
-    params: { id: paquete.id }, 
+    params: { id: paquete.slug }, 
     props: { paquete }, // Le pasamos toda la info del paquete a la página
   }));
 }
