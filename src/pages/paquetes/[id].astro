@@ -2,35 +2,151 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import paquetesData from '@/data/paquetes.json';
 
-// 1. Astro ejecuta esto en el servidor para generar todas las rutas posibles
 export function getStaticPaths() {
-  const paquetes = paquetesData.paquetes;
-
-  // Retornamos un array con los params (para la URL) y los props (los datos de la página)
-  return paquetes.map((paquete) => ({
-    // IMPORTANTE: 'id' tiene que coincidir con el nombre de tu archivo [id].astro
-    // Si en tu JSON el identificador "colon-termas-finde" se llama "slug", cambialo a paquete.slug
-    params: { id: paquete.slug }, 
-    props: { paquete }, // Le pasamos toda la info del paquete a la página
+  return paquetesData.paquetes.map((paquete) => ({
+    params: { id: paquete.slug },
+    props: { paquete },
   }));
 }
 
-// 2. Extraemos el paquete de los props que pasamos arriba
 const { paquete } = Astro.props;
+const WA = "5491134952847";
+const msg = encodeURIComponent(`Hola Pucará Turismo, quiero consultar sobre el paquete: ${paquete.titulo}`);
+
+const iconosIncluye: Record<string, string> = {
+  transporte: "🚌",
+  desayuno: "☕",
+  almuerzo: "🍽️",
+  cena: "🌙",
+  merienda: "🫖",
+  alojamiento: "🏨",
+  show: "🎭",
+  termas: "♨️",
+  coordinador: "👤",
+  excursion: "🗺️",
+  guia: "🧭",
+  seguro: "✅",
+};
 ---
 
-<BaseLayout 
-  title={`${paquete.nombre} | Pucará Turismo`}
-  description={paquete.descripcionBreve}
+<BaseLayout
+  title={`${paquete.titulo} | Pucará Turismo`}
+  description={paquete.descripcionCorta}
+  image={paquete.imagenPrincipal}
 >
-  <section class="pk-detalle-container" style="padding-top: 120px; color: white;">
-    <h1>{paquete.nombre}</h1>
-    <p>Precio: ${paquete.precioBase}</p>
-    <p>Duración: {paquete.duracionDias} días</p>
-    
-    <a href="/paquetes" style="color: #e8622a; margin-top: 20px; display: inline-block;">
-      ← Volver a todos los paquetes
-    </a>
-  </section>
+  <!-- Hero del paquete -->
+  <div class="relative w-full h-72 md:h-96 overflow-hidden">
+    <img
+      src={paquete.imagenPrincipal}
+      alt={paquete.titulo}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));"></div>
+    <div class="absolute inset-0 flex items-end p-8">
+      <div>
+        <a href="/Pucara-Turismo/paquetes" class="text-orange-300 text-sm mb-3 inline-block hover:text-orange-400">
+          ← Volver a paquetes
+        </a>
+        <h1 class="text-white text-3xl md:text-5xl font-bold">{paquete.titulo}</h1>
+        <p class="text-white/80 mt-2">{paquete.duracionDias} días / {paquete.duracionNoches} noches</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- Contenido -->
+  <div class="container-gutter max-w-5xl mx-auto py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Columna principal -->
+      <div class="lg:col-span-2 space-y-8">
+
+        <!-- Descripción -->
+        <div class="card p-6">
+          <h2 class="text-xl font-bold mb-4">Sobre este viaje</h2>
+          <p class="text-slate-600 leading-relaxed">{paquete.descripcionLarga}</p>
+        </div>
+
+        <!-- Qué incluye -->
+        <div class="card p-6">
+          <h2 class="text-xl font-bold mb-4">¿Qué incluye?</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {paquete.incluye.map((item: string) => (
+              <div class="flex items-center gap-2 bg-orange-50 rounded-lg px-3 py-2">
+                <span>{iconosIncluye[item] || "✓"}</span>
+                <span class="text-sm font-medium capitalize text-slate-700">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Itinerario -->
+        {paquete.itinerario && paquete.itinerario.length > 0 && (
+          <div class="card p-6">
+            <h2 class="text-xl font-bold mb-4">Itinerario</h2>
+            <ol class="space-y-3">
+              {paquete.itinerario.map((paso: string, i: number) => (
+                <li class="flex gap-3">
+                  <span class="flex-shrink-0 w-7 h-7 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold">{i + 1}</span>
+                  <span class="text-slate-600 pt-0.5">{paso}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        <!-- Tags -->
+        {paquete.tags && (
+          <div class="flex flex-wrap gap-2">
+            {paquete.tags.map((tag: string) => (
+              <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm">#{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Sidebar precio -->
+      <div class="lg:col-span-1">
+        <div class="card p-6 sticky top-24">
+          <div class="text-center mb-6">
+            <p class="text-slate-500 text-sm mb-1">Precio por persona</p>
+            <div class="text-4xl font-bold text-orange-500">
+              ${paquete.precioBase.toLocaleString('es-AR')}
+            </div>
+            <p class="text-slate-400 text-xs mt-1">+ ${paquete.gastosAdmin.toLocaleString('es-AR')} gastos adm.</p>
+          </div>
+
+          <div class="space-y-3 mb-6 text-sm text-slate-600">
+            <div class="flex justify-between">
+              <span>Duración</span>
+              <span class="font-medium">{paquete.duracionDias}d / {paquete.duracionNoches}n</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Próxima salida</span>
+              <span class="font-medium">
+                {new Date(paquete.proximaSalida + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long' })}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span>Cupos</span>
+              <span class="font-medium">{paquete.cuposPorSalida} personas</span>
+            </div>
+          </div>
+
+          
+            href={`https://wa.me/${WA}?text=${msg}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary w-full text-center block mb-3"
+          >
+            💬 Reservar por WhatsApp
+          </a>
+
+          <p class="text-xs text-slate-400 text-center">
+            Respondemos en minutos
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </BaseLayout>
