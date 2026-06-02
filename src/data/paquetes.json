@@ -72,10 +72,8 @@
       "descripcionCorta": "2 días 1 noche en Hotel Termas & Río. Media pensión, termas y cena show.",
       "descripcionLarga": "Escapada a Colón con las Termas de San José incluidas. Hotel Termas & Río a 100mts de la terma y 200mts de la playa del río. Incluye entrada y traslado a Termas de San José, cena show y bus semi cama. Salida 6 de junio.",
       "incluye": ["transporte", "desayuno", "cena", "alojamiento", "termas", "show", "coordinador"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/termas-san-jose-1.jpg",
+      "imagenes": ["/Pucara-Turismo/hotel-termas-rio-1.jpg","/Pucara-Turismo/hotel-termas-rio-2.jpg","/Pucara-Turismo/hotel-termas-rio-3.jpg","/Pucara-Turismo/termas-san-jose-1.jpg","/Pucara-Turismo/termas-san-jose-2.jpg","/Pucara-Turismo/termas-san-jose-3.jpg","/Pucara-Turismo/termas-san-jose-4.jpg","/Pucara-Turismo/termas-san-jose-5.jpg","/Pucara-Turismo/termas-colon-1.jpg","/Pucara-Turismo/termas-colon-2.jpg"],
       "rating": 4.9,
       "reviews": 115,
       "cuposPorSalida": 25,
@@ -103,10 +101,8 @@
       "descripcionCorta": "3 días 2 noches en Hotel Termas y Río. Media pensión, cena show sábado y termas incluidas.",
       "descripcionLarga": "Vacaciones de invierno en Colón con Termas de San José. Hotel Termas y Río a 100mts de la terma. Media pensión, cena show el sábado, entrada y traslado a Termas de San José. Regreso a Bs As 17:00hs desde termas. Salida 25 de julio.",
       "incluye": ["transporte", "desayuno", "cena", "alojamiento", "termas", "show"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/termas-san-jose-1.jpg",
+      "imagenes": ["/Pucara-Turismo/hotel-termas-rio-1.jpg","/Pucara-Turismo/hotel-termas-rio-2.jpg","/Pucara-Turismo/hotel-termas-rio-3.jpg","/Pucara-Turismo/termas-san-jose-1.jpg","/Pucara-Turismo/termas-san-jose-2.jpg","/Pucara-Turismo/termas-san-jose-3.jpg","/Pucara-Turismo/termas-san-jose-4.jpg","/Pucara-Turismo/termas-san-jose-5.jpg","/Pucara-Turismo/termas-colon-1.jpg","/Pucara-Turismo/termas-colon-2.jpg"],
       "rating": 4.9,
       "reviews": 87,
       "cuposPorSalida": 25,
@@ -134,10 +130,8 @@
       "descripcionCorta": "2 días 1 noche en Hotel Cristóbal Colón. Media pensión, cena show y concurso de disfraces.",
       "descripcionLarga": "Especial para solos y solas en Colón. Hotel Cristóbal Colón, media pensión, cena show con concurso de disfraces, entrada y traslado a Termas de San José. Bus semi cama. Salida 27 de junio.",
       "incluye": ["transporte", "desayuno", "cena", "alojamiento", "termas", "show", "coordinador"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/termas-san-jose-1.jpg",
+      "imagenes": ["/Pucara-Turismo/hotel-termas-rio-1.jpg","/Pucara-Turismo/hotel-termas-rio-2.jpg","/Pucara-Turismo/hotel-termas-rio-3.jpg","/Pucara-Turismo/termas-san-jose-1.jpg","/Pucara-Turismo/termas-san-jose-2.jpg","/Pucara-Turismo/termas-san-jose-3.jpg","/Pucara-Turismo/termas-san-jose-4.jpg","/Pucara-Turismo/termas-san-jose-5.jpg","/Pucara-Turismo/termas-colon-1.jpg","/Pucara-Turismo/termas-colon-2.jpg"],
       "rating": 4.9,
       "reviews": 63,
       "cuposPorSalida": 30,
@@ -304,5 +298,6 @@
     }
   ]
 }
+
 
 
