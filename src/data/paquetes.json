@@ -196,10 +196,8 @@
       "descripcionCorta": "2 días 1 noche en Hostal del Sol ★★★★. Desayuno buffet y bus mix.",
       "descripcionLarga": "Escapada de finde a San Bernardo en el Hostal del Sol Resort & Spa 4 estrellas. Pileta climatizada, gimnasio, sala de juegos, cancha de fútbol/básquet. Desayuno buffet incluido. Salidas 27 de junio y 11 de julio.",
       "incluye": ["transporte", "desayuno", "alojamiento"],
-      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/san-bernardo.jpg",
+      "imagenes": ["/Pucara-Turismo/san-bernardo.jpg","/Pucara-Turismo/hostal-del-sol-1.jpg","/Pucara-Turismo/hostal-del-sol-2.jpg","/Pucara-Turismo/hostal-del-sol-3.jpg","/Pucara-Turismo/hostal-del-sol-4.jpg"],
       "rating": 4.7,
       "reviews": 134,
       "cuposPorSalida": 25,
@@ -226,10 +224,8 @@
       "descripcionCorta": "4 días 3 noches en Hostal del Sol ★★★★. Desayuno buffet y bus mix.",
       "descripcionLarga": "Vacaciones de invierno en San Bernardo en el Hostal del Sol Resort & Spa. Pileta climatizada, gimnasio, sala de juegos. Desayuno buffet. Salida 24 de julio.",
       "incluye": ["transporte", "desayuno", "alojamiento"],
-      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/san-bernardo.jpg",
+      "imagenes": ["/Pucara-Turismo/san-bernardo.jpg","/Pucara-Turismo/hostal-del-sol-1.jpg","/Pucara-Turismo/hostal-del-sol-2.jpg","/Pucara-Turismo/hostal-del-sol-3.jpg","/Pucara-Turismo/hostal-del-sol-4.jpg"],
       "rating": 4.7,
       "reviews": 89,
       "cuposPorSalida": 25,
@@ -308,4 +304,5 @@
     }
   ]
 }
+
 
