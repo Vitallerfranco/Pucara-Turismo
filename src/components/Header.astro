@@ -2,35 +2,26 @@
   <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
     {/* Logo */}
-    <a href="/Pucara-Turismo/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      </div>
-      <span class="text-white font-semibold text-sm tracking-wide">Pucará <span class="text-orange-400">Turismo</span></span>
+    <a href="/Pucara-Turismo/" class="flex items-center group">
+      <img src="/Pucara-Turismo/isologopucara.png" alt="Pucará Turismo" style="height:36px; width:auto;" />
     </a>
 
     {/* Nav desktop */}
     <nav class="hidden md:flex items-center gap-8">
-      <a href="/Pucara-Turismo/destinos" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200 tracking-wide">
-        Destinos
-      </a>
       <a href="/Pucara-Turismo/paquetes" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200 tracking-wide">
         Paquetes
       </a>
-      <a href="/Pucara-Turismo/preguntas" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200 tracking-wide">
+      <a href="/Pucara-Turismo/#faq" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200 tracking-wide">
         Preguntas
       </a>
-      <a href="/Pucara-Turismo/nosotros" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200 tracking-wide">
+      <a href="/Pucara-Turismo/#sobre" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200 tracking-wide">
         Nosotros
       </a>
     </nav>
 
     {/* CTA + mobile menu */}
     <div class="flex items-center gap-3">
-      <a
+      
         href="https://wa.me/5491134952847?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad"
         target="_blank"
         rel="noopener noreferrer"
@@ -43,11 +34,7 @@
       </a>
 
       {/* Hamburger mobile */}
-      <button
-        id="menu-toggle"
-        class="md:hidden flex flex-col gap-1.5 p-1"
-        aria-label="Abrir menú"
-      >
+      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Abrir menú">
         <span class="w-5 h-px bg-white/60 block transition-all duration-200" id="bar1"></span>
         <span class="w-5 h-px bg-white/60 block transition-all duration-200" id="bar2"></span>
         <span class="w-3 h-px bg-white/60 block transition-all duration-200" id="bar3"></span>
@@ -56,16 +43,12 @@
   </div>
 
   {/* Mobile menu */}
-  <div
-    id="mobile-menu"
-    class="md:hidden hidden border-t border-white/6 bg-[#0e0e0e]"
-  >
+  <div id="mobile-menu" class="md:hidden hidden border-t border-white/6 bg-[#0e0e0e]">
     <nav class="flex flex-col px-6 py-4 gap-1">
-      <a href="/Pucara-Turismo/destinos" class="text-white/50 hover:text-white text-sm font-medium py-3 border-b border-white/5 transition-colors duration-200">Destinos</a>
       <a href="/Pucara-Turismo/paquetes" class="text-white/50 hover:text-white text-sm font-medium py-3 border-b border-white/5 transition-colors duration-200">Paquetes</a>
-      <a href="/Pucara-Turismo/preguntas" class="text-white/50 hover:text-white text-sm font-medium py-3 border-b border-white/5 transition-colors duration-200">Preguntas</a>
-      <a href="/Pucara-Turismo/nosotros" class="text-white/50 hover:text-white text-sm font-medium py-3 transition-colors duration-200">Nosotros</a>
-      <a
+      <a href="/Pucara-Turismo/#faq" class="text-white/50 hover:text-white text-sm font-medium py-3 border-b border-white/5 transition-colors duration-200">Preguntas</a>
+      <a href="/Pucara-Turismo/#sobre" class="text-white/50 hover:text-white text-sm font-medium py-3 transition-colors duration-200">Nosotros</a>
+      
         href="https://wa.me/5491134952847?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad"
         target="_blank"
         rel="noopener noreferrer"
