@@ -11,7 +11,6 @@ export function getStaticPaths() {
 
 const { paquete } = Astro.props;
 const WA = "5491134952847";
-const msg = encodeURIComponent(`Hola Pucará Turismo, quiero consultar sobre el paquete: ${paquete.titulo}`);
 ---
 
 <BaseLayout
@@ -21,129 +20,144 @@ const msg = encodeURIComponent(`Hola Pucará Turismo, quiero consultar sobre el 
 >
 
 <!-- Hero -->
-<div class="relative w-full h-72 md:h-96 overflow-hidden">
+<div class="relative w-full overflow-hidden" style="height:420px;">
   <img src={paquete.imagenPrincipal} alt={paquete.titulo} class="w-full h-full object-cover" />
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(15,15,30,0.95));"></div>
-  <div class="absolute inset-0 flex items-end p-6 md:p-10">
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(10,10,20,0.97) 100%);"></div>
+  <div class="absolute inset-0 flex items-end" style="padding:2.5rem 3rem;">
     <div>
-      <a href="/Pucara-Turismo/paquetes" class="text-orange-400 text-sm mb-3 inline-flex items-center gap-1 hover:text-orange-300 transition-colors">
-        ← Volver a paquetes
+      <a href="/Pucara-Turismo/paquetes" style="color:#f97316; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; margin-bottom:0.75rem; opacity:0.8;">
+        ← Todos los paquetes
       </a>
-      <h1 class="text-white text-3xl md:text-5xl font-bold">{paquete.titulo}</h1>
-      <p class="text-white/60 mt-2 text-sm">{paquete.duracionDias} días · {paquete.duracionNoches} noches · Salida desde Ituzaingó</p>
+      <h1 style="color:white; font-size:2.75rem; font-weight:900; margin:0 0 0.5rem 0; line-height:1.1;">{paquete.titulo}</h1>
+      <div style="display:flex; gap:1.5rem; color:rgba(255,255,255,0.45); font-size:0.85rem;">
+        <span>{paquete.duracionDias} días · {paquete.duracionNoches} noches</span>
+        <span>·</span>
+        <span>Salida desde Ituzaingó</span>
+        <span>·</span>
+        <span>Base doble</span>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Body -->
-<div style="background:#0f0f1a; min-height:100vh; padding: 3rem 0;">
+<div style="background:#0a0a14; min-height:100vh; padding:3rem 0 5rem 0;">
   <div class="container-gutter max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div style="display:grid; grid-template-columns:1fr 380px; gap:2rem; align-items:start;">
 
       <!-- Columna izquierda -->
-      <div class="lg:col-span-2 space-y-6">
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
 
         <!-- Descripción -->
-        <div style="background:#1a1a2e; border:1px solid rgba(255,152,0,0.15); border-radius:16px; padding:1.5rem;">
-          <h2 style="color:white; font-size:1.25rem; font-weight:700; margin-bottom:1rem;">Sobre este viaje</h2>
-          <p style="color:rgba(255,255,255,0.65); line-height:1.75;">{paquete.descripcionLarga}</p>
+        <div style="border-bottom:1px solid rgba(255,255,255,0.07); padding-bottom:1.5rem;">
+          <p style="color:rgba(255,255,255,0.55); line-height:1.8; font-size:1rem; margin:0;">{paquete.descripcionLarga}</p>
         </div>
 
         <!-- Incluye -->
-        <div style="background:#1a1a2e; border:1px solid rgba(255,152,0,0.15); border-radius:16px; padding:1.5rem;">
-          <h2 style="color:white; font-size:1.25rem; font-weight:700; margin-bottom:1rem;">¿Qué incluye?</h2>
-          <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:0.75rem;">
+        <div>
+          <h2 style="color:white; font-size:1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 1rem 0; color:rgba(255,255,255,0.4);">Incluye</h2>
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
             {paquete.incluye.map((item: string) => (
-              <div style="background:rgba(255,152,0,0.08); border:1px solid rgba(255,152,0,0.2); border-radius:10px; padding:0.6rem 0.9rem; display:flex; align-items:center; gap:0.5rem;">
-                <span style="color:#f97316; font-size:0.8rem;">◆</span>
-                <span style="color:rgba(255,255,255,0.8); font-size:0.85rem; text-transform:capitalize;">{item}</span>
-              </div>
+              <span style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.25); color:rgba(255,255,255,0.75); border-radius:6px; padding:0.35rem 0.85rem; font-size:0.82rem; text-transform:capitalize;">
+                {item}
+              </span>
             ))}
           </div>
         </div>
 
-        <!-- Itinerario -->
-        {paquete.itinerario && paquete.itinerario.length > 0 && (
-          <div style="background:#1a1a2e; border:1px solid rgba(255,152,0,0.15); border-radius:16px; padding:1.5rem;">
-            <h2 style="color:white; font-size:1.25rem; font-weight:700; margin-bottom:1rem;">Itinerario</h2>
-            <ol style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.75rem;">
-              {paquete.itinerario.map((paso: string, i: number) => (
-                <li style="display:flex; gap:0.75rem; align-items:flex-start;">
-                  <span style="flex-shrink:0; width:26px; height:26px; background:#f97316; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700;">{i+1}</span>
-                  <span style="color:rgba(255,255,255,0.7); padding-top:3px; line-height:1.5;">{paso}</span>
-                </li>
+        <!-- Galería -->
+        {paquete.imagenes && paquete.imagenes.length > 0 && (
+          <div>
+            <h2 style="color:rgba(255,255,255,0.4); font-size:1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 1rem 0;">Galería</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:0.75rem;">
+              {paquete.imagenes.map((img: string, i: number) => (
+                <div style="border-radius:10px; overflow:hidden; aspect-ratio:4/3; cursor:pointer;" onclick={`openGallery(${i})`}>
+                  <img src={img} alt={`${paquete.titulo} ${i+1}`} style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         )}
 
-        <!-- Formulario consulta -->
-        <div style="background:#1a1a2e; border:1px solid rgba(255,152,0,0.3); border-radius:16px; padding:1.5rem;">
-          <h2 style="color:white; font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Consultá este paquete</h2>
-          <p style="color:rgba(255,255,255,0.5); font-size:0.875rem; margin-bottom:1.25rem;">Completá tus datos y te contactamos por WhatsApp.</p>
-          
-          <div id="form-detalle" style="display:flex; flex-direction:column; gap:0.875rem;">
-            <input id="f-nombre" type="text" placeholder="Tu nombre" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:0.75rem 1rem; color:white; font-size:0.9rem; width:100%; outline:none;" />
-            <input id="f-email" type="email" placeholder="Tu email" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:0.75rem 1rem; color:white; font-size:0.9rem; width:100%; outline:none;" />
-            <input id="f-tel" type="tel" placeholder="Tu WhatsApp (ej: 1134952847)" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:0.75rem 1rem; color:white; font-size:0.9rem; width:100%; outline:none;" />
-            <button id="btn-consultar" style="background:#f97316; color:white; font-weight:700; border:none; border-radius:10px; padding:0.875rem; font-size:0.95rem; cursor:pointer; transition:background 0.2s;">
-              💬 Enviar consulta por WhatsApp
-            </button>
+        <!-- Itinerario -->
+        {paquete.itinerario && paquete.itinerario.length > 0 && (
+          <div>
+            <h2 style="color:rgba(255,255,255,0.4); font-size:1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 1rem 0;">Itinerario</h2>
+            <div style="display:flex; flex-direction:column; gap:0; position:relative;">
+              {paquete.itinerario.map((paso: string, i: number) => (
+                <div style="display:flex; gap:1rem; align-items:flex-start; padding:0.75rem 0;">
+                  <div style="display:flex; flex-direction:column; align-items:center; flex-shrink:0;">
+                    <div style="width:28px; height:28px; background:#f97316; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:0.75rem; font-weight:700; z-index:1;">{i+1}</div>
+                    {i < paquete.itinerario.length - 1 && <div style="width:1px; height:100%; min-height:20px; background:rgba(249,115,22,0.2); margin-top:4px;"></div>}
+                  </div>
+                  <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; line-height:1.5; margin:4px 0 0 0;">{paso}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
 
       <!-- Sidebar -->
-      <div class="lg:col-span-1">
-        <div style="background:#1a1a2e; border:1px solid rgba(255,152,0,0.25); border-radius:16px; padding:1.5rem; position:sticky; top:90px;">
+      <div style="position:sticky; top:90px;">
+        <div style="background:#13132a; border:1px solid rgba(249,115,22,0.2); border-radius:16px; overflow:hidden;">
           
           <!-- Precio -->
-          <div style="text-align:center; padding-bottom:1.25rem; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:1.25rem;">
-            <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-bottom:0.25rem;">Precio por persona</p>
-            <div id="precio-total" style="font-size:2.5rem; font-weight:900; color:#f97316;">${paquete.precioBase.toLocaleString('es-AR')}</div>
-            <p style="color:rgba(255,255,255,0.3); font-size:0.75rem;">+ ${paquete.gastosAdmin.toLocaleString('es-AR')} gastos adm.</p>
+          <div style="padding:1.5rem; border-bottom:1px solid rgba(255,255,255,0.06);">
+            <p style="color:rgba(255,255,255,0.35); font-size:0.75rem; margin:0 0 0.25rem 0; text-transform:uppercase; letter-spacing:0.1em;">Precio por persona</p>
+            <div id="precio-display" style="font-size:2.75rem; font-weight:900; color:#f97316; line-height:1;"></div>
+            <p style="color:rgba(255,255,255,0.25); font-size:0.75rem; margin:0.35rem 0 0 0;">+ ${paquete.gastosAdmin.toLocaleString('es-AR')} gastos adm. por persona</p>
+            <div id="nota-single" style="display:none; margin-top:0.5rem; background:rgba(249,115,22,0.1); border-radius:6px; padding:0.4rem 0.6rem;">
+              <p style="color:#f97316; font-size:0.72rem; margin:0;">* Suplemento viajero solo: +50%</p>
+            </div>
           </div>
 
-          <!-- Calculadora personas -->
-          <div style="margin-bottom:1.25rem;">
-            <label style="color:rgba(255,255,255,0.6); font-size:0.8rem; display:block; margin-bottom:0.5rem;">Cantidad de personas</label>
-            <div style="display:flex; align-items:center; gap:0.75rem;">
-              <button id="btn-menos" style="width:36px; height:36px; background:rgba(255,152,0,0.15); border:1px solid rgba(255,152,0,0.3); border-radius:8px; color:#f97316; font-size:1.25rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">−</button>
-              <span id="cant-personas" style="color:white; font-size:1.25rem; font-weight:700; min-width:30px; text-align:center;">1</span>
-              <button id="btn-mas" style="width:36px; height:36px; background:rgba(255,152,0,0.15); border:1px solid rgba(255,152,0,0.3); border-radius:8px; color:#f97316; font-size:1.25rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">+</button>
+          <!-- Personas -->
+          <div style="padding:1.25rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.06);">
+            <p style="color:rgba(255,255,255,0.4); font-size:0.78rem; margin:0 0 0.75rem 0; text-transform:uppercase; letter-spacing:0.08em;">Cantidad de personas</p>
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <button id="btn-menos" style="width:36px; height:36px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:1.25rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">−</button>
+              <span id="cant-personas" style="color:white; font-size:1.5rem; font-weight:700; min-width:2rem; text-align:center;">1</span>
+              <button id="btn-mas" style="width:36px; height:36px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:1.25rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">+</button>
             </div>
-            <p id="precio-grupo" style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-top:0.5rem;">Total grupo: <span style="color:#f97316; font-weight:700;">${paquete.precioBase.toLocaleString('es-AR')}</span></p>
+            <div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid rgba(255,255,255,0.05);">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="color:rgba(255,255,255,0.4); font-size:0.82rem;">Total a pagar</span>
+                <span id="total-grupo" style="color:white; font-weight:700; font-size:1.1rem;"></span>
+              </div>
+            </div>
           </div>
 
           <!-- Info -->
-          <div style="display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.25rem;">
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-              <span style="color:rgba(255,255,255,0.4);">Próxima salida</span>
+          <div style="padding:1.25rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; gap:0.6rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.83rem;">
+              <span style="color:rgba(255,255,255,0.35);">Próxima salida</span>
               <span style="color:white; font-weight:600;">
                 {new Date(paquete.proximaSalida + 'T12:00:00').toLocaleDateString('es-AR', {day:'numeric', month:'long'})}
               </span>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-              <span style="color:rgba(255,255,255,0.4);">Cupos disponibles</span>
+            <div style="display:flex; justify-content:space-between; font-size:0.83rem;">
+              <span style="color:rgba(255,255,255,0.35);">Cupos</span>
               <span style="color:#f97316; font-weight:600;">{paquete.cuposPorSalida} lugares</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
-              <span style="color:rgba(255,255,255,0.4);">Salida desde</span>
-              <span style="color:white; font-weight:600;">Ituzaingó</span>
             </div>
           </div>
 
-          
-            id="btn-wa-sidebar"
-            href={`https://wa.me/${WA}?text=${msg}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style="display:block; background:#25d366; color:white; font-weight:700; text-align:center; padding:0.875rem; border-radius:10px; text-decoration:none; font-size:0.95rem;"
-          >
-            💬 Reservar por WhatsApp
-          </a>
-          <p style="color:rgba(255,255,255,0.3); font-size:0.75rem; text-align:center; margin-top:0.75rem;">Respondemos en minutos</p>
+          <!-- Formulario -->
+          <div style="padding:1.25rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; gap:0.6rem;">
+            <p style="color:rgba(255,255,255,0.4); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.25rem 0;">Tus datos</p>
+            <input id="f-nombre" type="text" placeholder="Tu nombre" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.65rem 0.9rem; color:white; font-size:0.85rem; width:100%; outline:none; box-sizing:border-box;" />
+            <input id="f-tel" type="tel" placeholder="Tu WhatsApp" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.65rem 0.9rem; color:white; font-size:0.85rem; width:100%; outline:none; box-sizing:border-box;" />
+          </div>
+
+          <!-- Botón -->
+          <div style="padding:1.25rem 1.5rem;">
+            <button id="btn-reservar" style="width:100%; background:#f97316; color:white; font-weight:700; border:none; border-radius:10px; padding:1rem; font-size:1rem; cursor:pointer; transition:background 0.2s; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+              💬 Reservar
+            </button>
+            <p style="color:rgba(255,255,255,0.2); font-size:0.72rem; text-align:center; margin:0.6rem 0 0 0;">Respondemos en minutos por WhatsApp</p>
+          </div>
+
         </div>
       </div>
 
@@ -151,23 +165,45 @@ const msg = encodeURIComponent(`Hola Pucará Turismo, quiero consultar sobre el 
   </div>
 </div>
 
+<!-- Lightbox galería -->
+<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:1000; align-items:center; justify-content:center;">
+  <button onclick="closeGallery()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:white; font-size:2rem; cursor:pointer; opacity:0.6;">✕</button>
+  <button onclick="prevImg()" style="position:absolute; left:1.5rem; background:none; border:none; color:white; font-size:2.5rem; cursor:pointer; opacity:0.6;">‹</button>
+  <img id="lightbox-img" src="" alt="" style="max-width:90vw; max-height:90vh; border-radius:8px; object-fit:contain;" />
+  <button onclick="nextImg()" style="position:absolute; right:1.5rem; background:none; border:none; color:white; font-size:2.5rem; cursor:pointer; opacity:0.6;">›</button>
+</div>
+
 </BaseLayout>
 
-<script define:vars={{ precioBase: paquete.precioBase, gastosAdmin: paquete.gastosAdmin, titulo: paquete.titulo, WA: "5491134952847" }}>
+<script define:vars={{ precioBase: paquete.precioBase, gastosAdmin: paquete.gastosAdmin, titulo: paquete.titulo, imagenes: paquete.imagenes || [] }}>
+  const WA = "5491134952847";
   let personas = 1;
+  let galleryIndex = 0;
+
+  function calcularPrecio(n) {
+    if (n === 1) {
+      return Math.round(precioBase * 1.5);
+    }
+    return precioBase;
+  }
+
+  function calcularTotal(n) {
+    const precioPP = calcularPrecio(n);
+    return (precioPP + gastosAdmin) * n;
+  }
 
   function formatARS(n) {
-    return n.toLocaleString('es-AR');
+    return '$' + n.toLocaleString('es-AR');
   }
 
   function actualizar() {
-    const total = precioBase * personas;
-    document.getElementById('precio-total').textContent = '$' + formatARS(total);
-    document.getElementById('cant-personas').textContent = personas;
-    document.getElementById('precio-grupo').innerHTML = `Total grupo: <span style="color:#f97316;font-weight:700;">$${formatARS(total)}</span>`;
+    const precioPP = calcularPrecio(personas);
+    const total = calcularTotal(personas);
     
-    const msgWA = encodeURIComponent(`Hola Pucará Turismo, quiero consultar sobre: ${titulo} para ${personas} persona${personas > 1 ? 's' : ''}`);
-    document.getElementById('btn-wa-sidebar').href = `https://wa.me/${WA}?text=${msgWA}`;
+    document.getElementById('precio-display').textContent = formatARS(precioPP);
+    document.getElementById('cant-personas').textContent = personas;
+    document.getElementById('total-grupo').textContent = formatARS(total);
+    document.getElementById('nota-single').style.display = personas === 1 ? 'block' : 'none';
   }
 
   document.getElementById('btn-menos').addEventListener('click', () => {
@@ -178,11 +214,45 @@ const msg = encodeURIComponent(`Hola Pucará Turismo, quiero consultar sobre el 
     if (personas < 20) { personas++; actualizar(); }
   });
 
-  document.getElementById('btn-consultar').addEventListener('click', () => {
+  document.getElementById('btn-reservar').addEventListener('click', () => {
     const nombre = document.getElementById('f-nombre').value.trim();
     const tel = document.getElementById('f-tel').value.trim();
-    if (!nombre) { alert('Por favor ingresá tu nombre'); return; }
-    const msgFinal = encodeURIComponent(`Hola Pucará Turismo! Me llamo ${nombre} y quiero consultar sobre el paquete: ${titulo} para ${personas} persona${personas > 1 ? 's' : ''}. Mi WhatsApp es ${tel || 'sin especificar'}.`);
-    window.open(`https://wa.me/${WA}?text=${msgFinal}`, '_blank');
+    const precioPP = calcularPrecio(personas);
+    const total = calcularTotal(personas);
+    const msg = encodeURIComponent(
+      `Hola Pucará Turismo! Me llamo ${nombre || 'sin nombre'} y quiero reservar:\n` +
+      `📦 Paquete: ${titulo}\n` +
+      `👥 Personas: ${personas}\n` +
+      `💰 Total: ${formatARS(total)}\n` +
+      `📱 Mi WhatsApp: ${tel || 'sin especificar'}`
+    );
+    window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
   });
+
+  // Galería lightbox
+  window.openGallery = function(i) {
+    galleryIndex = i;
+    document.getElementById('lightbox-img').src = imagenes[i];
+    document.getElementById('lightbox').style.display = 'flex';
+  };
+
+  window.closeGallery = function() {
+    document.getElementById('lightbox').style.display = 'none';
+  };
+
+  window.prevImg = function() {
+    galleryIndex = (galleryIndex - 1 + imagenes.length) % imagenes.length;
+    document.getElementById('lightbox-img').src = imagenes[galleryIndex];
+  };
+
+  window.nextImg = function() {
+    galleryIndex = (galleryIndex + 1) % imagenes.length;
+    document.getElementById('lightbox-img').src = imagenes[galleryIndex];
+  };
+
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeGallery();
+  });
+
+  actualizar();
 </script>
