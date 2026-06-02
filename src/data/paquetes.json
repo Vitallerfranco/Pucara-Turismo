@@ -13,10 +13,8 @@
       "descripcionCorta": "3 días 2 noches en Hotel Riazor. Pensión completa, show en hotel y bus mix.",
       "descripcionLarga": "Escapada de finde largo a Mar del Plata. Hotel Riazor frente al Shopping, a 400 metros del centro Güemes. Incluye pensión completa, show en hotel y bus mix. Salida 13 de junio.",
       "incluye": ["transporte", "desayuno", "almuerzo", "cena", "alojamiento", "show"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
+      "imagenes": ["/Pucara-Turismo/hotel-riazor-1.jpg","/Pucara-Turismo/hotel-riazor-2.jpg","/Pucara-Turismo/hotel-riazor-3.jpg","/Pucara-Turismo/hotel-riazor-4.jpg","/Pucara-Turismo/mar-del-plata-5.jpg"],
       "rating": 4.8,
       "reviews": 142,
       "cuposPorSalida": 20,
@@ -45,10 +43,8 @@
       "descripcionCorta": "3 días 2 noches en Hotel Riazor. Pensión completa, show y coordinador permanente.",
       "descripcionLarga": "Vacaciones de invierno en Mar del Plata. Hotel Riazor frente al Shopping. Pensión completa, show en hotel y coordinador permanente. Salidas 18 y 31 de julio.",
       "incluye": ["transporte", "desayuno", "almuerzo", "cena", "alojamiento", "show", "coordinador"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
+      "imagenes": ["/Pucara-Turismo/hotel-riazor-1.jpg","/Pucara-Turismo/hotel-riazor-2.jpg","/Pucara-Turismo/hotel-riazor-3.jpg","/Pucara-Turismo/hotel-riazor-4.jpg","/Pucara-Turismo/mar-del-plata-5.jpg"],
       "rating": 4.8,
       "reviews": 98,
       "cuposPorSalida": 20,
@@ -200,7 +196,7 @@
       "descripcionCorta": "2 días 1 noche en Hostal del Sol ★★★★. Desayuno buffet y bus mix.",
       "descripcionLarga": "Escapada de finde a San Bernardo en el Hostal del Sol Resort & Spa 4 estrellas. Pileta climatizada, gimnasio, sala de juegos, cancha de fútbol/básquet. Desayuno buffet incluido. Salidas 27 de junio y 11 de julio.",
       "incluye": ["transporte", "desayuno", "alojamiento"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop",
+      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
       "imagenes": [
         "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
       ],
@@ -230,7 +226,7 @@
       "descripcionCorta": "4 días 3 noches en Hostal del Sol ★★★★. Desayuno buffet y bus mix.",
       "descripcionLarga": "Vacaciones de invierno en San Bernardo en el Hostal del Sol Resort & Spa. Pileta climatizada, gimnasio, sala de juegos. Desayuno buffet. Salida 24 de julio.",
       "incluye": ["transporte", "desayuno", "alojamiento"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop",
+      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
       "imagenes": [
         "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
       ],
