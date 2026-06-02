@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { Paquete } from '@/types';
 import paquetesData from '@/data/paquetes.json';
 
@@ -18,6 +18,7 @@ export default function Filtros({ onResultsChange }: FiltrosProps) {
   const [sortBy, setSortBy] = useState('rating');
 
   const filteredPaquetes = useMemo(() => {
+    // ... (Mantén tu lógica de filtrado exacta aquí, no cambia nada)
     let result = [...allPaquetes];
 
     if (filters.duracion === 'corta') {
@@ -56,6 +57,16 @@ export default function Filtros({ onResultsChange }: FiltrosProps) {
     onResultsChange?.(result);
     return result;
   }, [filters, sortBy]);
+
+  // NUEVO: Emitimos un evento global con los IDs de los paquetes filtrados/ordenados
+  useEffect(() => {
+    const event = new CustomEvent('paquetes-filtrados', {
+      detail: filteredPaquetes.map(p => p.id) 
+    });
+    window.dispatchEvent(event);
+  }, [filteredPaquetes]);
+
+  // ... (El resto de tu código de UI se mantiene igual)
 
   const sortOptions = [
     { value: 'rating',      icon: '★', label: 'Rating' },

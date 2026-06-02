@@ -39,30 +39,61 @@ const paquetes = paquetesData.paquetes;
         </aside>
 
         <!-- Grid de cards -->
-        <div class="pk-main">
-          <div class="pk-grid" id="paquetes-grid">
-            {paquetes.map((paquete) => (
-              <PaqueteCard paquete={paquete} whatsappPhone="5491150000000" />
-            ))}
-          </div>
+<div class="pk-main">
+  <div class="pk-grid" id="paquetes-grid">
+    {paquetes.map((paquete) => (
+      <div class="paquete-wrapper" data-id={paquete.id}>
+        <PaqueteCard paquete={paquete} whatsappPhone="5491150000000" />
+      </div>
+    ))}
+  </div>
 
-          <!-- Sin resultados -->
-          <div id="no-results" class="pk-empty hidden">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <p class="pk-empty-title">No encontramos paquetes que coincidan</p>
-            <p class="pk-empty-sub">Ajustá los filtros o consultanos directamente</p>
-            <a
-              href="https://wa.me/5491150000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="pk-wa-btn"
-            >
-              Contactar por WhatsApp
-            </a>
-          </div>
-        </div>
+  <div id="no-results" class="pk-empty hidden">
+     </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('paquetes-grid');
+    const noResults = document.getElementById('no-results');
+
+    if (!grid || !noResults) return;
+
+    // Seleccionamos todas las cards generadas por Astro
+    const cards = Array.from(grid.querySelectorAll('.paquete-wrapper')) as HTMLElement[];
+
+    // Escuchamos el evento que emite nuestro componente React
+    window.addEventListener('paquetes-filtrados', (e: Event) => {
+      const customEvent = e as CustomEvent<string[] | number[]>;
+      const sortedIds = customEvent.detail;
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const id = card.getAttribute('data-id');
+        
+        // Buscamos la posición del ID de la card actual en el array ordenado por React
+        const index = sortedIds.findIndex(sortedId => String(sortedId) === String(id));
+
+        if (index !== -1) {
+          card.style.display = ''; // Mostramos la card
+          card.style.order = String(index); // Reordenamos la grilla usando flex/grid order
+          visibleCount++;
+        } else {
+          card.style.display = 'none'; // Ocultamos la card si no pasa el filtro
+        }
+      });
+
+      // Lógica para mostrar/ocultar el mensaje de "No hay resultados"
+      if (visibleCount === 0) {
+        grid.style.display = 'none';
+        noResults.classList.remove('hidden');
+      } else {
+        grid.style.display = 'grid';
+        noResults.classList.add('hidden');
+      }
+    });
+  });
+</script>
 
       </div>
     </div>
