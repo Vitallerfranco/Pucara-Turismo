@@ -14,13 +14,7 @@
             src="/isologopucara.png"
             alt="Pucará Turismo"
             style="height:48px;width:auto;object-fit:contain;"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
           />
-          <div style="background:#f97316;border-radius:10px;width:40px;height:40px;display:none;align-items:center;justify-content:center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M8 3L2 21h20L14 3z"/><path d="M12 8l-2 5h4z"/>
-            </svg>
-          </div>
         </div>
         <p style="font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.75; margin-bottom: 1.25rem; max-width: 260px;">
           Somos una agencia de turismo con más de 15 años organizando viajes grupales por Argentina. Nos especializamos en escapadas de fin de semana, vacaciones de invierno y experiencias en termas, playas y montaña — con todo incluido y salidas desde zona oeste del Gran Buenos Aires.
@@ -63,12 +57,12 @@
         <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 20px;">DESTINOS</h4>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
           {[
-            { href: '/Pucara-Turismo/destinos/mar-del-plata', label: 'Mar del Plata' },
-            { href: '/Pucara-Turismo/destinos/colon-entre-rios', label: 'Colón + Termas' },
-            { href: '/Pucara-Turismo/destinos/rio-hondo', label: 'Termas de Río Hondo' },
-            { href: '/Pucara-Turismo/destinos/san-bernardo', label: 'San Bernardo' },
-            { href: '/Pucara-Turismo/destinos/la-falda', label: 'La Falda, Córdoba' },
-            { href: '/Pucara-Turismo/destinos/mendoza', label: 'Uspallata, Mendoza' },
+            { href: '/Pucara-Turismo/paquetes/pkg-001', label: 'Mar del Plata' },
+            { href: '/Pucara-Turismo/paquetes/pkg-003', label: 'Colón + Termas' },
+            { href: '/Pucara-Turismo/paquetes/pkg-006', label: 'Termas de Río Hondo' },
+            { href: '/Pucara-Turismo/paquetes/pkg-007', label: 'San Bernardo' },
+            { href: '/Pucara-Turismo/paquetes/pkg-009', label: 'La Falda, Córdoba' },
+            { href: '/Pucara-Turismo/paquetes/pkg-010', label: 'Uspallata, Mendoza' },
           ].map(link => (
             <li key={link.href}>
               <a href={link.href}
