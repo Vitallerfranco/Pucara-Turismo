@@ -1,6 +1,7 @@
 ---
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import ChatbotPuca from '@/components/ChatbotPuca.tsx';
 import '../styles/globals.css';
 
 interface Props {
@@ -115,6 +116,9 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
   </main>
 
   <Footer />
+
+  <!-- Asistente Puca IA -->
+  <ChatbotPuca client:load />
 
   <!-- Botón flotante WhatsApp -->
   <a
