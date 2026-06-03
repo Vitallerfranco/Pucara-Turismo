@@ -15,6 +15,13 @@ export interface Destino {
   };
 }
 
+export interface PoliticasPaquete {
+  precioEnBaseDoble: string;
+  suplementoSingle: string;
+  menoresCuatroAnios: string;
+  cocheCama: string;
+}
+
 export interface Paquete {
   id: string;
   slug: string;
@@ -25,9 +32,12 @@ export interface Paquete {
   duracionNoches: number;
   precioBase: number;
   gastosAdmin: number;
+  suplementoSingle: number;
+  cocheCamaExtra: number;
   descripcionCorta: string;
   descripcionLarga: string;
   incluye: string[];
+  noIncluye?: string[];
   imagenPrincipal: string;
   imagenes: string[];
   rating: number;
@@ -37,6 +47,8 @@ export interface Paquete {
   frecuenciaSalidas: 'semanal' | 'quincenal' | 'mensual';
   tags: string[];
   itinerario: string[];
+  puntosDeSubida: string[];
+  politicas: PoliticasPaquete;
 }
 
 export interface Extra {

@@ -4,7 +4,11 @@ import PaqueteCard from '@/components/PaqueteCard.astro';
 import Filtros from '@/components/Filtros.tsx';
 import paquetesData from '@/data/paquetes.json';
 
-const paquetes = paquetesData.paquetes;
+// Ordenar por fecha de salida más próxima
+const paquetes = [...paquetesData.paquetes].sort(
+  (a, b) => new Date(a.proximaSalida).getTime() - new Date(b.proximaSalida).getTime()
+);
+const politicas = paquetesData.politicasGlobales;
 ---
 
 <BaseLayout
@@ -21,8 +25,28 @@ const paquetes = paquetesData.paquetes;
         </svg>
         Salidas desde zona oeste · Todo incluido
       </p>
-      <h1 class="pk-title">Nuestros <span class="pk-accent">Paquetes</span></h1>
-      <p class="pk-sub">Desde full days hasta viajes de 5 días. Encuentra tu próxima aventura.</p>
+      <h1 class="pk-title">Todos nuestros <span class="pk-accent">paquetes</span></h1>
+      <p class="pk-sub">Salidas confirmadas para junio y julio 2026. Un paquete por fecha para que elijas exactamente cuándo querés viajar.</p>
+
+      <!-- Políticas rápidas -->
+      <div class="pk-politicas">
+        <div class="pk-pol-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><circle cx="9" cy="5" r="2"/><path d="M6 21v-4a3 3 0 0 1 6 0v4"/><circle cx="16" cy="8" r="1"/><path d="M14 21v-2a2 2 0 0 1 4 0v2"/></svg>
+          Niños &lt;4 años: solo gastos adm.
+        </div>
+        <div class="pk-pol-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Single: +50% sobre el paquete
+        </div>
+        <div class="pk-pol-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          Coche cama: +$10.000 por persona
+        </div>
+        <div class="pk-pol-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Múltiples puntos de subida en el GBA
+        </div>
+      </div>
     </div>
   </section>
 
@@ -174,9 +198,18 @@ const paquetes = paquetesData.paquetes;
   .pk-sub {
     font-size: 16px;
     color: var(--pk-muted);
-    margin: 0;
-    max-width: 480px;
+    margin: 0 0 24px;
+    max-width: 540px;
     line-height: 1.6;
+  }
+  .pk-politicas {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
+  }
+  .pk-pol-item {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 500;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 5px 12px;
   }
 
   /* ── Body layout ── */

@@ -14,81 +14,101 @@ const { paquete } = Astro.props;
 const WA = '5491134952847';
 
 const precioTotal = paquete.precioBase + paquete.gastosAdmin;
+const precioSingle = paquete.precioBase + paquete.suplementoSingle + paquete.gastosAdmin;
 const cuposLibres = Math.max(0, paquete.cuposPorSalida - 8);
 const cuposCritico = cuposLibres <= 3;
 
-const duracionLabel = paquete.tipo === 'full_day'
-  ? 'Full Day'
-  : `${paquete.duracionDias} días / ${paquete.duracionNoches} noches`;
+const duracionLabel = `${paquete.duracionDias} días / ${paquete.duracionNoches} noches`;
 
 const fechaSalida = new Date(paquete.proximaSalida + 'T00:00:00');
 const fechaFormateada = fechaSalida.toLocaleDateString('es-AR', {
   weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
 });
+const fechaCorta = fechaSalida.toLocaleDateString('es-AR', {
+  day: 'numeric', month: 'long', year: 'numeric'
+});
 
-const waMsg = `Hola Pucará Turismo! Quiero reservar:
+const waMsg = `Hola Pucará Turismo! Quiero reservar un lugar en:
+
 📌 ${paquete.titulo}
-📅 Salida: ${fechaFormateada}
-💰 $${precioTotal.toLocaleString('es-AR')} por persona
+📅 Salida: ${fechaCorta}
+💰 Precio: $${precioTotal.toLocaleString('es-AR')} por persona (base doble)
 
-¿Tienen disponibilidad?`;
+¿Tienen disponibilidad? ¿Cuáles son los próximos pasos para reservar?`;
+
+const iconIncluye: Record<string, string> = {
+  'bus': 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',
+  'alojamiento': 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
+  'desayuno': 'M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3',
+  'almuerzo': 'M12 2C8.13 2 5 5.13 5 9c0 3.31 2.15 6.11 5 7.22V21h4v-4.78c2.85-1.11 5-3.91 5-7.22 0-3.87-3.13-7-7-7z',
+  'cena': 'M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z',
+  'show': 'M9 19V6l12-3v13M9 19c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z',
+  'termas': 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z',
+  'coordinador': 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+  'excursion': 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11l2 2m-2-2v10a1 1 0 0 0-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3',
+};
+
+function getIconPath(item: string): string {
+  const lower = item.toLowerCase();
+  if (lower.includes('bus') || lower.includes('transporte')) return iconIncluye.bus;
+  if (lower.includes('hotel') || lower.includes('hostal') || lower.includes('alojamiento')) return iconIncluye.alojamiento;
+  if (lower.includes('desayuno')) return iconIncluye.desayuno;
+  if (lower.includes('almuerzo')) return iconIncluye.almuerzo;
+  if (lower.includes('cena')) return iconIncluye.cena;
+  if (lower.includes('show') || lower.includes('espectáculo')) return iconIncluye.show;
+  if (lower.includes('terma')) return iconIncluye.termas;
+  if (lower.includes('coordinador')) return iconIncluye.coordinador;
+  if (lower.includes('excursión') || lower.includes('excursion') || lower.includes('potrerillos')) return iconIncluye.excursion;
+  return 'M5 13l4 4L19 7';
+}
 ---
 
 <BaseLayout
-  title={paquete.titulo}
-  description={paquete.descripcionCorta}
+  title={`${paquete.titulo} | Pucará Turismo`}
+  description={`${paquete.descripcionCorta} Salida ${fechaCorta} desde Buenos Aires. ${formatPrice(precioTotal)} por persona en base doble.`}
   image={paquete.imagenPrincipal}
 >
 
   <!-- Breadcrumb -->
-  <nav class="det-breadcrumb">
+  <nav class="det-nav">
     <div class="det-container">
-      <a href="/Pucara-Turismo/" class="det-bc-link">Inicio</a>
+      <a href="/Pucara-Turismo/" class="det-bc">Inicio</a>
       <span class="det-bc-sep">›</span>
-      <a href="/Pucara-Turismo/paquetes/" class="det-bc-link">Paquetes</a>
+      <a href="/Pucara-Turismo/paquetes/" class="det-bc">Paquetes</a>
       <span class="det-bc-sep">›</span>
       <span class="det-bc-current">{paquete.titulo}</span>
     </div>
   </nav>
 
-  <!-- Hero imagen + info -->
+  <!-- Hero: galería + panel -->
   <section class="det-hero">
     <div class="det-container det-hero-grid">
 
       <!-- Galería -->
       <div class="det-gallery">
         <div class="det-gallery-main">
-          <img
-            id="main-img"
-            src={paquete.imagenPrincipal}
-            alt={paquete.titulo}
-            class="det-main-img"
-          />
+          <img id="main-img" src={paquete.imagenPrincipal} alt={paquete.titulo} class="det-main-img" />
+
           {cuposCritico && (
             <div class="det-badge-urgencia">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
-              ÚLTIMAS {cuposLibres} PLAZAS
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              ÚLTIMOS {cuposLibres} CUPOS
             </div>
           )}
+
           <div class="det-badge-rating">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="#e8622a">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>
-            {paquete.rating} <span class="det-rating-count">({paquete.reviews} reseñas)</span>
+            {paquete.rating}
+            <span style="color:#999;font-weight:400;">({paquete.reviews})</span>
           </div>
         </div>
 
         {paquete.imagenes.length > 1 && (
-          <div class="det-thumbs" id="thumbs-row">
+          <div class="det-thumbs">
             {paquete.imagenes.map((img, i) => (
-              <button
-                class={`det-thumb ${i === 0 ? 'active' : ''}`}
-                data-src={img}
-                data-index={i}
-                aria-label={`Imagen ${i + 1}`}
-              >
+              <button class={`det-thumb ${i === 0 ? 'active' : ''}`} data-src={img} aria-label={`Imagen ${i + 1}`}>
                 <img src={img} alt="" loading="lazy" />
               </button>
             ))}
@@ -96,7 +116,7 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
         )}
       </div>
 
-      <!-- Panel lateral -->
+      <!-- Panel de reserva -->
       <aside class="det-panel">
 
         <p class="det-eyebrow">
@@ -109,45 +129,77 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
         <h1 class="det-titulo">{paquete.titulo}</h1>
         <p class="det-desc">{paquete.descripcionLarga}</p>
 
-        <!-- Próxima salida -->
-        <div class="det-salida">
-          <div class="det-salida-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        <!-- Fecha de salida -->
+        <div class="det-info-row">
+          <div class="det-info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
           </div>
           <div>
-            <p class="det-salida-label">Próxima salida</p>
-            <p class="det-salida-fecha">{fechaFormateada}</p>
+            <p class="det-info-label">Fecha de salida</p>
+            <p class="det-info-value" style="text-transform:capitalize;">{fechaFormateada}</p>
+          </div>
+        </div>
+
+        <!-- Puntos de subida -->
+        <div class="det-info-row">
+          <div class="det-info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-info-label">Puntos de subida</p>
+            <p class="det-info-value">{paquete.puntosDeSubida.join(' · ')}</p>
+          </div>
+        </div>
+
+        <!-- Bus -->
+        <div class="det-info-row">
+          <div class="det-info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h2M15 15h2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-info-label">Tipo de bus</p>
+            <p class="det-info-value">Bus mix con servicio a bordo · Coche cama +{formatPrice(paquete.cocheCamaExtra)}</p>
           </div>
         </div>
 
         <!-- Precio -->
         <div class="det-precio-box">
-          <p class="det-precio-label">PRECIO POR PERSONA</p>
-          <div class="det-precio-row">
-            <span class="det-precio-monto">{formatPrice(paquete.precioBase)}</span>
-            <span class="det-precio-nota">+ {formatPrice(paquete.gastosAdmin)} gastos adm.</span>
+          <div class="det-precio-base">
+            <div>
+              <p class="det-precio-label">BASE DOBLE — PRECIO POR PERSONA</p>
+              <div class="det-precio-row">
+                <span class="det-precio-monto">{formatPrice(paquete.precioBase)}</span>
+                <span class="det-precio-nota">+ {formatPrice(paquete.gastosAdmin)} gastos adm.</span>
+              </div>
+              <p class="det-precio-total">Total: <strong>{formatPrice(precioTotal)}</strong> / persona</p>
+            </div>
           </div>
-          <p class="det-precio-total">Total: <strong>{formatPrice(precioTotal)}</strong> por persona</p>
+          <div class="det-precio-single">
+            <p class="det-precio-label">HABITACIÓN INDIVIDUAL (SINGLE)</p>
+            <p class="det-single-monto">{formatPrice(precioSingle)} <span class="det-single-nota">/ persona</span></p>
+          </div>
         </div>
 
-        <!-- CTA principal -->
+        <!-- CTA -->
         <a
           href={`https://wa.me/${WA}?text=${encodeURIComponent(waMsg)}`}
           target="_blank"
           rel="noopener noreferrer"
           class="det-cta-primary"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
           Reservar por WhatsApp
         </a>
-
         <a
-          href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola, quiero consultar sobre ' + paquete.titulo)}`}
+          href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola, quiero consultar disponibilidad para ' + paquete.titulo + ' (' + fechaCorta + ')')}`}
           target="_blank"
           rel="noopener noreferrer"
           class="det-cta-secondary"
@@ -155,19 +207,29 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
           Consultar disponibilidad
         </a>
 
-        <!-- Incluye -->
+        <!-- Qué incluye -->
         <div class="det-incluye">
           <p class="det-incluye-title">¿Qué incluye?</p>
-          <div class="det-incluye-grid">
+          <ul class="det-incluye-list">
             {paquete.incluye.map((item) => (
-              <span class="det-include-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+              <li class="det-incluye-item">
+                <span class="det-incluye-check">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
                 {item}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
+          {paquete.noIncluye && paquete.noIncluye.length > 0 && (
+            <div class="det-no-incluye">
+              <p class="det-no-incluye-title">No incluye:</p>
+              {paquete.noIncluye.map((item) => (
+                <span class="det-no-incluye-item">— {item}</span>
+              ))}
+            </div>
+          )}
         </div>
 
       </aside>
@@ -176,13 +238,13 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
 
   <!-- Itinerario -->
   <section class="det-section">
-    <div class="det-container det-section-inner">
-      <h2 class="det-section-title">Itinerario</h2>
+    <div class="det-container det-section-narrow">
+      <h2 class="det-section-title">Itinerario día a día</h2>
       <div class="det-itinerario">
         {paquete.itinerario.map((paso, i) => (
           <div class="det-paso">
             <div class="det-paso-num">{i + 1}</div>
-            <div class="det-paso-connector" aria-hidden="true"></div>
+            <div class="det-paso-line"></div>
             <p class="det-paso-text">{paso}</p>
           </div>
         ))}
@@ -190,13 +252,74 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
     </div>
   </section>
 
+  <!-- Políticas e información importante -->
+  <section class="det-politicas">
+    <div class="det-container det-section-narrow">
+      <h2 class="det-section-title">Información importante</h2>
+      <div class="det-pol-grid">
+
+        <div class="det-pol-item">
+          <div class="det-pol-icon" style="color:#25d366;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-pol-titulo">Precio base doble</p>
+            <p class="det-pol-desc">{paquete.politicas.precioEnBaseDoble}</p>
+          </div>
+        </div>
+
+        <div class="det-pol-item">
+          <div class="det-pol-icon" style="color:#f97316;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-pol-titulo">Habitación individual (Single)</p>
+            <p class="det-pol-desc">{paquete.politicas.suplementoSingle}</p>
+          </div>
+        </div>
+
+        <div class="det-pol-item">
+          <div class="det-pol-icon" style="color:#a78bfa;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
+              <path d="M12 12v4M10 16h4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-pol-titulo">Niños menores de 4 años</p>
+            <p class="det-pol-desc">{paquete.politicas.menoresCuatroAnios}</p>
+          </div>
+        </div>
+
+        <div class="det-pol-item">
+          <div class="det-pol-icon" style="color:#60a5fa;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h2M15 15h2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-pol-titulo">Upgrade coche cama</p>
+            <p class="det-pol-desc">{paquete.politicas.cocheCama}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA final -->
-  <section class="det-cta-section">
+  <section class="det-cta-final">
     <div class="det-container">
       <div class="det-cta-box">
         <div>
-          <h2 class="det-cta-title">¿Te reservamos un lugar?</h2>
-          <p class="det-cta-sub">Los cupos son limitados. Escribinos y te confirmamos disponibilidad en minutos.</p>
+          <p class="det-cta-eyebrow">Salida: <strong style="text-transform:capitalize;">{fechaCorta}</strong></p>
+          <h2 class="det-cta-titulo">¿Te reservamos un lugar?</h2>
+          <p class="det-cta-sub">Los cupos son limitados. Escribinos por WhatsApp y en minutos te confirmamos disponibilidad y precio final.</p>
         </div>
         <div class="det-cta-btns">
           <a
@@ -205,8 +328,8 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
             rel="noopener noreferrer"
             class="det-cta-primary"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             Reservar ahora
           </a>
@@ -219,267 +342,129 @@ const waMsg = `Hola Pucará Turismo! Quiero reservar:
 </BaseLayout>
 
 <script>
-  // Galería — cambio de imagen
   const mainImg = document.getElementById('main-img') as HTMLImageElement | null;
-  const thumbs = document.querySelectorAll<HTMLButtonElement>('.det-thumb');
-
-  thumbs.forEach((btn) => {
+  document.querySelectorAll<HTMLButtonElement>('.det-thumb').forEach((btn) => {
     btn.addEventListener('click', () => {
       const src = btn.getAttribute('data-src');
       if (mainImg && src) {
-        mainImg.src = src;
         mainImg.style.opacity = '0';
-        requestAnimationFrame(() => {
-          mainImg.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => {
+          mainImg.src = src;
+          mainImg.style.transition = 'opacity 0.25s';
           mainImg.style.opacity = '1';
-        });
+        }, 120);
       }
-      thumbs.forEach((t) => t.classList.remove('active'));
+      document.querySelectorAll('.det-thumb').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
     });
   });
 </script>
 
 <style>
-  /* ── Tokens ── */
   :root {
-    --d-bg: #0a0a0a;
-    --d-surface: #111;
-    --d-border: #1e1e1e;
-    --d-orange: #e8622a;
-    --d-orange-h: #cf5523;
-    --d-text: #ffffff;
-    --d-muted: #555;
-    --d-subtle: #888;
+    --d-bg: #0a0a0a; --d-surface: #111;
+    --d-border: #1e1e1e; --d-orange: #e8622a;
+    --d-orange-h: #cf5523; --d-text: #fff; --d-muted: #555;
   }
+  .det-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .det-section-narrow { max-width: 760px; }
 
-  /* ── Layout ── */
-  .det-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  /* Breadcrumb */
+  .det-nav { background: var(--d-bg); border-bottom: 1px solid var(--d-border); padding: 72px 0 0; }
+  .det-nav .det-container { display: flex; align-items: center; gap: 8px; padding-top: 14px; padding-bottom: 14px; font-size: 12px; flex-wrap: wrap; }
+  .det-bc { color: var(--d-muted); text-decoration: none; transition: color .15s; }
+  .det-bc:hover { color: var(--d-orange); }
+  .det-bc-sep { color: #2a2a2a; }
+  .det-bc-current { color: #666; }
 
-  /* ── Breadcrumb ── */
-  .det-breadcrumb {
-    background: var(--d-bg);
-    border-bottom: 1px solid var(--d-border);
-    padding: 72px 0 0;
-  }
-  .det-breadcrumb .det-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    font-size: 13px;
-    flex-wrap: wrap;
-  }
-  .det-bc-link { color: var(--d-muted); text-decoration: none; transition: color 0.15s; }
-  .det-bc-link:hover { color: var(--d-orange); }
-  .det-bc-sep { color: #333; }
-  .det-bc-current { color: var(--d-subtle); }
+  /* Hero */
+  .det-hero { background: var(--d-bg); padding: 28px 0 60px; }
+  .det-hero-grid { display: grid; grid-template-columns: 1fr 400px; gap: 40px; align-items: start; }
 
-  /* ── Hero ── */
-  .det-hero {
-    background: var(--d-bg);
-    padding: 32px 0 64px;
-  }
-  .det-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: 40px;
-    align-items: start;
-  }
-
-  /* ── Galería ── */
-  .det-gallery-main {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    aspect-ratio: 16/10;
-    background: #111;
-  }
-  .det-main-img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .det-badge-urgencia {
-    position: absolute; top: 14px; left: 14px;
-    background: #dc2626; color: #fff;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
-    padding: 5px 12px; border-radius: 20px;
-    display: flex; align-items: center; gap: 5px;
-  }
-  .det-badge-rating {
-    position: absolute; top: 14px; right: 14px;
-    background: rgba(255,255,255,0.95); color: #111;
-    font-size: 12px; font-weight: 700;
-    padding: 5px 12px; border-radius: 20px;
-    display: flex; align-items: center; gap: 5px;
-  }
-  .det-rating-count { font-weight: 400; color: #666; }
-
-  .det-thumbs {
-    display: flex; gap: 8px; margin-top: 10px; overflow-x: auto;
-    scrollbar-width: none;
-  }
+  /* Galería */
+  .det-gallery-main { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 16/10; background: #111; }
+  .det-main-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .12s; }
+  .det-badge-urgencia { position: absolute; top: 14px; left: 14px; background: #dc2626; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .05em; padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 5px; }
+  .det-badge-rating { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,.95); color: #111; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 5px; }
+  .det-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; scrollbar-width: none; }
   .det-thumbs::-webkit-scrollbar { display: none; }
-  .det-thumb {
-    flex-shrink: 0; width: 72px; height: 52px;
-    border-radius: 8px; overflow: hidden;
-    border: 2px solid transparent;
-    cursor: pointer; padding: 0; background: none;
-    transition: border-color 0.15s;
-  }
+  .det-thumb { flex-shrink: 0; width: 72px; height: 52px; border-radius: 8px; overflow: hidden; border: 2px solid transparent; cursor: pointer; padding: 0; background: none; transition: border-color .15s; }
   .det-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .det-thumb.active { border-color: var(--d-orange); }
-  .det-thumb:hover { border-color: rgba(232, 98, 42, 0.5); }
+  .det-thumb:hover { border-color: rgba(232,98,42,.5); }
 
-  /* ── Panel ── */
-  .det-panel {
-    position: sticky; top: 80px;
-    background: var(--d-surface);
-    border: 1px solid var(--d-border);
-    border-radius: 16px;
-    padding: 28px 24px;
-    display: flex; flex-direction: column; gap: 18px;
-  }
+  /* Panel */
+  .det-panel { position: sticky; top: 80px; background: var(--d-surface); border: 1px solid var(--d-border); border-radius: 16px; padding: 26px 22px; display: flex; flex-direction: column; gap: 16px; }
+  .det-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--d-orange); margin: 0; }
+  .det-titulo { font-size: clamp(18px,2.5vw,24px); font-weight: 800; color: var(--d-text); line-height: 1.25; margin: 0; }
+  .det-desc { font-size: 13px; color: #666; line-height: 1.7; margin: 0; max-width: none; }
 
-  .det-eyebrow {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--d-orange); margin: 0;
-  }
-  .det-titulo {
-    font-size: clamp(22px, 3vw, 28px); font-weight: 800;
-    color: var(--d-text); line-height: 1.2; margin: 0;
-  }
-  .det-desc {
-    font-size: 14px; color: #666; line-height: 1.7; margin: 0;
-    max-width: none;
-  }
-
-  /* Salida */
-  .det-salida {
-    display: flex; align-items: center; gap: 12px;
-    background: #141414; border: 1px solid var(--d-border);
-    border-radius: 10px; padding: 14px 16px;
-  }
-  .det-salida-icon {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: rgba(232,98,42,0.1); border: 1px solid rgba(232,98,42,0.2);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--d-orange); flex-shrink: 0;
-  }
-  .det-salida-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
-    text-transform: uppercase; color: var(--d-muted); margin: 0 0 3px;
-  }
-  .det-salida-fecha {
-    font-size: 13px; font-weight: 600; color: var(--d-text); margin: 0;
-    text-transform: capitalize;
-  }
+  /* Info rows */
+  .det-info-row { display: flex; align-items: flex-start; gap: 12px; background: #0d0d0d; border: 1px solid var(--d-border); border-radius: 10px; padding: 12px 14px; }
+  .det-info-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.15); display: flex; align-items: center; justify-content: center; color: var(--d-orange); flex-shrink: 0; }
+  .det-info-label { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--d-muted); margin: 0 0 3px; }
+  .det-info-value { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.75); margin: 0; line-height: 1.5; }
 
   /* Precio */
-  .det-precio-box {
-    background: #0e0e0e; border: 1px solid var(--d-border);
-    border-radius: 10px; padding: 16px;
-  }
-  .det-precio-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.09em;
-    text-transform: uppercase; color: var(--d-muted); margin: 0 0 6px;
-  }
+  .det-precio-box { background: #0d0d0d; border: 1px solid var(--d-border); border-radius: 10px; overflow: hidden; }
+  .det-precio-base { padding: 14px 16px; border-bottom: 1px solid var(--d-border); }
+  .det-precio-single { padding: 10px 16px; background: rgba(249,115,22,.04); }
+  .det-precio-label { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--d-muted); margin: 0 0 6px; }
   .det-precio-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .det-precio-monto { font-size: 30px; font-weight: 800; color: var(--d-orange); }
+  .det-precio-monto { font-size: 28px; font-weight: 800; color: var(--d-orange); }
   .det-precio-nota { font-size: 12px; color: var(--d-muted); }
-  .det-precio-total { font-size: 12px; color: #555; margin: 6px 0 0; }
-  .det-precio-total strong { color: rgba(255,255,255,0.7); }
+  .det-precio-total { font-size: 12px; color: #555; margin: 5px 0 0; }
+  .det-precio-total strong { color: rgba(255,255,255,.7); }
+  .det-single-monto { font-size: 16px; font-weight: 700; color: rgba(255,255,255,.6); margin: 0; }
+  .det-single-nota { font-size: 12px; font-weight: 400; color: var(--d-muted); }
 
   /* CTAs */
-  .det-cta-primary {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    background: var(--d-orange); color: #fff;
-    font-size: 15px; font-weight: 700; padding: 14px;
-    border-radius: 10px; text-decoration: none;
-    transition: background 0.15s;
-  }
+  .det-cta-primary { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--d-orange); color: #fff; font-size: 15px; font-weight: 700; padding: 14px; border-radius: 10px; text-decoration: none; transition: background .15s; }
   .det-cta-primary:hover { background: var(--d-orange-h); color: #fff; }
-
-  .det-cta-secondary {
-    display: flex; align-items: center; justify-content: center;
-    background: #141414; border: 1px solid #272727; color: #888;
-    font-size: 13px; font-weight: 600; padding: 12px;
-    border-radius: 10px; text-decoration: none;
-    transition: all 0.15s;
-  }
+  .det-cta-secondary { display: flex; align-items: center; justify-content: center; background: #141414; border: 1px solid #272727; color: #888; font-size: 13px; font-weight: 600; padding: 11px; border-radius: 10px; text-decoration: none; transition: all .15s; }
   .det-cta-secondary:hover { border-color: #3a3a3a; color: #bbb; }
 
   /* Incluye */
-  .det-incluye-title {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
-    text-transform: uppercase; color: var(--d-muted); margin: 0 0 10px;
-  }
-  .det-incluye-grid { display: flex; flex-wrap: wrap; gap: 6px; }
-  .det-include-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: #161616; border: 1px solid #272727;
-    color: #bbb; font-size: 12px; padding: 5px 10px; border-radius: 6px;
-    text-transform: capitalize;
-  }
-  .det-include-badge svg { color: var(--d-orange); }
+  .det-incluye-title { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--d-muted); margin: 0 0 10px; }
+  .det-incluye-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+  .det-incluye-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: rgba(255,255,255,.65); }
+  .det-incluye-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(232,98,42,.12); border: 1px solid rgba(232,98,42,.25); display: flex; align-items: center; justify-content: center; color: var(--d-orange); flex-shrink: 0; margin-top: 1px; }
+  .det-no-incluye { margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1a1a; }
+  .det-no-incluye-title { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #3a3a3a; margin: 0 0 6px; }
+  .det-no-incluye-item { display: block; font-size: 12px; color: #3a3a3a; }
 
-  /* ── Itinerario ── */
-  .det-section { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 56px 0; }
-  .det-section-inner { max-width: 720px; }
-  .det-section-title {
-    font-size: 22px; font-weight: 700; color: var(--d-text); margin: 0 0 32px;
-  }
-  .det-itinerario { display: flex; flex-direction: column; gap: 0; }
-  .det-paso {
-    display: grid;
-    grid-template-columns: 32px 24px 1fr;
-    gap: 0 12px;
-    align-items: start;
-  }
-  .det-paso-num {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(232,98,42,0.1); border: 1px solid rgba(232,98,42,0.25);
-    color: var(--d-orange); font-size: 13px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 2px;
-  }
-  .det-paso-connector {
-    width: 1px; background: #1e1e1e;
-    align-self: stretch; margin: 34px auto 0;
-  }
-  .det-paso:last-child .det-paso-connector { display: none; }
-  .det-paso-text {
-    font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;
-    padding: 6px 0 28px; margin: 0; max-width: none;
-  }
+  /* Itinerario */
+  .det-section { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 52px 0; }
+  .det-section-title { font-size: 20px; font-weight: 700; color: var(--d-text); margin: 0 0 28px; }
+  .det-itinerario { display: flex; flex-direction: column; }
+  .det-paso { display: grid; grid-template-columns: 32px 20px 1fr; gap: 0 12px; align-items: start; }
+  .det-paso-num { width: 32px; height: 32px; border-radius: 50%; background: rgba(232,98,42,.1); border: 1px solid rgba(232,98,42,.25); color: var(--d-orange); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .det-paso-line { width: 1px; background: #1a1a1a; align-self: stretch; margin: 34px auto 0; }
+  .det-paso:last-child .det-paso-line { display: none; }
+  .det-paso-text { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.65; padding: 5px 0 24px; margin: 0; max-width: none; }
 
-  /* ── CTA Final ── */
-  .det-cta-section { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 56px 0; }
-  .det-cta-box {
-    background: var(--d-surface); border: 1px solid var(--d-border);
-    border-radius: 16px; padding: 36px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px; flex-wrap: wrap;
-  }
-  .det-cta-title { font-size: 22px; font-weight: 700; color: var(--d-text); margin: 0 0 6px; }
-  .det-cta-sub { font-size: 14px; color: var(--d-muted); margin: 0; max-width: none; }
-  .det-cta-btns { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
-  .det-cta-btns .det-cta-primary { padding: 12px 20px; font-size: 14px; border-radius: 8px; }
-  .det-cta-btns .det-cta-secondary { padding: 12px 20px; font-size: 14px; border-radius: 8px; }
+  /* Políticas */
+  .det-politicas { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 52px 0; }
+  .det-pol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .det-pol-item { display: flex; align-items: flex-start; gap: 14px; background: var(--d-surface); border: 1px solid var(--d-border); border-radius: 12px; padding: 18px; }
+  .det-pol-icon { width: 38px; height: 38px; border-radius: 9px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .det-pol-titulo { font-size: 13px; font-weight: 700; color: var(--d-text); margin: 0 0 5px; }
+  .det-pol-desc { font-size: 12px; color: var(--d-muted); line-height: 1.6; margin: 0; max-width: none; }
 
-  /* ── Responsive ── */
+  /* CTA final */
+  .det-cta-final { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 52px 0; }
+  .det-cta-box { background: var(--d-surface); border: 1px solid var(--d-border); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .det-cta-eyebrow { font-size: 11px; font-weight: 600; color: var(--d-orange); text-transform: uppercase; letter-spacing: .07em; margin: 0 0 6px; }
+  .det-cta-titulo { font-size: 20px; font-weight: 700; color: var(--d-text); margin: 0 0 6px; }
+  .det-cta-sub { font-size: 13px; color: var(--d-muted); margin: 0; max-width: none; }
+  .det-cta-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+  .det-cta-btns .det-cta-primary { padding: 12px 18px; font-size: 14px; border-radius: 8px; }
+  .det-cta-btns .det-cta-secondary { padding: 12px 18px; font-size: 14px; border-radius: 8px; }
+
   @media (max-width: 900px) {
-    .det-hero-grid {
-      grid-template-columns: 1fr;
-    }
+    .det-hero-grid { grid-template-columns: 1fr; }
     .det-panel { position: static; }
+    .det-pol-grid { grid-template-columns: 1fr; }
     .det-cta-box { flex-direction: column; align-items: flex-start; }
   }
   @media (max-width: 600px) {

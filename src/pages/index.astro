@@ -5,7 +5,10 @@ import PaqueteCard from '@/components/PaqueteCard.astro';
 import Recomendador from '@/components/Recomendador.tsx';
 import paquetesData from '@/data/paquetes.json';
 
-const paquetesDestacados = paquetesData.paquetes.slice(0, 3);
+// Mostrar los 3 primeros con las fechas más próximas
+const paquetesDestacados = [...paquetesData.paquetes]
+  .sort((a, b) => new Date(a.proximaSalida).getTime() - new Date(b.proximaSalida).getTime())
+  .slice(0, 3);
 const WA = "5491134952847";
 ---
 
@@ -85,8 +88,8 @@ const WA = "5491134952847";
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-white text-base mb-2">15 años de experiencia</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Desde Ituzaingó llevamos gente de viaje por todo el país. Sabemos lo que funciona y lo que no.</p>
+            <h3 class="font-semibold text-white text-base mb-2">15 años de experiencia real</h3>
+            <p class="text-white/35 text-sm leading-relaxed">Somos HAT Travel SRL, agencia habilitada (Leg. 15157). Organizamos viajes grupales desde hace más de 15 años. Sabemos exactamente lo que funciona.</p>
           </div>
         </div>
 
@@ -97,8 +100,8 @@ const WA = "5491134952847";
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-white text-base mb-2">Atención por WhatsApp</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Nuestros vendedores te responden rápido. Antes de reservar, durante el viaje y cuando volvés.</p>
+            <h3 class="font-semibold text-white text-base mb-2">Atención directa por WhatsApp</h3>
+            <p class="text-white/35 text-sm leading-relaxed">Sin call centers ni formularios. Te responde una persona real en minutos. Antes, durante y después del viaje.</p>
           </div>
         </div>
 
@@ -112,8 +115,8 @@ const WA = "5491134952847";
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-white text-base mb-2">Salidas desde zona oeste</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Partís desde Ituzaingó y alrededores. Sin traslados complicados ni puntos de encuentro lejanos.</p>
+            <h3 class="font-semibold text-white text-base mb-2">Múltiples puntos de subida en el GBA</h3>
+            <p class="text-white/35 text-sm leading-relaxed">Tenemos puntos de subida en Liniers, Haedo, Morón, Ituzaingó, Castelar, Palermo, Once y más. Subís cerca de tu casa.</p>
           </div>
         </div>
 
@@ -124,8 +127,8 @@ const WA = "5491134952847";
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-white text-base mb-2">Todo incluido, sin sorpresas</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Hotel, transporte, comidas y actividades en un solo precio. Sabés lo que pagás desde el primer día.</p>
+            <h3 class="font-semibold text-white text-base mb-2">Precio claro, sin sorpresas</h3>
+            <p class="text-white/35 text-sm leading-relaxed">Bus, hotel, comidas y coordinador en un solo precio. Lo que ves es lo que pagás. Nada oculto al llegar.</p>
           </div>
         </div>
 
@@ -232,9 +235,9 @@ const WA = "5491134952847";
   {/* CTA Final */}
   <section class="section-space bg-[#0e0e0e] border-t border-white/6">
     <div class="container-gutter max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">¿Te vas de viaje?</h2>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">¿Cuándo es tu próximo viaje?</h2>
       <p class="text-white/35 text-base mb-10 leading-relaxed">
-        Consultá disponibilidad ahora. Los cupos se llenan rápido.
+        Tenemos salidas confirmadas para junio y julio. Los cupos son limitados — asegurá el tuyo antes de que se llenen.
       </p>
       <a 
         href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad`}
