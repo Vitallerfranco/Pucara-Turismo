@@ -277,10 +277,8 @@
       "descripcionCorta": "6 días 3 noches en Hotel El Montañés. Media pensión, Potrerillos y Termas de Cacheuta incluidas.",
       "descripcionLarga": "Aventura en la Alta Montaña mendocina. Hotel El Montañés en Uspallata, media pensión, excursión a Potrerillos, entrada y traslado a Termas de Cacheuta. Bus mix con butaca cama. Salida 23 de julio.",
       "incluye": ["transporte", "desayuno", "cena", "alojamiento", "termas", "excursion"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/aconcagua1.jpg",
+      "imagenes": ["/Pucara-Turismo/aconcagua1.jpg","/Pucara-Turismo/altamontana1.jpg","/Pucara-Turismo/inca1.jpg","/Pucara-Turismo/termas-cacheuta-1.jpg","/Pucara-Turismo/termas-cacheuta-2.jpg"],
       "rating": 4.9,
       "reviews": 54,
       "cuposPorSalida": 18,
@@ -298,6 +296,7 @@
     }
   ]
 }
+
 
 
 
