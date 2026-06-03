@@ -347,8 +347,22 @@ export default function ChatbotPuca() {
   const [isTyping, setIsTyping] = useState(false);
   const [lead, setLead] = useState<LeadState>({ active: false, step: 'name', name: '', phone: '' });
   const [hasGreeted, setHasGreeted] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipDismissed, setTooltipDismissed] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Mostrar tooltip después de 4 segundos si el chat no fue abierto
+  useEffect(() => {
+    if (tooltipDismissed || hasGreeted) return;
+    const t = setTimeout(() => setShowTooltip(true), 4000);
+    return () => clearTimeout(t);
+  }, [tooltipDismissed, hasGreeted]);
+
+  const dismissTooltip = () => {
+    setShowTooltip(false);
+    setTooltipDismissed(true);
+  };
 
   // Scroll al último mensaje
   useEffect(() => {
@@ -452,9 +466,67 @@ export default function ChatbotPuca() {
 
   return (
     <>
+      {/* Tooltip de invitación */}
+      {showTooltip && !isOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '108px',
+            right: '92px',
+            background: '#1a1a1a',
+            border: '1px solid rgba(249,115,22,0.35)',
+            borderRadius: '14px 14px 4px 14px',
+            padding: '10px 14px',
+            maxWidth: '210px',
+            zIndex: 9997,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+            animation: 'tooltipAppear 0.35s cubic-bezier(0.34,1.56,0.64,1)',
+            cursor: 'pointer',
+          }}
+          onClick={() => { dismissTooltip(); setIsOpen(true); }}
+        >
+          {/* Flecha apuntando al botón */}
+          <div style={{
+            position: 'absolute',
+            bottom: '-8px',
+            right: '14px',
+            width: 0, height: 0,
+            borderLeft: '8px solid transparent',
+            borderRight: '0px solid transparent',
+            borderTop: '8px solid rgba(249,115,22,0.35)',
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '-6px',
+            right: '15px',
+            width: 0, height: 0,
+            borderLeft: '7px solid transparent',
+            borderRight: '0px solid transparent',
+            borderTop: '7px solid #1a1a1a',
+          }} />
+
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+            <span style={{ fontSize: '18px', lineHeight: 1, flexShrink: 0 }}>👋</span>
+            <div>
+              <p style={{ color: '#fff', fontSize: '12px', fontWeight: 700, margin: '0 0 3px', lineHeight: 1.3 }}>
+                ¿Te ayudo a encontrar tu viaje?
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: 0, lineHeight: 1.4 }}>
+                Soy Puca IA — respondé en segundos 🚀
+              </p>
+            </div>
+            <button
+              onClick={e => { e.stopPropagation(); dismissTooltip(); }}
+              style={{ background: 'none', border: 'none', color: '#444', cursor: 'pointer', padding: '0 0 0 4px', flexShrink: 0, fontSize: '14px', lineHeight: 1 }}
+              aria-label="Cerrar"
+            >✕</button>
+          </div>
+        </div>
+      )}
+
       {/* Botón flotante */}
       <button
-        onClick={() => setIsOpen(o => !o)}
+        onClick={() => { setIsOpen(o => !o); dismissTooltip(); }}
         aria-label={isOpen ? 'Cerrar chat' : 'Abrir asistente Puca IA'}
         style={{
           position: 'fixed',
@@ -695,6 +767,10 @@ export default function ChatbotPuca() {
         @keyframes typingDot {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
           30% { transform: translateY(-5px); opacity: 1; }
+        }
+        @keyframes tooltipAppear {
+          from { opacity: 0; transform: scale(0.8) translateX(10px); }
+          to   { opacity: 1; transform: scale(1) translateX(0); }
         }
       `}</style>
     </>
