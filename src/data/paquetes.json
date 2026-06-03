@@ -246,10 +246,8 @@
       "descripcionCorta": "5 días 3 noches en Hotel Sorrento. Pensión completa más merienda y bus mix.",
       "descripcionLarga": "Vacaciones de invierno en La Falda, Córdoba. Hotel Sorrento con parque y pileta, céntrico. Pensión completa más merienda (desayuno, almuerzo, merienda y cena). Bus mix con butaca cama. Salida 26 de julio.",
       "incluye": ["transporte", "desayuno", "almuerzo", "merienda", "cena", "alojamiento"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1548940740-204726a19be3?w=1200&h=800&fit=crop",
-      "imagenes": [
-        "https://images.unsplash.com/photo-1548940740-204726a19be3?w=800&q=80"
-      ],
+      "imagenPrincipal": "/Pucara-Turismo/hotel-sorrento-1.jpg",
+      "imagenes": ["/Pucara-Turismo/hotel-sorrento-1.jpg","/Pucara-Turismo/la-falda-1.jpg","/Pucara-Turismo/la-falda-2.jpg","/Pucara-Turismo/la-falda-3.jpg","/Pucara-Turismo/la-falda-4.jpg","/Pucara-Turismo/la-falda-5.jpg"],
       "rating": 4.8,
       "reviews": 76,
       "cuposPorSalida": 20,
@@ -296,6 +294,7 @@
     }
   ]
 }
+
 
 
 
