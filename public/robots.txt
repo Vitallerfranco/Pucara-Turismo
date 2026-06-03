@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vitallerfranco.github.io/Pucara-Turismo/sitemap-index.xml

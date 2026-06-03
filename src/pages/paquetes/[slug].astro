@@ -1,0 +1,489 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import paquetesData from '@/data/paquetes.json';
+import { formatPrice } from '@/lib/utils';
+
+export function getStaticPaths() {
+  return paquetesData.paquetes.map((p) => ({
+    params: { slug: p.slug },
+    props: { paquete: p },
+  }));
+}
+
+const { paquete } = Astro.props;
+const WA = '5491134952847';
+
+const precioTotal = paquete.precioBase + paquete.gastosAdmin;
+const cuposLibres = Math.max(0, paquete.cuposPorSalida - 8);
+const cuposCritico = cuposLibres <= 3;
+
+const duracionLabel = paquete.tipo === 'full_day'
+  ? 'Full Day'
+  : `${paquete.duracionDias} días / ${paquete.duracionNoches} noches`;
+
+const fechaSalida = new Date(paquete.proximaSalida + 'T00:00:00');
+const fechaFormateada = fechaSalida.toLocaleDateString('es-AR', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+});
+
+const waMsg = `Hola Pucará Turismo! Quiero reservar:
+📌 ${paquete.titulo}
+📅 Salida: ${fechaFormateada}
+💰 $${precioTotal.toLocaleString('es-AR')} por persona
+
+¿Tienen disponibilidad?`;
+---
+
+<BaseLayout
+  title={paquete.titulo}
+  description={paquete.descripcionCorta}
+  image={paquete.imagenPrincipal}
+>
+
+  <!-- Breadcrumb -->
+  <nav class="det-breadcrumb">
+    <div class="det-container">
+      <a href="/Pucara-Turismo/" class="det-bc-link">Inicio</a>
+      <span class="det-bc-sep">›</span>
+      <a href="/Pucara-Turismo/paquetes/" class="det-bc-link">Paquetes</a>
+      <span class="det-bc-sep">›</span>
+      <span class="det-bc-current">{paquete.titulo}</span>
+    </div>
+  </nav>
+
+  <!-- Hero imagen + info -->
+  <section class="det-hero">
+    <div class="det-container det-hero-grid">
+
+      <!-- Galería -->
+      <div class="det-gallery">
+        <div class="det-gallery-main">
+          <img
+            id="main-img"
+            src={paquete.imagenPrincipal}
+            alt={paquete.titulo}
+            class="det-main-img"
+          />
+          {cuposCritico && (
+            <div class="det-badge-urgencia">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+              ÚLTIMAS {cuposLibres} PLAZAS
+            </div>
+          )}
+          <div class="det-badge-rating">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#e8622a">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            {paquete.rating} <span class="det-rating-count">({paquete.reviews} reseñas)</span>
+          </div>
+        </div>
+
+        {paquete.imagenes.length > 1 && (
+          <div class="det-thumbs" id="thumbs-row">
+            {paquete.imagenes.map((img, i) => (
+              <button
+                class={`det-thumb ${i === 0 ? 'active' : ''}`}
+                data-src={img}
+                data-index={i}
+                aria-label={`Imagen ${i + 1}`}
+              >
+                <img src={img} alt="" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Panel lateral -->
+      <aside class="det-panel">
+
+        <p class="det-eyebrow">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          {duracionLabel}
+        </p>
+
+        <h1 class="det-titulo">{paquete.titulo}</h1>
+        <p class="det-desc">{paquete.descripcionLarga}</p>
+
+        <!-- Próxima salida -->
+        <div class="det-salida">
+          <div class="det-salida-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div>
+            <p class="det-salida-label">Próxima salida</p>
+            <p class="det-salida-fecha">{fechaFormateada}</p>
+          </div>
+        </div>
+
+        <!-- Precio -->
+        <div class="det-precio-box">
+          <p class="det-precio-label">PRECIO POR PERSONA</p>
+          <div class="det-precio-row">
+            <span class="det-precio-monto">{formatPrice(paquete.precioBase)}</span>
+            <span class="det-precio-nota">+ {formatPrice(paquete.gastosAdmin)} gastos adm.</span>
+          </div>
+          <p class="det-precio-total">Total: <strong>{formatPrice(precioTotal)}</strong> por persona</p>
+        </div>
+
+        <!-- CTA principal -->
+        <a
+          href={`https://wa.me/${WA}?text=${encodeURIComponent(waMsg)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="det-cta-primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Reservar por WhatsApp
+        </a>
+
+        <a
+          href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola, quiero consultar sobre ' + paquete.titulo)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="det-cta-secondary"
+        >
+          Consultar disponibilidad
+        </a>
+
+        <!-- Incluye -->
+        <div class="det-incluye">
+          <p class="det-incluye-title">¿Qué incluye?</p>
+          <div class="det-incluye-grid">
+            {paquete.incluye.map((item) => (
+              <span class="det-include-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <!-- Itinerario -->
+  <section class="det-section">
+    <div class="det-container det-section-inner">
+      <h2 class="det-section-title">Itinerario</h2>
+      <div class="det-itinerario">
+        {paquete.itinerario.map((paso, i) => (
+          <div class="det-paso">
+            <div class="det-paso-num">{i + 1}</div>
+            <div class="det-paso-connector" aria-hidden="true"></div>
+            <p class="det-paso-text">{paso}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="det-cta-section">
+    <div class="det-container">
+      <div class="det-cta-box">
+        <div>
+          <h2 class="det-cta-title">¿Te reservamos un lugar?</h2>
+          <p class="det-cta-sub">Los cupos son limitados. Escribinos y te confirmamos disponibilidad en minutos.</p>
+        </div>
+        <div class="det-cta-btns">
+          <a
+            href={`https://wa.me/${WA}?text=${encodeURIComponent(waMsg)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="det-cta-primary"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            Reservar ahora
+          </a>
+          <a href="/Pucara-Turismo/paquetes/" class="det-cta-secondary">Ver más paquetes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // Galería — cambio de imagen
+  const mainImg = document.getElementById('main-img') as HTMLImageElement | null;
+  const thumbs = document.querySelectorAll<HTMLButtonElement>('.det-thumb');
+
+  thumbs.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-src');
+      if (mainImg && src) {
+        mainImg.src = src;
+        mainImg.style.opacity = '0';
+        requestAnimationFrame(() => {
+          mainImg.style.transition = 'opacity 0.25s ease';
+          mainImg.style.opacity = '1';
+        });
+      }
+      thumbs.forEach((t) => t.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+<style>
+  /* ── Tokens ── */
+  :root {
+    --d-bg: #0a0a0a;
+    --d-surface: #111;
+    --d-border: #1e1e1e;
+    --d-orange: #e8622a;
+    --d-orange-h: #cf5523;
+    --d-text: #ffffff;
+    --d-muted: #555;
+    --d-subtle: #888;
+  }
+
+  /* ── Layout ── */
+  .det-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Breadcrumb ── */
+  .det-breadcrumb {
+    background: var(--d-bg);
+    border-bottom: 1px solid var(--d-border);
+    padding: 72px 0 0;
+  }
+  .det-breadcrumb .det-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .det-bc-link { color: var(--d-muted); text-decoration: none; transition: color 0.15s; }
+  .det-bc-link:hover { color: var(--d-orange); }
+  .det-bc-sep { color: #333; }
+  .det-bc-current { color: var(--d-subtle); }
+
+  /* ── Hero ── */
+  .det-hero {
+    background: var(--d-bg);
+    padding: 32px 0 64px;
+  }
+  .det-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── Galería ── */
+  .det-gallery-main {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: #111;
+  }
+  .det-main-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .det-badge-urgencia {
+    position: absolute; top: 14px; left: 14px;
+    background: #dc2626; color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    padding: 5px 12px; border-radius: 20px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .det-badge-rating {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(255,255,255,0.95); color: #111;
+    font-size: 12px; font-weight: 700;
+    padding: 5px 12px; border-radius: 20px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .det-rating-count { font-weight: 400; color: #666; }
+
+  .det-thumbs {
+    display: flex; gap: 8px; margin-top: 10px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .det-thumbs::-webkit-scrollbar { display: none; }
+  .det-thumb {
+    flex-shrink: 0; width: 72px; height: 52px;
+    border-radius: 8px; overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer; padding: 0; background: none;
+    transition: border-color 0.15s;
+  }
+  .det-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .det-thumb.active { border-color: var(--d-orange); }
+  .det-thumb:hover { border-color: rgba(232, 98, 42, 0.5); }
+
+  /* ── Panel ── */
+  .det-panel {
+    position: sticky; top: 80px;
+    background: var(--d-surface);
+    border: 1px solid var(--d-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+
+  .det-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--d-orange); margin: 0;
+  }
+  .det-titulo {
+    font-size: clamp(22px, 3vw, 28px); font-weight: 800;
+    color: var(--d-text); line-height: 1.2; margin: 0;
+  }
+  .det-desc {
+    font-size: 14px; color: #666; line-height: 1.7; margin: 0;
+    max-width: none;
+  }
+
+  /* Salida */
+  .det-salida {
+    display: flex; align-items: center; gap: 12px;
+    background: #141414; border: 1px solid var(--d-border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .det-salida-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(232,98,42,0.1); border: 1px solid rgba(232,98,42,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--d-orange); flex-shrink: 0;
+  }
+  .det-salida-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--d-muted); margin: 0 0 3px;
+  }
+  .det-salida-fecha {
+    font-size: 13px; font-weight: 600; color: var(--d-text); margin: 0;
+    text-transform: capitalize;
+  }
+
+  /* Precio */
+  .det-precio-box {
+    background: #0e0e0e; border: 1px solid var(--d-border);
+    border-radius: 10px; padding: 16px;
+  }
+  .det-precio-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--d-muted); margin: 0 0 6px;
+  }
+  .det-precio-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .det-precio-monto { font-size: 30px; font-weight: 800; color: var(--d-orange); }
+  .det-precio-nota { font-size: 12px; color: var(--d-muted); }
+  .det-precio-total { font-size: 12px; color: #555; margin: 6px 0 0; }
+  .det-precio-total strong { color: rgba(255,255,255,0.7); }
+
+  /* CTAs */
+  .det-cta-primary {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--d-orange); color: #fff;
+    font-size: 15px; font-weight: 700; padding: 14px;
+    border-radius: 10px; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .det-cta-primary:hover { background: var(--d-orange-h); color: #fff; }
+
+  .det-cta-secondary {
+    display: flex; align-items: center; justify-content: center;
+    background: #141414; border: 1px solid #272727; color: #888;
+    font-size: 13px; font-weight: 600; padding: 12px;
+    border-radius: 10px; text-decoration: none;
+    transition: all 0.15s;
+  }
+  .det-cta-secondary:hover { border-color: #3a3a3a; color: #bbb; }
+
+  /* Incluye */
+  .det-incluye-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--d-muted); margin: 0 0 10px;
+  }
+  .det-incluye-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .det-include-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #161616; border: 1px solid #272727;
+    color: #bbb; font-size: 12px; padding: 5px 10px; border-radius: 6px;
+    text-transform: capitalize;
+  }
+  .det-include-badge svg { color: var(--d-orange); }
+
+  /* ── Itinerario ── */
+  .det-section { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 56px 0; }
+  .det-section-inner { max-width: 720px; }
+  .det-section-title {
+    font-size: 22px; font-weight: 700; color: var(--d-text); margin: 0 0 32px;
+  }
+  .det-itinerario { display: flex; flex-direction: column; gap: 0; }
+  .det-paso {
+    display: grid;
+    grid-template-columns: 32px 24px 1fr;
+    gap: 0 12px;
+    align-items: start;
+  }
+  .det-paso-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(232,98,42,0.1); border: 1px solid rgba(232,98,42,0.25);
+    color: var(--d-orange); font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .det-paso-connector {
+    width: 1px; background: #1e1e1e;
+    align-self: stretch; margin: 34px auto 0;
+  }
+  .det-paso:last-child .det-paso-connector { display: none; }
+  .det-paso-text {
+    font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;
+    padding: 6px 0 28px; margin: 0; max-width: none;
+  }
+
+  /* ── CTA Final ── */
+  .det-cta-section { background: var(--d-bg); border-top: 1px solid var(--d-border); padding: 56px 0; }
+  .det-cta-box {
+    background: var(--d-surface); border: 1px solid var(--d-border);
+    border-radius: 16px; padding: 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .det-cta-title { font-size: 22px; font-weight: 700; color: var(--d-text); margin: 0 0 6px; }
+  .det-cta-sub { font-size: 14px; color: var(--d-muted); margin: 0; max-width: none; }
+  .det-cta-btns { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
+  .det-cta-btns .det-cta-primary { padding: 12px 20px; font-size: 14px; border-radius: 8px; }
+  .det-cta-btns .det-cta-secondary { padding: 12px 20px; font-size: 14px; border-radius: 8px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .det-hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .det-panel { position: static; }
+    .det-cta-box { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    .det-cta-btns { width: 100%; }
+    .det-cta-btns a { flex: 1; text-align: center; }
+  }
+</style>

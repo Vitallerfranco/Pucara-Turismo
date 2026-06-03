@@ -1,0 +1,410 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const WA = '5491134952847';
+
+const resenas = [
+  {
+    nombre: 'Monica Graciela Carballo',
+    avatar: 'https://pucaraturismo.com.ar/wp-content/uploads/2026/02/unnamed.png',
+    estrellas: 5,
+    destino: 'Tilcara, Jujuy',
+    fecha: 'Agosto 2025',
+    texto: 'Excelente viaje a Tilcara, muy recomendable. Cumplen con todo lo ofrecido. El hotel jardín de Dante bárbaro, conserva lo rústico cómodo con calefacción, agua bien caliente y la comida de 10. El grupo que me tocó buenísimo y la Coordinadora Sonia excelente. ¡¡¡ Recomiendo Pucará Turismo !!!',
+    destacada: true,
+  },
+  {
+    nombre: 'Vanesa Bisquerra',
+    avatar: 'https://pucaraturismo.com.ar/wp-content/uploads/2026/02/unnamed-1.png',
+    estrellas: 5,
+    destino: 'Salta, Jujuy & Tucumán',
+    fecha: 'Febrero 2026',
+    texto: 'Hermosa experiencia viajando con Pucará. Hicimos el viaje a Salta con excursiones a Jujuy y Tucumán. Nos sentimos muy cómodos y cuidados por la coordinadora Sonia y los choferes del micro Surcante. Sin duda los paisajes más lindos están allí. En cada excursión aprendimos toda su historia con los guías. El hotel cumple con los requisitos. Vinimos muy felices y conformes con todos los servicios.',
+    destacada: false,
+  },
+  {
+    nombre: 'Claudia — Aqui y Ahora',
+    avatar: 'https://pucaraturismo.com.ar/wp-content/uploads/2026/02/unnamed-2.png',
+    estrellas: 5,
+    destino: 'Tinogasta, Catamarca',
+    fecha: 'Marzo 2026',
+    texto: '¡Fuimos a Tinogasta, 5 merecidas estrellas! El micro de Surcante con los choferes José y Fabián, excelente. El Hotel un lujo de limpieza y atención, la comida exquisita y abundante. ¡Y Sonia coordinando magistralmente! Sugiriendo, acompañándonos y cuidándonos incansablemente. Gracias por un viaje inolvidable.',
+    destacada: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Reseñas y Opiniones — Pucará Turismo"
+  description="Leé las experiencias reales de nuestros viajeros. Más de 480 reseñas en Google. Viajá con confianza con Pucará Turismo."
+>
+
+  <!-- Hero -->
+  <section class="res-hero">
+    <div class="res-container">
+      <div class="res-hero-inner">
+        <div class="res-google-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google Reviews
+        </div>
+
+        <h1 class="res-titulo">Lo que dicen nuestros <span class="res-accent">viajeros</span></h1>
+        <p class="res-sub">Más de 480 reseñas en Google. Estas son algunas de las historias reales de quienes ya viajaron con nosotros.</p>
+
+        <!-- Stats -->
+        <div class="res-stats">
+          <div class="res-stat">
+            <div class="res-stat-num">4.8</div>
+            <div class="res-stat-stars">
+              {[1,2,3,4,5].map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+            <div class="res-stat-label">Calificación promedio</div>
+          </div>
+          <div class="res-stat-divider"></div>
+          <div class="res-stat">
+            <div class="res-stat-num">480<span class="res-stat-plus">+</span></div>
+            <div class="res-stat-label">Reseñas en Google</div>
+          </div>
+          <div class="res-stat-divider"></div>
+          <div class="res-stat">
+            <div class="res-stat-num">15</div>
+            <div class="res-stat-label">Años de experiencia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mural de reseñas -->
+  <section class="res-mural">
+    <div class="res-container">
+
+      <!-- Featured review -->
+      {resenas.filter(r => r.destacada).map((r, i) => i === 0 && (
+        <div class="res-featured">
+          <div class="res-featured-quote">"</div>
+          <div class="res-featured-body">
+            <div class="res-featured-header">
+              <img src={r.avatar} alt={r.nombre} class="res-avatar-lg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22><rect width=%2260%22 height=%2260%22 fill=%22%231e1e1e%22 rx=%2230%22/><text y=%2238%22 x=%2230%22 text-anchor=%22middle%22 font-size=%2224%22>👤</text></svg>'" />
+              <div>
+                <p class="res-nombre-lg">{r.nombre}</p>
+                <div class="res-stars-row">
+                  {Array(r.estrellas).fill(0).map(() => (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  ))}
+                </div>
+                <div class="res-meta-row">
+                  <span class="res-destino-tag">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    {r.destino}
+                  </span>
+                  <span class="res-fecha">{r.fecha}</span>
+                </div>
+              </div>
+            </div>
+            <p class="res-texto-lg">"{r.texto}"</p>
+            <div class="res-google-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Reseña verificada en Google
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Grid de reseñas -->
+      <div class="res-grid">
+        {resenas.map((r) => (
+          <article class="res-card">
+            <!-- Header -->
+            <div class="res-card-header">
+              <img
+                src={r.avatar}
+                alt={r.nombre}
+                class="res-avatar"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22><rect width=%2248%22 height=%2248%22 fill=%22%231e1e1e%22 rx=%2224%22/><text y=%2231%22 x=%2224%22 text-anchor=%22middle%22 font-size=%2220%22>👤</text></svg>'"
+              />
+              <div class="res-card-info">
+                <p class="res-nombre">{r.nombre}</p>
+                <div class="res-stars-row">
+                  {Array(r.estrellas).fill(0).map(() => (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#f97316">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="res-google-icon">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+            </div>
+
+            <!-- Destino + fecha -->
+            <div class="res-card-meta">
+              <span class="res-destino-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                {r.destino}
+              </span>
+              <span class="res-fecha">{r.fecha}</span>
+            </div>
+
+            <!-- Texto -->
+            <p class="res-texto">"{r.texto}"</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Ver más en Google -->
+      <div class="res-mas">
+        <a
+          href="https://www.google.com/maps/place/Pucara+Turismo/@-34.6587,-58.6667,17z/data=!4m8!3m7!1s0x95bcbfbb0b2d0731:0xf982c6a695aecca4!8m2!3d-34.658747!4d-58.6667436!9m1!1b1"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="res-btn-google"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Ver todas las reseñas en Google (480+)
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <p class="res-mas-sub">¿Viajaste con nosotros? Dejá tu reseña en Google y ayudá a otros viajeros.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="res-cta">
+    <div class="res-container">
+      <div class="res-cta-box">
+        <div>
+          <h2 class="res-cta-title">¿Querés ser el próximo?</h2>
+          <p class="res-cta-sub">Más de 480 personas ya viajaron con nosotros. Consultá disponibilidad y reservá tu lugar hoy.</p>
+        </div>
+        <div class="res-cta-btns">
+          <a
+            href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo%2C%20vi%20las%20reseñas%20y%20quiero%20consultar%20opciones%20de%20viaje`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="res-btn-primary"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            Consultar por WhatsApp
+          </a>
+          <a href="/Pucara-Turismo/paquetes/" class="res-btn-secondary">Ver paquetes disponibles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  :root {
+    --r-bg: #0a0a0a;
+    --r-surface: #111;
+    --r-border: #1e1e1e;
+    --r-orange: #f97316;
+    --r-text: #fff;
+    --r-muted: #555;
+  }
+
+  .res-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Hero ── */
+  .res-hero {
+    background: var(--r-bg);
+    padding: 96px 0 56px;
+    border-bottom: 1px solid var(--r-border);
+  }
+  .res-hero-inner { max-width: 720px; }
+  .res-google-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid #2a2a2a; border-radius: 20px;
+    padding: 6px 14px; font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.5); margin-bottom: 20px;
+  }
+  .res-titulo {
+    font-size: clamp(32px, 5vw, 52px); font-weight: 800;
+    color: var(--r-text); line-height: 1.15; margin: 0 0 16px;
+  }
+  .res-accent { color: var(--r-orange); }
+  .res-sub { font-size: 16px; color: #555; max-width: 540px; line-height: 1.7; margin: 0 0 40px; }
+
+  /* Stats */
+  .res-stats {
+    display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+  }
+  .res-stat { text-align: left; }
+  .res-stat-num {
+    font-size: 36px; font-weight: 800; color: var(--r-orange); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .res-stat-plus { font-size: 24px; }
+  .res-stat-stars { display: flex; gap: 3px; margin-bottom: 6px; }
+  .res-stat-label { font-size: 12px; color: var(--r-muted); font-weight: 500; }
+  .res-stat-divider { width: 1px; height: 48px; background: #1e1e1e; }
+
+  /* ── Mural ── */
+  .res-mural { background: var(--r-bg); padding: 56px 0 80px; }
+
+  /* Featured */
+  .res-featured {
+    background: linear-gradient(135deg, #0f0f0f 0%, #141414 100%);
+    border: 1px solid #2a2a2a;
+    border-left: 4px solid var(--r-orange);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .res-featured::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .res-featured-quote {
+    font-size: 80px; line-height: 1; color: rgba(249,115,22,0.15);
+    font-family: Georgia, serif; position: absolute; top: 20px; right: 32px;
+    user-select: none;
+  }
+  .res-featured-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .res-avatar-lg {
+    width: 60px; height: 60px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 2px solid rgba(249,115,22,0.3);
+  }
+  .res-nombre-lg { font-size: 17px; font-weight: 700; color: var(--r-text); margin: 0 0 5px; }
+  .res-stars-row { display: flex; gap: 2px; margin-bottom: 6px; }
+  .res-meta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .res-texto-lg {
+    font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.8;
+    font-style: italic; margin: 0 0 20px; max-width: none;
+  }
+  .res-google-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #555; font-weight: 500;
+  }
+
+  /* Grid */
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+    margin-bottom: 48px;
+  }
+  .res-card {
+    background: var(--r-surface);
+    border: 1px solid var(--r-border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .res-card:hover { border-color: #2e2e2e; transform: translateY(-2px); }
+
+  .res-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .res-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .res-card-info { flex: 1; }
+  .res-nombre { font-size: 14px; font-weight: 700; color: var(--r-text); margin: 0 0 4px; }
+  .res-google-icon { flex-shrink: 0; opacity: 0.8; }
+
+  .res-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .res-destino-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
+    color: #fb923c; font-size: 11px; font-weight: 600;
+    padding: 3px 9px; border-radius: 20px;
+  }
+  .res-fecha { font-size: 11px; color: var(--r-muted); }
+
+  .res-texto {
+    font-size: 14px; color: rgba(255,255,255,0.55);
+    line-height: 1.7; margin: 0; font-style: italic; max-width: none;
+  }
+
+  /* Ver más */
+  .res-mas { text-align: center; }
+  .res-btn-google {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid #2a2a2a; border-radius: 10px;
+    padding: 14px 24px; color: rgba(255,255,255,0.7);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: all 0.2s; margin-bottom: 12px;
+  }
+  .res-btn-google:hover { border-color: #3a3a3a; color: #fff; }
+  .res-mas-sub { font-size: 13px; color: var(--r-muted); margin: 0; }
+
+  /* ── CTA ── */
+  .res-cta { background: var(--r-bg); border-top: 1px solid var(--r-border); padding: 56px 0; }
+  .res-cta-box {
+    background: var(--r-surface); border: 1px solid var(--r-border);
+    border-radius: 16px; padding: 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .res-cta-title { font-size: 22px; font-weight: 700; color: var(--r-text); margin: 0 0 6px; }
+  .res-cta-sub { font-size: 14px; color: var(--r-muted); margin: 0; max-width: none; }
+  .res-cta-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+  .res-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--r-orange); color: #fff;
+    font-size: 14px; font-weight: 700; padding: 12px 20px;
+    border-radius: 9px; text-decoration: none; transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .res-btn-primary:hover { background: #ea6c0a; color: #fff; }
+  .res-btn-secondary {
+    display: inline-flex; align-items: center;
+    border: 1px solid #272727; color: #888;
+    font-size: 14px; font-weight: 600; padding: 12px 20px;
+    border-radius: 9px; text-decoration: none; transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .res-btn-secondary:hover { border-color: #3a3a3a; color: #bbb; }
+
+  @media (max-width: 700px) {
+    .res-stats { gap: 20px; }
+    .res-stat-divider { display: none; }
+    .res-featured { padding: 24px; }
+    .res-cta-box { flex-direction: column; align-items: flex-start; }
+    .res-cta-btns { width: 100%; }
+    .res-cta-btns a { flex: 1; justify-content: center; }
+  }
+</style>

@@ -1,209 +1,286 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import FormMini from '@components/FormMini.jsx';
-import CTASection from '@components/CTASection.astro';
-
-const contactos = [
-  {
-    tipo: 'WhatsApp',
-    valor: '+54 9 11 5000-0000',
-    icono: '💬',
-    enlace: 'https://wa.me/5491150000000'
-  },
-  {
-    tipo: 'Email',
-    valor: 'info@pucaraturismo.com',
-    icono: '📧',
-    enlace: 'mailto:info@pucaraturismo.com'
-  },
-  {
-    tipo: 'Horarios',
-    valor: 'Lunes a Viernes: 9:00-18:00 hs',
-    icono: '🕐',
-    enlace: '#'
-  },
-  {
-    tipo: 'Ubicación',
-    valor: 'San Salvador de Jujuy, Argentina',
-    icono: '📍',
-    enlace: '#'
-  }
-];
+import BaseLayout from '@/layouts/BaseLayout.astro';
+const WA = '5491134952847';
+const EMAIL = 'turismopucara@hotmail.com';
+const INSTAGRAM = 'https://www.instagram.com/pucaraturismo.ok/';
+const FACEBOOK = 'https://www.facebook.com/Pucaraturismo';
+const DIRECCION = 'Cnel. Pablo Zufriategui 830, Ituzaingó, Buenos Aires';
+const MAPS_URL = 'https://www.google.com/maps/place/Pucara+Turismo/@-34.6587,-58.6667,17z';
 ---
 
-<BaseLayout 
-  title="Contacto - Pucará Turismo"
-  description="Ponte en contacto con nosotros para consultas, reservas o más información sobre nuestros viajes"
+<BaseLayout
+  title="Contacto — Pucará Turismo"
+  description="Contactá a Pucará Turismo por WhatsApp, email o visitanos en Ituzaingó. Te asesoramos sin compromiso sobre todos nuestros paquetes."
 >
+
   <!-- Hero -->
-  <section class="pt-32 pb-20 px-6 bg-gradient-to-b from-orange-50 to-white">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Ponte en Contacto</h1>
-      <p class="text-lg md:text-xl text-slate-600 leading-relaxed">
-        ¿Preguntas? Estamos aquí para ayudarte a planificar tu viaje perfecto
-      </p>
+  <section class="con-hero">
+    <div class="con-container">
+      <span class="con-eyebrow">Estamos para ayudarte</span>
+      <h1 class="con-titulo">Hablemos de <span class="con-accent">tu próximo viaje</span></h1>
+      <p class="con-sub">Respondemos por WhatsApp en minutos. Sin formularios eternos — solo contanos qué tenés en mente.</p>
+
+      <a
+        href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo%2C%20quiero%20consultar%20sobre%20un%20viaje`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="con-wa-hero"
+      >
+        <div class="con-wa-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="con-wa-label">Canal principal de atención</p>
+          <p class="con-wa-num">+54 9 11 3495-2847</p>
+        </div>
+        <span class="con-wa-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </a>
     </div>
   </section>
 
-  <!-- Formulario -->
-  <section class="py-20 px-6 max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-16">
-      <!-- Formulario -->
-      <div>
-        <h2 class="text-3xl font-bold text-slate-900 mb-8">Envía un mensaje</h2>
-        <form class="space-y-5" method="POST" action="/api/contacto">
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre</label>
-            <input
-              type="text"
-              name="nombre"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300"
-              placeholder="Tu nombre"
-            />
+  <!-- Grid principal -->
+  <section class="con-body">
+    <div class="con-container con-grid">
+
+      <!-- Canales -->
+      <div class="con-canales">
+        <h2 class="con-section-title">Todos nuestros canales</h2>
+
+        <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" class="con-canal con-canal-wa">
+          <div class="con-canal-icon" style="background:#25d36618;border-color:#25d36635;color:#25d366;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
           </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300"
-              placeholder="tu@email.com"
-            />
+          <div class="con-canal-info">
+            <p class="con-canal-nombre">WhatsApp</p>
+            <p class="con-canal-detalle">+54 9 11 3495-2847</p>
+            <p class="con-canal-desc">Respuesta en minutos · Lun–Vie 9–19hs</p>
           </div>
+          <span class="con-badge-recomendado">Recomendado</span>
+        </a>
 
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Teléfono</label>
-            <input
-              type="tel"
-              name="telefono"
-              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300"
-              placeholder="+54 9 11 ..."
-            />
+        <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" class="con-canal">
+          <div class="con-canal-icon" style="background:#e118751a;border-color:#e1187530;color:#e11875;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
           </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Asunto</label>
-            <select name="asunto" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300 bg-white cursor-pointer">
-              <option value="">Selecciona un asunto</option>
-              <option value="consulta">Consulta general</option>
-              <option value="reserva">Consulta sobre reserva</option>
-              <option value="problema">Reportar un problema</option>
-              <option value="otro">Otro</option>
-            </select>
+          <div class="con-canal-info">
+            <p class="con-canal-nombre">Instagram</p>
+            <p class="con-canal-detalle">@pucaraturismo.ok</p>
+            <p class="con-canal-desc">Fotos, videos y novedades de los viajes</p>
           </div>
+        </a>
 
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Mensaje</label>
-            <textarea
-              name="mensaje"
-              rows="5"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-300 resize-none"
-              placeholder="Cuéntanos con qué podemos ayudarte..."
-            ></textarea>
+        <a href={FACEBOOK} target="_blank" rel="noopener noreferrer" class="con-canal">
+          <div class="con-canal-icon" style="background:#1877f21a;border-color:#1877f230;color:#1877f2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
           </div>
-
-          <button
-            type="submit"
-            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
-          >
-            Enviar Mensaje
-          </button>
-        </form>
-      </div>
-
-      <!-- Información de Contacto -->
-      <div>
-        <h2 class="text-3xl font-bold text-slate-900 mb-8">Contáctanos</h2>
-        <div class="space-y-5">
-          {contactos.map(contacto => (
-            <a
-              href={contacto.enlace}
-              class="flex items-start gap-4 p-6 rounded-xl border border-slate-200 hover:border-orange-400 hover:bg-orange-50 hover:shadow-md transition-all duration-300 group"
-            >
-              <span class="text-3xl group-hover:scale-110 transition-transform duration-300">{contacto.icono}</span>
-              <div>
-                <h3 class="font-bold text-slate-900">{contacto.tipo}</h3>
-                <p class="text-slate-600">{contacto.valor}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <!-- FAQ Rápido -->
-        <div class="mt-10 pt-10 border-t border-slate-200">
-          <h3 class="font-bold text-slate-900 mb-5">¿Preguntas frecuentes?</h3>
-          <div class="space-y-4">
-            <details class="group cursor-pointer">
-              <summary class="font-medium text-slate-900 hover:text-orange-600 transition-colors duration-300 flex items-center gap-2">
-                <span class="group-open:rotate-180 transition-transform duration-300">▼</span>
-                ¿Cuánto tiempo responden?
-              </summary>
-              <p class="text-slate-600 pl-6 mt-3 leading-relaxed">Respondemos en menos de 2 horas durante horario de oficina.</p>
-            </details>
-            <details class="group cursor-pointer">
-              <summary class="font-medium text-slate-900 hover:text-orange-600 transition-colors duration-300 flex items-center gap-2">
-                <span class="group-open:rotate-180 transition-transform duration-300">▼</span>
-                ¿Puedo hablar con alguien directamente?
-              </summary>
-              <p class="text-slate-600 pl-6 mt-3 leading-relaxed">¡Claro! Enviamos nuestro WhatsApp - es la forma más rápida.</p>
-            </details>
+          <div class="con-canal-info">
+            <p class="con-canal-nombre">Facebook</p>
+            <p class="con-canal-detalle">Pucará Turismo</p>
+            <p class="con-canal-desc">Consultas y promociones</p>
           </div>
+        </a>
+
+        <a href={`mailto:${EMAIL}`} class="con-canal">
+          <div class="con-canal-icon" style="background:#f973161a;border-color:#f9731630;color:#f97316;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="con-canal-info">
+            <p class="con-canal-nombre">Email</p>
+            <p class="con-canal-detalle">{EMAIL}</p>
+            <p class="con-canal-desc">Para consultas detalladas</p>
+          </div>
+        </a>
+
+        <!-- Horarios -->
+        <div class="con-horarios">
+          <p class="con-horarios-titulo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Horario de atención
+          </p>
+          <div class="con-horario-row"><span class="con-dia">Lun – Vie</span><span class="con-hora">9:00 – 19:00 hs</span></div>
+          <div class="con-horario-row"><span class="con-dia">Sábado</span><span class="con-hora">9:00 – 13:00 hs</span></div>
+          <div class="con-horario-row"><span class="con-dia">Domingo</span><span class="con-hora con-cerrado">Cerrado</span></div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Mapa -->
-  <section class="py-16 px-6 bg-slate-50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Ubicación</h2>
-      <div class="rounded-xl overflow-hidden shadow-lg h-96 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-        <p class="text-slate-600 text-lg">📍 San Salvador de Jujuy, Argentina</p>
+      <!-- Ubicación + mapa -->
+      <div>
+        <h2 class="con-section-title">Dónde encontrarnos</h2>
+
+        <div class="con-dir">
+          <div class="con-dir-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <p class="con-dir-label">Dirección</p>
+            <p class="con-dir-text">{DIRECCION}</p>
+            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" class="con-dir-link">Ver en Google Maps →</a>
+          </div>
+        </div>
+
+        <div class="con-mapa-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.933!2d-58.669!3d-34.6587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbfbb0b2d0731%3A0xf982c6a695aecca4!2sPucara%20Turismo!5e0!3m2!1ses-419!2sar!4v1717000000000"
+            width="100%"
+            height="280"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="con-mapa"
+          ></iframe>
+        </div>
+
+        <div class="con-trust">
+          <div class="con-trust-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Agencia habilitada · Leg. 15157
+          </div>
+          <div class="con-trust-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
+            +15 años llevando gente de viaje
+          </div>
+          <div class="con-trust-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            480+ reseñas positivas en Google
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Final -->
-  <CTASection
-    titulo="¿Listo para tu próxima aventura?"
-    descripcion="Nuestro equipo está esperando para ayudarte a planificar el viaje de tus sueños"
-    boton="Reservar Ahora"
-    enlace="/paquetes"
-    tipo="gradient"
-  />
+  <!-- FAQ -->
+  <section class="con-faq">
+    <div class="con-container">
+      <h2 class="con-section-title" style="margin-bottom:24px;">Preguntas frecuentes</h2>
+      <div class="con-faq-grid">
+        {[
+          { q: '¿Cuánto tardan en responder?', a: 'Por WhatsApp respondemos en minutos durante horario de atención. Nunca más de unas pocas horas.' },
+          { q: '¿Puedo reservar sin ir a la oficina?', a: 'Sí, todo el proceso de reserva se puede hacer 100% por WhatsApp. No hace falta visita presencial.' },
+          { q: '¿Hacen viajes a medida?', a: 'Sí. Contanos destino y fecha y armamos algo personalizado para tu grupo.' },
+          { q: '¿Tienen financiación en cuotas?', a: 'Consultanos por WhatsApp. Trabajamos con distintas formas de pago para que puedas viajar.' },
+        ].map(item => (
+          <div class="con-faq-item">
+            <p class="con-faq-q">{item.q}</p>
+            <p class="con-faq-a">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  @reference "../styles/globals.css";
-  details {
-    @apply bg-slate-50 p-4 rounded-lg border border-slate-200;
+  :root {
+    --c-bg: #0a0a0a; --c-surface: #111;
+    --c-border: #1e1e1e; --c-orange: #f97316;
+    --c-text: #fff; --c-muted: #555;
+  }
+  .con-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .con-hero { background: var(--c-bg); padding: 96px 0 56px; border-bottom: 1px solid var(--c-border); }
+  .con-eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--c-orange); margin-bottom: 16px; }
+  .con-titulo { font-size: clamp(30px,5vw,52px); font-weight: 800; color: var(--c-text); line-height: 1.15; margin: 0 0 14px; }
+  .con-accent { color: var(--c-orange); }
+  .con-sub { font-size: 16px; color: var(--c-muted); max-width: 480px; line-height: 1.7; margin: 0 0 36px; }
+
+  .con-wa-hero {
+    display: inline-flex; align-items: center; gap: 16px;
+    background: #25d366; border-radius: 14px; padding: 16px 24px;
+    text-decoration: none; transition: background .15s, transform .15s; max-width: 420px;
+  }
+  .con-wa-hero:hover { background: #1ebe5c; transform: translateY(-1px); }
+  .con-wa-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .con-wa-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.7); margin: 0 0 3px; }
+  .con-wa-num { font-size: 17px; font-weight: 800; color: #fff; margin: 0; }
+  .con-wa-arrow { color: rgba(255,255,255,.7); margin-left: auto; }
+
+  /* Body */
+  .con-body { background: var(--c-bg); padding: 56px 0 80px; }
+  .con-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .con-section-title { font-size: 18px; font-weight: 700; color: var(--c-text); margin: 0 0 20px; }
+
+  /* Canales */
+  .con-canal {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--c-surface); border: 1px solid var(--c-border);
+    border-radius: 12px; padding: 16px 18px; text-decoration: none;
+    margin-bottom: 10px; transition: border-color .15s, transform .15s; position: relative;
+  }
+  .con-canal:hover { border-color: #2e2e2e; transform: translateX(3px); }
+  .con-canal-wa { border-color: #25d36622; }
+  .con-canal-wa:hover { border-color: #25d36640; }
+  .con-canal-icon { width: 44px; height: 44px; border-radius: 10px; border: 1px solid; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .con-canal-nombre { font-size: 14px; font-weight: 700; color: var(--c-text); margin: 0 0 2px; }
+  .con-canal-detalle { font-size: 13px; color: rgba(255,255,255,.6); margin: 0 0 2px; }
+  .con-canal-desc { font-size: 11px; color: var(--c-muted); margin: 0; }
+  .con-badge-recomendado {
+    position: absolute; top: 10px; right: 14px;
+    background: rgba(37,211,102,.12); border: 1px solid rgba(37,211,102,.25);
+    color: #25d366; font-size: 10px; font-weight: 700; letter-spacing: .05em;
+    padding: 2px 8px; border-radius: 20px;
   }
 
-  details[open] {
-    @apply border-orange-300 bg-orange-50;
-  }
+  /* Horarios */
+  .con-horarios { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 12px; padding: 18px; margin-top: 4px; }
+  .con-horarios-titulo { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--c-muted); margin: 0 0 14px; }
+  .con-horario-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #161616; }
+  .con-horario-row:last-child { border-bottom: none; }
+  .con-dia { color: rgba(255,255,255,.45); }
+  .con-hora { color: rgba(255,255,255,.8); font-weight: 600; }
+  .con-cerrado { color: var(--c-muted) !important; font-weight: 400 !important; }
 
-  summary::-webkit-details-marker {
-    display: none;
-  }
+  /* Dirección */
+  .con-dir { display: flex; align-items: flex-start; gap: 14px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+  .con-dir-icon { width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0; background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2); display: flex; align-items: center; justify-content: center; color: var(--c-orange); }
+  .con-dir-label { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--c-muted); margin: 0 0 4px; }
+  .con-dir-text { font-size: 14px; color: rgba(255,255,255,.7); margin: 0 0 6px; }
+  .con-dir-link { font-size: 13px; color: var(--c-orange); text-decoration: none; font-weight: 600; }
+  .con-dir-link:hover { color: #fb923c; }
+  .con-mapa-wrap { border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--c-border); }
+  .con-mapa { display: block; filter: invert(.9) hue-rotate(180deg); }
 
-  summary::before {
-    content: '▶ ';
-    display: inline-block;
-    margin-right: 0.5rem;
-    color: #f97316;
-  }
+  .con-trust { display: flex; flex-direction: column; gap: 10px; }
+  .con-trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,.45); }
 
-  details[open] summary::before {
-    content: '▼ ';
+  /* FAQ */
+  .con-faq { background: var(--c-bg); border-top: 1px solid var(--c-border); padding: 56px 0 64px; }
+  .con-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .con-faq-item { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 12px; padding: 20px 22px; }
+  .con-faq-q { font-size: 14px; font-weight: 700; color: var(--c-text); margin: 0 0 8px; }
+  .con-faq-a { font-size: 13px; color: var(--c-muted); line-height: 1.65; margin: 0; max-width: none; }
+
+  @media (max-width: 900px) {
+    .con-grid { grid-template-columns: 1fr; }
+    .con-faq-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .con-wa-hero { width: 100%; box-sizing: border-box; }
   }
 </style>
-
-
-
-
-

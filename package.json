@@ -13,6 +13,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.0.0",
     "@astrojs/react": "^5.0.6",
     "@supabase/supabase-js": "^2.38.0",
     "@tailwindcss/vite": "^4.1.8",

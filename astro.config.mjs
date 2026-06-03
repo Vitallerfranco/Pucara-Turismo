@@ -1,16 +1,13 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   base: '/Pucara-Turismo',
   trailingSlash: 'always',
-  base: '/Pucara-Turismo',
-  trailingSlash: 'always',
-  integrations: [react()],
-  output: 'static',
-  integrations: [react()],
-
+  site: 'https://vitallerfranco.github.io',
+  integrations: [react(), sitemap()],
   output: 'static',
 
   build: {
