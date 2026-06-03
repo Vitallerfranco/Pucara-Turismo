@@ -128,6 +128,87 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
       });
     });
   </script>
+
+  <!-- Popup promo -->
+<div id="promo-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#111;border:1px solid rgba(249,115,22,0.3);border-radius:20px;max-width:480px;width:100%;overflow:hidden;position:relative;">
+    
+    <!-- Imagen promo -->
+    <div style="position:relative;height:200px;overflow:hidden;">
+      <img src="/Pucara-Turismo/la-falda-1.jpg" alt="Promo" style="width:100%;height:100%;object-fit:cover;" />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(17,17,17,0.95));"></div>
+      <div style="position:absolute;bottom:1rem;left:1.5rem;">
+        <span style="background:#f97316;color:white;font-size:0.7rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:20px;letter-spacing:0.1em;text-transform:uppercase;">Promo destacada</span>
+        <h3 style="color:white;font-size:1.4rem;font-weight:900;margin:0.4rem 0 0 0;line-height:1.2;">La Falda · Vacaciones de Invierno</h3>
+        <p style="color:#f97316;font-weight:700;font-size:1.1rem;margin:0.25rem 0 0 0;">desde $270.000 por persona</p>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:1.5rem;">
+      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;margin:0 0 1.25rem 0;">
+        Suscribite y recibí todas nuestras promociones antes que nadie. Sin spam, solo viajes.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:0.6rem;">
+        <input id="popup-nombre" type="text" placeholder="Tu nombre" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.7rem 1rem;color:white;font-size:0.875rem;outline:none;width:100%;box-sizing:border-box;" />
+        <input id="popup-email" type="email" placeholder="Tu email" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.7rem 1rem;color:white;font-size:0.875rem;outline:none;width:100%;box-sizing:border-box;" />
+        <button id="popup-btn" style="background:#f97316;color:white;font-weight:700;border:none;border-radius:8px;padding:0.875rem;font-size:0.9rem;cursor:pointer;transition:background 0.2s;">
+          Quiero recibir promos
+        </button>
+      </div>
+
+      <button id="popup-cerrar-texto" style="background:none;border:none;color:rgba(255,255,255,0.25);font-size:0.78rem;cursor:pointer;margin-top:1rem;width:100%;text-align:center;">
+        No gracias, prefiero perderme las ofertas
+      </button>
+    </div>
+
+    <!-- X -->
+    <button id="popup-cerrar" style="position:absolute;top:0.875rem;right:0.875rem;background:rgba(0,0,0,0.5);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+  </div>
+</div>
+
+<script>
+  // Mostrar popup solo si no lo cerró antes (en esta sesión)
+  if (!sessionStorage.getItem('popup-cerrado')) {
+    setTimeout(() => {
+      const overlay = document.getElementById('promo-overlay');
+      if (overlay) overlay.style.display = 'flex';
+    }, 2500);
+  }
+
+  function cerrarPopup() {
+    const overlay = document.getElementById('promo-overlay');
+    if (overlay) overlay.style.display = 'none';
+    sessionStorage.setItem('popup-cerrado', '1');
+  }
+
+  document.getElementById('popup-cerrar')?.addEventListener('click', cerrarPopup);
+  document.getElementById('popup-cerrar-texto')?.addEventListener('click', cerrarPopup);
+  document.getElementById('promo-overlay')?.addEventListener('click', function(e) {
+    if (e.target === this) cerrarPopup();
+  });
+
+  document.getElementById('popup-btn')?.addEventListener('click', () => {
+    const nombre = document.getElementById('popup-nombre').value.trim();
+    const email = document.getElementById('popup-email').value.trim();
+
+    if (!nombre || !email) {
+      if (!nombre) document.getElementById('popup-nombre').style.borderColor = '#f97316';
+      if (!email) document.getElementById('popup-email').style.borderColor = '#f97316';
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('popup-email').style.borderColor = '#f97316';
+      return;
+    }
+
+    const msg = encodeURIComponent(`Hola Pucará Turismo! Me llamo ${nombre} y quiero recibir sus promociones. Mi email es: ${email}`);
+    window.open(`https://wa.me/5491134952847?text=${msg}`, '_blank');
+    cerrarPopup();
+  });
+</script>
 </body>
 </html>
 
