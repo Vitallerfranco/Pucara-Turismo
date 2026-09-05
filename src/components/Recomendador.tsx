@@ -262,7 +262,7 @@ export default function Recomendador() {
                 </div>
  
                 <a
-                  href={`/Pucara-Turismo/paquetes/${match.paquete.slug}`}
+                  href={`/paquetes/${match.paquete.slug}`}
                   className="btn btn-primary btn-sm"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                 >

@@ -19,7 +19,7 @@ interface LeadState {
 
 // ─── Knowledge Base ───────────────────────────────────────────────────────────
 const WA = '5491134952847';
-const BASE = '/Pucara-Turismo';
+const BASE = '';
 
 const paquetes = paquetesData.paquetes;
 const politicas = paquetesData.politicasGlobales;
