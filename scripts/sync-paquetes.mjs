@@ -49,18 +49,49 @@ const API = (env.PUCARA_API_URL || 'https://pucaraturismo.com.ar/api/paquetes.ph
 const TOKEN = env.PUCARA_API_TOKEN || '';
 const TIMEOUT = Number(env.PUCARA_API_TIMEOUT || 15000);
 
+/**
+ * Modo estricto: si no se pueden bajar los viajes, corta con error en vez de
+ * compilar con los datos viejos del repositorio. Lo usa la publicacion
+ * automatica, donde publicar contenido desactualizado es peor que no publicar.
+ */
+const ESTRICTO = process.argv.includes('--estricto') || env.PUCARA_ESTRICTO === '1';
+
 const log = (...a) => console.log('[paquetes]', ...a);
 const aviso = (...a) => console.warn('[paquetes]', ...a);
 
-/** fetch con timeout */
+/** fetch con timeout y cabeceras de navegador (hay hostings que filtran bots) */
 async function pedir(url, opciones = {}) {
   const ac = new AbortController();
   const t = setTimeout(() => ac.abort(), TIMEOUT);
+  const cabeceras = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                + '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    'Accept-Language': 'es-AR,es;q=0.9',
+    ...(opciones.headers || {}),
+  };
   try {
-    return await fetch(url, { ...opciones, signal: ac.signal });
+    return await fetch(url, { ...opciones, headers: cabeceras, signal: ac.signal });
   } finally {
     clearTimeout(t);
   }
+}
+
+/** Corta el build, o avisa y sigue, segun el modo */
+function problema(detalle, ayuda) {
+  if (ESTRICTO) {
+    console.error('[paquetes] --------------------------------------------------------------');
+    console.error(`[paquetes] NO SE PUDO PUBLICAR: ${detalle}`);
+    console.error('[paquetes] Como esto es una publicacion automatica, corto acá en vez de');
+    console.error('[paquetes] subir el sitio con los viajes viejos del repositorio.');
+    if (ayuda) console.error(`[paquetes] ${ayuda}`);
+    console.error('[paquetes] --------------------------------------------------------------');
+    process.exit(1);
+  }
+  aviso('--------------------------------------------------------------');
+  aviso(detalle);
+  aviso('Se compila con los datos que ya estaban en src/data/paquetes.json.');
+  if (ayuda) aviso(ayuda);
+  aviso('--------------------------------------------------------------');
 }
 
 // ---------------------------------------------------------------------------
@@ -121,20 +152,17 @@ async function sincronizar() {
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     data = await r.json();
   } catch (e) {
-    aviso('--------------------------------------------------------------');
-    aviso(`No se pudieron bajar los viajes: ${e.message}`);
-    aviso('Se compila con los datos que ya estaban en src/data/paquetes.json.');
-    aviso('Revisa que el hosting responda y que PUCARA_API_URL sea correcta.');
-    aviso('--------------------------------------------------------------');
+    problema(
+      `no se pudieron bajar los viajes del hosting (${e.message})`,
+      `Probá abrir ${API} en el navegador. Si ahí funciona pero acá no, el hosting ` +
+      'esta bloqueando el pedido automatico.'
+    );
     return;
   }
 
   const error = validar(data);
   if (error) {
-    aviso('--------------------------------------------------------------');
-    aviso(`Los datos que devolvio el hosting no son validos: ${error}`);
-    aviso('Se compila con los datos que ya estaban en src/data/paquetes.json.');
-    aviso('--------------------------------------------------------------');
+    problema(`los datos que devolvio el hosting no son validos: ${error}`);
     return;
   }
 

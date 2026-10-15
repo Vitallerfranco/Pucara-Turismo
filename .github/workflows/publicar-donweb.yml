@@ -44,16 +44,25 @@ jobs:
 
       # El prebuild (scripts/sync-paquetes.mjs) baja los viajes del panel
       # y reescribe src/data/paquetes.json antes de compilar.
+      # PUCARA_ESTRICTO corta la corrida si no puede bajar los viajes del panel.
+      # Sin esto publicaria el sitio con los datos viejos del repositorio y
+      # la corrida saldria igual en verde, que es justo lo que no queremos.
       - name: Compilar el sitio con los viajes del panel
         env:
           PUCARA_API_URL: ${{ vars.PUCARA_API_URL || 'https://pucaraturismo.com.ar/api/paquetes.php' }}
+          PUCARA_ESTRICTO: '1'
         run: npm run build
 
       - name: Verificar que el build salio bien
         run: |
           test -f dist/index.html || { echo "No se genero dist/index.html"; exit 1; }
-          echo "Paginas generadas: $(find dist -name '*.html' | wc -l)"
+          VIAJES=$(node -p "require('./src/data/paquetes.json').paquetes.length")
+          PAGINAS=$(find dist/paquetes -mindepth 1 -maxdepth 1 -type d | wc -l)
+          echo "Viajes que trajo el panel: $VIAJES"
+          echo "Paginas de viaje generadas: $PAGINAS"
+          echo "Paginas totales: $(find dist -name '*.html' | wc -l)"
           echo "Peso total: $(du -sh dist | cut -f1)"
+          echo "### $VIAJES viajes publicados" >> $GITHUB_STEP_SUMMARY"
 
       - name: Subir a DonWeb por FTP
         env:
@@ -73,6 +82,28 @@ jobs:
             set net:timeout 20;
             open -u '$FTP_USER','$FTP_PASS' '$FTP_HOST';
             mirror -R --parallel=4 --verbose dist/ '$FTP_DIR';
+          "
+
+      # Los viajes borrados en el panel dejan su pagina colgada en el hosting,
+      # porque el paso de arriba sube pero nunca borra. Estas dos carpetas si
+      # se sincronizan exactas. Nunca se toca admin/, api/ ni uploads/, que
+      # estan fuera de ellas.
+      - name: Sacar las paginas de viajes que ya no existen
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_DIR:  ${{ secrets.FTP_DIR }}
+        run: |
+          DIR="${FTP_DIR%/}"
+          lftp -c "
+            set ftp:ssl-allow true;
+            set ssl:verify-certificate false;
+            set net:max-retries 3;
+            set net:timeout 20;
+            open -u '$FTP_USER','$FTP_PASS' '$FTP_HOST';
+            mirror -R --delete --parallel=4 --verbose dist/paquetes/ '$DIR/paquetes/';
+            mirror -R --delete --parallel=4 --verbose dist/destinos/ '$DIR/destinos/';
           "
 
       # Le avisa al panel que el sitio ya esta online, para que deje de

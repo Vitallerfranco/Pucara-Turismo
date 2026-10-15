@@ -386,6 +386,194 @@ function pt_cambios_sin_publicar()
 }
 
 // ---------------------------------------------------------------------------
+//  Busqueda, filtros y orden del listado
+// ---------------------------------------------------------------------------
+/**
+ * Devuelve los viajes aplicando los filtros del listado.
+ * $f: ['q' => texto, 'estado' => ..., 'destino' => ..., 'mes' => 'YYYY-MM', 'orden' => ...]
+ */
+function pt_buscar_paquetes(array $f = [])
+{
+    $hoy = date('Y-m-d');
+    $where = [];
+    $params = [];
+
+    $q = trim((string) ($f['q'] ?? ''));
+    if ($q !== '') {
+        $where[] = '(titulo LIKE ? OR destino LIKE ? OR slug LIKE ? OR descripcion_corta LIKE ?)';
+        $like = '%' . $q . '%';
+        array_push($params, $like, $like, $like, $like);
+    }
+
+    switch ($f['estado'] ?? '') {
+        case 'visibles':
+            $where[] = 'activo = 1';
+            break;
+        case 'ocultos':
+            $where[] = 'activo = 0';
+            break;
+        case 'vencidos':
+            $where[] = 'proxima_salida < ?';
+            $params[] = $hoy;
+            break;
+        case 'proximos':
+            $where[] = 'proxima_salida >= ?';
+            $params[] = $hoy;
+            break;
+        case 'vencidos_visibles':  // los que hay que resolver
+            $where[] = 'proxima_salida < ? AND activo = 1';
+            $params[] = $hoy;
+            break;
+    }
+
+    $destino = trim((string) ($f['destino'] ?? ''));
+    if ($destino !== '') {
+        $where[] = 'destino = ?';
+        $params[] = $destino;
+    }
+
+    $mes = trim((string) ($f['mes'] ?? ''));
+    if (preg_match('/^\d{4}-\d{2}$/', $mes)) {
+        $where[] = "DATE_FORMAT(proxima_salida, '%Y-%m') = ?";
+        $params[] = $mes;
+    }
+
+    $ordenes = [
+        'fecha_asc'   => 'proxima_salida ASC, id ASC',
+        'fecha_desc'  => 'proxima_salida DESC, id DESC',
+        'precio_asc'  => 'precio_base ASC',
+        'precio_desc' => 'precio_base DESC',
+        'titulo'      => 'titulo ASC',
+        'nuevos'      => 'created_at DESC',
+    ];
+    $orden = $ordenes[$f['orden'] ?? ''] ?? $ordenes['fecha_asc'];
+
+    $sql = 'SELECT * FROM pt_paquetes';
+    if ($where) $sql .= ' WHERE ' . implode(' AND ', $where);
+    $sql .= ' ORDER BY ' . $orden;
+
+    $st = pt_db()->prepare($sql);
+    $st->execute($params);
+    return $st->fetchAll();
+}
+
+/** Destinos cargados, para el filtro */
+function pt_destinos()
+{
+    return pt_db()->query(
+        "SELECT destino, COUNT(*) AS n FROM pt_paquetes
+         WHERE destino <> '' GROUP BY destino ORDER BY destino"
+    )->fetchAll();
+}
+
+/** Meses con salidas, para el filtro */
+function pt_meses_con_salidas()
+{
+    return pt_db()->query(
+        "SELECT DATE_FORMAT(proxima_salida, '%Y-%m') AS mes, COUNT(*) AS n
+         FROM pt_paquetes GROUP BY mes ORDER BY mes ASC"
+    )->fetchAll();
+}
+
+// ---------------------------------------------------------------------------
+//  Numeros para la pantalla de inicio
+// ---------------------------------------------------------------------------
+function pt_estadisticas()
+{
+    $hoy = date('Y-m-d');
+    $db = pt_db();
+
+    $st = $db->prepare(
+        'SELECT
+            COUNT(*) AS total,
+            SUM(activo = 1) AS visibles,
+            SUM(activo = 0) AS ocultos,
+            SUM(proxima_salida < ? AND activo = 1) AS vencidos_visibles,
+            SUM(proxima_salida >= ?) AS proximos
+         FROM pt_paquetes'
+    );
+    $st->execute([$hoy, $hoy]);
+    $e = $st->fetch() ?: [];
+
+    foreach (['total','visibles','ocultos','vencidos_visibles','proximos'] as $k) {
+        $e[$k] = (int) ($e[$k] ?? 0);
+    }
+
+    // Proxima salida confirmada
+    $st = $db->prepare(
+        'SELECT titulo, proxima_salida, slug FROM pt_paquetes
+         WHERE activo = 1 AND proxima_salida >= ?
+         ORDER BY proxima_salida ASC LIMIT 1'
+    );
+    $st->execute([$hoy]);
+    $e['proxima'] = $st->fetch() ?: null;
+
+    $e['dias_para_proxima'] = null;
+    if ($e['proxima']) {
+        $d = (new DateTime($hoy))->diff(new DateTime($e['proxima']['proxima_salida']));
+        $e['dias_para_proxima'] = (int) $d->days;
+    }
+
+    $e['sin_publicar'] = pt_cambios_sin_publicar();
+    return $e;
+}
+
+/** Las proximas N salidas visibles, para la agenda del inicio */
+function pt_agenda($limite = 6)
+{
+    $st = pt_db()->prepare(
+        'SELECT id, titulo, slug, proxima_salida, precio_base, cupos_por_salida, imagen_principal
+         FROM pt_paquetes
+         WHERE activo = 1 AND proxima_salida >= ?
+         ORDER BY proxima_salida ASC LIMIT ' . (int) $limite
+    );
+    $st->execute([date('Y-m-d')]);
+    return $st->fetchAll();
+}
+
+/** Ultimas acciones, para el inicio */
+function pt_actividad_reciente($limite = 6)
+{
+    return pt_db()->query(
+        'SELECT * FROM pt_actividad ORDER BY id DESC LIMIT ' . (int) $limite
+    )->fetchAll();
+}
+
+// ---------------------------------------------------------------------------
+//  Fechas en castellano
+// ---------------------------------------------------------------------------
+function pt_fecha_larga($fecha)
+{
+    $meses = [1=>'enero','febrero','marzo','abril','mayo','junio','julio',
+              'agosto','septiembre','octubre','noviembre','diciembre'];
+    $t = strtotime($fecha);
+    if (!$t) return '';
+    return date('j', $t) . ' de ' . $meses[(int) date('n', $t)];
+}
+
+function pt_mes_largo($ym)
+{
+    $meses = [1=>'enero','febrero','marzo','abril','mayo','junio','julio',
+              'agosto','septiembre','octubre','noviembre','diciembre'];
+    [$a, $m] = array_pad(explode('-', $ym), 2, '1');
+    $nombre = $meses[(int) $m] ?? $ym;
+    return ucfirst($nombre) . ' ' . $a;
+}
+
+/** "en 3 dias", "manana", "hoy", "hace 12 dias" */
+function pt_cuando($fecha)
+{
+    $hoy = new DateTime(date('Y-m-d'));
+    $d = new DateTime(substr($fecha, 0, 10));
+    $dias = (int) $hoy->diff($d)->format('%r%a');
+    if ($dias === 0) return 'hoy';
+    if ($dias === 1) return 'mañana';
+    if ($dias === -1) return 'ayer';
+    if ($dias > 1)  return 'en ' . $dias . ' días';
+    return 'hace ' . abs($dias) . ' días';
+}
+
+// ---------------------------------------------------------------------------
 //  Publicacion del sitio (GitHub Actions -> FTP a DonWeb)
 // ---------------------------------------------------------------------------
 /** ¿Esta configurada la publicacion automatica? */
