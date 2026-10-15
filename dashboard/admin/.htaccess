@@ -1,0 +1,23 @@
+# Pucara Turismo - proteccion del panel
+
+# No listar archivos de la carpeta
+Options -Indexes
+
+# config.php y lib.php no se abren por navegador (si se incluyen desde PHP)
+<FilesMatch "^(config\.php|config\.example\.php|lib\.php)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# El panel no se indexa en Google
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "same-origin"
+</IfModule>

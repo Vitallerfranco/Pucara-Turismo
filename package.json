@@ -10,7 +10,11 @@
     "astro": "astro",
     "lint": "biome lint src",
     "format": "biome format src --write",
-    "test": "vitest"
+    "test": "vitest",
+    "prebuild": "node scripts/sync-paquetes.mjs",
+    "sync": "node scripts/sync-paquetes.mjs",
+    "publicado": "node scripts/sync-paquetes.mjs --publicado",
+    "seed": "node scripts/generar-seed.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",

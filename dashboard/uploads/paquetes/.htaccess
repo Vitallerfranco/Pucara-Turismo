@@ -1,0 +1,35 @@
+# Pucara Turismo - carpeta de fotos subidas desde el panel
+# Nada de ejecutar codigo aca: solo se sirven imagenes.
+Options -Indexes -ExecCGI
+
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag engine off
+</IfModule>
+
+# Por si el hosting ejecuta PHP por handler
+<FilesMatch "\.(php|php3|php4|php5|php7|php8|phtml|pl|py|cgi|sh|asp|aspx)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+<IfModule mod_mime.c>
+  RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+  RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png  "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+</IfModule>
