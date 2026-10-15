@@ -62,7 +62,7 @@ jobs:
           echo "Paginas de viaje generadas: $PAGINAS"
           echo "Paginas totales: $(find dist -name '*.html' | wc -l)"
           echo "Peso total: $(du -sh dist | cut -f1)"
-          echo "### $VIAJES viajes publicados" >> $GITHUB_STEP_SUMMARY"
+          echo "### $VIAJES viajes publicados" >> $GITHUB_STEP_SUMMARY
 
       - name: Subir a DonWeb por FTP
         env:
