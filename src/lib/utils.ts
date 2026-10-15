@@ -1,3 +1,17 @@
+import imgManifest from '@/data/img-manifest.json';
+
+/**
+ * Devuelve el srcset WebP responsive para una imagen local (ej "/tandil-1.jpg").
+ * Usa el manifest generado en build. Si no hay variantes, devuelve null.
+ */
+export function webpSrcset(src: string): string | null {
+  if (!src || typeof src !== 'string' || src.startsWith('http')) return null;
+  const widths = (imgManifest as Record<string, number[]>)[src];
+  if (!widths || widths.length === 0) return null;
+  const base = src.replace(/\.jpe?g$/i, '');
+  return widths.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
+}
+
 export function formatPrice(price: number): string {
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import paquetesData from '@/data/paquetes.json';
+import { webpSrcset } from '@/lib/utils';
 
 export function getStaticPaths() {
   return paquetesData.paquetes.map((paquete) => ({
@@ -11,6 +12,36 @@ export function getStaticPaths() {
 
 const { paquete } = Astro.props;
 const WA = "5491134952847";
+const heroWebp = webpSrcset(paquete.imagenPrincipal);
+
+// Datos estructurados (rich results de Google: precio + estrellas + fecha)
+const _precioTotal = paquete.precioBase + paquete.gastosAdmin;
+const _imgAbs = paquete.imagenPrincipal.startsWith('http')
+  ? paquete.imagenPrincipal
+  : `https://pucaraturismo.com.ar${paquete.imagenPrincipal}`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": paquete.titulo,
+  "description": paquete.descripcionCorta,
+  "image": _imgAbs,
+  "sku": paquete.id,
+  "brand": { "@type": "Brand", "name": "Pucará Turismo" },
+  "offers": {
+    "@type": "Offer",
+    "url": `https://pucaraturismo.com.ar/paquetes/${paquete.slug}/`,
+    "priceCurrency": "ARS",
+    "price": _precioTotal,
+    "availability": "https://schema.org/InStock",
+    "validThrough": paquete.proximaSalida,
+    "seller": { "@type": "TravelAgency", "name": "Pucará Turismo" }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": paquete.rating,
+    "reviewCount": paquete.reviews
+  }
+};
 ---
 
 <BaseLayout
@@ -19,13 +50,18 @@ const WA = "5491134952847";
   image={paquete.imagenPrincipal}
 >
 
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
 <!-- Hero -->
 <div class="relative w-full overflow-hidden" style="height:420px;">
-  <img src={paquete.imagenPrincipal} alt={paquete.titulo} class="w-full h-full object-cover" />
+  <picture style="display:contents">
+    {heroWebp && <source type="image/webp" srcset={heroWebp} sizes="100vw" />}
+    <img src={paquete.imagenPrincipal} alt={paquete.titulo} class="w-full h-full object-cover" width="1200" height="750" fetchpriority="high" />
+  </picture>
   <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(8,8,8,0.97) 100%);"></div>
   <div class="absolute inset-0 flex items-end" style="padding:2rem 1.5rem;">
     <div>
-      <a href="/Pucara-Turismo/paquetes" style="color:#f97316;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:0.6rem;opacity:0.8;">
+      <a href="/paquetes/" style="color:#f97316;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:0.6rem;opacity:0.8;">
         ← Todos los paquetes
       </a>
       <h1 style="color:white;font-size:clamp(1.75rem,5vw,2.75rem);font-weight:900;margin:0 0 0.4rem 0;line-height:1.1;">{paquete.titulo}</h1>
@@ -68,7 +104,10 @@ const WA = "5491134952847";
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.6rem;">
               {paquete.imagenes.map((img: string, i: number) => (
                 <div style="border-radius:8px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;" onclick={`openGallery(${i})`}>
-                  <img src={img} alt={`foto ${i+1}`} style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+                  <picture style="display:contents">
+                    {webpSrcset(img) && <source type="image/webp" srcset={webpSrcset(img)} sizes="(max-width:640px) 45vw, 200px" />}
+                    <img src={img} alt={`foto ${i+1}`} width="600" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+                  </picture>
                 </div>
               ))}
             </div>
@@ -153,6 +192,13 @@ const WA = "5491134952847";
               Reservar
             </button>
             <p style="color:rgba(255,255,255,0.15);font-size:0.7rem;text-align:center;margin:0.5rem 0 0 0;">Respondemos en minutos</p>
+            <button id="btn-compartir" style="width:100%;background:transparent;color:rgba(255,255,255,0.6);font-weight:600;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.75rem;font-size:0.85rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Compartir este viaje
+            </button>
           </div>
 
         </div>
@@ -163,12 +209,111 @@ const WA = "5491134952847";
 </div>
 
 <!-- Lightbox -->
-<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;">
-  <button onclick="closeGallery()" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.5rem;cursor:pointer;">✕</button>
-  <button onclick="prevImg()" style="position:absolute;left:1rem;background:none;border:none;color:rgba(255,255,255,0.5);font-size:2rem;cursor:pointer;">‹</button>
-  <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;border-radius:8px;object-fit:contain;" />
-  <button onclick="nextImg()" style="position:absolute;right:1rem;background:none;border:none;color:rgba(255,255,255,0.5);font-size:2rem;cursor:pointer;">›</button>
+<div id="lightbox" class="lb">
+  <button class="lb-close" onclick="closeGallery()" aria-label="Cerrar galería">✕</button>
+  <button class="lb-nav lb-prev" onclick="prevImg()" aria-label="Imagen anterior">‹</button>
+  <img id="lightbox-img" src="" alt="" />
+  <button class="lb-nav lb-next" onclick="nextImg()" aria-label="Imagen siguiente">›</button>
+  <div id="lb-counter" class="lb-counter"></div>
 </div>
+
+  <!-- Barra fija de reserva (solo mobile) -->
+  <div class="reserva-fija">
+    <div class="rf-precio">
+      <span class="rf-label">Desde</span>
+      <span class="rf-monto">{"$" + _precioTotal.toLocaleString('es-AR')}</span>
+      <span class="rf-pp">por persona</span>
+    </div>
+    <a
+      class="rf-btn"
+      href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola Pucará Turismo! Quiero reservar ' + paquete.titulo + '. ¿Tienen disponibilidad?')}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+      Reservar
+    </a>
+  </div>
+
+  <style is:global>
+    .reserva-fija { display: none; }
+    @media (max-width: 900px) {
+      .reserva-fija {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 9990;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: #111111;
+        border-top: 1px solid #262626;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.45);
+      }
+      .reserva-fija .rf-precio { display: flex; flex-direction: column; line-height: 1.1; }
+      .reserva-fija .rf-label { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: #777; }
+      .reserva-fija .rf-monto { font-size: 20px; font-weight: 800; color: #f97316; }
+      .reserva-fija .rf-pp { font-size: 11px; color: #888; }
+      .reserva-fija .rf-btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        background: #25d366; color: #fff; font-weight: 700; font-size: 15px;
+        padding: 12px 22px; border-radius: 10px; text-decoration: none; white-space: nowrap;
+      }
+      /* Evitar que la barra tape el contenido / el botón flotante */
+      body { padding-bottom: 78px !important; }
+      #wa-float { display: none !important; }
+    }
+
+    /* ── Lightbox de galería ── */
+    .lb {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.95);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+    .lb.open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .lb #lightbox-img {
+      max-width: 92vw; max-height: 86vh;
+      border-radius: 10px; object-fit: contain;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      user-select: none; -webkit-user-drag: none;
+    }
+    .lb.swapping #lightbox-img { opacity: 0; transform: scale(0.97); }
+    .lb-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 1.1rem; cursor: pointer; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.18); transform: rotate(90deg); }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 1.9rem; cursor: pointer; line-height: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+    .lb-prev:hover { background: #e8622a; transform: translateY(-50%) scale(1.08); }
+    .lb-next:hover { background: #e8622a; transform: translateY(-50%) scale(1.08); }
+    .lb-counter {
+      position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.05em; background: rgba(0,0,0,0.4);
+      padding: 4px 12px; border-radius: 20px;
+    }
+    @media (max-width: 640px) {
+      .lb-nav { width: 40px; height: 40px; font-size: 1.5rem; }
+      .lb-close { top: 0.75rem; right: 0.75rem; }
+    }
+  </style>
 
 </BaseLayout>
 
@@ -234,11 +379,71 @@ const WA = "5491134952847";
     window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
   });
 
-  window.openGallery = (i) => { galleryIndex = i; document.getElementById('lightbox-img').src = imagenes[i]; document.getElementById('lightbox').style.display = 'flex'; };
-  window.closeGallery = () => { document.getElementById('lightbox').style.display = 'none'; };
-  window.prevImg = () => { galleryIndex = (galleryIndex - 1 + imagenes.length) % imagenes.length; document.getElementById('lightbox-img').src = imagenes[galleryIndex]; };
-  window.nextImg = () => { galleryIndex = (galleryIndex + 1) % imagenes.length; document.getElementById('lightbox-img').src = imagenes[galleryIndex]; };
-  document.getElementById('lightbox').addEventListener('click', (e) => { if (e.target === document.getElementById('lightbox')) closeGallery(); });
+  // Compartir viaje (WhatsApp / share nativo) — se mide como 'compartir_paquete', no como consulta
+  document.getElementById('btn-compartir').addEventListener('click', async () => {
+    const url = window.location.href;
+    const texto = `Mirá este viaje de Pucará Turismo: ${titulo}`;
+    function track() { if (typeof window.gtag === 'function') window.gtag('event', 'compartir_paquete', { paquete: titulo }); }
+    if (navigator.share) {
+      try { await navigator.share({ title: titulo, text: texto, url }); track(); } catch (e) {}
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(texto + ' ' + url)}`, '_blank');
+      track();
+    }
+  });
+
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCounter = document.getElementById('lb-counter');
+
+  function showImg() {
+    if (!imagenes.length) return;
+    lb.classList.add('swapping');
+    const src = imagenes[galleryIndex];
+    const pre = new Image();
+    pre.onload = () => {
+      lbImg.src = src;
+      lbImg.alt = titulo + ' — foto ' + (galleryIndex + 1);
+      lb.classList.remove('swapping');
+    };
+    pre.src = src;
+    if (lbCounter) lbCounter.textContent = (galleryIndex + 1) + ' / ' + imagenes.length;
+    // precargar la siguiente para que el cambio sea instantáneo
+    const nextSrc = imagenes[(galleryIndex + 1) % imagenes.length];
+    if (nextSrc) new Image().src = nextSrc;
+  }
+
+  window.openGallery = (i) => {
+    galleryIndex = i;
+    showImg();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeGallery = () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.prevImg = () => { galleryIndex = (galleryIndex - 1 + imagenes.length) % imagenes.length; showImg(); };
+  window.nextImg = () => { galleryIndex = (galleryIndex + 1) % imagenes.length; showImg(); };
+
+  lb.addEventListener('click', (e) => { if (e.target === lb) window.closeGallery(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') window.closeGallery();
+    else if (e.key === 'ArrowLeft') window.prevImg();
+    else if (e.key === 'ArrowRight') window.nextImg();
+  });
+
+  // Swipe en mobile
+  let touchX = null;
+  lb.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 45) { if (dx > 0) window.prevImg(); else window.nextImg(); }
+    touchX = null;
+  }, { passive: true });
 
   actualizar();
 </script>

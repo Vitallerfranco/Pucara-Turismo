@@ -21,8 +21,8 @@ const WA = "5491134952847";
   {/* Recomendador */}
   <section id="recomendador" class="section-space bg-[#0e0e0e] border-t border-white/6">
     <div class="container-gutter max-w-3xl mx-auto">
-      <div class="text-center mb-14">
-        <span class="inline-flex items-center gap-2 text-xs font-medium text-white/30 uppercase tracking-widest mb-4">
+      <div class="text-center mb-14" data-animate>
+        <span class="inline-flex items-center gap-2 text-xs font-medium text-white/60 uppercase tracking-widest mb-4">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400">
             <circle cx="12" cy="12" r="10"/>
             <line x1="12" y1="8" x2="12" y2="12"/>
@@ -31,7 +31,7 @@ const WA = "5491134952847";
           Recomendador
         </span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Encontrá tu viaje ideal</h2>
-        <p class="text-white/40 text-base leading-relaxed max-w-xl mx-auto">
+        <p class="text-white/60 text-base leading-relaxed max-w-xl mx-auto">
           Respondé unas preguntas y te recomendamos el paquete perfecto para vos.
         </p>
       </div>
@@ -40,12 +40,12 @@ const WA = "5491134952847";
   </section>
 
   {/* Paquetes destacados */}
-  <section class="section-space bg-[#0e0e0e] border-t border-white/6">
+  <section class="section-space bg-[#0b0b0b] border-t border-white/6">
     <div class="container-gutter max-w-7xl mx-auto">
-      <div class="text-center mb-14">
-        <span class="inline-block text-xs font-medium text-white/30 uppercase tracking-widest mb-4">Paquetes</span>
+      <div class="text-center mb-14" data-animate>
+        <span class="inline-block text-xs font-medium text-white/60 uppercase tracking-widest mb-4">Paquetes</span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Paquetes destacados</h2>
-        <p class="text-white/40 text-base max-w-xl mx-auto leading-relaxed">
+        <p class="text-white/60 text-base max-w-xl mx-auto leading-relaxed">
           Nuestros viajes más populares. Salidas desde zona oeste con todo incluido.
         </p>
       </div>
@@ -68,15 +68,61 @@ const WA = "5491134952847";
     </div>
   </section>
 
+  {/* Reseñas */}
+  <section class="section-space bg-[#0e0e0e] border-t border-white/6">
+    <div class="container-gutter max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-animate>
+        <span class="inline-block text-xs font-medium text-white/60 uppercase tracking-widest mb-4">Reseñas</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Lo que dicen nuestros viajeros</h2>
+        <div class="inline-flex items-center gap-2 text-white/50 text-sm flex-wrap justify-center">
+          <span class="inline-flex items-center gap-1">
+            {Array(5).fill(0).map(() => (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            ))}
+          </span>
+          <span><strong class="text-white">4.8</strong> · Más de 480 reseñas en Google</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {[
+          { nombre: 'Monica Graciela Carballo', texto: 'Excelente viaje a Tilcara, muy recomendable. Cumplen con todo lo ofrecido. El hotel bárbaro, la comida de 10 y la coordinadora Sonia excelente. ¡¡¡Recomiendo Pucará Turismo!!!' },
+          { nombre: 'Vanesa Bisquerra', texto: 'Hermosa experiencia viajando con Pucará. Hicimos Salta con excursiones a Jujuy y Tucumán. Nos sentimos muy cómodos y cuidados. Vinimos muy felices y conformes con todos los servicios.' },
+          { nombre: 'Claudia — Aquí y Ahora', texto: '¡Fuimos a Tinogasta, 5 merecidas estrellas! El micro excelente, el hotel un lujo de limpieza y atención, la comida exquisita. ¡Y Sonia coordinando magistralmente! Gracias por un viaje inolvidable.' },
+        ].map((r, i) => (
+          <div class="flex flex-col p-6 bg-white/[0.03] border border-white/8 rounded-2xl resena-card" data-animate style={`--reveal-delay:${i * 90}ms`}>
+            <div class="flex gap-1 mb-3">
+              {Array(5).fill(0).map(() => (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <p class="text-white/60 text-sm leading-relaxed mb-5 flex-1">"{r.texto}"</p>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/6">
+              <div class="w-9 h-9 rounded-full bg-orange-500/15 border border-orange-500/25 flex items-center justify-center text-orange-400 font-bold text-sm flex-shrink-0">{r.nombre.charAt(0)}</div>
+              <p class="text-white text-sm font-semibold">{r.nombre}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/resenas/" class="inline-flex items-center gap-2 px-6 py-3 border border-white/15 hover:border-white/30 text-white/60 hover:text-white text-sm font-medium rounded-lg transition-all duration-200">
+          Ver todas las reseñas
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   {/* Por qué elegirnos */}
-  <section id="sobre" class="section-space bg-[#0e0e0e] border-t border-white/6">
+  <section id="sobre" class="section-space bg-[#0b0b0b] border-t border-white/6">
     <div class="container-gutter max-w-5xl mx-auto">
-      <div class="text-center mb-14">
-        <span class="inline-block text-xs font-medium text-white/30 uppercase tracking-widest mb-4">Nosotros</span>
+      <div class="text-center mb-14" data-animate>
+        <span class="inline-block text-xs font-medium text-white/60 uppercase tracking-widest mb-4">Nosotros</span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white">¿Por qué elegir Pucará Turismo?</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/6 rounded-2xl overflow-hidden border border-white/6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/6 rounded-2xl overflow-hidden border border-white/6" data-animate>
 
         <div class="flex gap-5 p-8 bg-[#0e0e0e] hover:bg-white/3 transition-colors duration-200">
           <div class="flex-shrink-0 w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center text-orange-400">
@@ -89,7 +135,7 @@ const WA = "5491134952847";
           </div>
           <div>
             <h3 class="font-semibold text-white text-base mb-2">15 años de experiencia real</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Somos HAT Travel SRL, agencia habilitada (Leg. 15157). Organizamos viajes grupales desde hace más de 15 años. Sabemos exactamente lo que funciona.</p>
+            <p class="text-white/60 text-sm leading-relaxed">Somos HAT Travel SRL, agencia habilitada (Leg. 15157). Organizamos viajes grupales desde hace más de 15 años. Sabemos exactamente lo que funciona.</p>
           </div>
         </div>
 
@@ -101,7 +147,7 @@ const WA = "5491134952847";
           </div>
           <div>
             <h3 class="font-semibold text-white text-base mb-2">Atención directa por WhatsApp</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Sin call centers ni formularios. Te responde una persona real en minutos. Antes, durante y después del viaje.</p>
+            <p class="text-white/60 text-sm leading-relaxed">Sin call centers ni formularios. Te responde una persona real en minutos. Antes, durante y después del viaje.</p>
           </div>
         </div>
 
@@ -116,7 +162,7 @@ const WA = "5491134952847";
           </div>
           <div>
             <h3 class="font-semibold text-white text-base mb-2">Múltiples puntos de subida en el GBA</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Tenemos puntos de subida en Liniers, Haedo, Morón, Ituzaingó, Castelar, Palermo, Once y más. Subís cerca de tu casa.</p>
+            <p class="text-white/60 text-sm leading-relaxed">Tenemos puntos de subida en Liniers, Haedo, Morón, Ituzaingó, Castelar, Palermo, Once y más. Subís cerca de tu casa.</p>
           </div>
         </div>
 
@@ -128,17 +174,17 @@ const WA = "5491134952847";
           </div>
           <div>
             <h3 class="font-semibold text-white text-base mb-2">Precio claro, sin sorpresas</h3>
-            <p class="text-white/35 text-sm leading-relaxed">Bus, hotel, comidas y coordinador en un solo precio. Lo que ves es lo que pagás. Nada oculto al llegar.</p>
+            <p class="text-white/60 text-sm leading-relaxed">Bus, hotel, comidas y coordinador en un solo precio. Lo que ves es lo que pagás. Nada oculto al llegar.</p>
           </div>
         </div>
 
       </div>
 
       {/* CTA inline */}
-      <div class="mt-8 p-8 border border-white/8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="mt-8 p-8 border border-white/8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6" data-animate>
         <div>
           <h3 class="text-white font-semibold text-lg mb-1">¿Tenés alguna duda?</h3>
-          <p class="text-white/35 text-sm">Escribinos y te ayudamos a elegir el viaje ideal.</p>
+          <p class="text-white/60 text-sm">Escribinos y te ayudamos a elegir el viaje ideal.</p>
         </div>
         <a 
           href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20opciones%20de%20viaje`}
@@ -158,21 +204,21 @@ const WA = "5491134952847";
   {/* FAQ */}
   <section id="faq" class="section-space bg-[#0e0e0e] border-t border-white/6">
     <div class="container-gutter max-w-3xl mx-auto">
-      <div class="text-center mb-14">
-        <span class="inline-block text-xs font-medium text-white/30 uppercase tracking-widest mb-4">FAQ</span>
+      <div class="text-center mb-14" data-animate>
+        <span class="inline-block text-xs font-medium text-white/60 uppercase tracking-widest mb-4">FAQ</span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white">Preguntas frecuentes</h2>
       </div>
 
-      <div class="divide-y divide-white/6 border border-white/6 rounded-2xl overflow-hidden">
+      <div class="divide-y divide-white/6 border border-white/6 rounded-2xl overflow-hidden" data-animate>
 
         <details class="group">
           <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-white/70 hover:text-white transition-colors duration-200 list-none">
             <span class="font-medium text-sm">¿De dónde salen los viajes?</span>
-            <svg class="w-4 h-4 text-white/30 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-4 h-4 text-white/60 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </summary>
-          <div class="px-6 pb-5 text-white/35 text-sm leading-relaxed">
+          <div class="px-6 pb-5 text-white/60 text-sm leading-relaxed">
             Todos nuestros viajes salen desde Ituzaingó, zona oeste del GBA. Consultanos por el punto de encuentro exacto según el paquete.
           </div>
         </details>
@@ -180,11 +226,11 @@ const WA = "5491134952847";
         <details class="group">
           <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-white/70 hover:text-white transition-colors duration-200 list-none">
             <span class="font-medium text-sm">¿Cómo reservo un lugar?</span>
-            <svg class="w-4 h-4 text-white/30 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-4 h-4 text-white/60 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </summary>
-          <div class="px-6 pb-5 text-white/35 text-sm leading-relaxed">
+          <div class="px-6 pb-5 text-white/60 text-sm leading-relaxed">
             Escribinos por WhatsApp o Instagram. Te confirmamos disponibilidad y te explicamos cómo abonar la seña para asegurar tu lugar.
           </div>
         </details>
@@ -192,11 +238,11 @@ const WA = "5491134952847";
         <details class="group">
           <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-white/70 hover:text-white transition-colors duration-200 list-none">
             <span class="font-medium text-sm">¿Qué incluyen los paquetes?</span>
-            <svg class="w-4 h-4 text-white/30 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-4 h-4 text-white/60 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </summary>
-          <div class="px-6 pb-5 text-white/35 text-sm leading-relaxed">
+          <div class="px-6 pb-5 text-white/60 text-sm leading-relaxed">
             Cada paquete detalla exactamente qué incluye: transporte, alojamiento, comidas y actividades. Revisá el detalle de cada viaje antes de reservar.
           </div>
         </details>
@@ -204,11 +250,11 @@ const WA = "5491134952847";
         <details class="group">
           <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-white/70 hover:text-white transition-colors duration-200 list-none">
             <span class="font-medium text-sm">¿Puedo viajar solo/sola?</span>
-            <svg class="w-4 h-4 text-white/30 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-4 h-4 text-white/60 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </summary>
-          <div class="px-6 pb-5 text-white/35 text-sm leading-relaxed">
+          <div class="px-6 pb-5 text-white/60 text-sm leading-relaxed">
             Sí, muchos de nuestros pasajeros viajan solos. Tenemos paquetes especiales para solos y solas como el de Colón. Los viajes grupales son ideales para conocer gente nueva.
           </div>
         </details>
@@ -216,7 +262,7 @@ const WA = "5491134952847";
       </div>
 
       <div class="mt-10 text-center">
-        <p class="text-white/30 text-sm mb-4">¿Más dudas?</p>
+        <p class="text-white/60 text-sm mb-4">¿Más dudas?</p>
         <a 
           href={`https://wa.me/${WA}`}
           target="_blank"
@@ -233,11 +279,11 @@ const WA = "5491134952847";
   </section>
 
   {/* CTA Final */}
-  <section class="section-space bg-[#0e0e0e] border-t border-white/6">
-    <div class="container-gutter max-w-3xl mx-auto text-center">
+  <section class="section-space bg-[#0b0b0b] border-t border-white/6">
+    <div class="container-gutter max-w-3xl mx-auto text-center" data-animate>
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">¿Cuándo es tu próximo viaje?</h2>
-      <p class="text-white/35 text-base mb-10 leading-relaxed">
-        Tenemos salidas confirmadas para junio y julio. Los cupos son limitados — asegurá el tuyo antes de que se llenen.
+      <p class="text-white/60 text-base mb-10 leading-relaxed">
+        Tenemos salidas confirmadas de septiembre a noviembre. Los cupos son limitados — asegurá el tuyo antes de que se llenen.
       </p>
       <a 
         href={`https://wa.me/${WA}?text=Hola%20Pucará%20Turismo,%20quiero%20consultar%20disponibilidad`}

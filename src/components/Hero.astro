@@ -1,5 +1,8 @@
 <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0e0e0e]">
 
+  {/* Glow animado sutil detrás del contenido */}
+  <div class="hero-glow" aria-hidden="true"></div>
+
   {/* Líneas decorativas sutiles */}
   <div class="absolute inset-0 z-0 pointer-events-none">
     <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,152,0,0.1),transparent);"></div>
@@ -9,7 +12,7 @@
   <div class="relative z-10 container-gutter text-center text-white max-w-3xl mx-auto py-24 px-6">
 
     {/* Badge de confianza */}
-    <div class="mb-10 inline-flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full">
+    <div data-animate style="--reveal-delay:0ms" class="mb-10 inline-flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
       </svg>
@@ -17,20 +20,20 @@
     </div>
 
     {/* H1 optimizado para SEO */}
-    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
+    <h1 data-animate style="--reveal-delay:90ms" class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
       Paquetes turísticos<br />
-      <span style="color:#f97316;">desde Buenos Aires</span>
+      <span class="hero-grad">desde Buenos Aires</span>
     </h1>
 
-    <p class="text-base sm:text-lg text-white/40 mb-3 max-w-xl mx-auto leading-relaxed font-light">
-      Viajes grupales con bus, hotel y comidas incluidas. Mar del Plata, Colón, Termas, Córdoba, Mendoza y más — con salidas desde múltiples puntos del GBA.
+    <p data-animate style="--reveal-delay:170ms" class="text-base sm:text-lg text-white/60 mb-3 max-w-xl mx-auto leading-relaxed font-light">
+      Viajes grupales con bus, hotel y comidas incluidas. Las Grutas, Mar del Plata, Termas de Federación y Colón, Tandil y más — con salidas desde múltiples puntos del GBA.
     </p>
-    <p class="text-sm text-white/60 mb-12 font-medium">
+    <p data-animate style="--reveal-delay:230ms" class="text-sm text-white/60 mb-12 font-medium">
       Todo resuelto. Vos solo traé las ganas de viajar.
     </p>
 
     {/* CTAs */}
-    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-20">
+    <div data-animate style="--reveal-delay:300ms" class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-20">
       <a
         href="/paquetes/"
         class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold rounded-lg transition-colors duration-200"
@@ -57,23 +60,23 @@
     </div>
 
     {/* Trust stats */}
-    <div class="pt-10 border-t border-white/8">
+    <div data-animate style="--reveal-delay:380ms" class="pt-10 border-t border-white/8">
       <div class="flex justify-center gap-12 sm:gap-20 flex-wrap">
         <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1">15+</div>
-          <p class="text-white/30 text-xs tracking-wide uppercase">Años de experiencia</p>
+          <div class="text-3xl font-bold text-orange-400 mb-1 stat-num" data-count="15" data-suffix="+">15+</div>
+          <p class="text-white/60 text-xs tracking-wide uppercase">Años de experiencia</p>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1">480+</div>
-          <p class="text-white/30 text-xs tracking-wide uppercase">Reseñas en Google</p>
+          <div class="text-3xl font-bold text-orange-400 mb-1 stat-num" data-count="480" data-suffix="+">480+</div>
+          <p class="text-white/60 text-xs tracking-wide uppercase">Reseñas en Google</p>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1">100%</div>
-          <p class="text-white/30 text-xs tracking-wide uppercase">Salidas coordinadas</p>
+          <div class="text-3xl font-bold text-orange-400 mb-1 stat-num" data-count="100" data-suffix="%">100%</div>
+          <p class="text-white/60 text-xs tracking-wide uppercase">Salidas coordinadas</p>
         </div>
         <div class="text-center">
           <div class="text-3xl font-bold text-orange-400 mb-1" style="font-size:1.5rem;">HAT</div>
-          <p class="text-white/30 text-xs tracking-wide uppercase">Travel SRL · Leg. 15157</p>
+          <p class="text-white/60 text-xs tracking-wide uppercase">Travel SRL · Leg. 15157</p>
         </div>
       </div>
     </div>
@@ -87,3 +90,78 @@
   </div>
 
 </section>
+
+<style>
+  /* Título con brillo naranja animado */
+  .hero-grad {
+    background: linear-gradient(90deg, #f97316 0%, #ffb56b 45%, #f97316 90%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #f97316; /* fallback */
+    animation: hero-shimmer 7s ease-in-out infinite;
+  }
+  @keyframes hero-shimmer {
+    0%   { background-position: 0% center; }
+    50%  { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+
+  /* Glow suave que respira detrás del contenido */
+  .hero-glow {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    width: min(760px, 90vw);
+    height: min(760px, 90vw);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(249,115,22,0.16) 0%, rgba(249,115,22,0.05) 38%, transparent 68%);
+    filter: blur(8px);
+    z-index: 0;
+    pointer-events: none;
+    animation: hero-breathe 9s ease-in-out infinite;
+  }
+  @keyframes hero-breathe {
+    0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.12); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-grad { animation: none; }
+    .hero-glow { animation: none; opacity: 0.8; }
+  }
+</style>
+
+<script>
+  // Contador animado de estadísticas al entrar en vista
+  const nums = document.querySelectorAll<HTMLElement>('.stat-num');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const run = (el: HTMLElement) => {
+    const target = parseInt(el.dataset.count || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    if (reduce) { el.textContent = target + suffix; return; }
+    const dur = 1200;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      el.textContent = Math.round(eased * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (nums.length) {
+    // Arrancan en 0 (el hero aparece con fade, así que no se ve el reseteo)
+    nums.forEach((n) => { n.textContent = '0' + (n.dataset.suffix || ''); });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { run(e.target as HTMLElement); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    nums.forEach((n) => io.observe(n));
+  }
+</script>
