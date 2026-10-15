@@ -38,19 +38,16 @@ $ico = [
 <title><?= h($titulo ?? 'Panel') ?> · Pucará Turismo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilos.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="isotipo.png">
+<link rel="stylesheet" href="estilos.css?v=3">
 </head>
 <body>
 <div class="app">
 
   <aside class="lateral">
     <div class="marca">
-      <div class="marca-pico">P</div>
-      <div>
-        <div class="marca-nombre">Pucará Turismo</div>
-        <div class="marca-sub">Panel de viajes</div>
-      </div>
+      <img class="marca-logo" src="logo.png" alt="Pucará Turismo" width="250" height="125">
     </div>
 
     <nav class="menu">
@@ -101,6 +98,6 @@ $ico = [
     </div>
   </main>
 </div>
-<script src="app.js?v=2" defer></script>
+<script src="app.js?v=3" defer></script>
 </body>
 </html>

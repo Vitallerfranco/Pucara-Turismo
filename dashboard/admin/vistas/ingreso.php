@@ -10,18 +10,17 @@ $flash = $GLOBALS['pt_flash_actual'] ?? null;
 <title>Entrar · Panel de Pucará Turismo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilos.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="isotipo.png">
+<link rel="stylesheet" href="estilos.css?v=3">
 </head>
 <body>
 <main class="ingreso">
   <div class="ingreso-caja">
     <div class="ingreso-marca">
-      <div class="marca-pico">P</div>
-      <div>
-        <h1>Pucará Turismo</h1>
-        <div class="marca-sub">Panel de viajes</div>
-      </div>
+      <img class="ingreso-logo" src="logo.png" alt="Pucará Turismo" width="250" height="125">
+      <h1>Panel de viajes</h1>
+      <div class="marca-sub">Entrá para cargar y publicar las salidas</div>
     </div>
 
     <?php if ($flash): ?>

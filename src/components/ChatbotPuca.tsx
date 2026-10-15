@@ -251,7 +251,7 @@ function getResponse(intent: Intent): { text: string; options?: string[] } {
 
  case 'contacto':
  return {
- text: `Podés contactarnos por:\n\n**WhatsApp:** +54 9 11 3495-2847 (respuesta en minutos)\n**Instagram:** @pucaraturismo.ok\n**Facebook:** Pucará Turismo\n**Email:** turismopucara@hotmail.com\n\n**Horarios:** Lun–Vie 9:00–19:00 hs · Sáb 9:00–13:00 hs\n\n¿Querés que te derive directamente?`,
+ text: `Podés contactarnos por:\n\n**WhatsApp:** +54 9 11 3495-2847 (respuesta en minutos)\n**Instagram:** @pucaraturismo.ok\n**Facebook:** Pucará Turismo\n**Email:** info@pucaraturismo.com.ar\n\n**Horarios:** Lun–Vie 9:00–19:00 hs · Sáb 9:00–13:00 hs\n\n¿Querés que te derive directamente?`,
  options: ['Abrir WhatsApp ahora', 'Ver página de contacto'],
  };
 
