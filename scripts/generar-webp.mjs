@@ -85,8 +85,12 @@ async function main() {
   aviso(`${Object.keys(manifiesto).length} fotos en el manifiesto · ${generadas} variantes nuevas · ${reusadas} ya estaban`);
 }
 
-main().catch((e) => {
-  // Que no se caiga el build por esto: sin manifiesto, el sitio usa los .jpg
+main().catch(async (e) => {
+  // Si esto falla, lo peor que puede pasar es dejar un manifiesto que promete
+  // .webp inexistentes: <picture> elige ese <source> y NO vuelve al .jpg, asi
+  // que el sitio quedaria sin fotos. Vaciamos el manifiesto: se usan los .jpg.
   console.error('[webp] fallo generando variantes:', e.message);
+  console.error('[webp] dejo el manifiesto vacio para que el sitio use los .jpg');
+  try { await writeFile(MANIFIESTO, '{}\n'); } catch {}
   process.exit(0);
 });
