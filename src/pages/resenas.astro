@@ -91,7 +91,7 @@ const resenas = [
       <!-- Featured review -->
       {resenas.filter(r => r.destacada).map((r, i) => i === 0 && (
         <div class="res-featured">
-          <div class="res-featured-quote">"</div>
+          <div class="res-featured-quote" aria-hidden="true"></div>
           <div class="res-featured-body">
             <div class="res-featured-header">
               <img src={r.avatar} alt={r.nombre} class="res-avatar-lg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22><rect width=%2260%22 height=%2260%22 fill=%22%231e1e1e%22 rx=%2230%22/><text y=%2238%22 x=%2230%22 text-anchor=%22middle%22 font-size=%2224%22>👤</text></svg>'" />
@@ -106,7 +106,7 @@ const resenas = [
                 </div>
                 <div class="res-meta-row">
                   <span class="res-destino-tag">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                     </svg>
                     {r.destino}
@@ -162,7 +162,7 @@ const resenas = [
             <!-- Destino + fecha -->
             <div class="res-card-meta">
               <span class="res-destino-tag">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
                 {r.destino}
@@ -191,7 +191,7 @@ const resenas = [
             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
           </svg>
           Ver todas las reseñas en Google (480+)
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
         </a>
@@ -216,7 +216,7 @@ const resenas = [
             rel="noopener noreferrer"
             class="res-btn-primary"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
             Consultar por WhatsApp
@@ -297,10 +297,11 @@ const resenas = [
     pointer-events: none;
   }
   .res-featured-quote {
-    font-size: 80px; line-height: 1; color: rgba(249,115,22,0.15);
+    font-size: 80px; line-height: 1; color: rgba(249,115,22,0.30);
     font-family: Georgia, serif; position: absolute; top: 20px; right: 32px;
     user-select: none;
   }
+  .res-featured-quote::before { content: '\\201C'; }
   .res-featured-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
   .res-avatar-lg {
     width: 60px; height: 60px; border-radius: 50%;
@@ -349,7 +350,7 @@ const resenas = [
   .res-destino-tag {
     display: inline-flex; align-items: center; gap: 4px;
     background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
-    color: var(--naranja-fuerte); font-size: 11px; font-weight: 600;
+    color: var(--naranja-tinta); font-size: 11px; font-weight: 600;
     padding: 3px 9px; border-radius: 20px;
   }
   .res-fecha { font-size: 11px; color: var(--r-muted); }

@@ -136,8 +136,10 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
   })} />
 
   {/* Favicon */}
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="shortcut icon" href="/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/isotipo.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="mask-icon" href="/isotipo.svg" color="#f97316" />
 
   {/* Fonts */}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -181,7 +183,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
   {/* Botón volver arriba */}
   <button id="to-top" aria-label="Volver arriba" title="Volver arriba">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="18 15 12 9 6 15"/>
     </svg>
   </button>

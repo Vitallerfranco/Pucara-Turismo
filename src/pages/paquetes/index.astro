@@ -31,7 +31,7 @@ const destinos = Object.values(
 
   <section class="lst-cabecera">
     <div class="lst-caja">
-      <h1>Todas las salidas</h1>
+      <h1>Todos los paquetes</h1>
       <p class="lst-bajada">
         Cada viaje tiene su fecha y su precio por persona. Elegí el que te sirve y escribinos:
         te confirmamos lugar y punto de subida en el día.
@@ -88,7 +88,7 @@ const destinos = Object.values(
       </div>
 
       <div class="lst-vacio" id="lst-vacio" hidden>
-        <h3>No hay viajes con ese filtro</h3>
+        <h3>No hay paquetes con ese filtro</h3>
         <p>Probá con otro destino o escribinos y lo armamos a medida.</p>
         <a href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola, busco un viaje que no veo en la web. ¿Me ayudan?')}`}
            target="_blank" rel="noopener noreferrer" class="btn btn-primary">Escribinos por WhatsApp</a>
@@ -271,7 +271,7 @@ const destinos = Object.values(
       ordenados.forEach((item, i) => { item.style.order = String(i); });
 
       vacio.hidden = visibles > 0;
-      cuenta.textContent = visibles === 1 ? '1 viaje' : `${visibles} viajes`;
+      cuenta.textContent = visibles === 1 ? '1 paquete' : `${visibles} paquetes`;
     };
 
     document.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
