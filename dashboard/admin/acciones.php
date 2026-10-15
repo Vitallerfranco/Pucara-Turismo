@@ -180,13 +180,13 @@ if ($accion === 'guardar') {
             $st = pt_db()->prepare($sql);
             $st->execute(array_merge([$id], array_values($campos)));
             pt_log('crear', $id, $titulo);
-            $msg = 'Viaje creado: ' . $titulo;
+            $msg = 'Listo, ya quedó cargado: ' . $titulo;
         } else {
             $sets = implode(', ', array_map(function ($c) { return "$c = ?"; }, array_keys($campos)));
             $st = pt_db()->prepare("UPDATE pt_paquetes SET $sets WHERE id = ?");
             $st->execute(array_merge(array_values($campos), [$id]));
             pt_log('editar', $id, $titulo);
-            $msg = 'Cambios guardados en: ' . $titulo;
+            $msg = 'Cambios guardados.';
         }
     } catch (PDOException $e) {
         error_log('Pucara guardar: ' . $e->getMessage());
@@ -201,8 +201,10 @@ if ($accion === 'guardar') {
     }
 
     unset($_SESSION['pt_form']);
-    if ($avisos) $msg .= ' | Fotos no subidas: ' . implode(' / ', $avisos);
-    volver('', $avisos ? 'aviso' : 'ok', $msg);
+    if ($avisos) $msg .= ' | Fotos que no se pudieron subir: ' . implode(' / ', $avisos);
+    // Al crear vas a la lista para verlo en contexto; al editar te quedás en el viaje
+    volver($es_nuevo ? 'v=viajes' : 'v=editar&id=' . urlencode($id),
+           $avisos ? 'aviso' : 'ok', $msg);
 }
 
 // ---------------------------------------------------------------------------
@@ -250,10 +252,17 @@ if ($accion === 'duplicar') {
     if (!$p) volver('', 'error', 'Ese viaje ya no existe.');
 
     $nuevo_id = pt_proximo_id();
-    $p['id']     = $nuevo_id;
-    $p['titulo'] = $p['titulo'] . ' (copia)';
-    $p['slug']   = pt_slug_libre($p['slug'] . '-copia');
-    $p['activo'] = 0; // la copia nace oculta hasta que la completes
+    $fecha  = trim($_POST['nueva_fecha'] ?? '');
+    $titulo = trim($_POST['nuevo_titulo'] ?? '');
+
+    $p['id'] = $nuevo_id;
+    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
+        $p['proxima_salida'] = $fecha;
+    }
+    $p['titulo'] = $titulo !== '' ? $titulo : $p['titulo'] . ' (copia)';
+    // El slug sale del titulo nuevo, asi la copia tiene su propia direccion
+    $p['slug']   = pt_slug_libre($p['titulo']);
+    $p['activo'] = 0; // la copia nace oculta hasta que la revises
     unset($p['created_at'], $p['updated_at']);
 
     $cols = array_keys($p);
@@ -263,7 +272,7 @@ if ($accion === 'duplicar') {
     $st->execute(array_values($p));
     pt_log('duplicar', $nuevo_id, 'copia de ' . $id);
     volver('v=editar&id=' . urlencode($nuevo_id), 'ok',
-        'Copia creada y oculta. Cambiale la fecha y el titulo, y marcala como visible.');
+        'Copia creada, por ahora oculta. Revisala y marcala como visible cuando este lista.');
 }
 
 // ---------------------------------------------------------------------------
@@ -277,6 +286,69 @@ if ($accion === 'publicar') {
     }
     pt_log('publicar', '', 'publicacion disparada');
     volver('', 'ok', 'Publicacion iniciada. En un par de minutos el sitio queda actualizado.');
+}
+
+// ---------------------------------------------------------------------------
+//  Acciones sobre varios viajes a la vez
+// ---------------------------------------------------------------------------
+if ($accion === 'lote') {
+    $ids = (array) ($_POST['ids'] ?? []);
+    $ids = array_values(array_filter(array_map('strval', $ids), function ($v) { return $v !== ''; }));
+    $op  = $_POST['operacion'] ?? '';
+
+    if (!$ids) volver('v=viajes', 'aviso', 'No elegiste ningún viaje.');
+    if (count($ids) > 200) volver('v=viajes', 'error', 'Son demasiados viajes de una vez.');
+
+    $marcas = implode(',', array_fill(0, count($ids), '?'));
+    $n = count($ids);
+
+    if ($op === 'ocultar' || $op === 'mostrar') {
+        $valor = $op === 'mostrar' ? 1 : 0;
+        $st = pt_db()->prepare("UPDATE pt_paquetes SET activo = ? WHERE id IN ($marcas)");
+        $st->execute(array_merge([$valor], $ids));
+        pt_log($op . '_lote', '', $n . ' viajes');
+        $msg = $op === 'mostrar'
+            ? $n . ($n === 1 ? ' viaje vuelve' : ' viajes vuelven') . ' a verse en la web.'
+            : $n . ($n === 1 ? ' viaje oculto' : ' viajes ocultos') . '. Siguen guardados acá.';
+        volver('v=viajes', 'ok', $msg);
+    }
+
+    if ($op === 'borrar') {
+        // Primero junta las fotos, despues borra, despues limpia el disco
+        $st = pt_db()->prepare("SELECT imagenes FROM pt_paquetes WHERE id IN ($marcas)");
+        $st->execute($ids);
+        $fotos = [];
+        foreach ($st->fetchAll() as $fila) {
+            foreach (pt_json_array($fila['imagenes']) as $url) $fotos[] = $url;
+        }
+
+        $st = pt_db()->prepare("DELETE FROM pt_paquetes WHERE id IN ($marcas)");
+        $st->execute($ids);
+
+        foreach (array_unique($fotos) as $url) pt_borrar_imagen_si_libre($url);
+
+        pt_log('borrar_lote', '', $n . ' viajes');
+        volver('v=viajes', 'ok', $n . ($n === 1 ? ' viaje borrado.' : ' viajes borrados.'));
+    }
+
+    volver('v=viajes', 'error', 'Esa acción no existe.');
+}
+
+// ---------------------------------------------------------------------------
+//  Ocultar de una todos los viajes cuya fecha ya paso
+// ---------------------------------------------------------------------------
+if ($accion === 'ocultar_vencidos') {
+    $st = pt_db()->prepare(
+        'UPDATE pt_paquetes SET activo = 0 WHERE proxima_salida < ? AND activo = 1'
+    );
+    $st->execute([date('Y-m-d')]);
+    $n = $st->rowCount();
+    pt_log('ocultar_vencidos', '', $n . ' viajes');
+    $msg = $n
+        ? $n . ($n === 1 ? ' viaje vencido quedó oculto' : ' viajes vencidos quedaron ocultos')
+          . '. Acordate de publicar para que salgan de la web.'
+        : 'No hay viajes vencidos a la vista.';
+    volver('', $n ? 'ok' : 'aviso', $msg);
 }
 
 // ---------------------------------------------------------------------------
