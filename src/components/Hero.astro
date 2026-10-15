@@ -1,167 +1,165 @@
-<section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0e0e0e]">
+---
+import type { Paquete } from '@/types';
+import { formatPrice, webpSrcset } from '@/lib/utils';
+import { partesTitulo, duracionLabel, fechaLarga } from '@/lib/viaje';
 
-  {/* Glow animado sutil detrás del contenido */}
-  <div class="hero-glow" aria-hidden="true"></div>
+interface Props {
+  destacado: Paquete;
+  whatsappPhone?: string;
+}
 
-  {/* Líneas decorativas sutiles */}
-  <div class="absolute inset-0 z-0 pointer-events-none">
-    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,152,0,0.1),transparent);"></div>
-    <div style="position:absolute;top:50%;left:0;width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(255,152,0,0.07),transparent);"></div>
-  </div>
+const { destacado, whatsappPhone = '5491134952847' } = Astro.props;
 
-  <div class="relative z-10 container-gutter text-center text-white max-w-3xl mx-auto py-24 px-6">
+const { titular, subtitulo } = partesTitulo(destacado.titulo);
+const duracion = duracionLabel(destacado);
+const foto = webpSrcset(destacado.imagenPrincipal);
+const href = `/paquetes/${destacado.slug}/`;
+---
 
-    {/* Badge de confianza */}
-    <div data-animate style="--reveal-delay:0ms" class="mb-10 inline-flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-      </svg>
-      <span class="text-xs font-medium text-white/50 tracking-widest uppercase">Más de 15 años organizando viajes memorables · Leg. 15157</span>
-    </div>
+<section class="hero">
+  <div class="hero-caja">
 
-    {/* H1 optimizado para SEO */}
-    <h1 data-animate style="--reveal-delay:90ms" class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
-      Paquetes turísticos<br />
-      <span class="hero-grad">desde Buenos Aires</span>
-    </h1>
+    <div class="hero-texto">
+      <h1>
+        Viajes grupales con todo incluido,
+        saliendo del oeste del Gran&nbsp;Buenos&nbsp;Aires
+      </h1>
+      <p class="hero-bajada">
+        Bus, hotel, comidas y coordinador en un solo precio. Termas, playa y sierra,
+        con fecha confirmada y punto de subida cerca de tu casa.
+      </p>
 
-    <p data-animate style="--reveal-delay:170ms" class="text-base sm:text-lg text-white/60 mb-3 max-w-xl mx-auto leading-relaxed font-light">
-      Viajes grupales con bus, hotel y comidas incluidas. Las Grutas, Mar del Plata, Termas de Federación y Colón, Tandil y más — con salidas desde múltiples puntos del GBA.
-    </p>
-    <p data-animate style="--reveal-delay:230ms" class="text-sm text-white/60 mb-12 font-medium">
-      Todo resuelto. Vos solo traé las ganas de viajar.
-    </p>
-
-    {/* CTAs */}
-    <div data-animate style="--reveal-delay:300ms" class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-20">
-      <a
-        href="/paquetes/"
-        class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold rounded-lg transition-colors duration-200"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-        Ver paquetes y fechas disponibles
-      </a>
-      <a
-        href="https://wa.me/5491134952847?text=Hola%20Pucará%20Turismo%2C%20quiero%20consultar%20disponibilidad%20de%20viajes"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2.5 px-6 py-3.5 border border-white/15 hover:border-white/30 text-white/70 hover:text-white text-sm font-semibold rounded-lg transition-all duration-200"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        Consultar por WhatsApp
-      </a>
-    </div>
-
-    {/* Trust stats */}
-    <div data-animate style="--reveal-delay:380ms" class="pt-10 border-t border-white/8">
-      <div class="flex justify-center gap-12 sm:gap-20 flex-wrap">
-        <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1 stat-num" data-count="15" data-suffix="+">15+</div>
-          <p class="text-white/60 text-xs tracking-wide uppercase">Años de experiencia</p>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1 stat-num" data-count="480" data-suffix="+">480+</div>
-          <p class="text-white/60 text-xs tracking-wide uppercase">Reseñas en Google</p>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1 stat-num" data-count="100" data-suffix="%">100%</div>
-          <p class="text-white/60 text-xs tracking-wide uppercase">Salidas coordinadas</p>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-orange-400 mb-1" style="font-size:1.5rem;">HAT</div>
-          <p class="text-white/60 text-xs tracking-wide uppercase">Travel SRL · Leg. 15157</p>
-        </div>
+      <div class="hero-botones">
+        <a href="/paquetes/" class="btn btn-primary btn-lg">Ver las salidas y precios</a>
+        <a
+          href={`https://wa.me/${whatsappPhone}?text=${encodeURIComponent('Hola, quiero consultar por los próximos viajes.')}`}
+          target="_blank" rel="noopener noreferrer"
+          class="btn btn-secondary btn-lg"
+        >Escribinos por WhatsApp</a>
       </div>
-    </div>
-  </div>
 
-  {/* Scroll indicator */}
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-    <div class="w-5 h-9 border border-white/20 rounded-full flex items-start justify-center pt-1.5">
-      <div class="w-0.5 h-2 bg-white/30 rounded-full animate-bounce"></div>
+      <ul class="hero-aval">
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span><strong>4,8</strong> con más de 480 reseñas en Google</span>
+        </li>
+        <li>Más de 15 años organizando viajes</li>
+        <li>HAT Travel SRL · Legajo 15157</li>
+      </ul>
     </div>
-  </div>
 
+    <a class="hero-foto" href={href} aria-label={`Ver el viaje a ${titular}`}>
+      <picture style="display:contents">
+        {foto && (
+          <source type="image/webp" srcset={foto} sizes="(max-width: 980px) 92vw, 540px" />
+        )}
+        <img
+          src={destacado.imagenPrincipal}
+          alt={titular}
+          width="1200" height="900"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+
+      <div class="hero-etiqueta">
+        <span class="hero-proxima">Próxima salida · {fechaLarga(destacado.proximaSalida)}</span>
+        <strong class="hero-destino">{titular}</strong>
+        <span class="hero-detalle">{subtitulo ? `${subtitulo} · ${duracion}` : duracion}</span>
+        <span class="hero-precio">
+          desde <strong>{formatPrice(destacado.precioBase)}</strong> por persona
+        </span>
+      </div>
+    </a>
+
+  </div>
 </section>
 
 <style>
-  /* Título con brillo naranja animado */
-  .hero-grad {
-    background: linear-gradient(90deg, #f97316 0%, #ffb56b 45%, #f97316 90%);
-    background-size: 220% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #f97316; /* fallback */
-    animation: hero-shimmer 7s ease-in-out infinite;
+  .hero { padding: 6.5rem 0 2.5rem; }
+  @media (min-width: 980px) { .hero { padding: 9rem 0 4rem; } }
+
+  .hero-caja {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    align-items: center;
   }
-  @keyframes hero-shimmer {
-    0%   { background-position: 0% center; }
-    50%  { background-position: 100% center; }
-    100% { background-position: 0% center; }
+  @media (min-width: 768px) { .hero-caja { padding: 0 2rem; } }
+  @media (min-width: 980px) {
+    .hero-caja { grid-template-columns: 1fr 520px; gap: 3.5rem; }
   }
 
-  /* Glow suave que respira detrás del contenido */
-  .hero-glow {
+  .hero-texto h1 { margin-bottom: 1rem; max-width: 22ch; }
+  .hero-bajada { font-size: 1.05rem; max-width: 48ch; margin-bottom: 1.75rem; }
+
+  .hero-botones { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  @media (max-width: 420px) { .hero-botones .btn { width: 100%; } }
+
+  .hero-aval {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--tinta-2);
+  }
+  .hero-aval li { display: flex; align-items: center; gap: 0.35rem; }
+  .hero-aval svg { color: var(--naranja); flex: none; }
+  .hero-aval strong { color: var(--tinta); font-weight: 650; }
+
+  /* ── La foto del proximo viaje, con el precio encima ── */
+  .hero-foto {
+    position: relative;
+    display: block;
+    border-radius: var(--radio);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--fondo);
+  }
+  @media (min-width: 980px) { .hero-foto { aspect-ratio: 5 / 4; } }
+
+  .hero-foto img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Velo oscuro solo abajo: el texto blanco necesita contraste garantizado */
+  .hero-etiqueta {
     position: absolute;
-    top: 42%;
-    left: 50%;
-    width: min(760px, 90vw);
-    height: min(760px, 90vw);
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(249,115,22,0.16) 0%, rgba(249,115,22,0.05) 38%, transparent 68%);
-    filter: blur(8px);
-    z-index: 0;
-    pointer-events: none;
-    animation: hero-breathe 9s ease-in-out infinite;
+    left: 0; right: 0; bottom: 0;
+    padding: 4.5rem 1.25rem 1.25rem;
+    background: linear-gradient(to top, rgba(10,11,13,0.92) 0%, rgba(10,11,13,0.72) 45%, rgba(10,11,13,0) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
   }
-  @keyframes hero-breathe {
-    0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
-    50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.12); }
+  .hero-proxima { font-size: 0.8rem; font-weight: 600; color: #ffd2b0; }
+  .hero-destino {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .hero-detalle { font-size: 0.875rem; color: rgba(255,255,255,0.84); }
+  .hero-precio { margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.84); }
+  .hero-precio strong {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: #fff;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero-grad { animation: none; }
-    .hero-glow { animation: none; opacity: 0.8; }
+  .hero-foto::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radio);
+    border: 1px solid rgba(0,0,0,0.07);
+    pointer-events: none;
   }
 </style>
-
-<script>
-  // Contador animado de estadísticas al entrar en vista
-  const nums = document.querySelectorAll<HTMLElement>('.stat-num');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const run = (el: HTMLElement) => {
-    const target = parseInt(el.dataset.count || '0', 10);
-    const suffix = el.dataset.suffix || '';
-    if (reduce) { el.textContent = target + suffix; return; }
-    const dur = 1200;
-    const t0 = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - t0) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-      el.textContent = Math.round(eased * target) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = target + suffix;
-    };
-    requestAnimationFrame(tick);
-  };
-
-  if (nums.length) {
-    // Arrancan en 0 (el hero aparece con fade, así que no se ve el reseteo)
-    nums.forEach((n) => { n.textContent = '0' + (n.dataset.suffix || ''); });
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { run(e.target as HTMLElement); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.4 });
-    nums.forEach((n) => io.observe(n));
-  }
-</script>

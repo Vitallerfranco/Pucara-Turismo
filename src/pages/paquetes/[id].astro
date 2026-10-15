@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import PaqueteCard from '@/components/PaqueteCard.astro';
 import paquetesData from '@/data/paquetes.json';
-import { webpSrcset } from '@/lib/utils';
+import { webpSrcset, formatPrice } from '@/lib/utils';
+import { partesTitulo, duracionLabel, fechaLarga, transporte } from '@/lib/viaje';
 
 export function getStaticPaths() {
   return paquetesData.paquetes.map((paquete) => ({
@@ -11,439 +13,427 @@ export function getStaticPaths() {
 }
 
 const { paquete } = Astro.props;
-const WA = "5491134952847";
+const WA = '5491134952847';
+const politicas = paquetesData.politicasGlobales;
+
+const { titular, subtitulo, cuando } = partesTitulo(paquete.titulo);
+const duracion = duracionLabel(paquete);
+const comoViaja = transporte(paquete.incluye);
+const precioTotal = paquete.precioBase + paquete.gastosAdmin;
+
+const fotos = (paquete.imagenes?.length ? paquete.imagenes : [paquete.imagenPrincipal]).slice(0, 5);
 const heroWebp = webpSrcset(paquete.imagenPrincipal);
 
+const whatsappMsg = `Hola, me interesa este viaje:\n\n${paquete.titulo}\nSalida: ${fechaLarga(paquete.proximaSalida)}\nPrecio: ${formatPrice(paquete.precioBase)} + ${formatPrice(paquete.gastosAdmin)} de gastos por persona\n\n¿Me pasás disponibilidad?`;
+const whatsappHref = `https://wa.me/${WA}?text=${encodeURIComponent(whatsappMsg)}`;
+
+// Otras salidas: primero las del mismo destino, despues las mas proximas
+const otras = paquetesData.paquetes
+  .filter((p) => p.slug !== paquete.slug)
+  .sort((a, b) => {
+    const mismoA = a.destino === paquete.destino ? 0 : 1;
+    const mismoB = b.destino === paquete.destino ? 0 : 1;
+    if (mismoA !== mismoB) return mismoA - mismoB;
+    return new Date(a.proximaSalida).getTime() - new Date(b.proximaSalida).getTime();
+  })
+  .slice(0, 3);
+
 // Datos estructurados (rich results de Google: precio + estrellas + fecha)
-const _precioTotal = paquete.precioBase + paquete.gastosAdmin;
 const _imgAbs = paquete.imagenPrincipal.startsWith('http')
   ? paquete.imagenPrincipal
   : `https://pucaraturismo.com.ar${paquete.imagenPrincipal}`;
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": paquete.titulo,
-  "description": paquete.descripcionCorta,
-  "image": _imgAbs,
-  "sku": paquete.id,
-  "brand": { "@type": "Brand", "name": "Pucará Turismo" },
-  "offers": {
-    "@type": "Offer",
-    "url": `https://pucaraturismo.com.ar/paquetes/${paquete.slug}/`,
-    "priceCurrency": "ARS",
-    "price": _precioTotal,
-    "availability": "https://schema.org/InStock",
-    "validThrough": paquete.proximaSalida,
-    "seller": { "@type": "TravelAgency", "name": "Pucará Turismo" }
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: paquete.titulo,
+  description: paquete.descripcionCorta,
+  image: _imgAbs,
+  sku: paquete.id,
+  brand: { '@type': 'Brand', name: 'Pucará Turismo' },
+  offers: {
+    '@type': 'Offer',
+    url: `https://pucaraturismo.com.ar/paquetes/${paquete.slug}/`,
+    priceCurrency: 'ARS',
+    price: precioTotal,
+    availability: 'https://schema.org/InStock',
+    validThrough: paquete.proximaSalida,
+    seller: { '@type': 'TravelAgency', name: 'Pucará Turismo' },
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": paquete.rating,
-    "reviewCount": paquete.reviews
-  }
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: paquete.rating,
+    reviewCount: paquete.reviews,
+  },
 };
 ---
 
 <BaseLayout
-  title={`${paquete.titulo} | Pucará Turismo`}
+  title={`${titular} · ${cuando || fechaLarga(paquete.proximaSalida)}`}
   description={paquete.descripcionCorta}
   image={paquete.imagenPrincipal}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-<!-- Hero -->
-<div class="relative w-full overflow-hidden" style="height:420px;">
-  <picture style="display:contents">
-    {heroWebp && <source type="image/webp" srcset={heroWebp} sizes="100vw" />}
-    <img src={paquete.imagenPrincipal} alt={paquete.titulo} class="w-full h-full object-cover" width="1200" height="750" fetchpriority="high" />
-  </picture>
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(8,8,8,0.97) 100%);"></div>
-  <div class="absolute inset-0 flex items-end" style="padding:2rem 1.5rem;">
-    <div>
-      <a href="/paquetes/" style="color:#f97316;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:0.6rem;opacity:0.8;">
-        ← Todos los paquetes
+  <div class="det-caja">
+    <nav class="det-volver" aria-label="Migas">
+      <a href="/paquetes/">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Todas las salidas
       </a>
-      <h1 style="color:white;font-size:clamp(1.75rem,5vw,2.75rem);font-weight:900;margin:0 0 0.4rem 0;line-height:1.1;">{paquete.titulo}</h1>
-      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;color:rgba(255,255,255,0.4);font-size:0.8rem;">
-        <span>{paquete.duracionDias} días · {paquete.duracionNoches} noches</span>
-        <span>· Salida desde Ituzaingó</span>
-        <span>· Base doble</span>
+    </nav>
+
+    <header class="det-encabezado">
+      <div class="det-sellos">
+        <span class="det-sello">{duracion}</span>
+        {comoViaja && <span class="det-sello">{comoViaja}</span>}
+        <span class="det-sello det-sello-fecha">Sale el {cuando ? cuando.toLowerCase() : fechaLarga(paquete.proximaSalida)}</span>
       </div>
-    </div>
+      <h1>{titular}</h1>
+      {subtitulo && <p class="det-subtitulo">{subtitulo}</p>}
+    </header>
   </div>
-</div>
 
-<!-- Body -->
-<div style="background:#080808;min-height:100vh;padding:2rem 0 5rem 0;">
-  <div class="container-gutter max-w-6xl mx-auto">
-    <div class="pkg-grid">
+  <div class="det-caja det-cuerpo">
 
-      <!-- Columna izquierda -->
-      <div style="display:flex;flex-direction:column;gap:2rem;">
+    <div class="det-principal">
+    <div class="det-galeria" data-galeria>
+      <div class="det-foto-grande">
+        <picture style="display:contents">
+          {heroWebp && <source type="image/webp" srcset={heroWebp} sizes="(max-width: 980px) 100vw, 740px" />}
+          <img
+            src={paquete.imagenPrincipal}
+            alt={titular}
+            width="1200" height="800"
+            fetchpriority="high"
+            decoding="async"
+            id="det-principal"
+          />
+        </picture>
+      </div>
 
-        <!-- Descripción -->
-        <div style="border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:1.5rem;">
-          <p style="color:rgba(255,255,255,0.5);line-height:1.8;font-size:0.95rem;margin:0;">{paquete.descripcionLarga}</p>
+      {fotos.length > 1 && (
+        <div class="det-miniaturas">
+          {fotos.map((src, i) => (
+            <button type="button" class={`det-mini ${i === 0 ? 'activa' : ''}`} data-src={src} aria-label={`Ver foto ${i + 1} de ${titular}`}>
+              <img src={src} alt="" width="300" height="200" loading="lazy" decoding="async" />
+            </button>
+          ))}
         </div>
+      )}
+    </div>
 
-        <!-- Incluye -->
-        <div>
-          <p style="color:rgba(255,255,255,0.25);font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 0.875rem 0;">Incluye</p>
-          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-            {paquete.incluye.map((item: string) => (
-              <span style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.18);color:rgba(255,255,255,0.65);border-radius:6px;padding:0.3rem 0.75rem;font-size:0.78rem;text-transform:capitalize;">{item}</span>
+      <section class="det-bloque">
+        <h2>El viaje</h2>
+        <p class="det-descripcion">{paquete.descripcionLarga || paquete.descripcionCorta}</p>
+      </section>
+
+      <section class="det-bloque">
+        <h2>Qué incluye</h2>
+        <ul class="det-lista det-lista-si">
+          {paquete.incluye.map((item) => (
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        {paquete.noIncluye?.length > 0 && (
+          <>
+            <h3 class="det-no-incluye">No incluye</h3>
+            <ul class="det-lista det-lista-no">
+              {paquete.noIncluye.map((item) => (
+                <li>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </section>
+
+      {paquete.itinerario?.length > 0 && (
+        <section class="det-bloque">
+          <h2>Cómo es el viaje, día por día</h2>
+          <ol class="det-itinerario">
+            {paquete.itinerario.map((paso, i) => (
+              <li>
+                <span class="det-paso-n">{i + 1}</span>
+                <p>{paso}</p>
+              </li>
             ))}
-          </div>
-        </div>
+          </ol>
+        </section>
+      )}
 
-        <!-- Galería -->
-        {paquete.imagenes && paquete.imagenes.length > 0 && (
-          <div>
-            <p style="color:rgba(255,255,255,0.25);font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 0.875rem 0;">Galería</p>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.6rem;">
-              {paquete.imagenes.map((img: string, i: number) => (
-                <div style="border-radius:8px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;" onclick={`openGallery(${i})`}>
-                  <picture style="display:contents">
-                    {webpSrcset(img) && <source type="image/webp" srcset={webpSrcset(img)} sizes="(max-width:640px) 45vw, 200px" />}
-                    <img src={img} alt={`foto ${i+1}`} width="600" height="400" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
-                  </picture>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <!-- Itinerario -->
-        {paquete.itinerario && paquete.itinerario.length > 0 && (
-          <div>
-            <p style="color:rgba(255,255,255,0.25);font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 0.875rem 0;">Itinerario</p>
-            <div style="display:flex;flex-direction:column;gap:0;">
-              {paquete.itinerario.map((paso: string, i: number) => (
-                <div style="display:flex;gap:0.875rem;align-items:flex-start;padding:0.65rem 0;">
-                  <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-                    <div style="width:24px;height:24px;background:#f97316;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;font-weight:700;">{i+1}</div>
-                    {i < paquete.itinerario.length - 1 && <div style="width:1px;flex:1;min-height:16px;background:rgba(249,115,22,0.15);margin-top:3px;"></div>}
-                  </div>
-                  <p style="color:rgba(255,255,255,0.55);font-size:0.875rem;line-height:1.5;margin:3px 0 0 0;">{paso}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-      </div>
-
-      <!-- Sidebar -->
-      <div class="pkg-sidebar">
-        <div style="background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;position:sticky;top:90px;">
-
-          <!-- Precio -->
-          <div style="padding:1.5rem;border-bottom:1px solid rgba(255,255,255,0.05);">
-            <p style="color:rgba(255,255,255,0.3);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 0.25rem 0;">Precio por persona</p>
-            <div id="precio-display" style="font-size:2.5rem;font-weight:900;color:#f97316;line-height:1;"></div>
-            <p style="color:rgba(255,255,255,0.2);font-size:0.72rem;margin:0.3rem 0 0 0;">+ ${paquete.gastosAdmin.toLocaleString('es-AR')} gastos adm.</p>
-            <div id="nota-single" style="display:none;margin-top:0.6rem;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.15);border-radius:6px;padding:0.4rem 0.6rem;">
-              <p style="color:rgba(249,115,22,0.8);font-size:0.7rem;margin:0;">Suplemento viajero solo: +50%</p>
-            </div>
-          </div>
-
-          <!-- Personas -->
-          <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.05);">
-            <p style="color:rgba(255,255,255,0.25);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 0.75rem 0;">Personas</p>
-            <div style="display:flex;align-items:center;gap:1rem;">
-              <button id="btn-menos" style="width:32px;height:32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:rgba(255,255,255,0.6);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">−</button>
-              <span id="cant-personas" style="color:white;font-size:1.25rem;font-weight:700;min-width:1.5rem;text-align:center;">1</span>
-              <button id="btn-mas" style="width:32px;height:32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:rgba(255,255,255,0.6);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">+</button>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.04);">
-              <span style="color:rgba(255,255,255,0.3);font-size:0.82rem;">Total</span>
-              <span id="total-grupo" style="color:white;font-weight:700;font-size:0.95rem;"></span>
-            </div>
-          </div>
-
-          <!-- Info -->
-          <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:0.5rem;">
-            <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
-              <span style="color:rgba(255,255,255,0.3);">Próxima salida</span>
-              <span style="color:white;font-weight:600;">{new Date(paquete.proximaSalida + 'T12:00:00').toLocaleDateString('es-AR', {day:'numeric', month:'long'})}</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-size:0.82rem;">
-              <span style="color:rgba(255,255,255,0.3);">Cupos</span>
-              <span style="color:#f97316;font-weight:600;">{paquete.cuposPorSalida} lugares</span>
-            </div>
-          </div>
-
-          <!-- Formulario -->
-          <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:0.6rem;">
-            <p style="color:rgba(255,255,255,0.25);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 0.25rem 0;">Tus datos</p>
-            <input id="f-nombre" type="text" placeholder="Nombre" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.875rem;color:white;font-size:0.85rem;width:100%;outline:none;box-sizing:border-box;" />
-            <input id="f-email" type="email" placeholder="Email" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.875rem;color:white;font-size:0.85rem;width:100%;outline:none;box-sizing:border-box;" />
-            <input id="f-tel" type="tel" placeholder="WhatsApp" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.875rem;color:white;font-size:0.85rem;width:100%;outline:none;box-sizing:border-box;" />
-            <textarea id="f-consulta" placeholder="¿Alguna consulta?" rows="3" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:0.6rem 0.875rem;color:white;font-size:0.85rem;width:100%;outline:none;box-sizing:border-box;resize:none;font-family:inherit;"></textarea>
-          </div>
-
-          <!-- Botón -->
-          <div style="padding:1.25rem 1.5rem;">
-            <button id="btn-reservar" style="width:100%;background:#f97316;color:white;font-weight:600;border:none;border-radius:8px;padding:0.875rem;font-size:0.9rem;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              Reservar
-            </button>
-            <p style="color:rgba(255,255,255,0.15);font-size:0.7rem;text-align:center;margin:0.5rem 0 0 0;">Respondemos en minutos</p>
-            <button id="btn-compartir" style="width:100%;background:transparent;color:rgba(255,255,255,0.6);font-weight:600;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.75rem;font-size:0.85rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-              </svg>
-              Compartir este viaje
-            </button>
-          </div>
-
-        </div>
-      </div>
-
+      <section class="det-bloque">
+        <h2>Letra chica</h2>
+        <ul class="det-politicas">
+          <li>{politicas.precioEnBaseDoble}</li>
+          <li>{politicas.suplementoSingle}</li>
+          <li>{politicas.menoresCuatroAnios}</li>
+          <li>{politicas.cocheCama}</li>
+          <li>{politicas.puntosDeSubida}</li>
+        </ul>
+      </section>
     </div>
-  </div>
-</div>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lb">
-  <button class="lb-close" onclick="closeGallery()" aria-label="Cerrar galería">✕</button>
-  <button class="lb-nav lb-prev" onclick="prevImg()" aria-label="Imagen anterior">‹</button>
-  <img id="lightbox-img" src="" alt="" />
-  <button class="lb-nav lb-next" onclick="nextImg()" aria-label="Imagen siguiente">›</button>
-  <div id="lb-counter" class="lb-counter"></div>
-</div>
+    <aside class="det-lateral">
+      <div class="det-precio-caja">
+        <span class="det-precio-rotulo">Precio por persona</span>
+        <strong class="det-precio-monto">{formatPrice(paquete.precioBase)}</strong>
+        <p class="det-precio-gastos">+ {formatPrice(paquete.gastosAdmin)} de gastos administrativos</p>
 
-  <!-- Barra fija de reserva (solo mobile) -->
-  <div class="reserva-fija">
-    <div class="rf-precio">
-      <span class="rf-label">Desde</span>
-      <span class="rf-monto">{"$" + _precioTotal.toLocaleString('es-AR')}</span>
-      <span class="rf-pp">por persona</span>
-    </div>
-    <a
-      class="rf-btn"
-      href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola Pucará Turismo! Quiero reservar ' + paquete.titulo + '. ¿Tienen disponibilidad?')}`}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-      Reservar
-    </a>
+        <dl class="det-datos">
+          <div>
+            <dt>Sale el</dt>
+            <dd>{cuando ? cuando.toLowerCase() : fechaLarga(paquete.proximaSalida)}</dd>
+          </div>
+          <div>
+            <dt>Duración</dt>
+            <dd>{duracion}</dd>
+          </div>
+          <div>
+            <dt>Total por persona</dt>
+            <dd class="det-total">{formatPrice(precioTotal)}</dd>
+          </div>
+        </dl>
+
+        <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg det-cta" data-ga="reservar_detalle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/>
+            <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5.1 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/>
+          </svg>
+          Consultar por WhatsApp
+        </a>
+        <p class="det-cta-nota">Te contestamos de lunes a viernes, de 9 a 19 hs.</p>
+      </div>
+    </aside>
   </div>
 
-  <style is:global>
-    .reserva-fija { display: none; }
-    @media (max-width: 900px) {
-      .reserva-fija {
-        display: flex;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 9990;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        background: #111111;
-        border-top: 1px solid #262626;
-        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.45);
-      }
-      .reserva-fija .rf-precio { display: flex; flex-direction: column; line-height: 1.1; }
-      .reserva-fija .rf-label { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: #777; }
-      .reserva-fija .rf-monto { font-size: 20px; font-weight: 800; color: #f97316; }
-      .reserva-fija .rf-pp { font-size: 11px; color: #888; }
-      .reserva-fija .rf-btn {
-        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        background: #25d366; color: #fff; font-weight: 700; font-size: 15px;
-        padding: 12px 22px; border-radius: 10px; text-decoration: none; white-space: nowrap;
-      }
-      /* Evitar que la barra tape el contenido / el botón flotante */
-      body { padding-bottom: 78px !important; }
-      #wa-float { display: none !important; }
-    }
+  {otras.length > 0 && (
+    <section class="section-space franja">
+      <div class="det-caja">
+        <div class="cabecera-seccion">
+          <div>
+            <h2>Otras salidas</h2>
+            <p>Por si esta fecha no te sirve.</p>
+          </div>
+          <a href="/paquetes/" class="btn btn-secondary">Ver todas</a>
+        </div>
+        <div class="det-otras">
+          {otras.map((p) => <PaqueteCard paquete={p} whatsappPhone={WA} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
-    /* ── Lightbox de galería ── */
-    .lb {
-      position: fixed; inset: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(0,0,0,0.95);
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity 0.28s ease, visibility 0.28s ease;
-    }
-    .lb.open { opacity: 1; visibility: visible; pointer-events: auto; }
-    .lb #lightbox-img {
-      max-width: 92vw; max-height: 86vh;
-      border-radius: 10px; object-fit: contain;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      user-select: none; -webkit-user-drag: none;
-    }
-    .lb.swapping #lightbox-img { opacity: 0; transform: scale(0.97); }
-    .lb-close {
-      position: absolute; top: 1.25rem; right: 1.5rem;
-      width: 42px; height: 42px; border-radius: 50%;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-      color: #fff; font-size: 1.1rem; cursor: pointer; line-height: 1;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .lb-close:hover { background: rgba(255,255,255,0.18); transform: rotate(90deg); }
-    .lb-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 48px; height: 48px; border-radius: 50%;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-      color: #fff; font-size: 1.9rem; cursor: pointer; line-height: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .lb-prev { left: 1rem; }
-    .lb-next { right: 1rem; }
-    .lb-prev:hover { background: #e8622a; transform: translateY(-50%) scale(1.08); }
-    .lb-next:hover { background: #e8622a; transform: translateY(-50%) scale(1.08); }
-    .lb-counter {
-      position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.05em; background: rgba(0,0,0,0.4);
-      padding: 4px 12px; border-radius: 20px;
-    }
-    @media (max-width: 640px) {
-      .lb-nav { width: 40px; height: 40px; font-size: 1.5rem; }
-      .lb-close { top: 0.75rem; right: 0.75rem; }
-    }
-  </style>
+  <div class="det-barra-movil">
+    <div>
+      <span>desde</span>
+      <strong>{formatPrice(paquete.precioBase)}</strong>
+    </div>
+    <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Consultar</a>
+  </div>
 
 </BaseLayout>
 
 <style>
-  .pkg-grid {
+  .det-caja { max-width: 1180px; margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 768px) { .det-caja { padding: 0 2rem; } }
+
+  .det-volver { padding-top: 6rem; }
+  @media (min-width: 768px) { .det-volver { padding-top: 7.5rem; } }
+  .det-volver a {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.875rem; color: var(--tinta-2); font-weight: 500;
+  }
+  .det-volver a:hover { color: var(--naranja-tinta); }
+
+  .det-encabezado { padding: 1.1rem 0 1.5rem; }
+  .det-sellos { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+  .det-sello {
+    font-size: 0.78rem; font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    background: var(--fondo);
+    border: 1px solid var(--linea);
+    color: var(--tinta-2);
+  }
+  .det-sello-fecha { background: var(--naranja-suave); border-color: #f8dcc6; color: var(--naranja-tinta); }
+  .det-encabezado h1 { margin-bottom: 0.3rem; }
+  .det-subtitulo { font-size: 1.1rem; color: var(--tinta-2); margin: 0; }
+
+  /* ── Galería ── */
+  .det-galeria { margin-bottom: 2rem; }
+  .det-foto-grande {
+    border-radius: var(--radio);
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    background: var(--fondo);
+  }
+  .det-foto-grande img { width: 100%; height: 100%; object-fit: cover; }
+
+  .det-miniaturas { display: flex; gap: 0.6rem; margin-top: 0.6rem; overflow-x: auto; scrollbar-width: none; }
+  .det-miniaturas::-webkit-scrollbar { display: none; }
+  .det-mini {
+    flex: 0 0 110px;
+    height: 74px;
+    padding: 0;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio-ch);
+    overflow: hidden;
+    background: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease, opacity 0.15s ease;
+    opacity: 0.75;
+  }
+  .det-mini img { width: 100%; height: 100%; object-fit: cover; }
+  .det-mini:hover { opacity: 1; }
+  .det-mini.activa { border-color: var(--tinta); opacity: 1; }
+
+  /* ── Cuerpo ── */
+  .det-cuerpo {
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 2rem;
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 3.5rem;
   }
-  @media (max-width: 900px) {
-    .pkg-grid {
-      grid-template-columns: 1fr;
-    }
-    .pkg-sidebar {
-      order: -1;
-    }
+  @media (min-width: 980px) {
+    .det-cuerpo { grid-template-columns: minmax(0, 1fr) 340px; gap: 3rem; align-items: start; }
   }
+
+  .det-bloque { padding-bottom: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--linea); }
+  .det-bloque:last-child { border-bottom: none; margin-bottom: 0; }
+  .det-bloque h2 { font-size: 1.3rem; margin-bottom: 0.9rem; }
+  .det-descripcion { font-size: 1rem; line-height: 1.7; margin: 0; }
+
+  .det-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+  @media (min-width: 640px) { .det-lista { grid-template-columns: 1fr 1fr; column-gap: 1.5rem; } }
+  .det-lista li {
+    display: flex; align-items: flex-start; gap: 0.55rem;
+    font-size: 0.95rem; color: var(--tinta);
+  }
+  .det-lista svg { flex: none; margin-top: 0.18rem; }
+  .det-lista-si svg { color: var(--verde); }
+  .det-lista-no { margin-top: 0.5rem; }
+  .det-lista-no li { color: var(--tinta-2); }
+  .det-lista-no svg { color: var(--tinta-3); }
+  .det-no-incluye { font-size: 1rem; margin: 1.5rem 0 0.4rem; color: var(--tinta-2); }
+
+  .det-itinerario { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .det-itinerario li { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .det-paso-n {
+    flex: none;
+    width: 27px; height: 27px;
+    border-radius: 50%;
+    background: var(--fondo);
+    border: 1px solid var(--linea);
+    color: var(--tinta-2);
+    display: grid; place-items: center;
+    font-size: 0.8rem; font-weight: 650;
+  }
+  .det-itinerario p { margin: 0; font-size: 0.95rem; line-height: 1.6; padding-top: 0.15rem; }
+
+  .det-politicas { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .det-politicas li {
+    font-size: 0.9rem;
+    color: var(--tinta-2);
+    padding-left: 1.1rem;
+    position: relative;
+    max-width: 66ch;
+  }
+  .det-politicas li::before {
+    content: '';
+    position: absolute; left: 0; top: 0.6em;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--linea-fuerte);
+  }
+
+  /* ── Caja de precio ── */
+  .det-lateral { position: static; }
+  @media (min-width: 980px) { .det-lateral { position: sticky; top: 92px; } }
+
+  .det-precio-caja {
+    background: var(--papel);
+    border: 1px solid var(--linea-fuerte);
+    border-radius: var(--radio);
+    padding: 1.4rem;
+  }
+  .det-precio-rotulo { display: block; font-size: 0.85rem; color: var(--tinta-2); }
+  .det-precio-monto {
+    display: block;
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--tinta);
+    margin-top: 0.1rem;
+  }
+  .det-precio-gastos { font-size: 0.85rem; color: var(--tinta-3); margin: 0.25rem 0 0; }
+
+  .det-datos { margin: 1.25rem 0; padding: 1rem 0 0; border-top: 1px solid var(--linea); display: grid; gap: 0.6rem; }
+  .det-datos > div { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+  .det-datos dt { font-size: 0.875rem; color: var(--tinta-2); }
+  .det-datos dd { margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--tinta); text-align: right; }
+  .det-total { color: var(--naranja-tinta) !important; }
+
+  .det-cta { width: 100%; }
+  .det-cta-nota { font-size: 0.78rem; color: var(--tinta-3); margin: 0.6rem 0 0; text-align: center; }
+
+  .det-otras { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  /* ── Barra fija en el celular ── */
+  .det-barra-movil {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 45;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--linea);
+    padding: 0.7rem 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  @media (min-width: 980px) { .det-barra-movil { display: none; } }
+  /* La burbuja flotante taparia el boton de la barra: en el detalle sobra,
+     porque la barra ya tiene su propio CTA de WhatsApp */
+  @media (max-width: 979px) {
+    :global(#wa-float) { display: none !important; }
+    /* Que la barra fija no tape el final del pie */
+    :global(body) { padding-bottom: 76px; }
+  }
+  .det-barra-movil span { display: block; font-size: 0.75rem; color: var(--tinta-3); line-height: 1; }
+  .det-barra-movil strong { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; }
+  .det-barra-movil .btn { flex: none; }
 </style>
 
-<script define:vars={{ precioBase: paquete.precioBase, gastosAdmin: paquete.gastosAdmin, titulo: paquete.titulo, imagenes: paquete.imagenes || [] }}>
-  const WA = "5491134952847";
-  let personas = 1;
-  let galleryIndex = 0;
+<script>
+  const galeria = document.querySelector('[data-galeria]');
+  if (galeria) {
+    const principal = galeria.querySelector<HTMLImageElement>('#det-principal');
+    const minis = galeria.querySelectorAll<HTMLButtonElement>('.det-mini');
 
-  function calcularPrecioPP(n) {
-    return n === 1 ? Math.round(precioBase * 1.5) : precioBase;
+    minis.forEach((mini) => {
+      mini.addEventListener('click', () => {
+        const src = mini.dataset.src;
+        if (!src || !principal) return;
+        // La foto grande puede venir de un <source> webp: lo sacamos para que
+        // el cambio de src se vea de verdad.
+        principal.closest('picture')?.querySelector('source')?.remove();
+        principal.src = src;
+        galeria.querySelector('.det-mini.activa')?.classList.remove('activa');
+        mini.classList.add('activa');
+      });
+    });
   }
-
-  function calcularTotal(n) {
-    return (calcularPrecioPP(n) + gastosAdmin) * n;
-  }
-
-  function formatARS(n) {
-    return '$' + n.toLocaleString('es-AR');
-  }
-
-  function actualizar() {
-    document.getElementById('precio-display').textContent = formatARS(calcularPrecioPP(personas));
-    document.getElementById('cant-personas').textContent = personas;
-    document.getElementById('total-grupo').textContent = formatARS(calcularTotal(personas));
-    document.getElementById('nota-single').style.display = personas === 1 ? 'block' : 'none';
-  }
-
-  document.getElementById('btn-menos').addEventListener('click', () => { if (personas > 1) { personas--; actualizar(); } });
-  document.getElementById('btn-mas').addEventListener('click', () => { if (personas < 20) { personas++; actualizar(); } });
-
-  document.getElementById('btn-reservar').addEventListener('click', () => {
-    const nombre = document.getElementById('f-nombre').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const tel = document.getElementById('f-tel').value.trim();
-    const consulta = document.getElementById('f-consulta').value.trim();
-    const msg = encodeURIComponent(
-      `Hola Pucará Turismo!\n` +
-      `Nombre: ${nombre || 'sin especificar'}\n` +
-      `Email: ${email || 'sin especificar'}\n` +
-      `WhatsApp: ${tel || 'sin especificar'}\n` +
-      `Paquete: ${titulo}\n` +
-      `Personas: ${personas}\n` +
-      `Total: ${formatARS(calcularTotal(personas))}\n` +
-      (consulta ? `Consulta: ${consulta}` : '')
-    );
-    window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
-  });
-
-  // Compartir viaje (WhatsApp / share nativo) — se mide como 'compartir_paquete', no como consulta
-  document.getElementById('btn-compartir').addEventListener('click', async () => {
-    const url = window.location.href;
-    const texto = `Mirá este viaje de Pucará Turismo: ${titulo}`;
-    function track() { if (typeof window.gtag === 'function') window.gtag('event', 'compartir_paquete', { paquete: titulo }); }
-    if (navigator.share) {
-      try { await navigator.share({ title: titulo, text: texto, url }); track(); } catch (e) {}
-    } else {
-      window.open(`https://wa.me/?text=${encodeURIComponent(texto + ' ' + url)}`, '_blank');
-      track();
-    }
-  });
-
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightbox-img');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function showImg() {
-    if (!imagenes.length) return;
-    lb.classList.add('swapping');
-    const src = imagenes[galleryIndex];
-    const pre = new Image();
-    pre.onload = () => {
-      lbImg.src = src;
-      lbImg.alt = titulo + ' — foto ' + (galleryIndex + 1);
-      lb.classList.remove('swapping');
-    };
-    pre.src = src;
-    if (lbCounter) lbCounter.textContent = (galleryIndex + 1) + ' / ' + imagenes.length;
-    // precargar la siguiente para que el cambio sea instantáneo
-    const nextSrc = imagenes[(galleryIndex + 1) % imagenes.length];
-    if (nextSrc) new Image().src = nextSrc;
-  }
-
-  window.openGallery = (i) => {
-    galleryIndex = i;
-    showImg();
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-  window.closeGallery = () => {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-  window.prevImg = () => { galleryIndex = (galleryIndex - 1 + imagenes.length) % imagenes.length; showImg(); };
-  window.nextImg = () => { galleryIndex = (galleryIndex + 1) % imagenes.length; showImg(); };
-
-  lb.addEventListener('click', (e) => { if (e.target === lb) window.closeGallery(); });
-
-  document.addEventListener('keydown', (e) => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') window.closeGallery();
-    else if (e.key === 'ArrowLeft') window.prevImg();
-    else if (e.key === 'ArrowRight') window.nextImg();
-  });
-
-  // Swipe en mobile
-  let touchX = null;
-  lb.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', (e) => {
-    if (touchX === null) return;
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 45) { if (dx > 0) window.prevImg(); else window.nextImg(); }
-    touchX = null;
-  }, { passive: true });
-
-  actualizar();
 </script>

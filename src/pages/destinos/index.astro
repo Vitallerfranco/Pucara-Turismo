@@ -117,7 +117,7 @@ const tipoLabel: Record<string, string> = {
 
   /* ── Header ── */
   .pk-header {
-    background: #0a0a0a;
+    background: var(--papel);
     padding: 96px 24px 52px;
   }
   .pk-eyebrow {
@@ -134,14 +134,14 @@ const tipoLabel: Record<string, string> = {
   .pk-title {
     font-size: clamp(34px, 5vw, 56px);
     font-weight: 800;
-    color: #fff;
+    color: var(--tinta);
     line-height: 1.1;
     margin: 0 0 16px;
   }
   .pk-accent { color: #e8622a; }
   .pk-sub {
     font-size: 16px;
-    color: #555;
+    color: var(--tinta-2);
     margin: 0;
     max-width: 440px;
     line-height: 1.6;
@@ -149,7 +149,7 @@ const tipoLabel: Record<string, string> = {
 
   /* ── Filtros ── */
   .pk-filtros-section {
-    background: #0a0a0a;
+    background: var(--papel);
     padding: 0 24px 36px;
   }
   .pk-filtros {
@@ -158,9 +158,9 @@ const tipoLabel: Record<string, string> = {
     gap: 8px;
   }
   .pk-filtro-btn {
-    background: #141414;
-    border: 1px solid #1f1f1f;
-    color: #555;
+    background: var(--papel);
+    border: 1px solid var(--linea);
+    color: var(--tinta-2);
     font-size: 13px;
     font-weight: 500;
     padding: 7px 16px;
@@ -169,19 +169,19 @@ const tipoLabel: Record<string, string> = {
     transition: all 0.15s;
   }
   .pk-filtro-btn:hover {
-    border-color: #2e2e2e;
-    color: #bbb;
+    border-color: var(--linea-fuerte);
+    color: var(--tinta);
   }
   .pk-filtro-active,
   .pk-filtro-btn.pk-filtro-active {
     background: #e8622a !important;
     border-color: #e8622a !important;
-    color: #fff !important;
+    color: var(--tinta) !important;
   }
 
   /* ── Grid ── */
   .pk-grid-section {
-    background: #0a0a0a;
+    background: var(--papel);
     padding: 0 24px 80px;
   }
   .pk-grid {
@@ -208,12 +208,12 @@ const tipoLabel: Record<string, string> = {
 
   /* ── CTA ── */
   .pk-cta-section {
-    background: #0a0a0a;
+    background: var(--papel);
     padding: 0 24px 80px;
   }
   .pk-cta-box {
     background: #111;
-    border: 1px solid #1e1e1e;
+    border: 1px solid var(--linea);
     border-radius: 14px;
     padding: 28px 32px;
     display: flex;
@@ -224,8 +224,8 @@ const tipoLabel: Record<string, string> = {
   .pk-cta-icon {
     width: 50px;
     height: 50px;
-    background: #181818;
-    border: 1px solid #252525;
+    background: var(--fondo);
+    border: 1px solid var(--linea);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -237,16 +237,16 @@ const tipoLabel: Record<string, string> = {
   .pk-cta-text h3 {
     font-size: 16px;
     font-weight: 600;
-    color: #fff;
+    color: var(--tinta);
     margin: 0 0 5px;
   }
-  .pk-cta-text p { font-size: 13px; color: #555; margin: 0; }
+  .pk-cta-text p { font-size: 13px; color: var(--tinta-2); margin: 0; }
   .pk-cta-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: #e8622a;
-    color: #fff;
+    color: var(--tinta);
     font-size: 13px;
     font-weight: 600;
     padding: 10px 20px;

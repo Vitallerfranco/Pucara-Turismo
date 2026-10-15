@@ -11,14 +11,15 @@
     "lint": "biome lint src",
     "format": "biome format src --write",
     "test": "vitest",
-    "prebuild": "node scripts/sync-paquetes.mjs",
+    "prebuild": "node scripts/sync-paquetes.mjs && node scripts/generar-webp.mjs",
     "sync": "node scripts/sync-paquetes.mjs",
     "publicado": "node scripts/sync-paquetes.mjs --publicado",
-    "seed": "node scripts/generar-seed.mjs"
+    "seed": "node scripts/generar-seed.mjs",
+    "webp": "node scripts/generar-webp.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.0.0",
     "@astrojs/react": "^5.0.6",
+    "@astrojs/sitemap": "^3.0.0",
     "@supabase/supabase-js": "^2.38.0",
     "@tailwindcss/vite": "^4.1.8",
     "astro": "^6.4.2",

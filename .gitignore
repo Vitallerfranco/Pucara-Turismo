@@ -42,3 +42,6 @@ panel-actualizacion.zip
 # Carpetas y archivos de trabajo que no van al repo
 Claude outputs/
 *.zip
+
+# Variantes webp generadas en el build (scripts/generar-webp.mjs)
+public/*-[0-9]*.webp

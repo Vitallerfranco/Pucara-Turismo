@@ -1,219 +1,251 @@
 {
-"/federacion-1.jpg": [
-400,
-800,
-1280
-],
-"/federacion-2.jpg": [
-400,
-447
-],
-"/federacion-3.jpg": [
-400,
-800,
-1050
-],
-"/hostal-del-sol-1.jpg": [
-400,
-800,
-1280
-],
-"/hostal-del-sol-2.jpg": [
-400,
-800,
-1280
-],
-"/hostal-del-sol-3.jpg": [
-400,
-800,
-1280
-],
-"/hostal-del-sol-4.jpg": [
-400,
-800,
-1280
-],
-"/hotel-riazor-1.jpg": [
-400,
-800,
-1280
-],
-"/hotel-riazor-2.jpg": [
-400,
-800,
-1280
-],
-"/hotel-riazor-3.jpg": [
-400,
-800,
-1194
-],
-"/hotel-riazor-4.jpg": [
-400,
-800,
-1280
-],
-"/hotel-termas-rio-1.jpg": [
-400,
-800,
-1280
-],
-"/hotel-termas-rio-2.jpg": [
-400,
-800,
-1280
-],
-"/hotel-termas-rio-3.jpg": [
-400,
-800,
-1280
-],
-"/las-grutas-1.jpg": [
-400,
-800,
-1194
-],
-"/las-grutas-2.jpg": [
-400,
-800,
-1280
-],
-"/las-grutas-3.jpg": [
-400,
-800,
-1080
-],
-"/mar-del-plata-5.jpg": [
-400,
-800,
-1280
-],
-"/rio-hondo-1.jpg": [
-400,
-800,
-1280
-],
-"/rosario-1.jpg": [
-400,
-800,
-1280
-],
-"/rosario-2.jpg": [
-400,
-800,
-1200
-],
-"/san-bernardo.jpg": [
-400,
-800,
-1280
-],
-"/san-pedro-1.jpg": [
-400,
-650
-],
-"/san-pedro-2.jpg": [
-400,
-650
-],
-"/san-pedro-3.jpg": [
-400,
-800,
-1180
-],
-"/san-pedro-4.jpg": [
-400,
-800,
-1180
-],
-"/san-pedro-5.jpg": [
-400,
-650
-],
-"/san-pedro-6.jpg": [
-400,
-650
-],
-"/san-pedro-7.jpg": [
-400,
-650
-],
-"/san-pedro-8.jpg": [
-400,
-650
-],
-"/tandil-1.jpg": [
-400,
-800,
-1280
-],
-"/tandil-2.jpg": [
-400,
-500
-],
-"/tandil-3.jpg": [
-400,
-800,
-960
-],
-"/tandil-4.jpg": [
-400,
-800,
-1200
-],
-"/tandil-5.jpg": [
-400,
-800,
-1194
-],
-"/termas-colon-1.jpg": [
-400,
-800,
-1280
-],
-"/termas-colon-2.jpg": [
-400,
-800,
-1280
-],
-"/termas-san-jose-1.jpg": [
-400,
-800,
-1280
-],
-"/termas-san-jose-2.jpg": [
-400,
-800,
-1280
-],
-"/termas-san-jose-3.jpg": [
-400,
-800,
-1280
-],
-"/termas-san-jose-4.jpg": [
-400,
-800,
-1280
-],
-"/termas-san-jose-5.jpg": [
-400,
-800,
-1280
-],
-"/villa-elisa-1.jpg": [
-400,
-800,
-1200
-],
-"/villa-elisa-2.jpg": [
-400,
-800,
-1100
-],
-"/villa-elisa-3.jpg": [
-400,
-800,
-1100
-]
+  "/aconcagua1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/altamontana1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/federacion-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/federacion-2.jpg": [
+    400
+  ],
+  "/federacion-3.jpg": [
+    400,
+    800
+  ],
+  "/hostal-del-sol-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hostal-del-sol-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hostal-del-sol-3.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hostal-del-sol-4.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-riazor-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-riazor-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-riazor-3.jpg": [
+    400,
+    800
+  ],
+  "/hotel-riazor-4.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-sorrento-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-termas-rio-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-termas-rio-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/hotel-termas-rio-3.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/inca1.jpg": [
+    400,
+    800
+  ],
+  "/la-falda-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/la-falda-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/la-falda-3.jpg": [
+    400,
+    800
+  ],
+  "/la-falda-4.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/la-falda-5.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/las-grutas-1.jpg": [
+    400,
+    800
+  ],
+  "/las-grutas-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/las-grutas-3.jpg": [
+    400,
+    800
+  ],
+  "/mar-del-plata-5.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/rio-hondo-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/rosario-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/rosario-2.jpg": [
+    400,
+    800
+  ],
+  "/san-bernardo.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/san-pedro-1.jpg": [
+    400
+  ],
+  "/san-pedro-2.jpg": [
+    400
+  ],
+  "/san-pedro-3.jpg": [
+    400,
+    800
+  ],
+  "/san-pedro-4.jpg": [
+    400,
+    800
+  ],
+  "/san-pedro-5.jpg": [
+    400
+  ],
+  "/san-pedro-6.jpg": [
+    400
+  ],
+  "/san-pedro-7.jpg": [
+    400
+  ],
+  "/san-pedro-8.jpg": [
+    400
+  ],
+  "/tandil-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/tandil-2.jpg": [
+    400
+  ],
+  "/tandil-3.jpg": [
+    400,
+    800
+  ],
+  "/tandil-4.jpg": [
+    400,
+    800
+  ],
+  "/tandil-5.jpg": [
+    400,
+    800
+  ],
+  "/termas-cacheuta-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-cacheuta-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-colon-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-colon-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-san-jose-1.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-san-jose-2.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-san-jose-3.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-san-jose-4.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/termas-san-jose-5.jpg": [
+    400,
+    800,
+    1280
+  ],
+  "/villa-elisa-1.jpg": [
+    400,
+    800
+  ],
+  "/villa-elisa-2.jpg": [
+    400,
+    800
+  ],
+  "/villa-elisa-3.jpg": [
+    400,
+    800
+  ]
 }

@@ -231,12 +231,12 @@ const resenas = [
 
 <style>
   :root {
-    --r-bg: #0a0a0a;
-    --r-surface: #111;
-    --r-border: #1e1e1e;
-    --r-orange: #f97316;
-    --r-text: #fff;
-    --r-muted: #555;
+    --r-bg: var(--papel);
+    --r-surface: var(--papel);
+    --r-border: var(--linea);
+    --r-orange: var(--naranja-fuerte);
+    --r-text: var(--tinta);
+    --r-muted: var(--tinta-2);
   }
 
   .res-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -250,16 +250,16 @@ const resenas = [
   .res-hero-inner { max-width: 720px; }
   .res-google-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid #2a2a2a; border-radius: 20px;
+    border: 1px solid var(--linea); border-radius: 20px;
     padding: 6px 14px; font-size: 12px; font-weight: 600;
-    color: rgba(255,255,255,0.5); margin-bottom: 20px;
+    color: var(--tinta-2); margin-bottom: 20px;
   }
   .res-titulo {
     font-size: clamp(32px, 5vw, 52px); font-weight: 800;
     color: var(--r-text); line-height: 1.15; margin: 0 0 16px;
   }
   .res-accent { color: var(--r-orange); }
-  .res-sub { font-size: 16px; color: #555; max-width: 540px; line-height: 1.7; margin: 0 0 40px; }
+  .res-sub { font-size: 16px; color: var(--tinta-2); max-width: 540px; line-height: 1.7; margin: 0 0 40px; }
 
   /* Stats */
   .res-stats {
@@ -273,15 +273,15 @@ const resenas = [
   .res-stat-plus { font-size: 24px; }
   .res-stat-stars { display: flex; gap: 3px; margin-bottom: 6px; }
   .res-stat-label { font-size: 12px; color: var(--r-muted); font-weight: 500; }
-  .res-stat-divider { width: 1px; height: 48px; background: #1e1e1e; }
+  .res-stat-divider { width: 1px; height: 48px; background: var(--linea); }
 
   /* ── Mural ── */
   .res-mural { background: var(--r-bg); padding: 56px 0 80px; }
 
   /* Featured */
   .res-featured {
-    background: linear-gradient(135deg, #0f0f0f 0%, #141414 100%);
-    border: 1px solid #2a2a2a;
+    background: var(--fondo);
+    border: 1px solid var(--linea);
     border-left: 4px solid var(--r-orange);
     border-radius: 16px;
     padding: 40px;
@@ -293,7 +293,7 @@ const resenas = [
     content: '';
     position: absolute; top: 0; right: 0;
     width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(249,115,22,0.10) 0%, transparent 70%);
     pointer-events: none;
   }
   .res-featured-quote {
@@ -311,12 +311,12 @@ const resenas = [
   .res-stars-row { display: flex; gap: 2px; margin-bottom: 6px; }
   .res-meta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .res-texto-lg {
-    font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.8;
+    font-size: 16px; color: var(--tinta-2); line-height: 1.8;
     font-style: italic; margin: 0 0 20px; max-width: none;
   }
   .res-google-tag {
     display: inline-flex; align-items: center; gap: 6px;
-    font-size: 11px; color: #555; font-weight: 500;
+    font-size: 11px; color: var(--tinta-2); font-weight: 500;
   }
 
   /* Grid */
@@ -333,13 +333,13 @@ const resenas = [
     padding: 24px;
     transition: border-color 0.2s, transform 0.2s;
   }
-  .res-card:hover { border-color: #2e2e2e; transform: translateY(-2px); }
+  .res-card:hover { border-color: var(--linea-fuerte); transform: translateY(-2px); }
 
   .res-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .res-avatar {
     width: 48px; height: 48px; border-radius: 50%;
     object-fit: cover; flex-shrink: 0;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--linea);
   }
   .res-card-info { flex: 1; }
   .res-nombre { font-size: 14px; font-weight: 700; color: var(--r-text); margin: 0 0 4px; }
@@ -349,13 +349,13 @@ const resenas = [
   .res-destino-tag {
     display: inline-flex; align-items: center; gap: 4px;
     background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
-    color: #fb923c; font-size: 11px; font-weight: 600;
+    color: var(--naranja-fuerte); font-size: 11px; font-weight: 600;
     padding: 3px 9px; border-radius: 20px;
   }
   .res-fecha { font-size: 11px; color: var(--r-muted); }
 
   .res-texto {
-    font-size: 14px; color: rgba(255,255,255,0.55);
+    font-size: 14px; color: var(--tinta-2);
     line-height: 1.7; margin: 0; font-style: italic; max-width: none;
   }
 
@@ -363,12 +363,12 @@ const resenas = [
   .res-mas { text-align: center; }
   .res-btn-google {
     display: inline-flex; align-items: center; gap: 10px;
-    border: 1px solid #2a2a2a; border-radius: 10px;
-    padding: 14px 24px; color: rgba(255,255,255,0.7);
+    border: 1px solid var(--linea); border-radius: 10px;
+    padding: 14px 24px; color: var(--tinta-2);
     font-size: 14px; font-weight: 600; text-decoration: none;
     transition: all 0.2s; margin-bottom: 12px;
   }
-  .res-btn-google:hover { border-color: #3a3a3a; color: #fff; }
+  .res-btn-google:hover { border-color: var(--tinta-3); color: var(--tinta); }
   .res-mas-sub { font-size: 13px; color: var(--r-muted); margin: 0; }
 
   /* ── CTA ── */
@@ -389,15 +389,15 @@ const resenas = [
     border-radius: 9px; text-decoration: none; transition: background 0.15s;
     white-space: nowrap;
   }
-  .res-btn-primary:hover { background: #ea6c0a; color: #fff; }
+  .res-btn-primary:hover { background: var(--naranja-tinta); color: #fff; }
   .res-btn-secondary {
     display: inline-flex; align-items: center;
-    border: 1px solid #272727; color: #888;
+    border: 1px solid var(--linea); color: var(--tinta-2);
     font-size: 14px; font-weight: 600; padding: 12px 20px;
     border-radius: 9px; text-decoration: none; transition: all 0.15s;
     white-space: nowrap;
   }
-  .res-btn-secondary:hover { border-color: #3a3a3a; color: #bbb; }
+  .res-btn-secondary:hover { border-color: var(--tinta-3); color: var(--tinta); }
 
   @media (max-width: 700px) {
     .res-stats { gap: 20px; }

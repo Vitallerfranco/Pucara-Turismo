@@ -1,242 +1,274 @@
 @import "tailwindcss";
 
-/* Custom CSS */
+/* ==========================================================================
+   Pucará Turismo — sistema visual
+   Blanco editorial: la foto del destino y el precio son los protagonistas.
+   El naranja de marca se reserva para la acción principal, nunca para texto
+   largo. Estructura con líneas de 1px, no con sombras.
+   ========================================================================== */
+
 :root {
-  --orange: #f97316;
-  --orange-dark: #ea6c0a;
-  --orange-light: #fb923c;
-  --black: #0e0e0e;
-  --gray-900: #161616;
-  --gray-700: #2a2a2a;
-  --gray-500: #555555;
-  --gray-300: #888888;
-  --gray-100: #1a1a1a;
-  --gray-50: #141414;
+  /* Superficies */
+  --papel:        #ffffff;
+  --fondo:        #f6f6f7;   /* secciones alternadas */
+  --fondo-suave:  #fbfbfc;
+
+  /* Tinta */
+  --tinta:        #121316;
+  --tinta-2:      #5b6270;
+  --tinta-3:      #8b919d;
+  --tinta-inversa: rgba(255,255,255,0.88);
+
+  /* Líneas */
+  --linea:        #e8e9ec;
+  --linea-fuerte: #d5d8de;
+
+  /* Marca. El naranja fuerte es el unico que lleva texto blanco encima (AA) */
+  --naranja:        #f97316;
+  --naranja-fuerte: #c2560a;
+  --naranja-tinta:  #9c4408;
+  --naranja-suave:  #fff4ec;
+
+  --verde:  #0f7f55;
+  --rojo:   #c33c33;
+  --ambar:  #9a5a09;
+
+  --radio:    14px;
+  --radio-ch: 9px;
+
+  /* Compatibilidad con componentes viejos que todavia usan estos nombres */
+  --orange: var(--naranja);
+  --orange-dark: var(--naranja-fuerte);
+  --orange-light: var(--naranja);
+  --black: var(--tinta);
   --white: #ffffff;
-  --shadow-xs: 0 1px 8px rgba(0,0,0,0.2);
-  --shadow-sm: 0 2px 12px rgba(0,0,0,0.3);
-  --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
-  --radius: 10px;
-  --radius-lg: 16px;
-  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --radius: var(--radio-ch);
+  --radius-lg: var(--radio);
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --transition: all 0.2s ease;
 }
 
 html {
   scroll-behavior: smooth;
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--black);
-  color: rgba(255, 255, 255, 0.85);
+  background-color: var(--papel);
+  color: var(--tinta);
   line-height: 1.6;
   overflow-x: hidden;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: inherit;
   font-weight: 700;
-  letter-spacing: -0.6px;
-  color: #ffffff;
+  letter-spacing: -0.025em;
+  color: var(--tinta);
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 5.5vw, 4rem);
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.8px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
-  line-height: 1.25;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.6rem, 3.6vw, 2.35rem);
+  line-height: 1.14;
+  margin-bottom: 1rem;
   font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 h3 {
-  font-size: clamp(1.25rem, 3vw, 1.875rem);
-  line-height: 1.3;
-  margin-bottom: 0.875rem;
-  font-weight: 700;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.22;
+  margin-bottom: 0.6rem;
+  font-weight: 650;
 }
 
 h4 {
-  font-size: 1.125rem;
-  line-height: 1.4;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 650;
+  margin-bottom: 0.5rem;
 }
 
 p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
   max-width: 68ch;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.65;
+  color: var(--tinta-2);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: var(--transition);
+  transition: color 0.18s ease;
 }
 
-a:hover {
-  color: var(--black-light);
-}
-
-/* Buttons */
+/* ===== Botones ============================================================ */
 .btn {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 cursor-pointer border border-transparent;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.875rem;
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold cursor-pointer border;
+  font-size: 0.925rem;
   font-weight: 600;
-  letter-spacing: 0.2px;
+  letter-spacing: -0.005em;
+  border-color: transparent;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--naranja);
   outline-offset: 2px;
 }
 
 .btn-primary {
-  background-color: var(--orange);
-  color: white;
+  background-color: var(--naranja-fuerte);
+  color: #fff;
+  border-color: var(--naranja-fuerte);
 }
-
 .btn-primary:hover {
-  background-color: var(--orange-light);
-  color: white;
+  background-color: var(--naranja-tinta);
+  border-color: var(--naranja-tinta);
+  color: #fff;
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.7);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: var(--papel);
+  color: var(--tinta);
+  border-color: var(--linea-fuerte);
 }
-
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--fondo);
+  border-color: var(--tinta-3);
 }
 
 .btn-outline {
-  border-color: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.6);
+  border-color: var(--linea-fuerte);
+  color: var(--tinta);
   background: transparent;
 }
-
 .btn-outline:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  color: white;
+  border-color: var(--tinta-3);
+  background: var(--fondo);
 }
 
-.btn-sm {
-  @apply px-4 py-2 text-xs;
-  font-weight: 600;
+/* Sobre foto: el boton tiene que leerse igual */
+.btn-sobre-foto {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.btn-sobre-foto:hover {
+  background: rgba(255,255,255,0.24);
+  border-color: #fff;
+  color: #fff;
 }
 
-.btn-lg {
-  @apply px-7 py-3.5 text-sm;
-  font-weight: 600;
-}
+.btn-sm { @apply px-4 py-2; font-size: 0.82rem; font-weight: 600; }
+.btn-lg { @apply px-7 py-3.5; font-size: 1rem; font-weight: 600; }
 
-/* Cards */
+/* ===== Tarjetas =========================================================== */
 .card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: var(--radius);
-  transition: var(--transition);
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  transition: border-color 0.2s ease;
 }
-
-.card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.12);
-}
+.card:hover { border-color: var(--linea-fuerte); }
 
 .card-elevated {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius);
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
 }
 
-.card-interactive {
-  cursor: pointer;
-  transition: var(--transition);
-}
+.card-interactive { cursor: pointer; transition: border-color 0.2s ease; }
+.card-interactive:hover { border-color: var(--tinta-3); }
 
-.card-interactive:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(249, 115, 22, 0.3);
-}
+/* ===== Utilidades ========================================================= */
+.container-gutter { @apply px-5 sm:px-6 md:px-8 lg:px-10; }
+.section-space { @apply py-12 sm:py-14 md:py-16 lg:py-20; }
 
-/* Utilities */
-.container-gutter {
-  @apply px-5 sm:px-6 md:px-8 lg:px-12;
-}
+/* Cinta de seccion gris, para alternar sin cambiar de tema */
+.franja { background: var(--fondo); }
 
-.section-space {
-  @apply py-12 sm:py-14 md:py-16 lg:py-20;
-}
-
-.gradient-orange {
-  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-}
+.gradient-orange { background: var(--naranja-fuerte); }
 
 .glass-effect {
-  background: rgba(14, 14, 14, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--linea);
 }
 
-.divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.06);
-  margin: 2rem 0;
+.divider { width: 100%; height: 1px; background: var(--linea); margin: 2rem 0; }
+.divider-lg { @apply my-12 md:my-16; }
+
+/* El degrade en texto se lee mal en chico: el naranja va plano */
+.text-gradient { color: var(--naranja-fuerte); }
+.text-muted { color: var(--tinta-3); }
+
+/* Antetitulo de seccion: chico, en el color de marca, sin versalitas */
+.antetitulo {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--naranja-fuerte);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0;
 }
 
-.divider-lg {
-  @apply my-12 md:my-16;
+/* Cabecera de seccion con accion a la derecha */
+.cabecera-seccion {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
 }
+.cabecera-seccion h2 { margin-bottom: 0; }
+.cabecera-seccion p { margin: 0.4rem 0 0; }
 
-/* Text utilities */
-.text-gradient {
-  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ===== Formularios ======================================================== */
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+input[type="date"], input[type="search"], select, textarea {
+  background: var(--papel);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio-ch);
+  color: var(--tinta);
+  font: inherit;
 }
-
-.text-muted {
-  color: rgba(255, 255, 255, 0.35);
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
 }
+::placeholder { color: var(--tinta-3); }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+/* ===== Barra de scroll ==================================================== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--fondo); }
+::-webkit-scrollbar-thumb { background: #cfd3da; border-radius: 5px; border: 2px solid var(--fondo); }
+::-webkit-scrollbar-thumb:hover { background: var(--tinta-3); }
 
-::-webkit-scrollbar-track {
-  background: var(--black);
-}
+/* ===== Accesibilidad ====================================================== */
+:focus-visible { outline: 2px solid var(--naranja); outline-offset: 2px; }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -244,31 +276,32 @@ a:hover {
   }
 }
 
-:focus-visible {
-  outline: 2px solid var(--orange);
-  outline-offset: 2px;
-}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
+img { max-width: 100%; height: auto; display: block; }
 
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+.snap-scroll { scroll-snap-type: x mandatory; overflow-x: auto; }
+.snap-center { scroll-snap-align: center; }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.snap-scroll {
-  scroll-snap-type: x mandatory;
+/* Fila que se desliza en el celular y es grilla en escritorio */
+.fila-desliz {
+  display: flex;
+  gap: 1rem;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
 }
+.fila-desliz::-webkit-scrollbar { display: none; }
+.fila-desliz > * { scroll-snap-align: start; flex: 0 0 82%; max-width: 330px; }
 
-.snap-center {
-  scroll-snap-align: center;
+@media (min-width: 768px) {
+  .fila-desliz {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5rem;
+    overflow: visible;
+  }
+  .fila-desliz > * { flex: initial; max-width: none; }
 }

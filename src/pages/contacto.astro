@@ -194,9 +194,9 @@ const MAPS_URL = 'https://www.google.com/maps/place/Pucara+Turismo/@-34.6587,-58
 
 <style>
   :root {
-    --c-bg: #0a0a0a; --c-surface: #111;
-    --c-border: #1e1e1e; --c-orange: #f97316;
-    --c-text: #fff; --c-muted: #555;
+    --c-bg: var(--papel); --c-surface: var(--papel);
+    --c-border: var(--linea); --c-orange: var(--naranja-fuerte);
+    --c-text: var(--tinta); --c-muted: var(--tinta-2);
   }
   .con-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
@@ -233,12 +233,12 @@ const MAPS_URL = 'https://www.google.com/maps/place/Pucara+Turismo/@-34.6587,-58
     border-radius: 12px; padding: 16px 18px; text-decoration: none;
     margin-bottom: 10px; transition: border-color .15s, transform .15s; position: relative;
   }
-  .con-canal:hover { border-color: #2e2e2e; transform: translateX(3px); }
+  .con-canal:hover { border-color: var(--linea-fuerte); transform: translateX(3px); }
   .con-canal-wa { border-color: #25d36622; }
   .con-canal-wa:hover { border-color: #25d36640; }
   .con-canal-icon { width: 44px; height: 44px; border-radius: 10px; border: 1px solid; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   .con-canal-nombre { font-size: 14px; font-weight: 700; color: var(--c-text); margin: 0 0 2px; }
-  .con-canal-detalle { font-size: 13px; color: rgba(255,255,255,.6); margin: 0 0 2px; }
+  .con-canal-detalle { font-size: 13px; color: var(--tinta-2); margin: 0 0 2px; }
   .con-canal-desc { font-size: 11px; color: var(--c-muted); margin: 0; }
   .con-badge-recomendado {
     position: absolute; top: 10px; right: 14px;
@@ -252,22 +252,22 @@ const MAPS_URL = 'https://www.google.com/maps/place/Pucara+Turismo/@-34.6587,-58
   .con-horarios-titulo { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--c-muted); margin: 0 0 14px; }
   .con-horario-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #161616; }
   .con-horario-row:last-child { border-bottom: none; }
-  .con-dia { color: rgba(255,255,255,.45); }
-  .con-hora { color: rgba(255,255,255,.8); font-weight: 600; }
+  .con-dia { color: var(--tinta-3); }
+  .con-hora { color: var(--tinta-2); font-weight: 600; }
   .con-cerrado { color: var(--c-muted) !important; font-weight: 400 !important; }
 
   /* Dirección */
   .con-dir { display: flex; align-items: flex-start; gap: 14px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
   .con-dir-icon { width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0; background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2); display: flex; align-items: center; justify-content: center; color: var(--c-orange); }
   .con-dir-label { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--c-muted); margin: 0 0 4px; }
-  .con-dir-text { font-size: 14px; color: rgba(255,255,255,.7); margin: 0 0 6px; }
+  .con-dir-text { font-size: 14px; color: var(--tinta-2); margin: 0 0 6px; }
   .con-dir-link { font-size: 13px; color: var(--c-orange); text-decoration: none; font-weight: 600; }
-  .con-dir-link:hover { color: #fb923c; }
+  .con-dir-link:hover { color: var(--naranja-fuerte); }
   .con-mapa-wrap { border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--c-border); }
   .con-mapa { display: block; filter: invert(.9) hue-rotate(180deg); }
 
   .con-trust { display: flex; flex-direction: column; gap: 10px; }
-  .con-trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,.45); }
+  .con-trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--tinta-3); }
 
   /* FAQ */
   .con-faq { background: var(--c-bg); border-top: 1px solid var(--c-border); padding: 56px 0 64px; }

@@ -1,152 +1,123 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PaqueteCard from '@/components/PaqueteCard.astro';
-import Filtros from '@/components/Filtros.tsx';
 import paquetesData from '@/data/paquetes.json';
+import { partesTitulo } from '@/lib/viaje';
 
-// Ordenar por fecha de salida más próxima
+const WA = '5491134952847';
+
 const paquetes = [...paquetesData.paquetes].sort(
   (a, b) => new Date(a.proximaSalida).getTime() - new Date(b.proximaSalida).getTime()
 );
 const politicas = paquetesData.politicasGlobales;
+
+// Los destinos salen de los viajes cargados: si el panel da de baja el ultimo
+// viaje de un destino, el filtro desaparece solo.
+const nombreDestino = (p: (typeof paquetes)[number]) => partesTitulo(p.titulo).titular;
+const destinos = Object.values(
+  paquetes.reduce((acc: Record<string, { clave: string; label: string; n: number }>, p) => {
+    const clave = p.destino;
+    if (!acc[clave]) acc[clave] = { clave, label: nombreDestino(p), n: 0 };
+    acc[clave].n++;
+    return acc;
+  }, {})
+).sort((a, b) => b.n - a.n);
 ---
 
 <BaseLayout
-  title="Todos nuestros paquetes turísticos"
-  description="Descubre todos nuestros paquetes de viajes. Filtra por duración, presupuesto y tipo de viaje."
+  title="Todos nuestros viajes"
+  description="Todas las salidas confirmadas de Pucará Turismo, con precio por persona y fecha. Termas, playa y sierra con bus, hotel y comidas incluidas desde el Gran Buenos Aires."
 >
 
-  <!-- Header -->
-  <section class="pk-header">
-    <div class="pk-header-inner">
-      <p class="pk-eyebrow">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-        </svg>
-        Salidas desde zona oeste · Todo incluido
+  <section class="lst-cabecera">
+    <div class="lst-caja">
+      <h1>Todas las salidas</h1>
+      <p class="lst-bajada">
+        Cada viaje tiene su fecha y su precio por persona. Elegí el que te sirve y escribinos:
+        te confirmamos lugar y punto de subida en el día.
       </p>
-      <h1 class="pk-title">Todos nuestros <span class="pk-accent">paquetes</span></h1>
-      <p class="pk-sub">Salidas confirmadas de septiembre a noviembre 2026. Un paquete por fecha para que elijas exactamente cuándo querés viajar.</p>
-
-      <!-- Políticas rápidas -->
-      <div class="pk-politicas">
-        <div class="pk-pol-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><circle cx="9" cy="5" r="2"/><path d="M6 21v-4a3 3 0 0 1 6 0v4"/><circle cx="16" cy="8" r="1"/><path d="M14 21v-2a2 2 0 0 1 4 0v2"/></svg>
-          Niños &lt;4 años: solo gastos adm.
-        </div>
-        <div class="pk-pol-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Single: +50% sobre el paquete
-        </div>
-        <div class="pk-pol-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-          Coche cama: +$10.000 por persona
-        </div>
-        <div class="pk-pol-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Múltiples puntos de subida en el GBA
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- Filtros + Grid -->
-  <section class="pk-body">
-    <div class="pk-container">
-      <div class="pk-layout">
+  <section class="lst-filtros-barra">
+    <div class="lst-caja">
+      <div class="lst-chips" role="group" aria-label="Filtrar por destino">
+        <button type="button" class="chip activo" data-destino="">Todos</button>
+        {destinos.map((d) => (
+          <button type="button" class="chip" data-destino={d.clave}>{d.label}</button>
+        ))}
+      </div>
 
-        <!-- Sidebar filtros -->
-        <aside class="pk-sidebar">
-          <div class="pk-sidebar-sticky">
-            <Filtros client:load />
+      <div class="lst-controles">
+        <label class="lst-control">
+          <span>Duración</span>
+          <select id="f-duracion">
+            <option value="">Todas</option>
+            <option value="full_day">Full day</option>
+            <option value="con_noches">Con noches</option>
+          </select>
+        </label>
+        <label class="lst-control">
+          <span>Ordenar por</span>
+          <select id="f-orden">
+            <option value="fecha">Próxima salida</option>
+            <option value="precio-asc">Precio: menor primero</option>
+            <option value="precio-desc">Precio: mayor primero</option>
+          </select>
+        </label>
+      </div>
+
+      <p class="lst-cuenta" id="lst-cuenta" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="lst-cuerpo">
+    <div class="lst-caja">
+      <div class="lst-grilla" id="lst-grilla">
+        {paquetes.map((paquete, i) => (
+          <div
+            class="lst-item"
+            data-destino={paquete.destino}
+            data-tipo={paquete.tipo === 'full_day' ? 'full_day' : 'con_noches'}
+            data-precio={paquete.precioBase}
+            data-fecha={paquete.proximaSalida}
+          >
+            <PaqueteCard paquete={paquete} whatsappPhone={WA} prioridad={i < 3} />
           </div>
-        </aside>
-
-        <!-- Grid de cards -->
-<div class="pk-main">
-  <div class="pk-grid" id="paquetes-grid">
-    {paquetes.map((paquete) => (
-      <div class="paquete-wrapper" data-id={paquete.id}>
-        <PaqueteCard paquete={paquete} whatsappPhone="5491134952847" />
+        ))}
       </div>
-    ))}
-  </div>
 
-  <div id="no-results" class="pk-empty hidden">
-     </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('paquetes-grid');
-    const noResults = document.getElementById('no-results');
-
-    if (!grid || !noResults) return;
-
-    // Seleccionamos todas las cards generadas por Astro
-    const cards = Array.from(grid.querySelectorAll('.paquete-wrapper')) as HTMLElement[];
-
-    // Escuchamos el evento que emite nuestro componente React
-    window.addEventListener('paquetes-filtrados', (e: Event) => {
-      const customEvent = e as CustomEvent<string[] | number[]>;
-      const sortedIds = customEvent.detail;
-      let visibleCount = 0;
-
-      cards.forEach((card) => {
-        const id = card.getAttribute('data-id');
-        
-        // Buscamos la posición del ID de la card actual en el array ordenado por React
-        const index = sortedIds.findIndex(sortedId => String(sortedId) === String(id));
-
-        if (index !== -1) {
-          card.style.display = ''; // Mostramos la card
-          card.style.order = String(index); // Reordenamos la grilla usando flex/grid order
-          visibleCount++;
-        } else {
-          card.style.display = 'none'; // Ocultamos la card si no pasa el filtro
-        }
-      });
-
-      // Lógica para mostrar/ocultar el mensaje de "No hay resultados"
-      if (visibleCount === 0) {
-        grid.style.display = 'none';
-        noResults.classList.remove('hidden');
-      } else {
-        grid.style.display = 'grid';
-        noResults.classList.add('hidden');
-      }
-    });
-  });
-</script>
-
+      <div class="lst-vacio" id="lst-vacio" hidden>
+        <h3>No hay viajes con ese filtro</h3>
+        <p>Probá con otro destino o escribinos y lo armamos a medida.</p>
+        <a href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola, busco un viaje que no veo en la web. ¿Me ayudan?')}`}
+           target="_blank" rel="noopener noreferrer" class="btn btn-primary">Escribinos por WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="pk-cta-section">
-    <div class="pk-cta-inner">
-      <div class="pk-cta-box">
-        <div class="pk-cta-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </div>
-        <div class="pk-cta-text">
-          <h3>¿No encontrás lo que buscás?</h3>
-          <p>Armamos viajes a medida. Contanos qué tenés en mente y lo hacemos posible.</p>
+  <section class="section-space franja">
+    <div class="lst-caja">
+      <div class="lst-letra-chica">
+        <h2>Lo que conviene saber antes de reservar</h2>
+        <ul>
+          <li><strong>Menores de 4 años</strong> pagan solo los gastos administrativos.</li>
+          <li><strong>Habitación single:</strong> suma 50% sobre el valor del paquete.</li>
+          <li><strong>Coche cama:</strong> $10.000 más por persona, según disponibilidad.</li>
+          <li><strong>Puntos de subida:</strong> varios en el Gran Buenos Aires, se coordinan al reservar.</li>
+          {politicas?.senia && <li><strong>Seña:</strong> {politicas.senia}</li>}
+        </ul>
+      </div>
+
+      <div class="lst-medida">
+        <div>
+          <h3>¿No encontrás la fecha que necesitás?</h3>
+          <p>Armamos salidas a medida para grupos, familias y egresados.</p>
         </div>
         <a
-          href="https://wa.me/5491134952847?text=Hola%2C%20me%20gustar%C3%ADa%20armar%20un%20viaje%20a%20medida"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="pk-cta-btn"
-        >
-          Consultar viaje personalizado
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+          href={`https://wa.me/${WA}?text=${encodeURIComponent('Hola, me gustaría armar un viaje a medida.')}`}
+          target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+        >Consultar viaje a medida</a>
       </div>
     </div>
   </section>
@@ -154,188 +125,170 @@ const politicas = paquetesData.politicasGlobales;
 </BaseLayout>
 
 <style>
-  /* ── Paleta dark ── */
-  :root {
-    --pk-bg: #0a0a0a;
-    --pk-surface: #111111;
-    --pk-border: #1e1e1e;
-    --pk-orange: #e8622a;
-    --pk-orange-hover: #cf5523;
-    --pk-text: #ffffff;
-    --pk-muted: #555555;
-    --pk-subtle: #333333;
-  }
+  .lst-caja { max-width: 1180px; margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 768px) { .lst-caja { padding: 0 2rem; } }
 
-  /* ── Header ── */
-  .pk-header {
-    background: var(--pk-bg);
-    padding: 96px 24px 56px;
-    border-bottom: 1px solid var(--pk-border);
-  }
-  .pk-header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  .pk-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--pk-muted);
-    margin: 0 0 18px;
-  }
-  .pk-title {
-    font-size: clamp(36px, 5vw, 60px);
-    font-weight: 800;
-    color: var(--pk-text);
-    line-height: 1.1;
-    margin: 0 0 14px;
-  }
-  .pk-accent { color: var(--pk-orange); }
-  .pk-sub {
-    font-size: 16px;
-    color: var(--pk-muted);
-    margin: 0 0 24px;
-    max-width: 540px;
-    line-height: 1.6;
-  }
-  .pk-politicas {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
-  }
-  .pk-pol-item {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 500;
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px; padding: 5px 12px;
-  }
+  /* ── Cabecera ── */
+  .lst-cabecera { padding: 7rem 0 1.75rem; }
+  @media (min-width: 768px) { .lst-cabecera { padding: 8.5rem 0 2rem; } }
+  .lst-cabecera h1 { margin-bottom: 0.6rem; }
+  .lst-bajada { font-size: 1.02rem; max-width: 56ch; margin: 0; }
 
-  /* ── Body layout ── */
-  .pk-body {
-    background: var(--pk-bg);
-    padding: 40px 0 80px;
-  }
-  .pk-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  .pk-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 32px;
-    align-items: start;
-  }
-
-  /* ── Sidebar ── */
-  .pk-sidebar-sticky {
+  /* ── Barra de filtros ── */
+  .lst-filtros-barra {
     position: sticky;
-    top: 96px;
+    top: 68px;
+    z-index: 20;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--linea);
+    border-bottom: 1px solid var(--linea);
+    padding: 0.85rem 0;
   }
 
-  /* ── Grid ── */
-  .pk-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 18px;
-  }
-  .pk-grid > * {
-    animation: pk-fadeIn 0.3s ease-out forwards;
-  }
-
-  @keyframes pk-fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Sin resultados ── */
-  .pk-empty {
+  .lst-chips {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 80px 0;
-    color: var(--pk-muted);
-    text-align: center;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
   }
-  .pk-empty.hidden { display: none; }
-  .pk-empty-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--pk-text);
-    margin: 0;
+  .lst-chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none;
+    background: var(--papel);
+    border: 1px solid var(--linea-fuerte);
+    border-radius: 100px;
+    padding: 0.4rem 0.9rem;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--tinta-2);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
-  .pk-empty-sub {
-    font-size: 14px;
-    color: var(--pk-muted);
-    margin: 0;
-  }
-  .pk-wa-btn {
-    margin-top: 8px;
-    background: var(--pk-orange);
+  .chip:hover { border-color: var(--tinta-3); color: var(--tinta); }
+  .chip.activo {
+    background: var(--tinta);
+    border-color: var(--tinta);
     color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.15s;
   }
-  .pk-wa-btn:hover { background: var(--pk-orange-hover); }
 
-  /* ── CTA ── */
-  .pk-cta-section {
-    background: var(--pk-bg);
-    border-top: 1px solid var(--pk-border);
-    padding: 48px 24px 64px;
+  .lst-controles { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.7rem; }
+  .lst-control { display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: var(--tinta-3); }
+  .lst-control select {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.875rem;
+    color: var(--tinta);
+    min-width: 150px;
   }
-  .pk-cta-inner { max-width: 1280px; margin: 0 auto; }
-  .pk-cta-box {
-    background: var(--pk-surface);
-    border: 1px solid var(--pk-border);
-    border-radius: 14px;
-    padding: 28px 32px;
+
+  .lst-cuenta { font-size: 0.85rem; color: var(--tinta-3); margin: 0.7rem 0 0; }
+
+  /* ── Grilla ── */
+  .lst-cuerpo { padding: 2rem 0 3rem; }
+  .lst-grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+  @media (max-width: 640px) { .lst-grilla { grid-template-columns: 1fr; gap: 1.25rem; } }
+  .lst-item[hidden] { display: none; }
+
+  .lst-vacio { text-align: center; padding: 4rem 1rem; }
+  .lst-vacio p { margin: 0 auto 1.25rem; }
+  .lst-vacio[hidden] { display: none; }
+
+  /* ── Letra chica ── */
+  .lst-letra-chica { max-width: 60ch; margin-bottom: 2.5rem; }
+  .lst-letra-chica ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .lst-letra-chica li {
+    font-size: 0.92rem;
+    color: var(--tinta-2);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .lst-letra-chica li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.62em;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--naranja-fuerte);
+  }
+  .lst-letra-chica strong { color: var(--tinta); font-weight: 600; }
+
+  .lst-medida {
+    background: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 1.25rem;
     flex-wrap: wrap;
   }
-  .pk-cta-icon {
-    width: 50px; height: 50px;
-    background: #181818;
-    border: 1px solid #252525;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--pk-orange);
-    flex-shrink: 0;
-  }
-  .pk-cta-text { flex: 1; min-width: 180px; }
-  .pk-cta-text h3 {
-    font-size: 16px; font-weight: 600; color: var(--pk-text); margin: 0 0 5px;
-  }
-  .pk-cta-text p { font-size: 13px; color: var(--pk-muted); margin: 0; }
-  .pk-cta-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--pk-orange); color: #fff;
-    font-size: 13px; font-weight: 600;
-    padding: 10px 20px; border-radius: 8px;
-    text-decoration: none; white-space: nowrap;
-    transition: background 0.15s;
-  }
-  .pk-cta-btn:hover { background: var(--pk-orange-hover); }
-
-  /* ── Responsive ── */
-  @media (max-width: 900px) {
-    .pk-layout {
-      grid-template-columns: 1fr;
-    }
-    .pk-sidebar-sticky { position: static; }
-    .pk-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    .pk-grid { grid-template-columns: 1fr; }
-    .pk-cta-box { flex-direction: column; align-items: flex-start; }
-  }
+  .lst-medida h3 { margin-bottom: 0.2rem; }
+  .lst-medida p { margin: 0; font-size: 0.92rem; }
 </style>
+
+<script>
+  const grilla = document.getElementById('lst-grilla');
+  const vacio = document.getElementById('lst-vacio');
+  const cuenta = document.getElementById('lst-cuenta');
+  const selDuracion = document.getElementById('f-duracion') as HTMLSelectElement | null;
+  const selOrden = document.getElementById('f-orden') as HTMLSelectElement | null;
+
+  if (grilla && vacio && cuenta) {
+    const items = Array.from(grilla.querySelectorAll<HTMLElement>('.lst-item'));
+    let destino = '';
+
+    // El pie y la home linkean con ?destino=, para entrar ya filtrado
+    const pedido = new URLSearchParams(location.search).get('destino');
+    if (pedido) destino = pedido;
+
+    const aplicar = () => {
+      const duracion = selDuracion?.value ?? '';
+      const orden = selOrden?.value ?? 'fecha';
+      let visibles = 0;
+
+      for (const item of items) {
+        const okDestino = !destino || item.dataset.destino === destino;
+        const okDuracion = !duracion || item.dataset.tipo === duracion;
+        const visible = okDestino && okDuracion;
+        item.hidden = !visible;
+        if (visible) visibles++;
+      }
+
+      // Reordenar con la propiedad order, sin tocar el DOM
+      const ordenados = [...items].sort((a, b) => {
+        if (orden === 'precio-asc') return Number(a.dataset.precio) - Number(b.dataset.precio);
+        if (orden === 'precio-desc') return Number(b.dataset.precio) - Number(a.dataset.precio);
+        return String(a.dataset.fecha).localeCompare(String(b.dataset.fecha));
+      });
+      ordenados.forEach((item, i) => { item.style.order = String(i); });
+
+      vacio.hidden = visibles > 0;
+      cuenta.textContent = visibles === 1 ? '1 viaje' : `${visibles} viajes`;
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      if (chip.dataset.destino === destino) {
+        document.querySelector('.chip.activo')?.classList.remove('activo');
+        chip.classList.add('activo');
+      }
+      chip.addEventListener('click', () => {
+        destino = chip.dataset.destino ?? '';
+        document.querySelector('.chip.activo')?.classList.remove('activo');
+        chip.classList.add('activo');
+        aplicar();
+      });
+    });
+
+    selDuracion?.addEventListener('change', aplicar);
+    selOrden?.addEventListener('change', aplicar);
+    aplicar();
+  }
+</script>
