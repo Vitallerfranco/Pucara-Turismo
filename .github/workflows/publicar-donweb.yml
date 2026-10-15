@@ -1,0 +1,95 @@
+# ============================================================================
+#  Pucara Turismo - Publicar el sitio en DonWeb
+#
+#  Se dispara de tres formas:
+#   1. Desde el boton "Publicar" del panel (repository_dispatch)
+#   2. A mano desde la pestania Actions de GitHub (workflow_dispatch)
+#   3. En cada push a la rama principal
+#
+#  Que hace: baja los viajes cargados en el panel, compila el sitio y sube
+#  el contenido de dist/ por FTP a public_html. NUNCA borra archivos del
+#  hosting, asi que admin/, api/ y uploads/ quedan intactos.
+# ============================================================================
+name: Publicar sitio en DonWeb
+
+on:
+  repository_dispatch:
+    types: [publicar]
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+# Si se aprieta Publicar dos veces, la segunda espera a que termine la primera
+concurrency:
+  group: publicar-donweb
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Bajar el codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # El prebuild (scripts/sync-paquetes.mjs) baja los viajes del panel
+      # y reescribe src/data/paquetes.json antes de compilar.
+      - name: Compilar el sitio con los viajes del panel
+        env:
+          PUCARA_API_URL: ${{ vars.PUCARA_API_URL || 'https://pucaraturismo.com.ar/api/paquetes.php' }}
+        run: npm run build
+
+      - name: Verificar que el build salio bien
+        run: |
+          test -f dist/index.html || { echo "No se genero dist/index.html"; exit 1; }
+          echo "Paginas generadas: $(find dist -name '*.html' | wc -l)"
+          echo "Peso total: $(du -sh dist | cut -f1)"
+
+      - name: Subir a DonWeb por FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_DIR:  ${{ secrets.FTP_DIR }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          # Sin --delete: solo sube y sobrescribe.
+          # Asi nunca toca admin/, api/ ni uploads/ en el hosting.
+          lftp -c "
+            set ftp:ssl-allow true;
+            set ssl:verify-certificate false;
+            set net:max-retries 3;
+            set net:timeout 20;
+            open -u '$FTP_USER','$FTP_PASS' '$FTP_HOST';
+            mirror -R --parallel=4 --verbose dist/ '$FTP_DIR';
+          "
+
+      # Le avisa al panel que el sitio ya esta online, para que deje de
+      # marcar "cambios sin publicar".
+      - name: Avisar al panel
+        if: success()
+        env:
+          PUCARA_API_URL: ${{ vars.PUCARA_API_URL || 'https://pucaraturismo.com.ar/api/paquetes.php' }}
+          PUCARA_API_TOKEN: ${{ secrets.PUCARA_API_TOKEN }}
+        run: npm run publicado
+
+      - name: Resumen
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "### Sitio publicado correctamente" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### La publicacion fallo" >> $GITHUB_STEP_SUMMARY
+            echo "Revisa los pasos de arriba para ver en cual se corto." >> $GITHUB_STEP_SUMMARY
+          fi

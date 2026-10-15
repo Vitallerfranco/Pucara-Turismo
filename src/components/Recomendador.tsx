@@ -238,7 +238,7 @@ export default function Recomendador() {
                     </h4>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.45)' }}>Rating</div>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>Rating</div>
                     <div style={{ fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '4px', justifyContent: 'flex-end' }}>
                       <span style={{ color: '#fb923c' }}>{icons.star}</span>
                       {match.paquete.rating}
@@ -252,7 +252,7 @@ export default function Recomendador() {
  
                 <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' as const }}>
                   <span style={S.badge}>
-                    <span style={{ color: 'rgba(255,255,255,0.4)' }}>{icons.calendar}</span>
+                    <span style={{ color: 'rgba(255,255,255,0.6)' }}>{icons.calendar}</span>
                     {match.paquete.duracionDias}d/{match.paquete.duracionNoches}n
                   </span>
                   <span style={S.badgeOrange}>
@@ -262,7 +262,7 @@ export default function Recomendador() {
                 </div>
  
                 <a
-                  href={`/Pucara-Turismo/paquetes/${match.paquete.slug}`}
+                  href={`/paquetes/${match.paquete.slug}`}
                   className="btn btn-primary btn-sm"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                 >
@@ -295,7 +295,7 @@ export default function Recomendador() {
               }} />
             ))}
           </div>
-          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>
+          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', textAlign: 'center' }}>
             Paso {step + 1} de 5
           </p>
         </div>

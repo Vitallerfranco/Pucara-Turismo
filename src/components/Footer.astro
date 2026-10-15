@@ -4,6 +4,23 @@
 <footer style="background: #0e0e0e; border-top: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.75);" class="py-16 md:py-20">
   <div class="container-gutter">
 
+    {/* Newsletter */}
+    <div style="background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(249,115,22,0.03));border:1px solid rgba(249,115,22,0.25);border-radius:16px;padding:28px 24px;margin-bottom:56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;">
+      <div style="flex:1;min-width:240px;">
+        <h3 style="color:#fff;font-size:1.15rem;font-weight:700;margin:0 0 6px;">Enterate de las nuevas salidas y promos</h3>
+        <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin:0;">Dejanos tu email y te avisamos cuando se confirma un viaje o hay una oferta.</p>
+      </div>
+      <form id="nl-form" action="https://assets.mailerlite.com/jsonp/2621768/forms/198028793608144042/subscribe" method="post" target="ml_nl_iframe" style="display:flex;gap:8px;flex-wrap:wrap;min-width:280px;flex:1;max-width:460px;">
+        <input type="email" name="fields[email]" required placeholder="Tu email" aria-label="Tu email"
+          style="flex:1;min-width:180px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:9px;padding:0.7rem 1rem;color:#fff;font-size:0.9rem;outline:none;box-sizing:border-box;" />
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+        <button type="submit" style="background:#f97316;color:#fff;font-weight:700;border:none;border-radius:9px;padding:0.7rem 1.4rem;font-size:0.9rem;cursor:pointer;white-space:nowrap;">Suscribirme</button>
+        <p id="nl-ok" style="display:none;width:100%;color:#25d366;font-size:0.85rem;margin:4px 0 0;">¡Listo! Ya estás en la lista. Gracias por suscribirte.</p>
+      </form>
+      <iframe name="ml_nl_iframe" style="display:none;" title="MailerLite"></iframe>
+    </div>
+
     {/* Main grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
 
@@ -11,12 +28,12 @@
       <div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
           <img
-            src="/Pucara-Turismo/isologopucara.png"
+            src="/isologopucara.png"
             alt="Pucará Turismo"
             style="height:48px;width:auto;object-fit:contain;"
           />
         </div>
-        <p style="font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.75; margin-bottom: 1.25rem; max-width: 260px;">
+        <p style="font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 1.25rem; max-width: 260px;">
           Somos una agencia de turismo con más de 15 años organizando viajes grupales por Argentina. Nos especializamos en escapadas de fin de semana, vacaciones de invierno y experiencias en termas, playas y montaña — con todo incluido y salidas desde zona oeste del Gran Buenos Aires.
         </p>
 
@@ -54,21 +71,21 @@
 
       {/* Destinations */}
       <div>
-        <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 20px;">DESTINOS</h4>
+        <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 20px;">DESTINOS</h4>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
           {[
-            { href: '/Pucara-Turismo/paquetes/pkg-001', label: 'Mar del Plata' },
-            { href: '/Pucara-Turismo/paquetes/pkg-003', label: 'Colón + Termas' },
-            { href: '/Pucara-Turismo/paquetes/pkg-006', label: 'Termas de Río Hondo' },
-            { href: '/Pucara-Turismo/paquetes/pkg-007', label: 'San Bernardo' },
-            { href: '/Pucara-Turismo/paquetes/pkg-009', label: 'La Falda, Córdoba' },
-            { href: '/Pucara-Turismo/paquetes/pkg-010', label: 'Uspallata, Mendoza' },
+            { href: '/paquetes/mar-del-plata-riazor-19sep', label: 'Mar del Plata' },
+            { href: '/paquetes/colon-san-jose-termas-rio-2d1n-24oct', label: 'Colón + Termas' },
+            { href: '/paquetes/rio-hondo-hebron-promo-16sep', label: 'Termas de Río Hondo' },
+            { href: '/paquetes/san-bernardo-hostal-del-sol-19sep', label: 'San Bernardo' },
+            { href: '/paquetes/las-grutas-hotel-mareas-26nov', label: 'Las Grutas' },
+            { href: '/paquetes/tandil-full-day-19sep', label: 'Tandil' },
           ].map(link => (
             <li key={link.href}>
               <a href={link.href}
-                style="font-size: 0.875rem; color: rgba(255,255,255,0.45); transition: color 0.2s ease; text-decoration: none;"
+                style="font-size: 0.875rem; color: rgba(255,255,255,0.6); transition: color 0.2s ease; text-decoration: none;"
                 onmouseover="this.style.color='#fb923c'"
-                onmouseout="this.style.color='rgba(255,255,255,0.45)'"
+                onmouseout="this.style.color='rgba(255,255,255,0.6)'"
               >{link.label}</a>
             </li>
           ))}
@@ -77,19 +94,19 @@
 
       {/* Info */}
       <div>
-        <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 20px;">INFORMACIÓN</h4>
+        <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 20px;">INFORMACIÓN</h4>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
           {[
-            { href: '/Pucara-Turismo/paquetes', label: 'Ver todos los paquetes' },
-            { href: '/Pucara-Turismo/#faq', label: 'Preguntas Frecuentes' },
-            { href: '/Pucara-Turismo/#sobre', label: 'Sobre Nosotros' },
-            { href: '/Pucara-Turismo/contacto', label: 'Contacto' },
+            { href: '/paquetes', label: 'Ver todos los paquetes' },
+            { href: '/#faq', label: 'Preguntas Frecuentes' },
+            { href: '/#sobre', label: 'Sobre Nosotros' },
+            { href: '/contacto', label: 'Contacto' },
           ].map(link => (
             <li key={link.href}>
               <a href={link.href}
-                style="font-size: 0.875rem; color: rgba(255,255,255,0.45); transition: color 0.2s ease; text-decoration: none;"
+                style="font-size: 0.875rem; color: rgba(255,255,255,0.6); transition: color 0.2s ease; text-decoration: none;"
                 onmouseover="this.style.color='#fb923c'"
-                onmouseout="this.style.color='rgba(255,255,255,0.45)'"
+                onmouseout="this.style.color='rgba(255,255,255,0.6)'"
               >{link.label}</a>
             </li>
           ))}
@@ -98,14 +115,14 @@
 
       {/* Contact */}
       <div>
-        <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 20px;">CONTACTO</h4>
+        <h4 style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 20px;">CONTACTO</h4>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
           <li>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
-              <span style="font-size:0.68rem;color:rgba(255,255,255,0.3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">WhatsApp</span>
+              <span style="font-size:0.68rem;color:rgba(255,255,255,0.6);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">WhatsApp</span>
             </div>
             <a href="https://wa.me/5491134952847" style="font-size:0.875rem;color:#fb923c;font-weight:600;text-decoration:none;transition:color 0.2s;"
               onmouseover="this.style.color='#f97316'"
@@ -115,10 +132,10 @@
           </li>
           <li>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
               </svg>
-              <span style="font-size:0.68rem;color:rgba(255,255,255,0.3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Email</span>
+              <span style="font-size:0.68rem;color:rgba(255,255,255,0.6);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Email</span>
             </div>
             <a href="mailto:turismopucara@hotmail.com" style="font-size:0.875rem;color:#fb923c;font-weight:600;text-decoration:none;transition:color 0.2s;"
               onmouseover="this.style.color='#f97316'"
@@ -128,10 +145,10 @@
           </li>
           <li>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
               </svg>
-              <span style="font-size:0.68rem;color:rgba(255,255,255,0.3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Atención</span>
+              <span style="font-size:0.68rem;color:rgba(255,255,255,0.6);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Atención</span>
             </div>
             <p style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin:0;">Lun–Vie: 9:00 a 19:00 hs</p>
           </li>
@@ -144,45 +161,45 @@
 
     {/* Bottom bar */}
     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin:0;">
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.6);margin:0;">
         &copy; 2026 Pucará Turismo. Todos los derechos reservados.
       </p>
       <div style="display:flex;gap:20px;">
-        <a href="/Pucara-Turismo/legal/terminos"
-          style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;"
+        <a href="/legal/terminos"
+          style="font-size:0.78rem;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;"
           onmouseover="this.style.color='#fb923c'"
-          onmouseout="this.style.color='rgba(255,255,255,0.3)'">Términos y Condiciones</a>
-        <a href="/Pucara-Turismo/legal/privacidad"
-          style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;"
+          onmouseout="this.style.color='rgba(255,255,255,0.6)'">Términos y Condiciones</a>
+        <a href="/legal/privacidad"
+          style="font-size:0.78rem;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;"
           onmouseover="this.style.color='#fb923c'"
-          onmouseout="this.style.color='rgba(255,255,255,0.3)'">Privacidad</a>
+          onmouseout="this.style.color='rgba(255,255,255,0.6)'">Privacidad</a>
       </div>
       <p style="font-size:0.78rem;color:rgba(255,255,255,0.2);margin:0;">
-        Desarrollado por <span style="color:rgba(255,255,255,0.4);font-weight:600;">VitaDev</span>
+        Desarrollado por <span style="color:rgba(255,255,255,0.6);font-weight:600;">VitaDev</span>
       </p>
     </div>
 
     {/* Trust badges */}
     <div style="border-top: 1px solid rgba(255,255,255,0.06); margin-top: 24px; padding-top: 24px; display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;">
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.78rem;">
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-size:0.78rem;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
         Pago seguro
       </div>
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.78rem;">
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-size:0.78rem;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
         +15 años de experiencia
       </div>
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.78rem;">
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-size:0.78rem;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
         Salidas desde zona oeste
       </div>
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.78rem;">
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-size:0.78rem;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
         </svg>
@@ -192,3 +209,19 @@
 
   </div>
 </footer>
+
+<script is:inline>
+  (function () {
+    var f = document.getElementById('nl-form');
+    if (!f) return;
+    f.addEventListener('submit', function () {
+      setTimeout(function () {
+        var ok = document.getElementById('nl-ok');
+        if (ok) ok.style.display = 'block';
+        var inp = f.querySelector('input[type=email]');
+        if (inp) inp.value = '';
+        if (typeof window.gtag === 'function') window.gtag('event', 'newsletter_signup', { lugar: 'footer' });
+      }, 300);
+    });
+  })();
+</script>

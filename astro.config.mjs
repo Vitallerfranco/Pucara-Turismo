@@ -4,9 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  base: '/Pucara-Turismo',
   trailingSlash: 'always',
-  site: 'https://vitallerfranco.github.io',
+  site: 'https://pucaraturismo.com.ar',
   integrations: [react(), sitemap()],
   output: 'static',
 

@@ -1,15 +1,20 @@
+---
+const path = Astro.url.pathname;
+const active = (base: string) => path === base || path === base + '/' || path.startsWith(base + '/');
+---
+
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#0e0e0e]/90 backdrop-blur-md border-b border-white/6">
   <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-    <a href="/Pucara-Turismo/" class="flex items-center group">
-      <img src="/Pucara-Turismo/isologopucara.png" alt="Pucara Turismo" style="height:60px;width:auto;" />
+    <a href="/" class="flex items-center group">
+      <img src="/isologopucara.png" alt="Pucara Turismo" style="height:60px;width:auto;" />
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a href="/Pucara-Turismo/paquetes" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200">Paquetes</a>
-      <a href="/Pucara-Turismo/resenas" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200">Reseñas</a>
-      <a href="/Pucara-Turismo/#faq" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200">FAQ</a>
-      <a href="/Pucara-Turismo/contacto" class="text-white/40 hover:text-white text-sm font-medium transition-colors duration-200">Contacto</a>
+      <a href="/paquetes" class="nav-link text-sm font-medium" aria-current={active('/paquetes') ? 'page' : undefined}>Paquetes</a>
+      <a href="/resenas" class="nav-link text-sm font-medium" aria-current={active('/resenas') ? 'page' : undefined}>Reseñas</a>
+      <a href="/#faq" class="nav-link text-sm font-medium">FAQ</a>
+      <a href="/contacto" class="nav-link text-sm font-medium" aria-current={active('/contacto') ? 'page' : undefined}>Contacto</a>
     </nav>
 
     <div class="flex items-center gap-3">
@@ -17,20 +22,20 @@
         class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold rounded-lg transition-colors duration-200">
         Consultar
       </a>
-      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
-        <span class="w-5 h-px bg-white/60 block" id="bar1"></span>
-        <span class="w-5 h-px bg-white/60 block" id="bar2"></span>
-        <span class="w-3 h-px bg-white/60 block" id="bar3"></span>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1 w-8 h-8" aria-label="Menú" aria-expanded="false">
+        <span class="w-5 h-px bg-white/70 block" id="bar1"></span>
+        <span class="w-5 h-px bg-white/70 block" id="bar2"></span>
+        <span class="w-5 h-px bg-white/70 block" id="bar3"></span>
       </button>
     </div>
   </div>
 
-  <div id="mobile-menu" class="md:hidden hidden border-t border-white/6 bg-[#0e0e0e]">
+  <div id="mobile-menu" class="md:hidden border-t border-white/6 bg-[#0e0e0e]">
     <nav class="flex flex-col px-6 py-4 gap-1">
-      <a href="/Pucara-Turismo/paquetes" class="text-white/50 hover:text-white text-sm py-3 border-b border-white/5">Paquetes</a>
-      <a href="/Pucara-Turismo/resenas" class="text-white/50 hover:text-white text-sm py-3 border-b border-white/5">Reseñas</a>
-      <a href="/Pucara-Turismo/#faq" class="text-white/50 hover:text-white text-sm py-3 border-b border-white/5">FAQ</a>
-      <a href="/Pucara-Turismo/contacto" class="text-white/50 hover:text-white text-sm py-3">Contacto</a>
+      <a href="/paquetes" class="text-white/60 hover:text-white text-sm py-3 border-b border-white/5 transition-colors">Paquetes</a>
+      <a href="/resenas" class="text-white/60 hover:text-white text-sm py-3 border-b border-white/5 transition-colors">Reseñas</a>
+      <a href="/#faq" class="text-white/60 hover:text-white text-sm py-3 border-b border-white/5 transition-colors">FAQ</a>
+      <a href="/contacto" class="text-white/60 hover:text-white text-sm py-3 transition-colors">Contacto</a>
       <a href="https://wa.me/5491134952847" target="_blank" rel="noopener noreferrer"
         class="mt-3 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-orange-500 text-white text-sm font-semibold rounded-lg">
         Consultar por WhatsApp
@@ -39,15 +44,71 @@
   </div>
 </header>
 
+<style>
+  /* Links del nav con subrayado animado + estado activo */
+  .nav-link {
+    position: relative;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 2px;
+    background: #e8622a;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+  .nav-link[aria-current="page"] { color: #fff; }
+
+  /* Menú mobile: despliegue suave */
+  #mobile-menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.32s ease, opacity 0.32s ease;
+  }
+  #mobile-menu.open {
+    max-height: 340px;
+    opacity: 1;
+  }
+
+  /* Hamburguesa que se transforma en X */
+  #menu-toggle span {
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+  #menu-toggle.is-open #bar1 { transform: translateY(7px) rotate(45deg); }
+  #menu-toggle.is-open #bar2 { opacity: 0; }
+  #menu-toggle.is-open #bar3 { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    #mobile-menu, #menu-toggle span, .nav-link::after { transition: none; }
+  }
+</style>
+
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  const bar3 = document.getElementById('bar3');
+
+  const setMenu = (open: boolean) => {
+    menu?.classList.toggle('open', open);
+    toggle?.classList.toggle('is-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+  };
+
   toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden', isOpen);
-    bar3?.classList.toggle('w-3', isOpen);
-    bar3?.classList.toggle('w-5', !isOpen);
+    setMenu(!menu?.classList.contains('open'));
+  });
+
+  // Cerrar el menú al tocar un link (útil para el ancla #faq que no recarga)
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setMenu(false));
   });
 </script>
-

@@ -32,3 +32,13 @@ coverage/
 
 # Netlify
 .netlify/
+
+# Dashboard: credenciales de la base y respaldos locales
+dashboard/admin/config.php
+src/data/paquetes.backup.json
+panel-pucara.zip
+panel-actualizacion.zip
+
+# Carpetas y archivos de trabajo que no van al repo
+Claude outputs/
+*.zip

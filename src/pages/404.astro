@@ -1,0 +1,160 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PaqueteCard from '@/components/PaqueteCard.astro';
+import paquetesData from '@/data/paquetes.json';
+
+const WA = "5491134952847";
+
+// 3 viajes destacados para recuperar la visita (los próximos por fecha)
+const destacados = [...paquetesData.paquetes]
+  .sort((a, b) => new Date(a.proximaSalida).getTime() - new Date(b.proximaSalida).getTime())
+  .slice(0, 3);
+
+const waMsg = encodeURIComponent('Hola Pucará Turismo, estaba en la web y no encontré lo que buscaba. ¿Me ayudan?');
+---
+
+<BaseLayout
+  title="Página no encontrada | Pucará Turismo"
+  description="No encontramos la página que buscás, pero sí muchos destinos increíbles para tu próxima escapada."
+>
+  <section class="e404-hero">
+    <div class="e404-inner">
+      <p class="e404-code" aria-hidden="true">404</p>
+      <h1 class="e404-title">Esta página se fue de viaje ✈️</h1>
+      <p class="e404-text">
+        No encontramos lo que buscabas… pero tenemos un montón de destinos esperándote.
+        Volvé al inicio o escribinos y te ayudamos a encontrar tu próxima escapada.
+      </p>
+
+      <div class="e404-btns">
+        <a href="/" class="e404-btn e404-btn-primary">Volver al inicio</a>
+        <a href="/paquetes/" class="e404-btn e404-btn-ghost">Ver todos los viajes</a>
+        <a href="/destinos/" class="e404-btn e404-btn-ghost">Explorar destinos</a>
+      </div>
+
+      <a
+        href={`https://wa.me/${WA}?text=${waMsg}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="e404-wa"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.47-.01a.9.9 0 0 0-.65.31c-.22.25-.85.83-.85 2.02 0 1.19.87 2.35.99 2.51.12.17 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/>
+        </svg>
+        Escribinos por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  {destacados.length > 0 && (
+    <section class="e404-dest">
+      <p class="e404-dest-label">MIENTRAS TANTO, MIRÁ ESTAS SALIDAS</p>
+      <div class="e404-grid">
+        {destacados.map((paquete) => (
+          <PaqueteCard paquete={paquete} whatsappPhone={WA} />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .e404-hero {
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 1.5rem 3rem;
+  }
+  .e404-inner { max-width: 620px; }
+  .e404-code {
+    font-size: clamp(5.5rem, 20vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(135deg, #f97316, #e8622a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
+  }
+  .e404-title {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+  .e404-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #9a9a9a;
+    margin: 0 auto 2rem;
+    max-width: 480px;
+  }
+  .e404-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+  }
+  .e404-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.4rem;
+    border-radius: 9px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .e404-btn-primary {
+    background: #e8622a;
+    border: 1px solid #e8622a;
+    color: #fff;
+  }
+  .e404-btn-primary:hover { background: #cf5523; }
+  .e404-btn-ghost {
+    background: #1c1c1c;
+    border: 1px solid #2b2b2b;
+    color: #cfcfcf;
+  }
+  .e404-btn-ghost:hover { background: #242424; color: #fff; }
+  .e404-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #25d366;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .e404-wa:hover { text-decoration: underline; }
+
+  .e404-dest {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+  .e404-dest-label {
+    text-align: center;
+    color: #8f8f8f;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin: 0 0 1.5rem;
+  }
+  .e404-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 1000px) {
+    .e404-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .e404-grid { grid-template-columns: 1fr; }
+  }
+</style>

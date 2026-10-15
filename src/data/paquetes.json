@@ -3,463 +3,1261 @@
     "precioEnBaseDoble": "Todos los precios publicados son por persona en base doble (habitación compartida con otra persona).",
     "suplementoSingle": "Si preferís habitación privada sin compartir, se aplica un suplemento del 50% sobre el precio del paquete.",
     "menoresCuatroAnios": "Los niños menores de 4 años viajan sin cargo en el paquete — solo abonan los gastos administrativos ($10.000 por persona).",
-    "cocheCama": "Todos nuestros viajes se realizan en bus mix. Si deseás viajar en la parte inferior del coche (cama), el costo adicional es de $10.000 por persona.",
-    "tipoBus": "Bus mix con servicio a bordo. La parte inferior (coche cama) tiene costo adicional de $10.000 por persona.",
+    "cocheCama": "Todos nuestros viajes se realizan en bus mix. Si deseás viajar en la parte inferior del coche (butaca cama), el costo adicional es de $10.000 por persona.",
+    "tipoBus": "Bus mix con servicio a bordo. La parte inferior (butaca cama) tiene costo adicional de $10.000 por persona.",
     "puntosDeSubida": "Contamos con múltiples puntos de subida distribuidos en el Gran Buenos Aires: Liniers, Haedo, Morón, Ituzaingó, Castelar, Palermo, Once y más. Consultá el punto más cercano a vos."
   },
   "paquetes": [
     {
-      "id": "pkg-001",
-      "slug": "mar-del-plata-finde-13jun",
-      "titulo": "Mar del Plata — Finde Largo · 13 de Junio",
+      "id": "pkg-101",
+      "slug": "san-jose-cena-show-baile-11sep",
+      "titulo": "Termas de San José — Cena Show + Baile · 11 de Septiembre",
+      "tipo": "full_day",
+      "destino": "colon-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 139000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a las Termas de San José con desayuno, merienda a bordo, cena show tenedor libre y baile. Edición especial Día del Maestro. Salida 11 de septiembre.",
+      "descripcionLarga": "Un full day pensado para festejar el Día del Maestro a lo grande. Salimos en el día hacia las Termas de San José, en Colón (Entre Ríos), con desayuno y merienda a bordo, entrada y traslado a las termas incluidos, y a la noche una cena show tenedor libre con baile para cerrar la jornada a puro festejo. Coordinador durante todo el viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Desayuno",
+        "Merienda a bordo",
+        "Entrada y traslado a Termas de San José",
+        "Cena show tenedor libre + baile",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzo",
+        "Gastos personales",
+        "Bebidas extra"
+      ],
+      "imagenPrincipal": "/termas-san-jose-1.jpg",
+      "imagenes": [
+        "/termas-san-jose-1.jpg",
+        "/termas-san-jose-2.jpg",
+        "/termas-san-jose-4.jpg",
+        "/termas-san-jose-5.jpg"
+      ],
+      "rating": 4.9,
+      "reviews": 74,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-09-11",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "fiesta",
+        "relax",
+        "litoral",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde los puntos de subida del GBA en bus semi cama. Desayuno y merienda a bordo.",
+        "Llegada a Colón. Día completo en las Termas de San José (entrada y traslado incluidos).",
+        "Noche: cena show tenedor libre con baile. Regreso a Buenos Aires al finalizar."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-102",
+      "slug": "colon-termas-colon-cena-show-12sep",
+      "titulo": "Colón + Termas de Colón + Cena Show · 12 de Septiembre",
+      "tipo": "viaje_completo",
+      "destino": "colon-entre-rios",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 162000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 81000,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "2 días / 1 noche en Hostería El Abuelo. Media pensión, cena show tenedor libre y Termas de Colón. Edición Día del Maestro. Salida 12 de septiembre.",
+      "descripcionLarga": "Escapada a Colón, Entre Ríos, para festejar el Día del Maestro. Te alojás en la Hostería El Abuelo con media pensión y disfrutás de una cena show con tenedor libre y de las Termas de Colón (entrada incluida). Bus semi cama con servicio a bordo, coordinador de viaje y el encanto del litoral entrerriano: playa de río, termas y buena gastronomía. El segundo día emprendemos el regreso a Buenos Aires a las 17:00 hs desde las termas.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "1 noche en Hostería El Abuelo",
+        "Media pensión",
+        "Cena show tenedor libre",
+        "Entrada a Termas de Colón",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzo del segundo día",
+        "Gastos personales",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/termas-colon-1.jpg",
+      "imagenes": [
+        "/termas-colon-1.jpg",
+        "/termas-colon-2.jpg",
+        "/termas-san-jose-1.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 66,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-09-12",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "fiesta",
+        "relax",
+        "litoral",
+        "pareja"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
+        "Día 2 — Llegada a Colón. Check-in en Hostería El Abuelo. Tarde: Termas de Colón (entrada incluida). Noche: cena show tenedor libre.",
+        "Día 3 — Desayuno. Check-out. Regreso a Buenos Aires a partir de las 17:00 hs desde las termas."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $81.000 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-103",
+      "slug": "san-bernardo-hotel-colores-12sep",
+      "titulo": "San Bernardo — Hotel Colores · 12 de Septiembre",
+      "tipo": "viaje_completo",
+      "destino": "san-bernardo",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 98000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 49000,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "2 días / 1 noche en Hotel Colores (pileta, a 200 mts de la playa). Desayuno, coordinador y bus mix. Edición Día del Maestro. Salida 12 de septiembre.",
+      "descripcionLarga": "Escapada de fin de semana a San Bernardo para festejar el Día del Maestro. Te alojás en el Hotel Colores, con pileta y a solo 200 metros de la playa, con desayuno incluido. Coordinador de viaje y bus mix con servicio a bordo desde el Gran Buenos Aires. El segundo día emprendemos el regreso a Buenos Aires en horas de la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hotel Colores",
+        "Desayuno",
+        "Acceso a pileta del hotel",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzo y cena",
+        "Gastos personales",
+        "Excursiones"
+      ],
+      "imagenPrincipal": "/san-bernardo.jpg",
+      "imagenes": [
+        "/san-bernardo.jpg",
+        "/hostal-del-sol-1.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 58,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-09-12",
+      "frecuenciaSalidas": "quincenal",
+      "tags": [
+        "playa",
+        "familia",
+        "relax",
+        "finde"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
+        "Día 2 — Llegada a San Bernardo. Check-in Hotel Colores. Desayuno. Día libre en la playa y el hotel.",
+        "Día 3 — Desayuno. Mañana libre. Regreso a Buenos Aires en horas de la tarde."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $49.000 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-104",
+      "slug": "villa-elisa-full-day-13sep",
+      "titulo": "Termas de Villa Elisa — Full Day · 13 y 20 de Septiembre",
+      "tipo": "full_day",
+      "destino": "villa-elisa-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 85000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a las Termas de Villa Elisa (Entre Ríos) con entrada, traslado, coordinador y bus semi cama. Salidas 13 y 20 de septiembre.",
+      "descripcionLarga": "Un día completo de relax en las Termas de Villa Elisa, uno de los complejos termales más lindos de Entre Ríos, con amplios parques, piscinas de distintas temperaturas y sector spa. El full day incluye entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salidas disponibles el 13 y el 20 de septiembre.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Entrada y traslado a Termas de Villa Elisa",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Comidas",
+        "Gastos personales",
+        "Servicios de spa opcionales"
+      ],
+      "imagenPrincipal": "/villa-elisa-1.jpg",
+      "imagenes": [
+        "/villa-elisa-1.jpg",
+        "/villa-elisa-2.jpg",
+        "/villa-elisa-3.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 41,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-09-13",
+      "frecuenciaSalidas": "quincenal",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus semi cama con servicio a bordo.",
+        "Día completo en las Termas de Villa Elisa (entrada y traslado incluidos).",
+        "Regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-105",
+      "slug": "san-jose-full-day-13sep",
+      "titulo": "Termas de San José — Full Day · 13 y 27 de Septiembre",
+      "tipo": "full_day",
+      "destino": "colon-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 120000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a las Termas de San José con desayuno, merienda a bordo, entrada, traslado y coordinador. Salidas 13 y 27 de septiembre.",
+      "descripcionLarga": "Un día completo de termas y relax en Colón, Entre Ríos. El full day a las Termas de San José incluye desayuno y merienda a bordo, entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salidas disponibles el 13 y el 27 de septiembre.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Desayuno",
+        "Merienda a bordo",
+        "Entrada y traslado a Termas de San José",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzo",
+        "Gastos personales",
+        "Bebidas extra"
+      ],
+      "imagenPrincipal": "/termas-san-jose-1.jpg",
+      "imagenes": [
+        "/termas-san-jose-1.jpg",
+        "/termas-san-jose-2.jpg",
+        "/termas-san-jose-3.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 88,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-09-13",
+      "frecuenciaSalidas": "quincenal",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus semi cama. Desayuno y merienda a bordo.",
+        "Día completo en las Termas de San José (entrada y traslado incluidos).",
+        "Regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-106",
+      "slug": "termas-colon-full-day-13sep",
+      "titulo": "Termas de Colón — Full Day · 13 y 27 de Septiembre",
+      "tipo": "full_day",
+      "destino": "colon-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 139000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a las Termas de Colón con desayuno, almuerzo, merienda a bordo, entrada, traslado y coordinador. Salidas 13 y 27 de septiembre.",
+      "descripcionLarga": "Un día completo en las Termas de Colón, Entre Ríos, con pensión incluida: desayuno, almuerzo y merienda a bordo. El full day incluye entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salidas disponibles el 13 y el 27 de septiembre.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Desayuno",
+        "Almuerzo",
+        "Merienda a bordo",
+        "Entrada y traslado a Termas de Colón",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas extra"
+      ],
+      "imagenPrincipal": "/termas-colon-1.jpg",
+      "imagenes": [
+        "/termas-colon-1.jpg",
+        "/termas-colon-2.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 79,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-09-13",
+      "frecuenciaSalidas": "quincenal",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus semi cama. Desayuno a bordo.",
+        "Día completo en las Termas de Colón (entrada y traslado incluidos). Almuerzo incluido.",
+        "Merienda a bordo y regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-107",
+      "slug": "rio-hondo-hebron-promo-16sep",
+      "titulo": "Termas de Río Hondo — Hotel Hebrón (PROMO) · 16 de Septiembre",
+      "tipo": "viaje_completo",
+      "destino": "rio-hondo",
+      "duracionDias": 7,
+      "duracionNoches": 4,
+      "precioBase": 199000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 99500,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "PROMO $199.000 (antes $290.000). 7 días / 4 noches en Hotel Hebrón ★★. Pensión completa + merienda, show en el hotel y clase de aquagym. Salida 16 de septiembre.",
+      "descripcionLarga": "Las Termas de Río Hondo, en Santiago del Estero, son uno de los destinos termales más reconocidos de Argentina. Aprovechá esta PROMO: 7 días con alojamiento en el Hotel Hebrón ★★, con pensión completa más merienda (desayuno, almuerzo, merienda y cena), show en el hotel y clase de aquagym. Bus mix con servicio a bordo desde el Gran Buenos Aires. Un descanso total con todo resuelto, a un precio promocional por tiempo limitado.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "4 noches en Hotel Hebrón ★★",
+        "Pensión completa (desayuno, almuerzo, merienda y cena)",
+        "Show en el hotel",
+        "Clase de aquagym"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Excursiones opcionales fuera del hotel",
+        "Bebidas extra"
+      ],
+      "imagenPrincipal": "/rio-hondo-1.jpg",
+      "imagenes": [
+        "/rio-hondo-1.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 156,
+      "cuposPorSalida": 20,
+      "proximaSalida": "2026-09-16",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "relax",
+        "pareja",
+        "naturaleza",
+        "norte"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde el GBA en bus mix con servicio a bordo.",
+        "Día 2 — Llegada a Río Hondo. Check-in Hotel Hebrón. Pensión completa. Tarde libre en las termas. Show nocturno.",
+        "Día 3 — Pensión completa + merienda. Clase de aquagym. Día de relax en el hotel y las termas.",
+        "Día 4 — Pensión completa + merienda. Día libre. Show en el hotel.",
+        "Día 5 — Pensión completa + merienda. Día libre en las termas.",
+        "Día 6 — Desayuno. Check-out. Inicio del regreso a Buenos Aires.",
+        "Día 7 — Llegada a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once",
+        "La Plata"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $99.500 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-108",
+      "slug": "tandil-full-day-19sep",
+      "titulo": "Tandil — Full Day · 19 de Septiembre",
+      "tipo": "full_day",
+      "destino": "tandil",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 85000,
+      "gastosAdmin": 6000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a Tandil: Cerro Centinela, Monte Calvario, Lago, Parque Independencia, Castillo Morisco, Dique del Fuerte, Piedra Movediza y compras regionales. Con guía local. Salida 19 de septiembre.",
+      "descripcionLarga": "Un día a pura sierra en Tandil. Recorremos los clásicos: Cerro Centinela, Monte Calvario, el Lago del Fuerte, el Parque Independencia con su Castillo Morisco, el Dique del Fuerte y la famosa Piedra Movediza, con tiempo para las compras de productos regionales (salames y quesos). Incluye bus mix con merienda a bordo, coordinador y guía local. Un full day ideal para disfrutar el paisaje serrano y la gastronomía tandilense.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "Merienda a bordo",
+        "Coordinador de viaje",
+        "Guía local",
+        "Recorrido: Cerro Centinela, Monte Calvario, Lago, Parque Independencia, Castillo Morisco, Dique del Fuerte y Piedra Movediza"
+      ],
+      "noIncluye": [
+        "Almuerzo",
+        "Compras y productos regionales",
+        "Gastos personales"
+      ],
+      "imagenPrincipal": "/tandil-1.jpg",
+      "imagenes": [
+        "/tandil-1.jpg",
+        "/tandil-2.jpg",
+        "/tandil-3.jpg",
+        "/tandil-4.jpg",
+        "/tandil-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 52,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-09-19",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "sierras",
+        "naturaleza",
+        "gastronomía",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus mix con servicio a bordo. Merienda a bordo.",
+        "Llegada a Tandil. Recorrido con guía local: Cerro Centinela, Monte Calvario, Lago del Fuerte, Parque Independencia y Castillo Morisco, Dique del Fuerte y Piedra Movediza.",
+        "Tiempo libre para compras regionales. Regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($6.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-109",
+      "slug": "mar-del-plata-riazor-19sep",
+      "titulo": "Mar del Plata — Hotel Riazor · Septiembre y Octubre",
       "tipo": "viaje_completo",
       "destino": "mar-del-plata",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 119000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 59500,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "2 días / 1 noche en Hotel Riazor (frente al shopping, a 400 mts del centro Güemes). Pensión completa, show en el hotel y bus mix. Salidas sábados y domingos.",
+      "descripcionLarga": "Escapada de fin de semana a Mar del Plata con todo resuelto. Te alojás en el Hotel Riazor, frente al Shopping Los Gallegos y a 400 metros del centro comercial Güemes, en pleno corazón de la ciudad. El paquete incluye pensión completa, show en el hotel y traslado en bus mix con servicio a bordo. Salidas confirmadas: sábados y domingos de septiembre (19 y 26) y de octubre (del 3 al 31). El segundo día emprendemos el regreso a Buenos Aires en horas de la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hotel Riazor",
+        "Pensión completa (desayuno, almuerzo y cena)",
+        "Show en el hotel",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Bebidas con las comidas",
+        "Gastos personales",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/mar-del-plata-5.jpg",
+      "imagenes": [
+        "/mar-del-plata-5.jpg",
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-2.jpg",
+        "/hotel-riazor-3.jpg",
+        "/hotel-riazor-4.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 148,
+      "cuposPorSalida": 20,
+      "proximaSalida": "2026-09-19",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "playa",
+        "familia",
+        "relax",
+        "finde"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
+        "Día 2 — Llegada a Mar del Plata. Check-in Hotel Riazor. Pensión completa. Tarde libre en la ciudad, la rambla y el centro Güemes. Show en el hotel.",
+        "Día 3 — Desayuno. Regreso a Buenos Aires en horas de la tarde."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $59.500 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-110",
+      "slug": "san-bernardo-hostal-del-sol-19sep",
+      "titulo": "San Bernardo — Hostal del Sol Resort & Spa ★★★★ · Septiembre y Octubre",
+      "tipo": "viaje_completo",
+      "destino": "san-bernardo",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 135000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 67500,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "2 días / 1 noche en Hostal del Sol Resort & Spa ★★★★ (pileta climatizada, gimnasio, sala de juegos, canchas). Desayuno buffet y bus mix. Salidas sábados y domingos.",
+      "descripcionLarga": "Fin de semana en el mejor resort de San Bernardo. El Hostal del Sol Resort & Spa 4 estrellas es ideal para descansar y divertirse: pileta climatizada, gimnasio, sala de juegos y canchas de fútbol y básquet. Incluye desayuno buffet y bus mix con servicio a bordo desde el Gran Buenos Aires. Salidas confirmadas: sábados y domingos del 12, 19 y 26 de septiembre y del 3, 17, 24 y 31 de octubre. El segundo día emprendemos el regreso en horas de la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hostal del Sol Resort & Spa ★★★★",
+        "Desayuno buffet",
+        "Acceso a pileta climatizada, gimnasio y todas las instalaciones",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzo y cena",
+        "Gastos personales",
+        "Excursiones"
+      ],
+      "imagenPrincipal": "/san-bernardo.jpg",
+      "imagenes": [
+        "/san-bernardo.jpg",
+        "/hostal-del-sol-1.jpg",
+        "/hostal-del-sol-2.jpg",
+        "/hostal-del-sol-3.jpg",
+        "/hostal-del-sol-4.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 121,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-09-19",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "playa",
+        "familia",
+        "relax",
+        "finde",
+        "resort"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
+        "Día 2 — Llegada a San Bernardo. Check-in Hostal del Sol Resort & Spa. Desayuno buffet. Día libre en el resort y la playa.",
+        "Día 3 — Desayuno. Mañana libre. Regreso a Buenos Aires en horas de la tarde."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $67.500 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-111",
+      "slug": "federacion-los-angelitos-25sep",
+      "titulo": "Federación — Hotel Los Angelitos · 25 de Septiembre",
+      "tipo": "viaje_completo",
+      "destino": "federacion-entre-rios",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 175000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 87500,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "4 días / 3 noches en Hotel Los Angelitos. 3 desayunos y bus semi cama. El gran parque termal de Federación (Entre Ríos). Salida 25 de septiembre.",
+      "descripcionLarga": "Federación, en Entre Ríos, es sinónimo de termas: su parque termal es uno de los más grandes y completos del país, con piscinas de distintas temperaturas y un enorme parque acuático. Te alojás en el Hotel Los Angelitos con 3 desayunos incluidos y viajás en bus semi cama con servicio a bordo desde el Gran Buenos Aires. Cuatro días para relajarte en las aguas termales y disfrutar de la tranquilidad de la ciudad.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "3 noches en Hotel Los Angelitos",
+        "3 desayunos",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzos y cenas",
+        "Entradas al parque termal",
+        "Gastos personales"
+      ],
+      "imagenPrincipal": "/federacion-1.jpg",
+      "imagenes": [
+        "/federacion-1.jpg",
+        "/federacion-2.jpg",
+        "/federacion-3.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 63,
+      "cuposPorSalida": 22,
+      "proximaSalida": "2026-09-25",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "relax",
+        "familia",
+        "litoral"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
+        "Día 2 — Llegada a Federación. Check-in Hotel Los Angelitos. Desayuno. Día libre en el parque termal.",
+        "Día 3 — Desayuno. Día completo de termas y relax.",
+        "Día 4 — Desayuno. Check-out. Regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once",
+        "La Plata"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $87.500 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-112",
+      "slug": "san-pedro-howard-johnson-03oct",
+      "titulo": "San Pedro — Howard Johnson ★★★★ · 3 de Octubre",
+      "tipo": "viaje_completo",
+      "destino": "san-pedro",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 195000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 97500,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "2 días / 1 noche en Howard Johnson ★★★★ San Pedro. Media pensión + bebida, traslado a la campiña y bus semi cama. Salida 3 de octubre.",
+      "descripcionLarga": "Escapada de fin de semana a San Pedro, en el Howard Johnson 4 estrellas. El sábado te alojás en el Howard Johnson Hotel & Spa (centro) y el domingo disfrutás del Howard Johnson Marinas Resort. Incluye media pensión con bebida, traslado a la campiña (no incluye entrada) y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Comodidad de resort a pocas horas de Buenos Aires.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "1 noche en Howard Johnson ★★★★ (Hotel & Spa / Marinas Resort)",
+        "Media pensión + bebida",
+        "Traslado a la campiña",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Entrada a la campiña",
+        "Gastos personales",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/san-pedro-1.jpg",
+      "imagenes": [
+        "/san-pedro-1.jpg",
+        "/san-pedro-2.jpg",
+        "/san-pedro-3.jpg",
+        "/san-pedro-4.jpg",
+        "/san-pedro-5.jpg",
+        "/san-pedro-6.jpg",
+        "/san-pedro-7.jpg",
+        "/san-pedro-8.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 47,
+      "cuposPorSalida": 22,
+      "proximaSalida": "2026-10-03",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "resort",
+        "relax",
+        "pareja",
+        "spa"
+      ],
+      "itinerario": [
+        "Día 1 (sábado) — Salida desde el GBA en bus semi cama. Llegada a San Pedro. Check-in Howard Johnson Hotel & Spa (centro). Media pensión.",
+        "Día 2 (domingo) — Desayuno. Día en el Howard Johnson Marinas Resort. Traslado a la campiña. Regreso a Buenos Aires.",
+        "Regreso a Buenos Aires al finalizar el segundo día."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $97.500 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-113",
+      "slug": "rosario-san-nicolas-full-day-04oct",
+      "titulo": "Rosario & San Nicolás + Almuerzo — Full Day · 4 de Octubre",
+      "tipo": "full_day",
+      "destino": "rosario-santa-fe",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 89900,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a Rosario y San Nicolás con almuerzo incluido. Iglesia Virgen del Rosario, costanera, Monumento a la Bandera y playa del Paraná. Salida 4 de octubre.",
+      "descripcionLarga": "Un día completo por dos ciudades a orillas del Paraná. Primera parada en San Nicolás para visitar la Iglesia Virgen del Rosario. Seguimos a Rosario, donde almorzamos en un restaurante (entrada, plato principal y postre incluidos) y recorremos la costanera, el imponente Monumento Nacional a la Bandera y la playa del Paraná. Incluye coordinador y bus mix con servicio a bordo desde el Gran Buenos Aires.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "Almuerzo en Rosario (entrada, plato principal y postre)",
+        "Visita a San Nicolás (Iglesia Virgen del Rosario)",
+        "Recorrido por Rosario: costanera, Monumento a la Bandera y playa del Paraná",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Bebidas del almuerzo",
+        "Gastos personales",
+        "Entradas opcionales"
+      ],
+      "imagenPrincipal": "/rosario-1.jpg",
+      "imagenes": [
+        "/rosario-1.jpg",
+        "/rosario-2.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 39,
+      "cuposPorSalida": 35,
+      "proximaSalida": "2026-10-04",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "ciudad",
+        "cultura",
+        "gastronomía",
+        "full day",
+        "río"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus mix con servicio a bordo.",
+        "Primera parada en San Nicolás: visita a la Iglesia Virgen del Rosario.",
+        "Llegada a Rosario. Almuerzo en restaurante (entrada, plato principal y postre). Recorrido por la costanera, el Monumento a la Bandera y la playa del Paraná. Regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-114",
+      "slug": "colon-san-jose-termas-rio-3d2n-10oct",
+      "titulo": "Colón + Termas de San José — Hotel Termas y Río (3d/2n) · 10 de Octubre",
+      "tipo": "viaje_completo",
+      "destino": "colon-entre-rios",
       "duracionDias": 3,
       "duracionNoches": 2,
+      "precioBase": 240000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 120000,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "3 días / 2 noches en Hotel Termas y Río (a 100 mts de la terma y 200 mts de la playa del río). Media pensión y Termas de San José incluidas. Salida 10 de octubre.",
+      "descripcionLarga": "Escapada completa a Colón, Entre Ríos. Te alojás en el Hotel Termas y Río, a solo 100 metros de las Termas de San José y 200 metros de la playa del río Uruguay, con media pensión. Incluye entrada y traslado a las Termas de San José y bus semi cama con servicio a bordo desde el Gran Buenos Aires. El tercer día emprendemos el regreso a Buenos Aires a las 17:00 hs desde las termas.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "2 noches en Hotel Termas y Río",
+        "Media pensión",
+        "Entrada y traslado a Termas de San José",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzos",
+        "Gastos personales",
+        "Excursiones adicionales"
+      ],
+      "imagenPrincipal": "/termas-san-jose-1.jpg",
+      "imagenes": [
+        "/termas-san-jose-1.jpg",
+        "/termas-san-jose-2.jpg",
+        "/termas-san-jose-3.jpg",
+        "/hotel-termas-rio-1.jpg",
+        "/hotel-termas-rio-2.jpg",
+        "/hotel-termas-rio-3.jpg",
+        "/termas-colon-1.jpg"
+      ],
+      "rating": 4.9,
+      "reviews": 84,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-10-10",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "familia"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
+        "Día 2 — Llegada a Colón. Check-in Hotel Termas y Río. Media pensión. Tarde libre en la ciudad o la playa del río.",
+        "Día 3 — Desayuno. Termas de San José (entrada y traslado incluidos). Regreso a Buenos Aires a partir de las 17:00 hs desde las termas."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once",
+        "La Plata"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
+        "suplementoSingle": "Suplemento habitación individual: $120.000 adicionales sobre el precio del paquete.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-115",
+      "slug": "termas-colon-full-day-11oct",
+      "titulo": "Termas de Colón — Full Day · 11 de Octubre",
+      "tipo": "full_day",
+      "destino": "colon-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 125000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a las Termas de Colón con desayuno, almuerzo, merienda a bordo, entrada, traslado y coordinador. Salida 11 de octubre.",
+      "descripcionLarga": "Un día completo en las Termas de Colón, Entre Ríos, con pensión incluida: desayuno, almuerzo y merienda a bordo. El full day incluye entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salida 11 de octubre.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Desayuno",
+        "Almuerzo",
+        "Merienda a bordo",
+        "Entrada y traslado a Termas de Colón",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas extra"
+      ],
+      "imagenPrincipal": "/termas-colon-2.jpg",
+      "imagenes": [
+        "/termas-colon-2.jpg",
+        "/termas-colon-1.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 71,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-10-11",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus semi cama. Desayuno a bordo.",
+        "Día completo en las Termas de Colón (entrada y traslado incluidos). Almuerzo incluido.",
+        "Merienda a bordo y regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-116",
+      "slug": "san-jose-full-day-11oct",
+      "titulo": "Termas de San José — Full Day · 11 de Octubre",
+      "tipo": "full_day",
+      "destino": "colon-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 110000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a las Termas de San José con desayuno, merienda a bordo, entrada, traslado y coordinador. Salida 11 de octubre.",
+      "descripcionLarga": "Un día completo de termas y relax en Colón, Entre Ríos. El full day a las Termas de San José incluye desayuno y merienda a bordo, entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salida 11 de octubre.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Desayuno",
+        "Merienda a bordo",
+        "Entrada y traslado a Termas de San José",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzo",
+        "Gastos personales",
+        "Bebidas extra"
+      ],
+      "imagenPrincipal": "/termas-san-jose-2.jpg",
+      "imagenes": [
+        "/termas-san-jose-2.jpg",
+        "/termas-san-jose-3.jpg",
+        "/termas-san-jose-1.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 69,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-10-11",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "full day"
+      ],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus semi cama. Desayuno y merienda a bordo.",
+        "Día completo en las Termas de San José (entrada y traslado incluidos).",
+        "Regreso a Buenos Aires al finalizar la jornada."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
+      "politicas": {
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
+      }
+    },
+    {
+      "id": "pkg-117",
+      "slug": "colon-san-jose-termas-rio-2d1n-24oct",
+      "titulo": "Colón + Termas de San José — Hotel Termas & Río (2d/1n) · 24 de Octubre",
+      "tipo": "viaje_completo",
+      "destino": "colon-entre-rios",
+      "duracionDias": 2,
+      "duracionNoches": 1,
       "precioBase": 159000,
       "gastosAdmin": 10000,
       "suplementoSingle": 79500,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "3 días / 2 noches en Hotel Riazor ★★★. Pensión completa, show nocturno y bus mix. Salida 13 de junio.",
-      "descripcionLarga": "Aprovechá el finde largo del 13 de junio para escaparte a Mar del Plata con todo resuelto. Te alojás en el Hotel Riazor, ubicado frente al Shopping Los Gallegos y a solo 400 metros del centro comercial Güemes — en pleno corazón de la ciudad. El paquete incluye pensión completa (desayuno, almuerzo y cena), show nocturno en el hotel y traslado en bus mix desde distintos puntos del Gran Buenos Aires. Coordinador de viaje incluido para que no te preocupes por nada.",
-      "incluye": ["Bus mix con servicio a bordo", "Alojamiento en Hotel Riazor", "Pensión completa (desayuno, almuerzo y cena)", "Show nocturno en el hotel", "Coordinador de viaje"],
-      "noIncluye": ["Gastos personales", "Bebidas con las comidas", "Excursiones opcionales"],
-      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
-      "imagenes": ["/Pucara-Turismo/mar-del-plata-5.jpg", "/Pucara-Turismo/hotel-riazor-1.jpg", "/Pucara-Turismo/hotel-riazor-2.jpg", "/Pucara-Turismo/hotel-riazor-3.jpg", "/Pucara-Turismo/hotel-riazor-4.jpg"],
-      "rating": 4.8,
-      "reviews": 142,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-06-13",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["playa", "familia", "relax", "finde"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA. Bus mix con servicio a bordo.",
-        "Día 2 — Llegada a Mar del Plata y check-in en Hotel Riazor. Desayuno. Tarde libre para recorrer la ciudad, la rambla y el centro comercial Güemes. Cena y show nocturno en el hotel.",
-        "Día 3 — Desayuno. Día libre en Mar del Plata. Tarde: almuerzo y retorno a Buenos Aires."
+      "descripcionCorta": "2 días / 1 noche en Hotel Termas & Río (a 100 mts de la terma y 200 mts de la playa del río). Media pensión, cena show y Termas de San José. Salida 24 de octubre.",
+      "descripcionLarga": "Escapada a Colón, Entre Ríos. Te alojás en el Hotel Termas & Río, a 100 metros de las Termas de San José y 200 metros de la playa del río Uruguay, con media pensión y cena show. Incluye entrada a las Termas de San José y bus semi cama con servicio a bordo desde el Gran Buenos Aires. El segundo día emprendemos el regreso a Buenos Aires a las 17:00 hs desde las termas.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "1 noche en Hotel Termas & Río",
+        "Media pensión",
+        "Cena show",
+        "Entrada a Termas de San José",
+        "Coordinador de viaje"
       ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
+      "noIncluye": [
+        "Almuerzo",
+        "Gastos personales",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/termas-san-jose-1.jpg",
+      "imagenes": [
+        "/termas-san-jose-1.jpg",
+        "/termas-san-jose-2.jpg",
+        "/hotel-termas-rio-1.jpg",
+        "/hotel-termas-rio-2.jpg",
+        "/hotel-termas-rio-3.jpg",
+        "/termas-colon-1.jpg"
+      ],
+      "rating": 4.9,
+      "reviews": 92,
+      "cuposPorSalida": 25,
+      "proximaSalida": "2026-10-24",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "termas",
+        "relax",
+        "litoral",
+        "pareja"
+      ],
+      "itinerario": [
+        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
+        "Día 2 — Llegada a Colón. Check-in Hotel Termas & Río. Media pensión. Termas de San José (entrada incluida). Noche: cena show.",
+        "Día 3 — Desayuno. Regreso a Buenos Aires a partir de las 17:00 hs desde las termas."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once",
+        "La Plata"
+      ],
       "politicas": {
         "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
         "suplementoSingle": "Suplemento habitación individual: $79.500 adicionales sobre el precio del paquete.",
         "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
       }
     },
     {
-      "id": "pkg-002a",
-      "slug": "mar-del-plata-invierno-18jul",
-      "titulo": "Mar del Plata — Vacaciones de Invierno · 18 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "mar-del-plata",
-      "duracionDias": 3,
-      "duracionNoches": 2,
-      "precioBase": 270000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 135000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "3 días / 2 noches en Hotel Riazor ★★★. Pensión completa, show, coordinador permanente. Salida 18 de julio.",
-      "descripcionLarga": "Las vacaciones de invierno son la época más esperada del año para escaparse a Mar del Plata. Con este paquete tenés todo resuelto: alojás en el Hotel Riazor — frente al Shopping Los Gallegos, en pleno centro de la ciudad — con pensión completa (desayuno, almuerzo y cena), show nocturno en el hotel y coordinador de viaje permanente durante toda la estadía. Salimos desde múltiples puntos del GBA en bus mix con servicio a bordo. Cupos limitados — asegurá tu lugar.",
-      "incluye": ["Bus mix con servicio a bordo", "Alojamiento en Hotel Riazor", "Pensión completa (desayuno, almuerzo y cena)", "Show nocturno en el hotel", "Coordinador de viaje permanente"],
-      "noIncluye": ["Gastos personales", "Bebidas con las comidas", "Excursiones opcionales"],
-      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
-      "imagenes": ["/Pucara-Turismo/mar-del-plata-5.jpg", "/Pucara-Turismo/hotel-riazor-1.jpg", "/Pucara-Turismo/hotel-riazor-2.jpg", "/Pucara-Turismo/hotel-riazor-3.jpg", "/Pucara-Turismo/hotel-riazor-4.jpg"],
-      "rating": 4.8,
-      "reviews": 98,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-07-18",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["playa", "familia", "relax", "invierno"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA. Bus mix con servicio a bordo.",
-        "Día 2 — Llegada a Mar del Plata. Check-in Hotel Riazor. Desayuno. Tarde libre en la ciudad, la rambla y el shopping. Cena y show nocturno en el hotel.",
-        "Día 3 — Desayuno. Día libre. Almuerzo y retorno a Buenos Aires."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $135.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-002b",
-      "slug": "mar-del-plata-invierno-31jul",
-      "titulo": "Mar del Plata — Vacaciones de Invierno · 31 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "mar-del-plata",
-      "duracionDias": 3,
-      "duracionNoches": 2,
-      "precioBase": 270000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 135000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "3 días / 2 noches en Hotel Riazor ★★★. Pensión completa, show, coordinador permanente. Salida 31 de julio.",
-      "descripcionLarga": "Cerrá las vacaciones de invierno con este paquete completo a Mar del Plata. Alojamiento en Hotel Riazor —frente al Shopping Los Gallegos, en pleno centro— con pensión completa, show nocturno en el hotel y coordinador permanente durante toda la estadía. Salida desde múltiples puntos del GBA el 31 de julio. Cupos muy limitados.",
-      "incluye": ["Bus mix con servicio a bordo", "Alojamiento en Hotel Riazor", "Pensión completa (desayuno, almuerzo y cena)", "Show nocturno en el hotel", "Coordinador de viaje permanente"],
-      "noIncluye": ["Gastos personales", "Bebidas con las comidas", "Excursiones opcionales"],
-      "imagenPrincipal": "/Pucara-Turismo/mar-del-plata-5.jpg",
-      "imagenes": ["/Pucara-Turismo/mar-del-plata-5.jpg", "/Pucara-Turismo/hotel-riazor-1.jpg", "/Pucara-Turismo/hotel-riazor-2.jpg", "/Pucara-Turismo/hotel-riazor-3.jpg", "/Pucara-Turismo/hotel-riazor-4.jpg"],
-      "rating": 4.8,
-      "reviews": 98,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-07-31",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["playa", "familia", "relax", "invierno"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA. Bus mix con servicio a bordo.",
-        "Día 2 — Llegada a Mar del Plata. Check-in Hotel Riazor. Desayuno. Tarde libre. Cena y show en el hotel.",
-        "Día 3 — Desayuno. Día libre. Almuerzo y retorno a Buenos Aires."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $135.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-003",
-      "slug": "colon-termas-finde-6jun",
-      "titulo": "Colón + Termas de San José · 6 de Junio",
-      "tipo": "viaje_completo",
+      "id": "pkg-118",
+      "slug": "san-jose-recital-la-konga-07nov",
+      "titulo": "Termas de San José + Recital La Konga · 7 de Noviembre",
+      "tipo": "full_day",
       "destino": "colon-entre-rios",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 140000,
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 160000,
       "gastosAdmin": 10000,
-      "suplementoSingle": 70000,
+      "suplementoSingle": 0,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hotel Termas & Río. Media pensión + entrada a Termas de San José + cena show. Salida 6 de junio.",
-      "descripcionLarga": "Una escapada perfecta a Colón, Entre Ríos: una de las ciudades más lindas del litoral argentino con playa de río, termas y gastronomía de primer nivel. Te alojás en el Hotel Termas & Río, ubicado a solo 100 metros de las Termas de San José y 200 metros de la playa del río Uruguay. El paquete incluye entrada y traslado a las Termas de San José, cena show el sábado y bus semi cama desde el GBA. Ideal para parejas, amigos o familia.",
-      "incluye": ["Bus mix con servicio a bordo", "1 noche en Hotel Termas & Río", "Desayuno buffet", "Cena show el sábado", "Entrada y traslado a Termas de San José", "Coordinador de viaje"],
-      "noIncluye": ["Almuerzo", "Gastos personales", "Excursiones opcionales"],
-      "imagenPrincipal": "/Pucara-Turismo/termas-san-jose-1.jpg",
-      "imagenes": ["/Pucara-Turismo/termas-san-jose-1.jpg", "/Pucara-Turismo/termas-san-jose-2.jpg", "/Pucara-Turismo/termas-san-jose-3.jpg", "/Pucara-Turismo/hotel-termas-rio-1.jpg", "/Pucara-Turismo/hotel-termas-rio-2.jpg", "/Pucara-Turismo/hotel-termas-rio-3.jpg", "/Pucara-Turismo/termas-colon-1.jpg", "/Pucara-Turismo/termas-colon-2.jpg"],
-      "rating": 4.9,
-      "reviews": 115,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-06-06",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["termas", "relax", "litoral", "pareja"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde múltiples puntos del GBA en bus mix. Servicio a bordo incluido.",
-        "Día 2 — Llegada a Colón. Check-in en Hotel Termas & Río. Desayuno. Tarde: visita a las Termas de San José (entrada y traslado incluidos). Noche: cena show en el hotel.",
-        "Día 3 — Desayuno. Check-out. Retorno a Buenos Aires desde las termas a partir de las 17:00 hs."
+      "descripcionCorta": "Full day: Termas de San José + entrada a la Fiesta del Arroz en San Salvador (E.R.) con recital de La Konga. Desayuno y merienda a bordo. Salida 7 de noviembre.",
+      "descripcionLarga": "Un full day para los amantes del cuarteto. En el día visitamos las Termas de San José (entrada y traslado incluidos) y a la noche vivimos el recital de La Konga en la Fiesta Nacional del Arroz, en San Salvador (Entre Ríos), con entrada general incluida. Incluye desayuno y merienda a bordo, coordinador y bus con servicio a bordo desde el Gran Buenos Aires. El regreso a Buenos Aires es al finalizar el recital.",
+      "incluye": [
+        "Bus con servicio a bordo",
+        "Desayuno",
+        "Merienda a bordo",
+        "Entrada y traslado a Termas de San José",
+        "Entrada general a la Fiesta del Arroz (recital de La Konga)",
+        "Coordinador de viaje"
       ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once", "La Plata"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $70.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-004",
-      "slug": "colon-termas-invierno-25jul",
-      "titulo": "Colón + Termas — Vacaciones de Invierno · 25 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "colon-entre-rios",
-      "duracionDias": 3,
-      "duracionNoches": 2,
-      "precioBase": 245000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 122500,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "3 días / 2 noches en Hotel Termas y Río. Media pensión, cena show + Termas de San José incluidas. Salida 25 de julio.",
-      "descripcionLarga": "Las vacaciones de invierno en Colón son una experiencia que se repite año tras año por algo: el litoral entrerriano en julio es mágico. Te alojás en el Hotel Termas y Río —a solo 100 metros de las Termas de San José y 200 metros de la playa del río Uruguay— con media pensión, cena show el sábado y entrada y traslado a las Termas de San José incluidos. El retorno a Buenos Aires sale desde las propias termas a las 17:00 hs del último día.",
-      "incluye": ["Bus mix con servicio a bordo", "2 noches en Hotel Termas y Río", "Desayuno buffet diario", "Cena show el sábado", "Entrada y traslado a Termas de San José", "Coordinador de viaje"],
-      "noIncluye": ["Almuerzos", "Gastos personales", "Excursiones adicionales"],
-      "imagenPrincipal": "/Pucara-Turismo/termas-san-jose-1.jpg",
-      "imagenes": ["/Pucara-Turismo/termas-san-jose-1.jpg", "/Pucara-Turismo/termas-san-jose-2.jpg", "/Pucara-Turismo/termas-san-jose-3.jpg", "/Pucara-Turismo/hotel-termas-rio-1.jpg", "/Pucara-Turismo/hotel-termas-rio-2.jpg", "/Pucara-Turismo/hotel-termas-rio-3.jpg", "/Pucara-Turismo/termas-colon-1.jpg"],
-      "rating": 4.9,
-      "reviews": 87,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-07-25",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["termas", "relax", "invierno", "familia"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus mix.",
-        "Día 2 — Llegada a Colón. Check-in Hotel Termas y Río. Desayuno. Tarde libre en la ciudad o la playa del río.",
-        "Día 3 — Desayuno. Visita a Termas de San José (entrada y traslado incluidos). Noche: cena show en el hotel.",
-        "Día 4 — Desayuno. Check-out. Retorno a Buenos Aires a partir de las 17:00 hs desde las termas."
+      "noIncluye": [
+        "Almuerzo y cena",
+        "Gastos personales",
+        "Consumos en el predio del recital"
       ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once", "La Plata"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $122.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-005",
-      "slug": "colon-solos-y-solas-27jun",
-      "titulo": "Colón — Solos y Solas · 27 de Junio",
-      "tipo": "viaje_completo",
-      "destino": "colon-entre-rios",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 168000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 84000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hotel Cristóbal Colón. Media pensión, cena show con concurso de disfraces y Termas de San José. Especial para viajeros solos. Salida 27 de junio.",
-      "descripcionLarga": "¿Viajás solo o sola y querés conocer gente nueva? Este viaje está armado especialmente para vos. Una escapada a Colón, Entre Ríos, diseñada para viajeros sin acompañante: ambiente grupal, coordinador atento y actividades que favorecen la integración. Te alojás en el Hotel Cristóbal Colón con media pensión y disfrutás de la cena show del sábado —con concurso de disfraces— y la entrada a las Termas de San José incluida. La habitación se asigna en base doble con otro viajero del mismo sexo (sin costo adicional para singles en este paquete).",
-      "incluye": ["Bus mix con servicio a bordo", "1 noche en Hotel Cristóbal Colón", "Desayuno buffet", "Cena show con concurso de disfraces", "Entrada y traslado a Termas de San José", "Coordinador de viaje especializado"],
-      "noIncluye": ["Almuerzo", "Gastos personales", "Bebidas extra"],
-      "imagenPrincipal": "/Pucara-Turismo/termas-san-jose-1.jpg",
-      "imagenes": ["/Pucara-Turismo/termas-san-jose-1.jpg", "/Pucara-Turismo/termas-san-jose-2.jpg", "/Pucara-Turismo/termas-san-jose-4.jpg", "/Pucara-Turismo/termas-san-jose-5.jpg", "/Pucara-Turismo/termas-colon-1.jpg", "/Pucara-Turismo/termas-colon-2.jpg"],
+      "imagenPrincipal": "/termas-san-jose-1.jpg",
+      "imagenes": [
+        "/termas-san-jose-1.jpg",
+        "/termas-san-jose-2.jpg",
+        "/termas-san-jose-4.jpg",
+        "/termas-san-jose-5.jpg"
+      ],
       "rating": 4.9,
-      "reviews": 63,
+      "reviews": 45,
       "cuposPorSalida": 30,
-      "proximaSalida": "2026-06-27",
+      "proximaSalida": "2026-11-07",
       "frecuenciaSalidas": "mensual",
-      "tags": ["solos", "fiesta", "termas", "relax", "litoral"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus mix. Ambiente grupal desde el primer momento.",
-        "Día 2 — Llegada a Colón. Check-in Hotel Cristóbal Colón. Desayuno. Tarde: Termas de San José (entrada y traslado incluidos). Noche: cena show con concurso de disfraces.",
-        "Día 3 — Desayuno. Check-out. Retorno a Buenos Aires a partir de las 17:00 hs."
+      "tags": [
+        "termas",
+        "fiesta",
+        "recital",
+        "full day",
+        "litoral"
       ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
+      "itinerario": [
+        "Salida temprano desde el GBA en bus con servicio a bordo. Desayuno y merienda a bordo.",
+        "Día en las Termas de San José (entrada y traslado incluidos).",
+        "Noche: recital de La Konga en la Fiesta del Arroz, San Salvador (E.R.), entrada general incluida. Regreso a Buenos Aires al finalizar el recital."
+      ],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once"
+      ],
       "politicas": {
-        "precioEnBaseDoble": "En este paquete la habitación se asigna en base doble con otro viajero del mismo sexo sin costo adicional.",
-        "suplementoSingle": "Si preferís habitación individual privada: $84.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
+        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
+        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
+        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
       }
     },
     {
-      "id": "pkg-006",
-      "slug": "rio-hondo-termas-18jun",
-      "titulo": "Termas de Río Hondo · 18 de Junio",
+      "id": "pkg-119",
+      "slug": "las-grutas-hotel-mareas-26nov",
+      "titulo": "Las Grutas — Hotel Mareas ★★★ · 26 de Noviembre",
       "tipo": "viaje_completo",
-      "destino": "rio-hondo",
-      "duracionDias": 5,
-      "duracionNoches": 4,
-      "precioBase": 290000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 145000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "5 días / 4 noches en Hotel Hebrón ★★. Pensión completa + merienda, show nocturno y bus mix. Salida 18 de junio.",
-      "descripcionLarga": "Las Termas de Río Hondo, en Santiago del Estero, son uno de los destinos termales más reconocidos de Argentina por la calidad y temperatura de sus aguas minerales. Con este paquete tenés 5 días completos para desconectarte: te alojás en el Hotel Hebrón —con pileta termal propia— con pensión completa más merienda (desayuno, almuerzo, merienda y cena), show nocturno en el hotel y bus mix con servicio a bordo. Un descanso total sin preocuparte por nada.",
-      "incluye": ["Bus mix con servicio a bordo", "4 noches en Hotel Hebrón ★★", "Pensión completa (desayuno, almuerzo, merienda y cena)", "Show nocturno en el hotel", "Acceso a pileta del hotel"],
-      "noIncluye": ["Gastos personales", "Excursiones opcionales fuera del hotel", "Bebidas extra"],
-      "imagenPrincipal": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=800&fit=crop",
-      "imagenes": ["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=800&fit=crop", "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80", "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"],
-      "rating": 4.8,
-      "reviews": 201,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-06-18",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["termas", "relax", "pareja", "naturaleza", "norte"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus mix con servicio a bordo.",
-        "Día 2 — Llegada a Río Hondo. Check-in Hotel Hebrón. Desayuno. Tarde libre en las termas. Cena y show nocturno.",
-        "Día 3 — Desayuno, almuerzo y merienda. Día de relax total en el hotel y las termas. Show nocturno.",
-        "Día 4 — Desayuno, almuerzo y merienda. Día libre. Show nocturno.",
-        "Día 5 — Desayuno. Check-out. Retorno a Buenos Aires."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once", "La Plata"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $145.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-007a",
-      "slug": "san-bernardo-finde-27jun",
-      "titulo": "San Bernardo — Finde · 27 de Junio",
-      "tipo": "viaje_completo",
-      "destino": "san-bernardo",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 144000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 72000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hostal del Sol Resort & Spa ★★★★. Desayuno buffet y bus mix. Salida 27 de junio.",
-      "descripcionLarga": "San Bernardo es uno de los balnearios más familiares y tranquilos de la costa bonaerense, ideal para escaparse un fin de semana y recargar energías. Con este paquete te alojás en el Hostal del Sol Resort & Spa 4 estrellas, un complejo completo con pileta climatizada, gimnasio, sala de juegos, cancha de fútbol y básquet — todo lo que necesitás para descansar o divertirte. El paquete incluye desayuno buffet y traslado en bus mix desde el GBA.",
-      "incluye": ["Bus mix con servicio a bordo", "1 noche en Hostal del Sol Resort & Spa ★★★★", "Desayuno buffet", "Acceso a todas las instalaciones del resort (pileta climatizada, gimnasio, juegos)"],
-      "noIncluye": ["Almuerzo y cena", "Gastos personales", "Excursiones"],
-      "imagenPrincipal": "/Pucara-Turismo/san-bernardo.jpg",
-      "imagenes": ["/Pucara-Turismo/san-bernardo.jpg", "/Pucara-Turismo/hostal-del-sol-1.jpg", "/Pucara-Turismo/hostal-del-sol-2.jpg", "/Pucara-Turismo/hostal-del-sol-3.jpg", "/Pucara-Turismo/hostal-del-sol-4.jpg"],
-      "rating": 4.7,
-      "reviews": 134,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-06-27",
-      "frecuenciaSalidas": "quincenal",
-      "tags": ["playa", "familia", "relax", "finde", "resort"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
-        "Día 2 — Llegada a San Bernardo. Check-in Hostal del Sol Resort & Spa. Desayuno buffet. Día libre en el resort y la playa.",
-        "Día 3 — Desayuno. Mañana libre. Retorno a Buenos Aires en horas de la tarde."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $72.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-007b",
-      "slug": "san-bernardo-finde-11jul",
-      "titulo": "San Bernardo — Finde · 11 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "san-bernardo",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 144000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 72000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hostal del Sol Resort & Spa ★★★★. Desayuno buffet y bus mix. Salida 11 de julio.",
-      "descripcionLarga": "Aprovechá el fin de semana del 11 de julio para escaparte a San Bernardo: uno de los balnearios más tranquilos y familiares de la costa argentina. Te alojás en el Hostal del Sol Resort & Spa 4 estrellas con pileta climatizada, gimnasio, sala de juegos y cancha de deportes. Desayuno buffet incluido y traslado en bus mix desde distintos puntos del GBA.",
-      "incluye": ["Bus mix con servicio a bordo", "1 noche en Hostal del Sol Resort & Spa ★★★★", "Desayuno buffet", "Acceso a todas las instalaciones del resort"],
-      "noIncluye": ["Almuerzo y cena", "Gastos personales", "Excursiones"],
-      "imagenPrincipal": "/Pucara-Turismo/san-bernardo.jpg",
-      "imagenes": ["/Pucara-Turismo/san-bernardo.jpg", "/Pucara-Turismo/hostal-del-sol-1.jpg", "/Pucara-Turismo/hostal-del-sol-2.jpg", "/Pucara-Turismo/hostal-del-sol-3.jpg", "/Pucara-Turismo/hostal-del-sol-4.jpg"],
-      "rating": 4.7,
-      "reviews": 134,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-07-11",
-      "frecuenciaSalidas": "quincenal",
-      "tags": ["playa", "familia", "relax", "finde", "resort"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
-        "Día 2 — Llegada a San Bernardo. Check-in Hostal del Sol. Desayuno buffet. Día libre en el resort.",
-        "Día 3 — Desayuno. Mañana libre. Retorno a Buenos Aires en horas de la tarde."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $72.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-008",
-      "slug": "san-bernardo-invierno-24jul",
-      "titulo": "San Bernardo — Vacaciones de Invierno · 24 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "san-bernardo",
-      "duracionDias": 4,
-      "duracionNoches": 3,
-      "precioBase": 260000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 130000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "4 días / 3 noches en Hostal del Sol Resort & Spa ★★★★. Desayuno buffet y bus mix. Salida 24 de julio.",
-      "descripcionLarga": "Vacaciones de invierno en el mejor resort de San Bernardo. El Hostal del Sol Resort & Spa 4 estrellas es el lugar ideal para que toda la familia descanse y se divierta: pileta climatizada (perfecta para el invierno), gimnasio, sala de juegos, canchas de fútbol y básquet, y espacios pensados para el relax. Cuatro días y tres noches con desayuno buffet incluido cada mañana y múltiples puntos de subida desde el GBA.",
-      "incluye": ["Bus mix con servicio a bordo", "3 noches en Hostal del Sol Resort & Spa ★★★★", "Desayuno buffet diario", "Acceso a pileta climatizada, gimnasio y todas las instalaciones"],
-      "noIncluye": ["Almuerzo y cena", "Gastos personales", "Excursiones"],
-      "imagenPrincipal": "/Pucara-Turismo/san-bernardo.jpg",
-      "imagenes": ["/Pucara-Turismo/san-bernardo.jpg", "/Pucara-Turismo/hostal-del-sol-1.jpg", "/Pucara-Turismo/hostal-del-sol-2.jpg", "/Pucara-Turismo/hostal-del-sol-3.jpg", "/Pucara-Turismo/hostal-del-sol-4.jpg"],
-      "rating": 4.7,
-      "reviews": 89,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-07-24",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["playa", "familia", "invierno", "relax", "resort"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus mix.",
-        "Día 2 — Llegada y check-in Hostal del Sol. Desayuno buffet. Día libre en el resort.",
-        "Día 3 — Desayuno. Día completo en el resort: pileta, playa, actividades. Tarde libre.",
-        "Día 4 — Desayuno. Día libre. Tarde: inicio del retorno a Buenos Aires.",
-        "Día 5 — Llegada a Buenos Aires."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $130.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-009",
-      "slug": "la-falda-invierno-26jul",
-      "titulo": "La Falda, Córdoba — Vacaciones de Invierno · 26 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "la-falda",
-      "duracionDias": 5,
-      "duracionNoches": 3,
-      "precioBase": 270000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 135000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "5 días / 3 noches en Hotel Sorrento ★★. Pensión completa + merienda y bus mix. En pleno centro de La Falda. Salida 26 de julio.",
-      "descripcionLarga": "La Falda, en el Valle de Punilla cordobés, es uno de los destinos más elegidos para las vacaciones de invierno en Argentina. El aire de sierra, los paisajes únicos y la tranquilidad de una ciudad chica hacen de esta escapada una experiencia que se repite. Te alojás en el Hotel Sorrento, un hotel céntrico con parque y pileta, en pleno corazón de La Falda. El paquete incluye pensión completa más merienda (desayuno, almuerzo, merienda y cena), bus mix con asiento cama disponible y múltiples puntos de subida desde el Gran Buenos Aires.",
-      "incluye": ["Bus mix con servicio a bordo", "3 noches en Hotel Sorrento", "Pensión completa (desayuno, almuerzo, merienda y cena)", "Coordinador de viaje"],
-      "noIncluye": ["Gastos personales", "Excursiones a la zona", "Bebidas extra"],
-      "imagenPrincipal": "/Pucara-Turismo/hotel-sorrento-1.jpg",
-      "imagenes": ["/Pucara-Turismo/hotel-sorrento-1.jpg", "/Pucara-Turismo/la-falda-1.jpg", "/Pucara-Turismo/la-falda-2.jpg", "/Pucara-Turismo/la-falda-3.jpg", "/Pucara-Turismo/la-falda-4.jpg", "/Pucara-Turismo/la-falda-5.jpg"],
-      "rating": 4.8,
-      "reviews": 76,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-07-26",
-      "frecuenciaSalidas": "mensual",
-      "tags": ["sierras", "naturaleza", "familia", "invierno", "córdoba"],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde múltiples puntos del GBA en bus mix.",
-        "Día 2 — Llegada a La Falda. Check-in Hotel Sorrento. Desayuno y almuerzo. Tarde libre en el centro o el parque del hotel. Merienda y cena.",
-        "Día 3 — Pensión completa + merienda. Día libre para recorrer La Falda, el lago, el circuito turístico o relajarse en el hotel.",
-        "Día 4 — Pensión completa + merienda. Día libre. Última noche en La Falda.",
-        "Día 5 — Desayuno. Check-out. Retorno a Buenos Aires."
-      ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once", "La Plata"],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $135.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-010",
-      "slug": "uspallata-alta-montana-23jul",
-      "titulo": "Uspallata — Alta Montaña Mendocina · 23 de Julio",
-      "tipo": "viaje_completo",
-      "destino": "mendoza",
+      "destino": "las-grutas",
       "duracionDias": 6,
       "duracionNoches": 3,
-      "precioBase": 395000,
+      "precioBase": 485000,
       "gastosAdmin": 10000,
-      "suplementoSingle": 197500,
+      "suplementoSingle": 242500,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "6 días / 3 noches en Hotel El Montañés. Media pensión + Termas de Cacheuta + excursión a Potrerillos. Salida 23 de julio.",
-      "descripcionLarga": "Uno de los destinos más espectaculares de Argentina: la Alta Montaña mendocina en pleno invierno. Nieve en los Andes, el Aconcagua como telón de fondo y paisajes que cortan el aliento. Te alojás en el Hotel El Montañés en Uspallata con media pensión (desayuno y cena), excursión a Potrerillos incluida y entrada + traslado a las Termas de Cacheuta —las termas de montaña más exclusivas de Mendoza—. Un viaje que combina aventura, naturaleza y relax en un solo paquete. Bus mix con servicio a bordo y múltiples puntos de subida desde el GBA.",
-      "incluye": ["Bus mix con servicio a bordo", "3 noches en Hotel El Montañés en Uspallata", "Media pensión (desayuno y cena)", "Excursión a Potrerillos", "Entrada y traslado a Termas de Cacheuta", "Coordinador de viaje"],
-      "noIncluye": ["Almuerzos", "Gastos personales", "Excursiones adicionales a la ruta 7"],
-      "imagenPrincipal": "/Pucara-Turismo/aconcagua1.jpg",
-      "imagenes": ["/Pucara-Turismo/aconcagua1.jpg", "/Pucara-Turismo/altamontana1.jpg", "/Pucara-Turismo/inca1.jpg", "/Pucara-Turismo/termas-cacheuta-1.jpg", "/Pucara-Turismo/termas-cacheuta-2.jpg"],
+      "descripcionCorta": "6 días / 3 noches en Hotel Mareas ★★★ (pileta, a 300 mts de la playa). Media pensión, bus mix y excursión a Viedma y Carmen de Patagones. Salida 26 de noviembre.",
+      "descripcionLarga": "Las Grutas, en Río Negro, tiene una de las mejores playas de Argentina: aguas cálidas y de un turquesa único en la costa patagónica. Te alojás en el Hotel Mareas ★★★, con pileta y a solo 300 metros de la playa, con media pensión. Incluye una excursión a Viedma y Carmen de Patagones y bus mix con servicio a bordo desde el Gran Buenos Aires. Seis días para disfrutar del mar, el sol y la Patagonia.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Mareas ★★★",
+        "Media pensión",
+        "Acceso a pileta del hotel",
+        "Excursión a Viedma y Carmen de Patagones",
+        "Coordinador de viaje"
+      ],
+      "noIncluye": [
+        "Almuerzos",
+        "Gastos personales",
+        "Excursiones opcionales adicionales"
+      ],
+      "imagenPrincipal": "/las-grutas-1.jpg",
+      "imagenes": [
+        "/las-grutas-1.jpg",
+        "/las-grutas-2.jpg",
+        "/las-grutas-3.jpg"
+      ],
       "rating": 4.9,
-      "reviews": 54,
-      "cuposPorSalida": 18,
-      "proximaSalida": "2026-07-23",
+      "reviews": 58,
+      "cuposPorSalida": 20,
+      "proximaSalida": "2026-11-26",
       "frecuenciaSalidas": "mensual",
-      "tags": ["montaña", "aventura", "termas", "naturaleza", "mendoza"],
+      "tags": [
+        "playa",
+        "naturaleza",
+        "patagonia",
+        "relax",
+        "familia"
+      ],
       "itinerario": [
         "Día 1 — Salida nocturna desde el GBA en bus mix con servicio a bordo.",
-        "Día 2 — Cruce de la Pampa. Llegada a Uspallata. Check-in Hotel El Montañés. Cena. Primer contacto con los Andes.",
-        "Día 3 — Desayuno. Excursión a Potrerillos (incluida): embalse, montañas y paisajes únicos. Regreso al hotel. Cena.",
-        "Día 4 — Desayuno. Visita a Termas de Cacheuta (entrada y traslado incluidos): termas en la montaña, aguas termales rodeadas de Andes. Cena.",
-        "Día 5 — Desayuno. Recorrido por la Alta Montaña: Puente del Inca, Laguna Los Horcones, vista al Aconcagua. Inicio del retorno.",
+        "Día 2 — Cruce hacia la Patagonia. Llegada a Las Grutas. Check-in Hotel Mareas. Media pensión.",
+        "Día 3 — Desayuno. Día libre en la playa de Las Grutas.",
+        "Día 4 — Excursión a Viedma y Carmen de Patagones. Regreso al hotel. Cena.",
+        "Día 5 — Desayuno. Día libre. Inicio del regreso a Buenos Aires.",
         "Día 6 — Llegada a Buenos Aires."
       ],
-      "puntosDeSubida": ["Liniers", "Haedo", "Morón", "Ituzaingó", "Castelar", "Palermo", "Once", "La Plata"],
+      "puntosDeSubida": [
+        "Liniers",
+        "Haedo",
+        "Morón",
+        "Ituzaingó",
+        "Castelar",
+        "Palermo",
+        "Once",
+        "La Plata"
+      ],
       "politicas": {
         "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $197.500 adicionales sobre el precio del paquete.",
+        "suplementoSingle": "Suplemento habitación individual: $242.500 adicionales sobre el precio del paquete.",
         "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Parte inferior del bus (coche cama): $10.000 adicionales por persona. Sujeto a disponibilidad."
+        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
       }
     }
   ]
