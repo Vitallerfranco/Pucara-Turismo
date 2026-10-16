@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PaqueteCard from '@/components/PaqueteCard.astro';
+import IconoGrupo from '@/components/IconoGrupo.astro';
 import paquetesData from '@/data/paquetes.json';
-import { partesTitulo } from '@/lib/viaje';
+import { partesTitulo, agruparViajes } from '@/lib/viaje';
 
 const WA = '5491134952847';
 
@@ -10,6 +11,9 @@ const paquetes = [...paquetesData.paquetes].sort(
   (a, b) => new Date(a.proximaSalida).getTime() - new Date(b.proximaSalida).getTime()
 );
 const politicas = paquetesData.politicasGlobales;
+
+// Octubre, noviembre, diciembre… y después recitales, fin de año y verano 27
+const grupos = agruparViajes(paquetes);
 
 // Los destinos salen de los viajes cargados: si el panel da de baja el ultimo
 // viaje de un destino, el filtro desaparece solo.
@@ -22,10 +26,12 @@ const destinos = Object.values(
     return acc;
   }, {})
 ).sort((a, b) => b.n - a.n);
+
+let indiceFoto = 0;
 ---
 
 <BaseLayout
-  title="Todos nuestros viajes"
+  title="Todos nuestros paquetes"
   description="Todas las salidas confirmadas de Pucará Turismo, con precio por persona y fecha. Termas, playa y sierra con bus, hotel y comidas incluidas desde el Gran Buenos Aires."
 >
 
@@ -57,35 +63,36 @@ const destinos = Object.values(
             <option value="con_noches">Con noches</option>
           </select>
         </label>
-        <label class="lst-control">
-          <span>Ordenar por</span>
-          <select id="f-orden">
-            <option value="fecha">Próxima salida</option>
-            <option value="precio-asc">Precio: menor primero</option>
-            <option value="precio-desc">Precio: mayor primero</option>
-          </select>
-        </label>
+        <p class="lst-cuenta" id="lst-cuenta" aria-live="polite"></p>
       </div>
-
-      <p class="lst-cuenta" id="lst-cuenta" aria-live="polite"></p>
     </div>
   </section>
 
   <section class="lst-cuerpo">
     <div class="lst-caja">
-      <div class="lst-grilla" id="lst-grilla">
-        {paquetes.map((paquete, i) => (
-          <div
-            class="lst-item"
-            data-destino={paquete.destino}
-            data-tipo={paquete.tipo === 'full_day' ? 'full_day' : 'con_noches'}
-            data-precio={paquete.precioBase}
-            data-fecha={paquete.proximaSalida}
-          >
-            <PaqueteCard paquete={paquete} whatsappPhone={WA} prioridad={i < 3} />
+      {grupos.map((grupo) => (
+        <section class="lst-grupo" data-grupo={grupo.clave}>
+          <header class="lst-grupo-cabecera">
+            <IconoGrupo tipo={grupo.icono} />
+            <h2>{grupo.titulo}</h2>
+            <span class="lst-grupo-cuenta" data-cuenta-grupo>
+              {grupo.viajes.length} {grupo.viajes.length === 1 ? 'salida' : 'salidas'}
+            </span>
+          </header>
+
+          <div class="lst-grilla">
+            {grupo.viajes.map((paquete) => (
+              <div
+                class="lst-item"
+                data-destino={paquete.destino}
+                data-tipo={paquete.tipo === 'full_day' ? 'full_day' : 'con_noches'}
+              >
+                <PaqueteCard paquete={paquete} whatsappPhone={WA} prioridad={indiceFoto++ < 3} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </section>
+      ))}
 
       <div class="lst-vacio" id="lst-vacio" hidden>
         <h3>No hay paquetes con ese filtro</h3>
@@ -103,10 +110,24 @@ const destinos = Object.values(
         <ul>
           <li><strong>Menores de 4 años</strong> pagan solo los gastos administrativos.</li>
           <li><strong>Habitación single:</strong> suma 50% sobre el valor del paquete.</li>
-          <li><strong>Coche cama:</strong> $10.000 más por persona, según disponibilidad.</li>
-          <li><strong>Puntos de subida:</strong> varios en el Gran Buenos Aires, se coordinan al reservar.</li>
-          {politicas?.senia && <li><strong>Seña:</strong> {politicas.senia}</li>}
+          <li><strong>Butaca cama:</strong> $10.000 más por persona, según disponibilidad.</li>
+          <li><strong>Precios por persona</strong> en base doble, más los gastos administrativos que figuran en cada viaje.</li>
         </ul>
+      </div>
+
+      <div class="lst-paradas">
+        <h2>Desde dónde salimos</h2>
+        <p>Tenemos 8 puntos de subida repartidos en el Gran Buenos Aires. Cuando reservás coordinamos el que te queda más cerca.</p>
+        <ol class="lst-paradas-lista">
+          {['Cruce Varela', 'Rotonda Los Pinos', 'Rotonda Lavallol', 'Rotonda San Justo',
+            'Ciudadela (Gral. Paz)', 'Morón (frente al Plaza Oeste)',
+            'Moreno (Axion Ruta 23 y Acceso Oeste)', 'Tigre — Pacheco (Pdor. El Turista)'].map((p, i) => (
+            <li><span>{i + 1}</span>{p}</li>
+          ))}
+        </ol>
+        <p class="lst-paradas-nota">
+          Los lugares de carga pueden sufrir modificaciones para un mejor servicio en el tiempo del recorrido.
+        </p>
       </div>
 
       <div class="lst-medida">
@@ -139,7 +160,7 @@ const destinos = Object.values(
     position: sticky;
     top: 68px;
     z-index: 20;
-    background: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,0.93);
     backdrop-filter: blur(12px);
     border-top: 1px solid var(--linea);
     border-bottom: 1px solid var(--linea);
@@ -169,25 +190,35 @@ const destinos = Object.values(
     transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
   .chip:hover { border-color: var(--tinta-3); color: var(--tinta); }
-  .chip.activo {
-    background: var(--tinta);
-    border-color: var(--tinta);
-    color: #fff;
-  }
+  .chip.activo { background: var(--tinta); border-color: var(--tinta); color: #fff; }
 
-  .lst-controles { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.7rem; }
+  .lst-controles { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 0.7rem; }
   .lst-control { display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: var(--tinta-3); }
-  .lst-control select {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.875rem;
-    color: var(--tinta);
-    min-width: 150px;
+  .lst-control select { padding: 0.4rem 0.6rem; font-size: 0.875rem; color: var(--tinta); min-width: 150px; }
+  .lst-cuenta { font-size: 0.85rem; color: var(--tinta-3); margin: 0; }
+
+  /* ── Grupos ── */
+  .lst-cuerpo { padding: 2.25rem 0 3rem; }
+  .lst-grupo { margin-bottom: 3rem; }
+  .lst-grupo:last-of-type { margin-bottom: 0; }
+  .lst-grupo[hidden] { display: none; }
+
+  .lst-grupo-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.9rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--linea);
   }
+  .lst-grupo-cabecera h2 {
+    font-size: 1.35rem;
+    margin: 0;
+    flex: 1;
+    letter-spacing: -0.03em;
+  }
+  .lst-grupo-cuenta { font-size: 0.85rem; color: var(--tinta-3); white-space: nowrap; }
 
-  .lst-cuenta { font-size: 0.85rem; color: var(--tinta-3); margin: 0.7rem 0 0; }
-
-  /* ── Grilla ── */
-  .lst-cuerpo { padding: 2rem 0 3rem; }
   .lst-grilla {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -200,7 +231,7 @@ const destinos = Object.values(
   .lst-vacio p { margin: 0 auto 1.25rem; }
   .lst-vacio[hidden] { display: none; }
 
-  /* ── Letra chica ── */
+  /* ── Letra chica y paradas ── */
   .lst-letra-chica { max-width: 60ch; margin-bottom: 2.5rem; }
   .lst-letra-chica ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
   .lst-letra-chica li {
@@ -219,6 +250,38 @@ const destinos = Object.values(
   }
   .lst-letra-chica strong { color: var(--tinta); font-weight: 600; }
 
+  .lst-paradas { margin-bottom: 2.5rem; }
+  .lst-paradas > p { max-width: 60ch; }
+  .lst-paradas-lista {
+    list-style: none;
+    padding: 0;
+    margin: 1.1rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 0.6rem;
+  }
+  .lst-paradas-lista li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio-ch);
+    padding: 0.7rem 0.9rem;
+    font-size: 0.92rem;
+    color: var(--tinta);
+  }
+  .lst-paradas-lista span {
+    width: 24px; height: 24px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--naranja-suave);
+    color: var(--naranja-tinta);
+    display: grid; place-items: center;
+    font-size: 0.78rem; font-weight: 700;
+  }
+  .lst-paradas-nota { font-size: 0.82rem; color: var(--tinta-3); margin: 0.9rem 0 0; }
+
   .lst-medida {
     background: var(--papel);
     border: 1px solid var(--linea);
@@ -235,43 +298,39 @@ const destinos = Object.values(
 </style>
 
 <script>
-  const grilla = document.getElementById('lst-grilla');
-  const vacio = document.getElementById('lst-vacio');
   const cuenta = document.getElementById('lst-cuenta');
+  const vacio = document.getElementById('lst-vacio');
   const selDuracion = document.getElementById('f-duracion') as HTMLSelectElement | null;
-  const selOrden = document.getElementById('f-orden') as HTMLSelectElement | null;
+  const grupos = Array.from(document.querySelectorAll<HTMLElement>('.lst-grupo'));
 
-  if (grilla && vacio && cuenta) {
-    const items = Array.from(grilla.querySelectorAll<HTMLElement>('.lst-item'));
-    let destino = '';
-
-    // El pie y la home linkean con ?destino=, para entrar ya filtrado
-    const pedido = new URLSearchParams(location.search).get('destino');
-    if (pedido) destino = pedido;
+  if (cuenta && vacio && grupos.length) {
+    let destino = new URLSearchParams(location.search).get('destino') ?? '';
 
     const aplicar = () => {
       const duracion = selDuracion?.value ?? '';
-      const orden = selOrden?.value ?? 'fecha';
-      let visibles = 0;
+      let total = 0;
 
-      for (const item of items) {
-        const okDestino = !destino || item.dataset.destino === destino;
-        const okDuracion = !duracion || item.dataset.tipo === duracion;
-        const visible = okDestino && okDuracion;
-        item.hidden = !visible;
-        if (visible) visibles++;
+      for (const grupo of grupos) {
+        let visiblesEnGrupo = 0;
+        const items = grupo.querySelectorAll<HTMLElement>('.lst-item');
+
+        for (const item of items) {
+          const ok =
+            (!destino || item.dataset.destino === destino) &&
+            (!duracion || item.dataset.tipo === duracion);
+          item.hidden = !ok;
+          if (ok) visiblesEnGrupo++;
+        }
+
+        // Un bloque sin viajes visibles se esconde entero, con su título
+        grupo.hidden = visiblesEnGrupo === 0;
+        const marcador = grupo.querySelector('[data-cuenta-grupo]');
+        if (marcador) marcador.textContent = `${visiblesEnGrupo} ${visiblesEnGrupo === 1 ? 'salida' : 'salidas'}`;
+        total += visiblesEnGrupo;
       }
 
-      // Reordenar con la propiedad order, sin tocar el DOM
-      const ordenados = [...items].sort((a, b) => {
-        if (orden === 'precio-asc') return Number(a.dataset.precio) - Number(b.dataset.precio);
-        if (orden === 'precio-desc') return Number(b.dataset.precio) - Number(a.dataset.precio);
-        return String(a.dataset.fecha).localeCompare(String(b.dataset.fecha));
-      });
-      ordenados.forEach((item, i) => { item.style.order = String(i); });
-
-      vacio.hidden = visibles > 0;
-      cuenta.textContent = visibles === 1 ? '1 paquete' : `${visibles} paquetes`;
+      vacio.hidden = total > 0;
+      cuenta.textContent = total === 1 ? '1 paquete' : `${total} paquetes`;
     };
 
     document.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
@@ -288,7 +347,6 @@ const destinos = Object.values(
     });
 
     selDuracion?.addEventListener('change', aplicar);
-    selOrden?.addEventListener('change', aplicar);
     aplicar();
   }
 </script>

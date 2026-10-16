@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PaqueteCard from '@/components/PaqueteCard.astro';
 import paquetesData from '@/data/paquetes.json';
 import { webpSrcset, formatPrice } from '@/lib/utils';
-import { partesTitulo, duracionLabel, fechaLarga, transporte } from '@/lib/viaje';
+import { partesTitulo, duracionLabel, fechaLarga, transporte, frasecuando } from '@/lib/viaje';
 
 export function getStaticPaths() {
   return paquetesData.paquetes.map((paquete) => ({
@@ -59,12 +59,17 @@ const jsonLd = {
     validThrough: paquete.proximaSalida,
     seller: { '@type': 'TravelAgency', name: 'Pucará Turismo' },
   },
-  aggregateRating: {
+};
+
+// Google penaliza el marcado de reseñas que no existen en la página.
+// Solo declaramos la calificación si el viaje tiene reseñas propias cargadas.
+if (paquete.reviews > 0) {
+  (jsonLd as Record<string, unknown>).aggregateRating = {
     '@type': 'AggregateRating',
     ratingValue: paquete.rating,
     reviewCount: paquete.reviews,
-  },
-};
+  };
+}
 ---
 
 <BaseLayout
@@ -88,7 +93,7 @@ const jsonLd = {
       <div class="det-sellos">
         <span class="det-sello">{duracion}</span>
         {comoViaja && <span class="det-sello">{comoViaja}</span>}
-        <span class="det-sello det-sello-fecha">Sale el {cuando ? cuando.toLowerCase() : fechaLarga(paquete.proximaSalida)}</span>
+        <span class="det-sello det-sello-fecha">{cuando ? frasecuando(cuando.toLowerCase()) : `Sale el ${fechaLarga(paquete.proximaSalida)}`}</span>
       </div>
       <h1>{titular}</h1>
       {subtitulo && <p class="det-subtitulo">{subtitulo}</p>}
@@ -170,6 +175,21 @@ const jsonLd = {
               </li>
             ))}
           </ol>
+        </section>
+      )}
+
+      {paquete.puntosDeSubida?.length > 0 && (
+        <section class="det-bloque">
+          <h2>Desde dónde sale</h2>
+          <p class="det-paradas-intro">Elegís el punto que te queda más cerca cuando reservás.</p>
+          <ol class="det-paradas">
+            {paquete.puntosDeSubida.map((punto: string, i: number) => (
+              <li><span>{i + 1}</span>{punto}</li>
+            ))}
+          </ol>
+          <p class="det-paradas-nota">
+            Los lugares de carga pueden sufrir modificaciones para un mejor servicio en el tiempo del recorrido.
+          </p>
         </section>
       )}
 
@@ -341,6 +361,31 @@ const jsonLd = {
     font-size: 0.8rem; font-weight: 650;
   }
   .det-itinerario p { margin: 0; font-size: 0.95rem; line-height: 1.6; padding-top: 0.15rem; }
+
+  .det-paradas-intro { margin-bottom: 0.9rem; }
+  .det-paradas {
+    list-style: none; padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 0.5rem;
+  }
+  .det-paradas li {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--fondo-suave);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio-ch);
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .det-paradas span {
+    width: 22px; height: 22px; flex: none;
+    border-radius: 50%;
+    background: var(--naranja-suave);
+    color: var(--naranja-tinta);
+    display: grid; place-items: center;
+    font-size: 0.74rem; font-weight: 700;
+  }
+  .det-paradas-nota { font-size: 0.82rem; color: var(--tinta-3); margin: 0.8rem 0 0; }
 
   .det-politicas { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
   .det-politicas li {

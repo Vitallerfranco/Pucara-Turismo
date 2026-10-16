@@ -324,6 +324,7 @@ function pt_paquete_a_json(array $f)
         'proximaSalida'     => $f['proxima_salida'],
         'frecuenciaSalidas' => $f['frecuencia_salidas'],
         'tags'              => pt_json_array($f['tags']),
+        'categoria'         => $f['categoria'] ?? 'mes',
         'itinerario'        => pt_json_array($f['itinerario']),
         'puntosDeSubida'    => pt_json_array($f['puntos_de_subida']),
         'politicas'         => (function ($p) {

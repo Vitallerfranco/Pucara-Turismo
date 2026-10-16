@@ -233,7 +233,7 @@ function getResponse(intent: Intent): { text: string; options?: string[] } {
 
  case 'puntos_subida':
  return {
- text: `Tenemos **múltiples puntos de subida** en el Gran Buenos Aires:\n\nLiniers · Haedo · Morón · Ituzaingó · Castelar · Palermo · Once · La Plata\n\nNo necesitás ir hasta un solo punto. Consultá el punto más cercano a vos al reservar.`,
+ text: `Tenemos **8 puntos de subida** en el Gran Buenos Aires:\n\nCruce Varela · Rotonda Los Pinos · Rotonda Lavallol · Rotonda San Justo · Ciudadela (Gral. Paz) · Morón (frente al Plaza Oeste) · Moreno (Axion Ruta 23 y Acceso Oeste) · Tigre — Pacheco (Pdor. El Turista)\n\nConsultá el punto más cercano a vos al reservar. Los lugares de carga pueden modificarse para mejorar el recorrido.`,
  options: ['¿Cómo reservo?', 'Ver paquetes', 'Hablar con un asesor'],
  };
 

@@ -45,3 +45,8 @@ Claude outputs/
 
 # Variantes webp generadas en el build (scripts/generar-webp.mjs)
 public/*-[0-9]*.webp
+
+# Herramientas de revisión local (capturas y auditoría de contraste)
+ver.mjs
+contraste.mjs
+fotos/

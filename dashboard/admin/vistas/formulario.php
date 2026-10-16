@@ -34,7 +34,16 @@ if (!function_exists('val')) {
     }
 }
 
-$PUNTOS = ['Liniers','Haedo','Morón','Ituzaingó','Castelar','Palermo','Once','La Plata'];
+$PUNTOS = [
+  'Cruce Varela',
+  'Rotonda Los Pinos',
+  'Rotonda Lavallol',
+  'Rotonda San Justo',
+  'Ciudadela (Gral. Paz)',
+  'Morón (frente al Plaza Oeste)',
+  'Moreno (Axion Ruta 23 y Acceso Oeste)',
+  'Tigre — Pacheco (Pdor. El Turista)',
+];
 $cfg = pt_config();
 $pol = pt_politicas();
 
@@ -201,6 +210,32 @@ $acciones = '<a class="boton boton-sutil" href="index.php?v=viajes">Volver a la 
         <label class="campo">
           <span>Butaca cama</span>
           <input type="text" name="pol_coche_cama" value="<?= h(val_politica('pol_coche_cama','cocheCama', $pol['cocheCama'] ?? '')) ?>">
+        </label>
+      </div>
+    </section>
+
+    <section class="tarjeta">
+      <div class="tarjeta-cabecera"><h2>Dónde aparece en la web</h2></div>
+      <div class="tarjeta-cuerpo">
+        <label class="campo">
+          <span>Categoría</span>
+          <select name="categoria">
+            <?php
+              $cat_actual = isset($form['categoria'])
+                ? $form['categoria']
+                : ($editando ? ($editando['categoria'] ?? 'mes') : 'mes');
+              $CATEGORIAS = [
+                'mes'        => 'Por mes (según la fecha de salida)',
+                'verano27'   => 'Verano 2027',
+                'fin_de_ano' => 'Fin de año',
+                'recital'    => 'Recitales',
+              ];
+              foreach ($CATEGORIAS as $clave => $texto):
+            ?>
+              <option value="<?= h($clave) ?>" <?= $cat_actual === $clave ? 'selected' : '' ?>><?= h($texto) ?></option>
+            <?php endforeach; ?>
+          </select>
+          <span class="ayuda">Define en qué bloque del listado se muestra. Los de "por mes" se agrupan solos según la fecha.</span>
         </label>
       </div>
     </section>

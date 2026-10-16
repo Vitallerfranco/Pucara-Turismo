@@ -2,10 +2,25 @@
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import ChatbotPuca from '@/components/ChatbotPuca.tsx';
-import { webpSrcset } from '@/lib/utils';
+import { formatPrice, webpSrcset } from '@/lib/utils';
+import { partesTitulo, duracionLabel, fechaLarga, diasHasta } from '@/lib/viaje';
+import datos from '@/data/paquetes.json';
 import '../styles/globals.css';
 
-const popupWebp = webpSrcset('/las-grutas-1.jpg');
+/* El aviso de la próxima salida sale de los datos, no escrito a mano:
+   así no queda nunca promocionando un viaje que ya salió. */
+const hoyISO = new Date().toISOString().slice(0, 10);
+const proximo = (datos.paquetes ?? datos)
+  .filter((p: any) => p.activo !== false && p.imagenPrincipal && p.proximaSalida >= hoyISO)
+  .sort((a: any, b: any) => String(a.proximaSalida).localeCompare(String(b.proximaSalida)))[0];
+
+const avisoFoto = proximo ? webpSrcset(proximo.imagenPrincipal) : '';
+const avisoPartes = proximo ? partesTitulo(proximo.titulo) : null;
+const avisoDias = proximo ? diasHasta(proximo.proximaSalida) : 0;
+const avisoFalta = avisoDias <= 0 ? 'Sale hoy' : avisoDias === 1 ? 'Sale mañana' : `Faltan ${avisoDias} días`;
+const avisoHref = proximo ? `/paquetes/${proximo.slug}/` : '/paquetes/';
+const avisoDuracion = proximo ? duracionLabel(proximo) : '';
+const avisoFecha = proximo ? fechaLarga(proximo.proximaSalida) : '';
 
 interface Props {
   title: string;
@@ -17,7 +32,7 @@ interface Props {
 const {
   title,
   description = 'Pucará Turismo - Expertos en viajes al norte argentino',
-  image = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop',
+  image = 'https://pucaraturismo.com.ar/las-grutas-1.jpg',
   type = 'website'
 } = Astro.props;
 
@@ -49,8 +64,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
       var a = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="wa.link"]');
       if (!a) return;
       var titulo = '';
-      var card = a.closest('.paquete-card');
-      if (card) { var t = card.querySelector('.card-titulo'); if (t) titulo = t.textContent.trim(); }
+      var card = a.closest('.viaje');
+      if (card) { var t = card.querySelector('.viaje-titular'); if (t) titulo = t.textContent.trim(); }
       if (!titulo) { var h1 = document.querySelector('.det-titulo') || document.querySelector('h1'); if (h1) titulo = h1.textContent.trim(); }
       if (typeof gtag === 'function') {
         gtag('event', 'contacto_whatsapp', {
@@ -258,143 +273,230 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
     });
   </script>
 
-  <!-- Popup promo mejorado -->
-<div id="promo-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);">
-  <div style="background:#0d0d0d;border:1px solid rgba(249,115,22,0.4);border-radius:22px;max-width:460px;width:100%;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(249,115,22,0.15);">
 
-    <!-- Imagen con overlay fuerte -->
-    <div style="position:relative;height:210px;overflow:hidden;">
-      <picture style="display:contents">
-        {popupWebp && <source type="image/webp" srcset={popupWebp} sizes="400px" />}
-        <img src="/las-grutas-1.jpg" alt="Las Grutas, Río Negro" width="800" height="420" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
-      </picture>
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(13,13,13,0.97) 100%);"></div>
 
-      <!-- Badge urgencia parpadeante -->
-      <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;">
-        <span id="popup-live-dot" style="width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;animation:blink 1.2s infinite;"></span>
-        <span style="background:#ef4444;color:white;font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:0.1em;text-transform:uppercase;">¡Cupos limitados!</span>
+
+
+  {/* Aviso de próxima salida. Sin contador falso: los días que faltan son reales. */}
+  {proximo && avisoPartes && (
+  <div id="aviso-salida" class="aviso" hidden>
+    <div class="aviso-caja" role="dialog" aria-modal="true" aria-labelledby="aviso-titulo">
+
+      <div class="aviso-foto">
+        <picture style="display:contents">
+          {avisoFoto && <source type="image/webp" srcset={avisoFoto} sizes="440px" />}
+          <img src={proximo.imagenPrincipal} alt={avisoPartes.titular} width="880" height="440" loading="lazy" />
+        </picture>
+        <span class="aviso-cuando">
+          {avisoFalta}
+        </span>
       </div>
 
-      <!-- Texto sobre imagen -->
-      <div style="position:absolute;bottom:1rem;left:1.25rem;right:1.25rem;">
-        <p style="color:rgba(255,255,255,0.6);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 4px;">✈ Verano 2026 · Patagonia</p>
-        <h3 style="color:white;font-size:1.35rem;font-weight:900;margin:0 0 4px;line-height:1.2;">Las Grutas, Río Negro</h3>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:#f97316;font-weight:800;font-size:1.15rem;">desde $485.000</span>
-          <span style="color:rgba(255,255,255,0.4);font-size:0.8rem;">por persona · 6 días</span>
+      <div class="aviso-cuerpo">
+        <p class="antetitulo">Próxima salida</p>
+        <h3 id="aviso-titulo">{avisoPartes.titular}</h3>
+        <p class="aviso-detalle">
+          {avisoDuracion} · sale el {avisoFecha}
+        </p>
+
+        <p class="aviso-precio">
+          <span>desde</span>
+          <strong>{formatPrice(proximo.precioBase)}</strong>
+          <span>por persona</span>
+        </p>
+        <p class="aviso-letra">+ {formatPrice(proximo.gastosAdmin)} de gastos administrativos</p>
+
+        <label class="aviso-campo" for="aviso-nombre">Tu nombre</label>
+        <input id="aviso-nombre" type="text" autocomplete="name" placeholder="Para que sepamos con quién hablamos" />
+
+        <label class="aviso-campo" for="aviso-email">Tu email <span>(opcional, para avisarte de nuevas salidas)</span></label>
+        <input id="aviso-email" type="email" autocomplete="email" placeholder="nombre@email.com" />
+
+        <button id="aviso-enviar" class="btn btn-primary" type="button">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/>
+            <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5.1 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/>
+          </svg>
+          Consultar disponibilidad
+        </button>
+
+        <div class="aviso-pie">
+          <a href={avisoHref}>Ver el viaje</a>
+          <button id="aviso-cerrar-texto" type="button">Ahora no</button>
         </div>
       </div>
-    </div>
 
-    <!-- Body -->
-    <div style="padding:1.4rem 1.5rem 1.5rem;">
-
-      <!-- Countdown -->
-      <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;">
-        <span style="font-size:0.78rem;color:rgba(255,255,255,0.5);">⏰ Oferta válida por:</span>
-        <span id="popup-countdown" style="font-size:1rem;font-weight:800;color:#f97316;font-variant-numeric:tabular-nums;letter-spacing:0.05em;">15:00</span>
-      </div>
-
-      <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;line-height:1.6;margin:0 0 14px;">
-        Dejá tu nombre y consultá ahora por WhatsApp — te confirmamos disponibilidad y precio en minutos.
-      </p>
-
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <input id="popup-nombre" type="text" placeholder="Tu nombre" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:0.75rem 1rem;color:white;font-size:0.875rem;outline:none;width:100%;box-sizing:border-box;transition:border-color 0.2s;" />
-
-        <input id="popup-email" type="email" placeholder="Tu email (te avisamos de promos)" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:0.75rem 1rem;color:white;font-size:0.875rem;outline:none;width:100%;box-sizing:border-box;transition:border-color 0.2s;" />
-
-        <button id="popup-btn" style="background:linear-gradient(135deg,#f97316,#ea6c0a);color:white;font-weight:800;border:none;border-radius:9px;padding:0.95rem;font-size:0.95rem;cursor:pointer;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:0.02em;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quiero esta promo → WhatsApp
-        </button>
-      </div>
-
-      <button id="popup-cerrar-texto" style="background:none;border:none;color:rgba(255,255,255,0.2);font-size:0.74rem;cursor:pointer;margin-top:12px;width:100%;text-align:center;padding:4px;">
-        No gracias, no me interesan las promociones
+      <button id="aviso-cerrar" class="aviso-x" type="button" aria-label="Cerrar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
-
-    <!-- X -->
-    <button id="popup-cerrar" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);width:30px;height:30px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
   </div>
-</div>
+  )}
 
-<style is:global>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
-  }
-</style>
-
-<script>
-  if (!sessionStorage.getItem('popup-cerrado')) {
-    setTimeout(() => {
-      const overlay = document.getElementById('promo-overlay');
-      if (overlay) {
-        overlay.style.display = 'flex';
-        startCountdown();
-      }
-    }, 3000);
-  }
-
-  function cerrarPopup() {
-    const overlay = document.getElementById('promo-overlay');
-    if (overlay) overlay.style.display = 'none';
-    sessionStorage.setItem('popup-cerrado', '1');
-  }
-
-  function startCountdown() {
-    let secs = 15 * 60; // 15 minutos
-    const el = document.getElementById('popup-countdown');
-    if (!el) return;
-    const iv = setInterval(() => {
-      secs--;
-      if (secs <= 0) { clearInterval(iv); return; }
-      const m = Math.floor(secs / 60).toString().padStart(2, '0');
-      const s = (secs % 60).toString().padStart(2, '0');
-      el.textContent = `${m}:${s}`;
-      if (secs <= 120) el.style.color = '#ef4444';
-    }, 1000);
-  }
-
-  document.getElementById('popup-cerrar')?.addEventListener('click', cerrarPopup);
-  document.getElementById('popup-cerrar-texto')?.addEventListener('click', cerrarPopup);
-  document.getElementById('promo-overlay')?.addEventListener('click', function(e) {
-    if (e.target === this) cerrarPopup();
-  });
-
-  const nombreInput = document.getElementById('popup-nombre') as HTMLInputElement | null;
-  document.getElementById('popup-nombre')?.addEventListener('focus', function(this: HTMLInputElement) {
-    this.style.borderColor = 'rgba(249,115,22,0.5)';
-  });
-
-  document.getElementById('popup-btn')?.addEventListener('click', () => {
-    const nombre = (document.getElementById('popup-nombre') as HTMLInputElement)?.value.trim();
-    if (!nombre) {
-      const inp = document.getElementById('popup-nombre') as HTMLInputElement;
-      inp.style.borderColor = '#ef4444';
-      inp.focus();
-      return;
+  <style>
+    .aviso {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      background: rgba(15, 17, 21, 0.5);
+      backdrop-filter: blur(3px);
     }
-    const email = (document.getElementById('popup-email') as HTMLInputElement)?.value.trim();
-    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    .aviso[hidden] { display: none; }
+
+    .aviso-caja {
+      position: relative;
+      width: 100%; max-width: 420px;
+      max-height: calc(100dvh - 2rem);
+      overflow-y: auto;
+      background: var(--papel);
+      border-radius: var(--radio);
+      box-shadow: 0 24px 60px rgba(15, 17, 21, 0.22);
+    }
+
+    .aviso-foto { position: relative; aspect-ratio: 2 / 1; overflow: hidden; border-radius: var(--radio) var(--radio) 0 0; }
+    .aviso-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .aviso-cuando {
+      position: absolute; left: 12px; bottom: 12px;
+      background: var(--naranja-fuerte); color: #fff;
+      font-size: 0.78rem; font-weight: 600;
+      padding: 0.25rem 0.6rem; border-radius: 100px;
+    }
+
+    .aviso-cuerpo { padding: 1.15rem 1.25rem 1.25rem; }
+    .aviso-cuerpo h3 {
+      font-size: 1.4rem; font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.15; margin: 0.25rem 0 0; color: var(--tinta);
+    }
+    .aviso-detalle { font-size: 0.875rem; color: var(--tinta-2); margin: 0.3rem 0 0; }
+
+    .aviso-precio { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; margin: 0.9rem 0 0; }
+    .aviso-precio span { font-size: 0.85rem; color: var(--tinta-2); }
+    .aviso-precio strong { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.04em; color: var(--tinta); }
+    .aviso-letra { font-size: 0.78rem; color: var(--tinta-3); margin: 0.15rem 0 0; }
+
+    .aviso-campo {
+      display: block; font-size: 0.8rem; font-weight: 600;
+      color: var(--tinta-2); margin: 0.9rem 0 0.3rem;
+    }
+    .aviso-campo span { font-weight: 400; color: var(--tinta-3); }
+    .aviso-caja input {
+      width: 100%; box-sizing: border-box;
+      padding: 0.7rem 0.85rem;
+      font: inherit; font-size: 0.9rem;
+      color: var(--tinta); background: var(--papel);
+      border: 1px solid var(--linea-fuerte); border-radius: 10px;
+      outline: none; transition: border-color 0.15s ease;
+    }
+    .aviso-caja input::placeholder { color: var(--tinta-3); }
+    .aviso-caja input:focus { border-color: var(--naranja-fuerte); }
+    .aviso-caja input[aria-invalid='true'] { border-color: #b91c1c; }
+
+    #aviso-enviar { width: 100%; margin-top: 1rem; padding: 0.8rem 1rem; }
+
+    .aviso-pie {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; margin-top: 0.9rem;
+    }
+    .aviso-pie a { font-size: 0.85rem; font-weight: 600; color: var(--naranja-tinta); }
+    .aviso-pie button {
+      background: none; border: none; padding: 0; cursor: pointer;
+      font: inherit; font-size: 0.85rem; color: var(--tinta-3);
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+
+    .aviso-x {
+      position: absolute; top: 10px; right: 10px;
+      width: 32px; height: 32px;
+      display: grid; place-items: center;
+      background: rgba(255, 255, 255, 0.94); color: var(--tinta);
+      border: 1px solid var(--linea); border-radius: 50%;
+      cursor: pointer;
+    }
+    .aviso-x:hover { background: #fff; }
+
+    @media (max-width: 420px) {
+      .aviso-foto { aspect-ratio: 16 / 9; }
+    }
+  </style>
+
+  <script define:vars={{ slugAviso: proximo?.slug ?? '', tituloAviso: avisoPartes?.titular ?? '' }} is:inline>
+    (function () {
+      var caja = document.getElementById('aviso-salida');
+      if (!caja) return;
+
+      var CLAVE = 'pt-aviso-visto';
+      var DIAS_SILENCIO = 7;
+
+      // Quien ya lo cerró no lo vuelve a ver por una semana, y nunca aparece
+      // si la persona está justo en la página de ese viaje o en contacto.
       try {
-        fetch('https://assets.mailerlite.com/jsonp/2621768/forms/198028793608144042/subscribe', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ 'fields[email]': email, 'ml-submit': '1', 'anticsrf': 'true' })
-        });
-        if (typeof (window as any).gtag === 'function') (window as any).gtag('event', 'newsletter_signup', { lugar: 'popup' });
+        var hasta = Number(localStorage.getItem(CLAVE) || 0);
+        if (hasta > Date.now()) return;
       } catch (e) {}
-    }
-    const msg = encodeURIComponent(`Hola Pucará Turismo! Me llamo ${nombre} y vi la promo de Las Grutas en su web. ¿Tienen lugar disponible? ¿Cuáles son los próximos pasos?`);
-    window.open(`https://wa.me/5491134952847?text=${msg}`, '_blank');
-    cerrarPopup();
-  });
-</script>
+
+      var ruta = location.pathname;
+      if (ruta.indexOf('/contacto') === 0 || (slugAviso && ruta.indexOf(slugAviso) !== -1)) return;
+
+      function silenciar() {
+        try { localStorage.setItem(CLAVE, String(Date.now() + DIAS_SILENCIO * 86400000)); } catch (e) {}
+      }
+
+      function abrir() {
+        if (!caja.hidden) return;
+        caja.hidden = false;
+        document.removeEventListener('scroll', porScroll);
+        var n = document.getElementById('aviso-nombre');
+        if (n && window.matchMedia('(min-width: 720px)').matches) n.focus();
+        if (typeof gtag === 'function') gtag('event', 'aviso_salida_visto', { viaje: tituloAviso });
+      }
+
+      function cerrar() {
+        caja.hidden = true;
+        silenciar();
+      }
+
+      // Aparece cuando la persona ya mostró interés: 14 s o media página leída.
+      var reloj = setTimeout(abrir, 14000);
+      function porScroll() {
+        var alto = document.documentElement.scrollHeight - window.innerHeight;
+        if (alto > 0 && window.scrollY / alto > 0.45) { clearTimeout(reloj); abrir(); }
+      }
+      document.addEventListener('scroll', porScroll, { passive: true });
+
+      document.getElementById('aviso-cerrar').addEventListener('click', cerrar);
+      document.getElementById('aviso-cerrar-texto').addEventListener('click', cerrar);
+      caja.addEventListener('click', function (e) { if (e.target === caja) cerrar(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !caja.hidden) cerrar(); });
+
+      document.getElementById('aviso-enviar').addEventListener('click', function () {
+        var inpN = document.getElementById('aviso-nombre');
+        var nombre = (inpN.value || '').trim();
+        if (!nombre) {
+          inpN.setAttribute('aria-invalid', 'true');
+          inpN.focus();
+          return;
+        }
+        inpN.removeAttribute('aria-invalid');
+
+        var email = (document.getElementById('aviso-email').value || '').trim();
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          try {
+            fetch('https://assets.mailerlite.com/jsonp/2621768/forms/198028793608144042/subscribe', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams({ 'fields[email]': email, 'ml-submit': '1', anticsrf: 'true' })
+            });
+            if (typeof gtag === 'function') gtag('event', 'newsletter_signup', { lugar: 'aviso_salida' });
+          } catch (e) {}
+        }
+
+        var msg = 'Hola Pucará Turismo! Me llamo ' + nombre + ' y vi en la web el viaje a ' + tituloAviso + '. ¿Tienen lugar disponible?';
+        window.open('https://wa.me/5491134952847?text=' + encodeURIComponent(msg), '_blank');
+        cerrar();
+      });
+    })();
+  </script>
 </body>
 </html>
 

@@ -157,6 +157,8 @@ if ($accion === 'guardar') {
         'frecuencia_salidas' => in_array($_POST['frecuencia_salidas'] ?? '', ['semanal','quincenal','mensual'], true)
                                   ? $_POST['frecuencia_salidas'] : 'mensual',
         'tags'               => json_encode(comas($_POST['tags'] ?? ''), JSON_UNESCAPED_UNICODE),
+        'categoria'          => in_array($_POST['categoria'] ?? '', ['mes','verano27','fin_de_ano','recital'], true)
+                                  ? $_POST['categoria'] : 'mes',
         'itinerario'         => json_encode(lineas($_POST['itinerario'] ?? ''), JSON_UNESCAPED_UNICODE),
         'puntos_de_subida'   => json_encode(array_values(array_filter(
                                   (array) ($_POST['puntos_de_subida'] ?? []),
@@ -180,13 +182,13 @@ if ($accion === 'guardar') {
             $st = pt_db()->prepare($sql);
             $st->execute(array_merge([$id], array_values($campos)));
             pt_log('crear', $id, $titulo);
-            $msg = 'Listo, ya quedó cargado: ' . $titulo;
+            $msg = 'Viaje creado: ' . $titulo;
         } else {
             $sets = implode(', ', array_map(function ($c) { return "$c = ?"; }, array_keys($campos)));
             $st = pt_db()->prepare("UPDATE pt_paquetes SET $sets WHERE id = ?");
             $st->execute(array_merge(array_values($campos), [$id]));
             pt_log('editar', $id, $titulo);
-            $msg = 'Cambios guardados.';
+            $msg = 'Cambios guardados en: ' . $titulo;
         }
     } catch (PDOException $e) {
         error_log('Pucara guardar: ' . $e->getMessage());
@@ -201,10 +203,8 @@ if ($accion === 'guardar') {
     }
 
     unset($_SESSION['pt_form']);
-    if ($avisos) $msg .= ' | Fotos que no se pudieron subir: ' . implode(' / ', $avisos);
-    // Al crear vas a la lista para verlo en contexto; al editar te quedás en el viaje
-    volver($es_nuevo ? 'v=viajes' : 'v=editar&id=' . urlencode($id),
-           $avisos ? 'aviso' : 'ok', $msg);
+    if ($avisos) $msg .= ' | Fotos no subidas: ' . implode(' / ', $avisos);
+    volver('', $avisos ? 'aviso' : 'ok', $msg);
 }
 
 // ---------------------------------------------------------------------------

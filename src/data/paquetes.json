@@ -5,35 +5,97 @@
     "menoresCuatroAnios": "Los niños menores de 4 años viajan sin cargo en el paquete — solo abonan los gastos administrativos ($10.000 por persona).",
     "cocheCama": "Todos nuestros viajes se realizan en bus mix. Si deseás viajar en la parte inferior del coche (butaca cama), el costo adicional es de $10.000 por persona.",
     "tipoBus": "Bus mix con servicio a bordo. La parte inferior (butaca cama) tiene costo adicional de $10.000 por persona.",
-    "puntosDeSubida": "Contamos con múltiples puntos de subida distribuidos en el Gran Buenos Aires: Liniers, Haedo, Morón, Ituzaingó, Castelar, Palermo, Once y más. Consultá el punto más cercano a vos."
+    "puntosDeSubida": "Contamos con 8 puntos de subida en el Gran Buenos Aires: Cruce Varela, Rotonda Los Pinos, Rotonda Lavallol, Rotonda San Justo, Ciudadela (Gral. Paz), Morón (frente al Plaza Oeste), Moreno (Axion Ruta 23 y Acceso Oeste) y Tigre — Pacheco (Pdor. El Turista). Los lugares de carga pueden sufrir modificaciones para un mejor servicio en el tiempo del recorrido."
   },
   "paquetes": [
     {
-      "id": "pkg-101",
-      "slug": "san-jose-cena-show-baile-11sep",
-      "titulo": "Termas de San José — Cena Show + Baile · 11 de Septiembre",
+      "id": "pkg-201",
+      "slug": "san-bernardo-hostal-del-sol-24-31oct",
+      "titulo": "San Bernardo — Hostal del Sol Resort & Spa ★★★★ · 24 y 31 de octubre",
+      "tipo": "viaje_completo",
+      "destino": "san-bernardo",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 135000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Fin de semana en San Bernardo con alojamiento en el Hostal del Sol Resort & Spa ★★★★, con pileta climatizada, gimnasio y desayuno buffet.",
+      "descripcionLarga": "Escapada de sábado y domingo a San Bernardo. Te alojás en el Hostal del Sol Resort & Spa ★★★★, que tiene pileta climatizada, gimnasio, sala de juegos y cancha de fútbol y básquet. El desayuno es buffet. Viajamos en bus mix con servicio a bordo. El segundo día aprovechás la playa hasta que emprendemos el regreso a Buenos Aires por la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hostal del Sol Resort & Spa ★★★★",
+        "Desayuno buffet",
+        "Pileta climatizada, gimnasio y sala de juegos",
+        "Cancha de fútbol y básquet",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hostal-del-sol-1.jpg",
+      "imagenes": [
+        "/hostal-del-sol-1.jpg",
+        "/hostal-del-sol-2.jpg",
+        "/hostal-del-sol-3.jpg",
+        "/hostal-del-sol-4.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-10-24",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "playa",
+        "fin de semana",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a San Bernardo y desayuno buffet en el hotel. Día libre de playa.",
+        "Segundo día de playa y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-202",
+      "slug": "termas-san-jose-full-day-25oct",
+      "titulo": "Termas de San José — Full Day · 25 de octubre",
       "tipo": "full_day",
       "destino": "colon-entre-rios",
       "duracionDias": 1,
       "duracionNoches": 0,
-      "precioBase": 139000,
+      "precioBase": 99000,
       "gastosAdmin": 10000,
       "suplementoSingle": 0,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a las Termas de San José con desayuno, merienda a bordo, cena show tenedor libre y baile. Edición especial Día del Maestro. Salida 11 de septiembre.",
-      "descripcionLarga": "Un full day pensado para festejar el Día del Maestro a lo grande. Salimos en el día hacia las Termas de San José, en Colón (Entre Ríos), con desayuno y merienda a bordo, entrada y traslado a las termas incluidos, y a la noche una cena show tenedor libre con baile para cerrar la jornada a puro festejo. Coordinador durante todo el viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires.",
+      "descripcionCorta": "Full day a las Termas de San José, en Colón, con desayuno y merienda a bordo, entrada y traslado incluidos.",
+      "descripcionLarga": "Un día completo en las Termas de San José, en Colón, Entre Ríos. Salimos temprano desde el Gran Buenos Aires en bus semi cama con servicio a bordo, con desayuno y merienda a bordo. La entrada al complejo termal y el traslado están incluidos, y un coordinador acompaña al grupo durante toda la jornada.",
       "incluye": [
         "Bus semi cama con servicio a bordo",
         "Desayuno",
         "Merienda a bordo",
-        "Entrada y traslado a Termas de San José",
-        "Cena show tenedor libre + baile",
-        "Coordinador de viaje"
+        "Entrada a Termas de San José",
+        "Traslado al complejo termal",
+        "Coordinador durante todo el viaje"
       ],
       "noIncluye": [
-        "Almuerzo",
         "Gastos personales",
-        "Bebidas extra"
+        "Bebidas",
+        "Excursiones opcionales"
       ],
       "imagenPrincipal": "/termas-san-jose-1.jpg",
       "imagenes": [
@@ -42,191 +104,60 @@
         "/termas-san-jose-4.jpg",
         "/termas-san-jose-5.jpg"
       ],
-      "rating": 4.9,
-      "reviews": 74,
-      "cuposPorSalida": 30,
-      "proximaSalida": "2026-09-11",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "termas",
-        "fiesta",
-        "relax",
-        "litoral",
-        "full day"
-      ],
-      "itinerario": [
-        "Salida temprano desde los puntos de subida del GBA en bus semi cama. Desayuno y merienda a bordo.",
-        "Llegada a Colón. Día completo en las Termas de San José (entrada y traslado incluidos).",
-        "Noche: cena show tenedor libre con baile. Regreso a Buenos Aires al finalizar."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-102",
-      "slug": "colon-termas-colon-cena-show-12sep",
-      "titulo": "Colón + Termas de Colón + Cena Show · 12 de Septiembre",
-      "tipo": "viaje_completo",
-      "destino": "colon-entre-rios",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 162000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 81000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hostería El Abuelo. Media pensión, cena show tenedor libre y Termas de Colón. Edición Día del Maestro. Salida 12 de septiembre.",
-      "descripcionLarga": "Escapada a Colón, Entre Ríos, para festejar el Día del Maestro. Te alojás en la Hostería El Abuelo con media pensión y disfrutás de una cena show con tenedor libre y de las Termas de Colón (entrada incluida). Bus semi cama con servicio a bordo, coordinador de viaje y el encanto del litoral entrerriano: playa de río, termas y buena gastronomía. El segundo día emprendemos el regreso a Buenos Aires a las 17:00 hs desde las termas.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "1 noche en Hostería El Abuelo",
-        "Media pensión",
-        "Cena show tenedor libre",
-        "Entrada a Termas de Colón",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzo del segundo día",
-        "Gastos personales",
-        "Excursiones opcionales"
-      ],
-      "imagenPrincipal": "/termas-colon-1.jpg",
-      "imagenes": [
-        "/termas-colon-1.jpg",
-        "/termas-colon-2.jpg",
-        "/termas-san-jose-1.jpg"
-      ],
       "rating": 4.8,
-      "reviews": 66,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-09-12",
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-10-25",
       "frecuenciaSalidas": "mensual",
       "tags": [
         "termas",
-        "fiesta",
-        "relax",
-        "litoral",
-        "pareja"
+        "full day",
+        "litoral"
       ],
+      "categoria": "mes",
       "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
-        "Día 2 — Llegada a Colón. Check-in en Hostería El Abuelo. Tarde: Termas de Colón (entrada incluida). Noche: cena show tenedor libre.",
-        "Día 3 — Desayuno. Check-out. Regreso a Buenos Aires a partir de las 17:00 hs desde las termas."
+        "Salida temprano desde los puntos de subida del Gran Buenos Aires. Desayuno a bordo.",
+        "Llegada a Colón y día completo en las Termas de San José.",
+        "Merienda a bordo y regreso a Buenos Aires por la noche."
       ],
       "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
       ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $81.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
+      "politicas": {}
     },
     {
-      "id": "pkg-103",
-      "slug": "san-bernardo-hotel-colores-12sep",
-      "titulo": "San Bernardo — Hotel Colores · 12 de Septiembre",
-      "tipo": "viaje_completo",
-      "destino": "san-bernardo",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 98000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 49000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hotel Colores (pileta, a 200 mts de la playa). Desayuno, coordinador y bus mix. Edición Día del Maestro. Salida 12 de septiembre.",
-      "descripcionLarga": "Escapada de fin de semana a San Bernardo para festejar el Día del Maestro. Te alojás en el Hotel Colores, con pileta y a solo 200 metros de la playa, con desayuno incluido. Coordinador de viaje y bus mix con servicio a bordo desde el Gran Buenos Aires. El segundo día emprendemos el regreso a Buenos Aires en horas de la tarde.",
-      "incluye": [
-        "Bus mix con servicio a bordo",
-        "1 noche en Hotel Colores",
-        "Desayuno",
-        "Acceso a pileta del hotel",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzo y cena",
-        "Gastos personales",
-        "Excursiones"
-      ],
-      "imagenPrincipal": "/san-bernardo.jpg",
-      "imagenes": [
-        "/san-bernardo.jpg",
-        "/hostal-del-sol-1.jpg"
-      ],
-      "rating": 4.6,
-      "reviews": 58,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-09-12",
-      "frecuenciaSalidas": "quincenal",
-      "tags": [
-        "playa",
-        "familia",
-        "relax",
-        "finde"
-      ],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
-        "Día 2 — Llegada a San Bernardo. Check-in Hotel Colores. Desayuno. Día libre en la playa y el hotel.",
-        "Día 3 — Desayuno. Mañana libre. Regreso a Buenos Aires en horas de la tarde."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $49.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-104",
-      "slug": "villa-elisa-full-day-13sep",
-      "titulo": "Termas de Villa Elisa — Full Day · 13 y 20 de Septiembre",
+      "id": "pkg-203",
+      "slug": "termas-villa-elisa-full-day-25oct",
+      "titulo": "Termas de Villa Elisa — Full Day · 25 de octubre",
       "tipo": "full_day",
       "destino": "villa-elisa-entre-rios",
       "duracionDias": 1,
       "duracionNoches": 0,
-      "precioBase": 85000,
+      "precioBase": 110000,
       "gastosAdmin": 10000,
       "suplementoSingle": 0,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a las Termas de Villa Elisa (Entre Ríos) con entrada, traslado, coordinador y bus semi cama. Salidas 13 y 20 de septiembre.",
-      "descripcionLarga": "Un día completo de relax en las Termas de Villa Elisa, uno de los complejos termales más lindos de Entre Ríos, con amplios parques, piscinas de distintas temperaturas y sector spa. El full day incluye entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salidas disponibles el 13 y el 20 de septiembre.",
+      "descripcionCorta": "Full day a las Termas de Villa Elisa, con entrada y traslado, desayuno y merienda a bordo.",
+      "descripcionLarga": "Día completo en el parque termal de Villa Elisa, uno de los más grandes de Entre Ríos, con piscinas al aire libre y climatizadas y mucho verde alrededor. Viajamos en bus semi cama con servicio a bordo, con desayuno y merienda a bordo, y la entrada y el traslado al complejo están incluidos.",
       "incluye": [
         "Bus semi cama con servicio a bordo",
-        "Entrada y traslado a Termas de Villa Elisa",
-        "Coordinador de viaje"
+        "Desayuno",
+        "Merienda a bordo",
+        "Entrada a las Termas de Villa Elisa",
+        "Traslado al complejo termal",
+        "Coordinador durante todo el viaje"
       ],
       "noIncluye": [
-        "Comidas",
         "Gastos personales",
-        "Servicios de spa opcionales"
+        "Bebidas",
+        "Excursiones opcionales"
       ],
       "imagenPrincipal": "/villa-elisa-1.jpg",
       "imagenes": [
@@ -234,127 +165,61 @@
         "/villa-elisa-2.jpg",
         "/villa-elisa-3.jpg"
       ],
-      "rating": 4.7,
-      "reviews": 41,
-      "cuposPorSalida": 30,
-      "proximaSalida": "2026-09-13",
-      "frecuenciaSalidas": "quincenal",
-      "tags": [
-        "termas",
-        "relax",
-        "litoral",
-        "full day"
-      ],
-      "itinerario": [
-        "Salida temprano desde el GBA en bus semi cama con servicio a bordo.",
-        "Día completo en las Termas de Villa Elisa (entrada y traslado incluidos).",
-        "Regreso a Buenos Aires al finalizar la jornada."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-105",
-      "slug": "san-jose-full-day-13sep",
-      "titulo": "Termas de San José — Full Day · 13 y 27 de Septiembre",
-      "tipo": "full_day",
-      "destino": "colon-entre-rios",
-      "duracionDias": 1,
-      "duracionNoches": 0,
-      "precioBase": 120000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 0,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a las Termas de San José con desayuno, merienda a bordo, entrada, traslado y coordinador. Salidas 13 y 27 de septiembre.",
-      "descripcionLarga": "Un día completo de termas y relax en Colón, Entre Ríos. El full day a las Termas de San José incluye desayuno y merienda a bordo, entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salidas disponibles el 13 y el 27 de septiembre.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "Desayuno",
-        "Merienda a bordo",
-        "Entrada y traslado a Termas de San José",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzo",
-        "Gastos personales",
-        "Bebidas extra"
-      ],
-      "imagenPrincipal": "/termas-san-jose-1.jpg",
-      "imagenes": [
-        "/termas-san-jose-1.jpg",
-        "/termas-san-jose-2.jpg",
-        "/termas-san-jose-3.jpg"
-      ],
       "rating": 4.8,
-      "reviews": 88,
+      "reviews": 0,
       "cuposPorSalida": 30,
-      "proximaSalida": "2026-09-13",
-      "frecuenciaSalidas": "quincenal",
+      "proximaSalida": "2026-10-25",
+      "frecuenciaSalidas": "mensual",
       "tags": [
         "termas",
-        "relax",
-        "litoral",
-        "full day"
+        "full day",
+        "litoral"
       ],
+      "categoria": "mes",
       "itinerario": [
-        "Salida temprano desde el GBA en bus semi cama. Desayuno y merienda a bordo.",
-        "Día completo en las Termas de San José (entrada y traslado incluidos).",
-        "Regreso a Buenos Aires al finalizar la jornada."
+        "Salida temprano desde los puntos de subida del Gran Buenos Aires. Desayuno a bordo.",
+        "Llegada a Villa Elisa y día completo en el parque termal.",
+        "Merienda a bordo y regreso a Buenos Aires por la noche."
       ],
       "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
       ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
+      "politicas": {}
     },
     {
-      "id": "pkg-106",
-      "slug": "termas-colon-full-day-13sep",
-      "titulo": "Termas de Colón — Full Day · 13 y 27 de Septiembre",
+      "id": "pkg-204",
+      "slug": "termas-colon-full-day-25oct",
+      "titulo": "Termas de Colón — Full Day con almuerzo · 25 de octubre",
       "tipo": "full_day",
       "destino": "colon-entre-rios",
       "duracionDias": 1,
       "duracionNoches": 0,
-      "precioBase": 139000,
+      "precioBase": 115000,
       "gastosAdmin": 10000,
       "suplementoSingle": 0,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a las Termas de Colón con desayuno, almuerzo, merienda a bordo, entrada, traslado y coordinador. Salidas 13 y 27 de septiembre.",
-      "descripcionLarga": "Un día completo en las Termas de Colón, Entre Ríos, con pensión incluida: desayuno, almuerzo y merienda a bordo. El full day incluye entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salidas disponibles el 13 y el 27 de septiembre.",
+      "descripcionCorta": "Full day a las Termas de Colón con desayuno, almuerzo y merienda a bordo, entrada y traslado incluidos.",
+      "descripcionLarga": "Día completo en las Termas de Colón, sobre el río Uruguay, con piscinas termales al aire libre y cubiertas y toboganes para los chicos. Es el full day más completo: incluye desayuno, almuerzo y merienda a bordo, además de la entrada y el traslado al complejo. Viajamos en bus semi cama con servicio a bordo y coordinador.",
       "incluye": [
         "Bus semi cama con servicio a bordo",
         "Desayuno",
         "Almuerzo",
         "Merienda a bordo",
-        "Entrada y traslado a Termas de Colón",
-        "Coordinador de viaje"
+        "Entrada a las Termas de Colón",
+        "Traslado al complejo termal",
+        "Coordinador durante todo el viaje"
       ],
       "noIncluye": [
         "Gastos personales",
-        "Bebidas extra"
+        "Bebidas",
+        "Excursiones opcionales"
       ],
       "imagenPrincipal": "/termas-colon-1.jpg",
       "imagenes": [
@@ -362,860 +227,371 @@
         "/termas-colon-2.jpg"
       ],
       "rating": 4.8,
-      "reviews": 79,
+      "reviews": 0,
       "cuposPorSalida": 30,
-      "proximaSalida": "2026-09-13",
-      "frecuenciaSalidas": "quincenal",
-      "tags": [
-        "termas",
-        "relax",
-        "litoral",
-        "full day"
-      ],
-      "itinerario": [
-        "Salida temprano desde el GBA en bus semi cama. Desayuno a bordo.",
-        "Día completo en las Termas de Colón (entrada y traslado incluidos). Almuerzo incluido.",
-        "Merienda a bordo y regreso a Buenos Aires al finalizar la jornada."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-107",
-      "slug": "rio-hondo-hebron-promo-16sep",
-      "titulo": "Termas de Río Hondo — Hotel Hebrón (PROMO) · 16 de Septiembre",
-      "tipo": "viaje_completo",
-      "destino": "rio-hondo",
-      "duracionDias": 7,
-      "duracionNoches": 4,
-      "precioBase": 199000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 99500,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "PROMO $199.000 (antes $290.000). 7 días / 4 noches en Hotel Hebrón ★★. Pensión completa + merienda, show en el hotel y clase de aquagym. Salida 16 de septiembre.",
-      "descripcionLarga": "Las Termas de Río Hondo, en Santiago del Estero, son uno de los destinos termales más reconocidos de Argentina. Aprovechá esta PROMO: 7 días con alojamiento en el Hotel Hebrón ★★, con pensión completa más merienda (desayuno, almuerzo, merienda y cena), show en el hotel y clase de aquagym. Bus mix con servicio a bordo desde el Gran Buenos Aires. Un descanso total con todo resuelto, a un precio promocional por tiempo limitado.",
-      "incluye": [
-        "Bus mix con servicio a bordo",
-        "4 noches en Hotel Hebrón ★★",
-        "Pensión completa (desayuno, almuerzo, merienda y cena)",
-        "Show en el hotel",
-        "Clase de aquagym"
-      ],
-      "noIncluye": [
-        "Gastos personales",
-        "Excursiones opcionales fuera del hotel",
-        "Bebidas extra"
-      ],
-      "imagenPrincipal": "/rio-hondo-1.jpg",
-      "imagenes": [
-        "/rio-hondo-1.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 156,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-09-16",
+      "proximaSalida": "2026-10-25",
       "frecuenciaSalidas": "mensual",
       "tags": [
         "termas",
-        "relax",
-        "pareja",
-        "naturaleza",
-        "norte"
-      ],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus mix con servicio a bordo.",
-        "Día 2 — Llegada a Río Hondo. Check-in Hotel Hebrón. Pensión completa. Tarde libre en las termas. Show nocturno.",
-        "Día 3 — Pensión completa + merienda. Clase de aquagym. Día de relax en el hotel y las termas.",
-        "Día 4 — Pensión completa + merienda. Día libre. Show en el hotel.",
-        "Día 5 — Pensión completa + merienda. Día libre en las termas.",
-        "Día 6 — Desayuno. Check-out. Inicio del regreso a Buenos Aires.",
-        "Día 7 — Llegada a Buenos Aires."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once",
-        "La Plata"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $99.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-108",
-      "slug": "tandil-full-day-19sep",
-      "titulo": "Tandil — Full Day · 19 de Septiembre",
-      "tipo": "full_day",
-      "destino": "tandil",
-      "duracionDias": 1,
-      "duracionNoches": 0,
-      "precioBase": 85000,
-      "gastosAdmin": 6000,
-      "suplementoSingle": 0,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a Tandil: Cerro Centinela, Monte Calvario, Lago, Parque Independencia, Castillo Morisco, Dique del Fuerte, Piedra Movediza y compras regionales. Con guía local. Salida 19 de septiembre.",
-      "descripcionLarga": "Un día a pura sierra en Tandil. Recorremos los clásicos: Cerro Centinela, Monte Calvario, el Lago del Fuerte, el Parque Independencia con su Castillo Morisco, el Dique del Fuerte y la famosa Piedra Movediza, con tiempo para las compras de productos regionales (salames y quesos). Incluye bus mix con merienda a bordo, coordinador y guía local. Un full day ideal para disfrutar el paisaje serrano y la gastronomía tandilense.",
-      "incluye": [
-        "Bus mix con servicio a bordo",
-        "Merienda a bordo",
-        "Coordinador de viaje",
-        "Guía local",
-        "Recorrido: Cerro Centinela, Monte Calvario, Lago, Parque Independencia, Castillo Morisco, Dique del Fuerte y Piedra Movediza"
-      ],
-      "noIncluye": [
-        "Almuerzo",
-        "Compras y productos regionales",
-        "Gastos personales"
-      ],
-      "imagenPrincipal": "/tandil-1.jpg",
-      "imagenes": [
-        "/tandil-1.jpg",
-        "/tandil-2.jpg",
-        "/tandil-3.jpg",
-        "/tandil-4.jpg",
-        "/tandil-5.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 52,
-      "cuposPorSalida": 30,
-      "proximaSalida": "2026-09-19",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "sierras",
-        "naturaleza",
-        "gastronomía",
-        "full day"
-      ],
-      "itinerario": [
-        "Salida temprano desde el GBA en bus mix con servicio a bordo. Merienda a bordo.",
-        "Llegada a Tandil. Recorrido con guía local: Cerro Centinela, Monte Calvario, Lago del Fuerte, Parque Independencia y Castillo Morisco, Dique del Fuerte y Piedra Movediza.",
-        "Tiempo libre para compras regionales. Regreso a Buenos Aires al finalizar la jornada."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($6.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-109",
-      "slug": "mar-del-plata-riazor-19sep",
-      "titulo": "Mar del Plata — Hotel Riazor · Septiembre y Octubre",
-      "tipo": "viaje_completo",
-      "destino": "mar-del-plata",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 119000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 59500,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hotel Riazor (frente al shopping, a 400 mts del centro Güemes). Pensión completa, show en el hotel y bus mix. Salidas sábados y domingos.",
-      "descripcionLarga": "Escapada de fin de semana a Mar del Plata con todo resuelto. Te alojás en el Hotel Riazor, frente al Shopping Los Gallegos y a 400 metros del centro comercial Güemes, en pleno corazón de la ciudad. El paquete incluye pensión completa, show en el hotel y traslado en bus mix con servicio a bordo. Salidas confirmadas: sábados y domingos de septiembre (19 y 26) y de octubre (del 3 al 31). El segundo día emprendemos el regreso a Buenos Aires en horas de la tarde.",
-      "incluye": [
-        "Bus mix con servicio a bordo",
-        "1 noche en Hotel Riazor",
-        "Pensión completa (desayuno, almuerzo y cena)",
-        "Show en el hotel",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Bebidas con las comidas",
-        "Gastos personales",
-        "Excursiones opcionales"
-      ],
-      "imagenPrincipal": "/mar-del-plata-5.jpg",
-      "imagenes": [
-        "/mar-del-plata-5.jpg",
-        "/hotel-riazor-1.jpg",
-        "/hotel-riazor-2.jpg",
-        "/hotel-riazor-3.jpg",
-        "/hotel-riazor-4.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 148,
-      "cuposPorSalida": 20,
-      "proximaSalida": "2026-09-19",
-      "frecuenciaSalidas": "semanal",
-      "tags": [
-        "playa",
-        "familia",
-        "relax",
-        "finde"
-      ],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
-        "Día 2 — Llegada a Mar del Plata. Check-in Hotel Riazor. Pensión completa. Tarde libre en la ciudad, la rambla y el centro Güemes. Show en el hotel.",
-        "Día 3 — Desayuno. Regreso a Buenos Aires en horas de la tarde."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $59.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-110",
-      "slug": "san-bernardo-hostal-del-sol-19sep",
-      "titulo": "San Bernardo — Hostal del Sol Resort & Spa ★★★★ · Septiembre y Octubre",
-      "tipo": "viaje_completo",
-      "destino": "san-bernardo",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 135000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 67500,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hostal del Sol Resort & Spa ★★★★ (pileta climatizada, gimnasio, sala de juegos, canchas). Desayuno buffet y bus mix. Salidas sábados y domingos.",
-      "descripcionLarga": "Fin de semana en el mejor resort de San Bernardo. El Hostal del Sol Resort & Spa 4 estrellas es ideal para descansar y divertirse: pileta climatizada, gimnasio, sala de juegos y canchas de fútbol y básquet. Incluye desayuno buffet y bus mix con servicio a bordo desde el Gran Buenos Aires. Salidas confirmadas: sábados y domingos del 12, 19 y 26 de septiembre y del 3, 17, 24 y 31 de octubre. El segundo día emprendemos el regreso en horas de la tarde.",
-      "incluye": [
-        "Bus mix con servicio a bordo",
-        "1 noche en Hostal del Sol Resort & Spa ★★★★",
-        "Desayuno buffet",
-        "Acceso a pileta climatizada, gimnasio y todas las instalaciones",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzo y cena",
-        "Gastos personales",
-        "Excursiones"
-      ],
-      "imagenPrincipal": "/san-bernardo.jpg",
-      "imagenes": [
-        "/san-bernardo.jpg",
-        "/hostal-del-sol-1.jpg",
-        "/hostal-del-sol-2.jpg",
-        "/hostal-del-sol-3.jpg",
-        "/hostal-del-sol-4.jpg"
-      ],
-      "rating": 4.7,
-      "reviews": 121,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-09-19",
-      "frecuenciaSalidas": "semanal",
-      "tags": [
-        "playa",
-        "familia",
-        "relax",
-        "finde",
-        "resort"
-      ],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde los puntos de subida del GBA en bus mix.",
-        "Día 2 — Llegada a San Bernardo. Check-in Hostal del Sol Resort & Spa. Desayuno buffet. Día libre en el resort y la playa.",
-        "Día 3 — Desayuno. Mañana libre. Regreso a Buenos Aires en horas de la tarde."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $67.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-111",
-      "slug": "federacion-los-angelitos-25sep",
-      "titulo": "Federación — Hotel Los Angelitos · 25 de Septiembre",
-      "tipo": "viaje_completo",
-      "destino": "federacion-entre-rios",
-      "duracionDias": 4,
-      "duracionNoches": 3,
-      "precioBase": 175000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 87500,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "4 días / 3 noches en Hotel Los Angelitos. 3 desayunos y bus semi cama. El gran parque termal de Federación (Entre Ríos). Salida 25 de septiembre.",
-      "descripcionLarga": "Federación, en Entre Ríos, es sinónimo de termas: su parque termal es uno de los más grandes y completos del país, con piscinas de distintas temperaturas y un enorme parque acuático. Te alojás en el Hotel Los Angelitos con 3 desayunos incluidos y viajás en bus semi cama con servicio a bordo desde el Gran Buenos Aires. Cuatro días para relajarte en las aguas termales y disfrutar de la tranquilidad de la ciudad.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "3 noches en Hotel Los Angelitos",
-        "3 desayunos",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzos y cenas",
-        "Entradas al parque termal",
-        "Gastos personales"
-      ],
-      "imagenPrincipal": "/federacion-1.jpg",
-      "imagenes": [
-        "/federacion-1.jpg",
-        "/federacion-2.jpg",
-        "/federacion-3.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 63,
-      "cuposPorSalida": 22,
-      "proximaSalida": "2026-09-25",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "termas",
-        "relax",
-        "familia",
+        "full day",
         "litoral"
       ],
+      "categoria": "mes",
       "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
-        "Día 2 — Llegada a Federación. Check-in Hotel Los Angelitos. Desayuno. Día libre en el parque termal.",
-        "Día 3 — Desayuno. Día completo de termas y relax.",
-        "Día 4 — Desayuno. Check-out. Regreso a Buenos Aires."
+        "Salida temprano desde los puntos de subida del Gran Buenos Aires. Desayuno a bordo.",
+        "Llegada a Colón, día completo en el complejo termal y almuerzo.",
+        "Merienda a bordo y regreso a Buenos Aires por la noche."
       ],
       "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once",
-        "La Plata"
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
       ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $87.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
+      "politicas": {}
     },
     {
-      "id": "pkg-112",
-      "slug": "san-pedro-howard-johnson-03oct",
-      "titulo": "San Pedro — Howard Johnson ★★★★ · 3 de Octubre",
-      "tipo": "viaje_completo",
-      "destino": "san-pedro",
-      "duracionDias": 2,
-      "duracionNoches": 1,
-      "precioBase": 195000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 97500,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Howard Johnson ★★★★ San Pedro. Media pensión + bebida, traslado a la campiña y bus semi cama. Salida 3 de octubre.",
-      "descripcionLarga": "Escapada de fin de semana a San Pedro, en el Howard Johnson 4 estrellas. El sábado te alojás en el Howard Johnson Hotel & Spa (centro) y el domingo disfrutás del Howard Johnson Marinas Resort. Incluye media pensión con bebida, traslado a la campiña (no incluye entrada) y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Comodidad de resort a pocas horas de Buenos Aires.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "1 noche en Howard Johnson ★★★★ (Hotel & Spa / Marinas Resort)",
-        "Media pensión + bebida",
-        "Traslado a la campiña",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Entrada a la campiña",
-        "Gastos personales",
-        "Excursiones opcionales"
-      ],
-      "imagenPrincipal": "/san-pedro-1.jpg",
-      "imagenes": [
-        "/san-pedro-1.jpg",
-        "/san-pedro-2.jpg",
-        "/san-pedro-3.jpg",
-        "/san-pedro-4.jpg",
-        "/san-pedro-5.jpg",
-        "/san-pedro-6.jpg",
-        "/san-pedro-7.jpg",
-        "/san-pedro-8.jpg"
-      ],
-      "rating": 4.7,
-      "reviews": 47,
-      "cuposPorSalida": 22,
-      "proximaSalida": "2026-10-03",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "resort",
-        "relax",
-        "pareja",
-        "spa"
-      ],
-      "itinerario": [
-        "Día 1 (sábado) — Salida desde el GBA en bus semi cama. Llegada a San Pedro. Check-in Howard Johnson Hotel & Spa (centro). Media pensión.",
-        "Día 2 (domingo) — Desayuno. Día en el Howard Johnson Marinas Resort. Traslado a la campiña. Regreso a Buenos Aires.",
-        "Regreso a Buenos Aires al finalizar el segundo día."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $97.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-113",
-      "slug": "rosario-san-nicolas-full-day-04oct",
-      "titulo": "Rosario & San Nicolás + Almuerzo — Full Day · 4 de Octubre",
-      "tipo": "full_day",
-      "destino": "rosario-santa-fe",
-      "duracionDias": 1,
-      "duracionNoches": 0,
-      "precioBase": 89900,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 0,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a Rosario y San Nicolás con almuerzo incluido. Iglesia Virgen del Rosario, costanera, Monumento a la Bandera y playa del Paraná. Salida 4 de octubre.",
-      "descripcionLarga": "Un día completo por dos ciudades a orillas del Paraná. Primera parada en San Nicolás para visitar la Iglesia Virgen del Rosario. Seguimos a Rosario, donde almorzamos en un restaurante (entrada, plato principal y postre incluidos) y recorremos la costanera, el imponente Monumento Nacional a la Bandera y la playa del Paraná. Incluye coordinador y bus mix con servicio a bordo desde el Gran Buenos Aires.",
-      "incluye": [
-        "Bus mix con servicio a bordo",
-        "Almuerzo en Rosario (entrada, plato principal y postre)",
-        "Visita a San Nicolás (Iglesia Virgen del Rosario)",
-        "Recorrido por Rosario: costanera, Monumento a la Bandera y playa del Paraná",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Bebidas del almuerzo",
-        "Gastos personales",
-        "Entradas opcionales"
-      ],
-      "imagenPrincipal": "/rosario-1.jpg",
-      "imagenes": [
-        "/rosario-1.jpg",
-        "/rosario-2.jpg"
-      ],
-      "rating": 4.7,
-      "reviews": 39,
-      "cuposPorSalida": 35,
-      "proximaSalida": "2026-10-04",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "ciudad",
-        "cultura",
-        "gastronomía",
-        "full day",
-        "río"
-      ],
-      "itinerario": [
-        "Salida temprano desde el GBA en bus mix con servicio a bordo.",
-        "Primera parada en San Nicolás: visita a la Iglesia Virgen del Rosario.",
-        "Llegada a Rosario. Almuerzo en restaurante (entrada, plato principal y postre). Recorrido por la costanera, el Monumento a la Bandera y la playa del Paraná. Regreso a Buenos Aires al finalizar la jornada."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-114",
-      "slug": "colon-san-jose-termas-rio-3d2n-10oct",
-      "titulo": "Colón + Termas de San José — Hotel Termas y Río (3d/2n) · 10 de Octubre",
-      "tipo": "viaje_completo",
-      "destino": "colon-entre-rios",
-      "duracionDias": 3,
-      "duracionNoches": 2,
-      "precioBase": 240000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 120000,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "3 días / 2 noches en Hotel Termas y Río (a 100 mts de la terma y 200 mts de la playa del río). Media pensión y Termas de San José incluidas. Salida 10 de octubre.",
-      "descripcionLarga": "Escapada completa a Colón, Entre Ríos. Te alojás en el Hotel Termas y Río, a solo 100 metros de las Termas de San José y 200 metros de la playa del río Uruguay, con media pensión. Incluye entrada y traslado a las Termas de San José y bus semi cama con servicio a bordo desde el Gran Buenos Aires. El tercer día emprendemos el regreso a Buenos Aires a las 17:00 hs desde las termas.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "2 noches en Hotel Termas y Río",
-        "Media pensión",
-        "Entrada y traslado a Termas de San José",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzos",
-        "Gastos personales",
-        "Excursiones adicionales"
-      ],
-      "imagenPrincipal": "/termas-san-jose-1.jpg",
-      "imagenes": [
-        "/termas-san-jose-1.jpg",
-        "/termas-san-jose-2.jpg",
-        "/termas-san-jose-3.jpg",
-        "/hotel-termas-rio-1.jpg",
-        "/hotel-termas-rio-2.jpg",
-        "/hotel-termas-rio-3.jpg",
-        "/termas-colon-1.jpg"
-      ],
-      "rating": 4.9,
-      "reviews": 84,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-10-10",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "termas",
-        "relax",
-        "litoral",
-        "familia"
-      ],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
-        "Día 2 — Llegada a Colón. Check-in Hotel Termas y Río. Media pensión. Tarde libre en la ciudad o la playa del río.",
-        "Día 3 — Desayuno. Termas de San José (entrada y traslado incluidos). Regreso a Buenos Aires a partir de las 17:00 hs desde las termas."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once",
-        "La Plata"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $120.000 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-115",
-      "slug": "termas-colon-full-day-11oct",
-      "titulo": "Termas de Colón — Full Day · 11 de Octubre",
-      "tipo": "full_day",
-      "destino": "colon-entre-rios",
-      "duracionDias": 1,
-      "duracionNoches": 0,
-      "precioBase": 125000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 0,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a las Termas de Colón con desayuno, almuerzo, merienda a bordo, entrada, traslado y coordinador. Salida 11 de octubre.",
-      "descripcionLarga": "Un día completo en las Termas de Colón, Entre Ríos, con pensión incluida: desayuno, almuerzo y merienda a bordo. El full day incluye entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salida 11 de octubre.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "Desayuno",
-        "Almuerzo",
-        "Merienda a bordo",
-        "Entrada y traslado a Termas de Colón",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Gastos personales",
-        "Bebidas extra"
-      ],
-      "imagenPrincipal": "/termas-colon-2.jpg",
-      "imagenes": [
-        "/termas-colon-2.jpg",
-        "/termas-colon-1.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 71,
-      "cuposPorSalida": 30,
-      "proximaSalida": "2026-10-11",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "termas",
-        "relax",
-        "litoral",
-        "full day"
-      ],
-      "itinerario": [
-        "Salida temprano desde el GBA en bus semi cama. Desayuno a bordo.",
-        "Día completo en las Termas de Colón (entrada y traslado incluidos). Almuerzo incluido.",
-        "Merienda a bordo y regreso a Buenos Aires al finalizar la jornada."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-116",
-      "slug": "san-jose-full-day-11oct",
-      "titulo": "Termas de San José — Full Day · 11 de Octubre",
-      "tipo": "full_day",
-      "destino": "colon-entre-rios",
-      "duracionDias": 1,
-      "duracionNoches": 0,
-      "precioBase": 110000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 0,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day a las Termas de San José con desayuno, merienda a bordo, entrada, traslado y coordinador. Salida 11 de octubre.",
-      "descripcionLarga": "Un día completo de termas y relax en Colón, Entre Ríos. El full day a las Termas de San José incluye desayuno y merienda a bordo, entrada y traslado a las termas, coordinador de viaje y bus semi cama con servicio a bordo desde el Gran Buenos Aires. Salida 11 de octubre.",
-      "incluye": [
-        "Bus semi cama con servicio a bordo",
-        "Desayuno",
-        "Merienda a bordo",
-        "Entrada y traslado a Termas de San José",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzo",
-        "Gastos personales",
-        "Bebidas extra"
-      ],
-      "imagenPrincipal": "/termas-san-jose-2.jpg",
-      "imagenes": [
-        "/termas-san-jose-2.jpg",
-        "/termas-san-jose-3.jpg",
-        "/termas-san-jose-1.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 69,
-      "cuposPorSalida": 30,
-      "proximaSalida": "2026-10-11",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "termas",
-        "relax",
-        "litoral",
-        "full day"
-      ],
-      "itinerario": [
-        "Salida temprano desde el GBA en bus semi cama. Desayuno y merienda a bordo.",
-        "Día completo en las Termas de San José (entrada y traslado incluidos).",
-        "Regreso a Buenos Aires al finalizar la jornada."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-117",
-      "slug": "colon-san-jose-termas-rio-2d1n-24oct",
-      "titulo": "Colón + Termas de San José — Hotel Termas & Río (2d/1n) · 24 de Octubre",
+      "id": "pkg-205",
+      "slug": "colon-san-jose-cena-show-07nov",
+      "titulo": "Colón — Hotel Termas y Río + Cena Show · 7 de noviembre",
       "tipo": "viaje_completo",
       "destino": "colon-entre-rios",
       "duracionDias": 2,
       "duracionNoches": 1,
-      "precioBase": 159000,
+      "precioBase": 175000,
       "gastosAdmin": 10000,
-      "suplementoSingle": 79500,
+      "suplementoSingle": 0,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "2 días / 1 noche en Hotel Termas & Río (a 100 mts de la terma y 200 mts de la playa del río). Media pensión, cena show y Termas de San José. Salida 24 de octubre.",
-      "descripcionLarga": "Escapada a Colón, Entre Ríos. Te alojás en el Hotel Termas & Río, a 100 metros de las Termas de San José y 200 metros de la playa del río Uruguay, con media pensión y cena show. Incluye entrada a las Termas de San José y bus semi cama con servicio a bordo desde el Gran Buenos Aires. El segundo día emprendemos el regreso a Buenos Aires a las 17:00 hs desde las termas.",
+      "descripcionCorta": "Dos días en Colón con media pensión, cena show y entrada a las Termas de San José incluida.",
+      "descripcionLarga": "Escapada de dos días a Colón, Entre Ríos. Te alojás en el Hotel Termas y Río, a 100 metros del complejo termal y 200 de la playa del río, con media pensión y una cena show. La entrada a las Termas de San José está incluida. Viajamos en bus semi cama con coordinador. El segundo día emprendemos el regreso a Buenos Aires a las 17:00 desde las termas.",
       "incluye": [
         "Bus semi cama con servicio a bordo",
-        "1 noche en Hotel Termas & Río",
+        "1 noche en Hotel Termas y Río",
         "Media pensión",
         "Cena show",
         "Entrada a Termas de San José",
-        "Coordinador de viaje"
+        "Traslado al complejo termal",
+        "Coordinador durante todo el viaje"
       ],
       "noIncluye": [
-        "Almuerzo",
         "Gastos personales",
+        "Bebidas",
         "Excursiones opcionales"
       ],
-      "imagenPrincipal": "/termas-san-jose-1.jpg",
+      "imagenPrincipal": "/hotel-termas-rio-1.jpg",
       "imagenes": [
-        "/termas-san-jose-1.jpg",
-        "/termas-san-jose-2.jpg",
         "/hotel-termas-rio-1.jpg",
         "/hotel-termas-rio-2.jpg",
-        "/hotel-termas-rio-3.jpg",
-        "/termas-colon-1.jpg"
+        "/hotel-termas-rio-3.jpg"
       ],
-      "rating": 4.9,
-      "reviews": 92,
-      "cuposPorSalida": 25,
-      "proximaSalida": "2026-10-24",
-      "frecuenciaSalidas": "mensual",
-      "tags": [
-        "termas",
-        "relax",
-        "litoral",
-        "pareja"
-      ],
-      "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus semi cama con servicio a bordo.",
-        "Día 2 — Llegada a Colón. Check-in Hotel Termas & Río. Media pensión. Termas de San José (entrada incluida). Noche: cena show.",
-        "Día 3 — Desayuno. Regreso a Buenos Aires a partir de las 17:00 hs desde las termas."
-      ],
-      "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once",
-        "La Plata"
-      ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $79.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
-    },
-    {
-      "id": "pkg-118",
-      "slug": "san-jose-recital-la-konga-07nov",
-      "titulo": "Termas de San José + Recital La Konga · 7 de Noviembre",
-      "tipo": "full_day",
-      "destino": "colon-entre-rios",
-      "duracionDias": 1,
-      "duracionNoches": 0,
-      "precioBase": 160000,
-      "gastosAdmin": 10000,
-      "suplementoSingle": 0,
-      "cocheCamaExtra": 10000,
-      "descripcionCorta": "Full day: Termas de San José + entrada a la Fiesta del Arroz en San Salvador (E.R.) con recital de La Konga. Desayuno y merienda a bordo. Salida 7 de noviembre.",
-      "descripcionLarga": "Un full day para los amantes del cuarteto. En el día visitamos las Termas de San José (entrada y traslado incluidos) y a la noche vivimos el recital de La Konga en la Fiesta Nacional del Arroz, en San Salvador (Entre Ríos), con entrada general incluida. Incluye desayuno y merienda a bordo, coordinador y bus con servicio a bordo desde el Gran Buenos Aires. El regreso a Buenos Aires es al finalizar el recital.",
-      "incluye": [
-        "Bus con servicio a bordo",
-        "Desayuno",
-        "Merienda a bordo",
-        "Entrada y traslado a Termas de San José",
-        "Entrada general a la Fiesta del Arroz (recital de La Konga)",
-        "Coordinador de viaje"
-      ],
-      "noIncluye": [
-        "Almuerzo y cena",
-        "Gastos personales",
-        "Consumos en el predio del recital"
-      ],
-      "imagenPrincipal": "/termas-san-jose-1.jpg",
-      "imagenes": [
-        "/termas-san-jose-1.jpg",
-        "/termas-san-jose-2.jpg",
-        "/termas-san-jose-4.jpg",
-        "/termas-san-jose-5.jpg"
-      ],
-      "rating": 4.9,
-      "reviews": 45,
+      "rating": 4.8,
+      "reviews": 0,
       "cuposPorSalida": 30,
       "proximaSalida": "2026-11-07",
       "frecuenciaSalidas": "mensual",
       "tags": [
         "termas",
-        "fiesta",
-        "recital",
-        "full day",
+        "cena show",
         "litoral"
       ],
+      "categoria": "mes",
       "itinerario": [
-        "Salida temprano desde el GBA en bus con servicio a bordo. Desayuno y merienda a bordo.",
-        "Día en las Termas de San José (entrada y traslado incluidos).",
-        "Noche: recital de La Konga en la Fiesta del Arroz, San Salvador (E.R.), entrada general incluida. Regreso a Buenos Aires al finalizar el recital."
+        "Salida desde los puntos de subida del Gran Buenos Aires en bus semi cama.",
+        "Llegada a Colón, check in en el Hotel Termas y Río y tarde libre. A la noche, cena show.",
+        "Día en las Termas de San José y regreso a Buenos Aires a las 17:00."
       ],
       "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once"
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
       ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona. Viaje en el día (full day), no requiere alojamiento.",
-        "suplementoSingle": "Viaje en el día: no aplica suplemento por habitación individual.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000).",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
+      "politicas": {}
     },
     {
-      "id": "pkg-119",
+      "id": "pkg-206",
+      "slug": "tandil-full-day-07nov",
+      "titulo": "Tandil — Full Day con guía local · 7 de noviembre",
+      "tipo": "full_day",
+      "destino": "tandil",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 95000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Full day a Tandil con guía local: Cerro Centinela, Monte Calvario, Parque Independencia, Castillo Morisco, Dique del Fuerte y Piedra Movediza.",
+      "descripcionLarga": "Un día completo recorriendo Tandil con guía local. Visitamos el Cerro Centinela, el Monte Calvario, el lago y el Parque Independencia con su Castillo Morisco, el Dique del Fuerte y la Piedra Movediza, y paramos en un regional para llevarse quesos y salames. Viajamos en bus mix con coordinador y merienda a bordo.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "Guía local durante el recorrido",
+        "Merienda a bordo",
+        "Cerro Centinela y Monte Calvario",
+        "Parque Independencia y Castillo Morisco",
+        "Dique del Fuerte y Piedra Movediza",
+        "Parada en regional",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/tandil-1.jpg",
+      "imagenes": [
+        "/tandil-1.jpg",
+        "/tandil-3.jpg",
+        "/tandil-4.jpg",
+        "/tandil-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-11-07",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "sierra",
+        "full day",
+        "excursión"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida temprano desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a Tandil y recorrido con guía local por los puntos clásicos de la ciudad.",
+        "Parada en regional, merienda a bordo y regreso a Buenos Aires por la noche."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-207",
+      "slug": "mar-del-plata-riazor-nov",
+      "titulo": "Mar del Plata — Hotel Riazor con pensión completa · 7, 14 y 28 de noviembre",
+      "tipo": "viaje_completo",
+      "destino": "mar-del-plata",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 118000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Dos días en Mar del Plata en el Hotel Riazor, frente al shopping, con pensión completa y show en el hotel.",
+      "descripcionLarga": "Escapada de dos días a Mar del Plata. Te alojás en el Hotel Riazor, frente al shopping y a 400 metros del centro Güemes, con pensión completa y show en el hotel. Viajamos en bus mix con servicio a bordo y coordinador permanente. El segundo día aprovechás la ciudad y emprendemos el regreso a Buenos Aires por la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hotel Riazor",
+        "Pensión completa",
+        "Show en el hotel",
+        "Coordinador permanente"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-riazor-1.jpg",
+      "imagenes": [
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-2.jpg",
+        "/hotel-riazor-3.jpg",
+        "/mar-del-plata-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-11-07",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "playa",
+        "fin de semana",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a Mar del Plata, desayuno en el hotel y día libre. A la noche, show en el hotel.",
+        "Segundo día libre y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-208",
+      "slug": "mar-del-plata-riazor-finde-largo-21nov",
+      "titulo": "Mar del Plata — Finde largo en el Hotel Riazor · 21 de noviembre",
+      "tipo": "viaje_completo",
+      "destino": "mar-del-plata",
+      "duracionDias": 3,
+      "duracionNoches": 2,
+      "precioBase": 175000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Fin de semana largo en Mar del Plata, tres días en el Hotel Riazor con pensión completa y show en el hotel.",
+      "descripcionLarga": "Aprovechá el fin de semana largo de noviembre con tres días en Mar del Plata. Te alojás en el Hotel Riazor, frente al shopping y a 400 metros del centro Güemes, con pensión completa y show en el hotel. Viajamos en bus mix con servicio a bordo y coordinador permanente.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "2 noches en Hotel Riazor",
+        "Pensión completa",
+        "Show en el hotel",
+        "Coordinador permanente"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-riazor-2.jpg",
+      "imagenes": [
+        "/hotel-riazor-2.jpg",
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-4.jpg",
+        "/mar-del-plata-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-11-21",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "playa",
+        "finde largo",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a Mar del Plata, desayuno en el hotel y día libre.",
+        "Día completo en la ciudad y show en el hotel.",
+        "Tercer día libre y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-209",
+      "slug": "san-bernardo-hostal-del-sol-21nov",
+      "titulo": "San Bernardo — Finde largo en el Hostal del Sol ★★★★ · 21 de noviembre",
+      "tipo": "viaje_completo",
+      "destino": "san-bernardo",
+      "duracionDias": 3,
+      "duracionNoches": 2,
+      "precioBase": 240000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Tres días de fin de semana largo en San Bernardo, en el Hostal del Sol Resort & Spa ★★★★ con desayuno buffet.",
+      "descripcionLarga": "Fin de semana largo de tres días en San Bernardo, alojados en el Hostal del Sol Resort & Spa ★★★★. El hotel tiene pileta climatizada, gimnasio, sala de juegos y cancha de fútbol y básquet, y el desayuno es buffet. Viajamos en bus mix con servicio a bordo.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "2 noches en Hostal del Sol Resort & Spa ★★★★",
+        "Desayuno buffet",
+        "Pileta climatizada, gimnasio y sala de juegos",
+        "Cancha de fútbol y básquet",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hostal-del-sol-2.jpg",
+      "imagenes": [
+        "/hostal-del-sol-2.jpg",
+        "/hostal-del-sol-1.jpg",
+        "/hostal-del-sol-3.jpg",
+        "/san-bernardo.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-11-21",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "playa",
+        "finde largo",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a San Bernardo, desayuno buffet y día de playa.",
+        "Día completo libre para disfrutar la playa y el hotel.",
+        "Tercer día y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-210",
       "slug": "las-grutas-hotel-mareas-26nov",
-      "titulo": "Las Grutas — Hotel Mareas ★★★ · 26 de Noviembre",
+      "titulo": "Las Grutas — Hotel Mareas ★★★ · 26 de noviembre",
       "tipo": "viaje_completo",
       "destino": "las-grutas",
       "duracionDias": 6,
       "duracionNoches": 3,
       "precioBase": 485000,
       "gastosAdmin": 10000,
-      "suplementoSingle": 242500,
+      "suplementoSingle": 0,
       "cocheCamaExtra": 10000,
-      "descripcionCorta": "6 días / 3 noches en Hotel Mareas ★★★ (pileta, a 300 mts de la playa). Media pensión, bus mix y excursión a Viedma y Carmen de Patagones. Salida 26 de noviembre.",
-      "descripcionLarga": "Las Grutas, en Río Negro, tiene una de las mejores playas de Argentina: aguas cálidas y de un turquesa único en la costa patagónica. Te alojás en el Hotel Mareas ★★★, con pileta y a solo 300 metros de la playa, con media pensión. Incluye una excursión a Viedma y Carmen de Patagones y bus mix con servicio a bordo desde el Gran Buenos Aires. Seis días para disfrutar del mar, el sol y la Patagonia.",
+      "descripcionCorta": "Seis días en Las Grutas con media pensión en el Hotel Mareas ★★★ y excursión a Viedma y Carmen de Patagones incluida.",
+      "descripcionLarga": "Las Grutas, en Río Negro, tiene una de las mejores playas de Argentina: aguas cálidas y de un turquesa único en la costa patagónica. Te alojás en el Hotel Mareas ★★★, con pileta y a 300 metros de la playa, con media pensión. Incluye una excursión a Viedma y Carmen de Patagones. Viajamos en bus mix con servicio a bordo.",
       "incluye": [
         "Bus mix con servicio a bordo",
         "3 noches en Hotel Mareas ★★★",
         "Media pensión",
-        "Acceso a pileta del hotel",
+        "Pileta del hotel",
         "Excursión a Viedma y Carmen de Patagones",
-        "Coordinador de viaje"
+        "Coordinador durante todo el viaje"
       ],
       "noIncluye": [
-        "Almuerzos",
         "Gastos personales",
-        "Excursiones opcionales adicionales"
+        "Bebidas",
+        "Excursiones opcionales"
       ],
       "imagenPrincipal": "/las-grutas-1.jpg",
       "imagenes": [
@@ -1223,42 +599,829 @@
         "/las-grutas-2.jpg",
         "/las-grutas-3.jpg"
       ],
-      "rating": 4.9,
-      "reviews": 58,
-      "cuposPorSalida": 20,
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
       "proximaSalida": "2026-11-26",
       "frecuenciaSalidas": "mensual",
       "tags": [
         "playa",
-        "naturaleza",
         "patagonia",
-        "relax",
-        "familia"
+        "excursión"
       ],
+      "categoria": "mes",
       "itinerario": [
-        "Día 1 — Salida nocturna desde el GBA en bus mix con servicio a bordo.",
-        "Día 2 — Cruce hacia la Patagonia. Llegada a Las Grutas. Check-in Hotel Mareas. Media pensión.",
-        "Día 3 — Desayuno. Día libre en la playa de Las Grutas.",
-        "Día 4 — Excursión a Viedma y Carmen de Patagones. Regreso al hotel. Cena.",
-        "Día 5 — Desayuno. Día libre. Inicio del regreso a Buenos Aires.",
-        "Día 6 — Llegada a Buenos Aires."
+        "Salida nocturna desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Día de viaje por la Patagonia. Llegada a Las Grutas y check in en el Hotel Mareas.",
+        "Día de playa en Las Grutas.",
+        "Excursión a Viedma y Carmen de Patagones.",
+        "Último día de playa y salida de regreso.",
+        "Llegada a Buenos Aires."
       ],
       "puntosDeSubida": [
-        "Liniers",
-        "Haedo",
-        "Morón",
-        "Ituzaingó",
-        "Castelar",
-        "Palermo",
-        "Once",
-        "La Plata"
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
       ],
-      "politicas": {
-        "precioEnBaseDoble": "Precio por persona en base doble (habitación compartida).",
-        "suplementoSingle": "Suplemento habitación individual: $242.500 adicionales sobre el precio del paquete.",
-        "menoresCuatroAnios": "Niños menores de 4 años: solo abonan gastos administrativos ($10.000). Sin cargo de paquete.",
-        "cocheCama": "Butaca cama (parte inferior del bus): $10.000 adicionales por persona. Sujeto a disponibilidad."
-      }
+      "politicas": {}
+    },
+    {
+      "id": "pkg-211",
+      "slug": "canasvieiras-tropicanas-29nov",
+      "titulo": "Canasvieiras — Florianópolis — Apart Hotel Tropicanas ★★★ · 29 de noviembre",
+      "tipo": "viaje_completo",
+      "destino": "canasvieiras-brasil",
+      "duracionDias": 8,
+      "duracionNoches": 5,
+      "precioBase": 699000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 40000,
+      "descripcionCorta": "Ocho días en Canasvieiras, Florianópolis, con media pensión buffet en el Apart Hotel Tropicanas ★★★ con piletas.",
+      "descripcionLarga": "Canasvieiras es una de las playas más elegidas del norte de Florianópolis: mar calmo, arena blanca y todos los servicios a mano. Te alojás en el Apart Hotel Tropicanas ★★★, con piletas, en régimen de media pensión con desayuno y cena buffet. Viajamos en bus mix con servicio a bordo. Se necesita documentación vigente para salir del país.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "5 noches en Apart Hotel Tropicanas ★★★",
+        "Media pensión con buffet",
+        "Piletas del hotel",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales",
+        "Tasas e impuestos de Brasil",
+        "Asistencia al viajero"
+      ],
+      "imagenPrincipal": "/canasvieiras-2.jpg",
+      "imagenes": [
+        "/canasvieiras-2.jpg",
+        "/canasvieiras-3.jpg",
+        "/canasvieiras-1.jpg",
+        "/canasvieiras-6.jpg",
+        "/canasvieiras-4.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-11-29",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "playa",
+        "brasil",
+        "internacional"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Día de viaje y cruce de frontera.",
+        "Llegada a Canasvieiras y check in en el Apart Hotel Tropicanas.",
+        "Días libres de playa en Canasvieiras, con desayuno y cena buffet en el hotel.",
+        "Último día de playa y salida de regreso.",
+        "Llegada a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-212",
+      "slug": "mar-del-plata-riazor-05dic",
+      "titulo": "Mar del Plata — Tres días en el Hotel Riazor · 5 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "mar-del-plata",
+      "duracionDias": 3,
+      "duracionNoches": 2,
+      "precioBase": 175000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Tres días en Mar del Plata en el Hotel Riazor, con pensión completa y show en el hotel.",
+      "descripcionLarga": "Tres días en Mar del Plata para arrancar diciembre. Te alojás en el Hotel Riazor, frente al shopping y a 400 metros del centro Güemes, con pensión completa y show en el hotel. Viajamos en bus mix con servicio a bordo y coordinador permanente.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "2 noches en Hotel Riazor",
+        "Pensión completa",
+        "Show en el hotel",
+        "Coordinador permanente"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-riazor-3.jpg",
+      "imagenes": [
+        "/hotel-riazor-3.jpg",
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-2.jpg",
+        "/mar-del-plata-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-05",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "playa",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a Mar del Plata, desayuno en el hotel y día libre.",
+        "Día completo en la ciudad y show en el hotel.",
+        "Tercer día libre y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-213",
+      "slug": "san-bernardo-hostal-del-sol-12dic",
+      "titulo": "San Bernardo — Hostal del Sol Resort & Spa ★★★★ · 12 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "san-bernardo",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 150000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Fin de semana en San Bernardo en el Hostal del Sol Resort & Spa ★★★★ con desayuno buffet.",
+      "descripcionLarga": "Escapada de sábado y domingo a San Bernardo, alojados en el Hostal del Sol Resort & Spa ★★★★, con pileta climatizada, gimnasio, sala de juegos y cancha de fútbol y básquet. El desayuno es buffet. Viajamos en bus mix con servicio a bordo y el segundo día regresamos a Buenos Aires por la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hostal del Sol Resort & Spa ★★★★",
+        "Desayuno buffet",
+        "Pileta climatizada, gimnasio y sala de juegos",
+        "Cancha de fútbol y básquet",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hostal-del-sol-3.jpg",
+      "imagenes": [
+        "/hostal-del-sol-3.jpg",
+        "/hostal-del-sol-1.jpg",
+        "/hostal-del-sol-4.jpg",
+        "/san-bernardo.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-12",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "playa",
+        "fin de semana",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a San Bernardo, desayuno buffet y día de playa.",
+        "Segundo día de playa y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-214",
+      "slug": "mar-del-plata-riazor-12-19dic",
+      "titulo": "Mar del Plata — Hotel Riazor con pensión completa · 12 y 19 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "mar-del-plata",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 119000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Dos días en Mar del Plata en el Hotel Riazor, con pensión completa y show en el hotel.",
+      "descripcionLarga": "Escapada de dos días a Mar del Plata en diciembre. Te alojás en el Hotel Riazor, frente al shopping y a 400 metros del centro Güemes, con pensión completa y show en el hotel. Viajamos en bus mix con servicio a bordo. El segundo día aprovechás la ciudad y regresamos a Buenos Aires por la tarde.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "1 noche en Hotel Riazor",
+        "Pensión completa",
+        "Show en el hotel",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-riazor-4.jpg",
+      "imagenes": [
+        "/hotel-riazor-4.jpg",
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-2.jpg",
+        "/mar-del-plata-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-12",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "playa",
+        "fin de semana",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a Mar del Plata, desayuno en el hotel y día libre. A la noche, show en el hotel.",
+        "Segundo día libre y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-215",
+      "slug": "san-clemente-minerva-12-19dic",
+      "titulo": "San Clemente — Hotel Minerva · a 150 m de la playa · 12 y 19 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "san-clemente",
+      "duracionDias": 2,
+      "duracionNoches": 1,
+      "precioBase": 139000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Dos días en San Clemente con media pensión en el Hotel Minerva, en el centro y a 150 metros de la playa.",
+      "descripcionLarga": "Escapada de dos días a San Clemente del Tuyú. Te alojás en el Hotel Minerva, en pleno centro y a 150 metros de la playa, con media pensión. Viajamos en bus semi cama con servicio a bordo. El segundo día aprovechás la playa y emprendemos el regreso a Buenos Aires por la tarde.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "1 noche en Hotel Minerva",
+        "Media pensión",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "",
+      "imagenes": [],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-12",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "playa",
+        "fin de semana",
+        "costa atlántica"
+      ],
+      "categoria": "mes",
+      "itinerario": [
+        "Salida por la noche desde los puntos de subida del Gran Buenos Aires.",
+        "Llegada a San Clemente, desayuno en el hotel y día de playa.",
+        "Segundo día de playa y regreso a Buenos Aires por la tarde."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-216",
+      "slug": "recital-abel-pintos-concordia-19dic",
+      "titulo": "Abel Pintos en Chajarí — Con Termas de Concordia en el día · 19 de diciembre",
+      "tipo": "full_day",
+      "destino": "concordia-entre-rios",
+      "duracionDias": 1,
+      "duracionNoches": 0,
+      "precioBase": 195000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Recital de Abel Pintos en Chajarí con entrada general incluida, y de día las Termas de Concordia.",
+      "descripcionLarga": "Un día que arranca en las Termas de Concordia y termina con Abel Pintos en vivo. Salimos temprano desde el Gran Buenos Aires con desayuno y merienda a bordo. Pasamos el día en las Termas de Concordia, con entrada y traslado incluidos, y a la noche vamos a Chajarí, Entre Ríos, al recital, con entrada general incluida. El regreso es apenas termina el show.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "Entrada general al recital de Abel Pintos",
+        "Desayuno",
+        "Merienda a bordo",
+        "Entrada a las Termas de Concordia",
+        "Traslado al complejo termal",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "",
+      "imagenes": [],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-19",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "recital",
+        "termas",
+        "litoral"
+      ],
+      "categoria": "recital",
+      "itinerario": [
+        "Salida temprano desde los puntos de subida del Gran Buenos Aires. Desayuno a bordo.",
+        "Día completo en las Termas de Concordia.",
+        "Traslado a Chajarí y recital de Abel Pintos con entrada general.",
+        "Regreso a Buenos Aires apenas termina el show."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-217",
+      "slug": "la-falda-sorrento-fin-de-ano-29dic",
+      "titulo": "La Falda — Hotel Sorrento · Fin de año en las sierras · 29 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "la-falda-cordoba",
+      "duracionDias": 5,
+      "duracionNoches": 3,
+      "precioBase": 355000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cinco días en las sierras de Córdoba para pasar el fin de año, con pensión completa y cena especial del 31 en el Hotel Sorrento.",
+      "descripcionLarga": "Pasá el fin de año en La Falda, en el valle de Punilla. Te alojás en el Hotel Sorrento, céntrico, con parque y pileta, en pensión completa más merienda. La noche del 31 hay cena especial, brindis de año nuevo, mesa de dulces, show y baile. Viajamos en bus mix con servicio a bordo.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Sorrento",
+        "Pensión completa más merienda",
+        "Cena especial del 31 con brindis de año nuevo",
+        "Mesa de dulces, show y baile",
+        "Parque y pileta del hotel",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-sorrento-1.jpg",
+      "imagenes": [
+        "/hotel-sorrento-1.jpg",
+        "/la-falda-1.jpg",
+        "/la-falda-2.jpg",
+        "/la-falda-3.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-29",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "fin de año",
+        "sierra",
+        "córdoba"
+      ],
+      "categoria": "fin_de_ano",
+      "itinerario": [
+        "Salida nocturna desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a La Falda y check in en el Hotel Sorrento. Tarde libre.",
+        "Día libre en las sierras.",
+        "Noche del 31: cena especial, brindis de año nuevo, mesa de dulces, show y baile.",
+        "Primer día del año libre y regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-218",
+      "slug": "mar-del-plata-riazor-ano-nuevo-31dic",
+      "titulo": "Mar del Plata — Año nuevo en el Hotel Riazor · 31 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "mar-del-plata",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 236000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cuatro días en Mar del Plata para año nuevo, con pensión completa y cena especial del 31 en el Hotel Riazor.",
+      "descripcionLarga": "Pasá el año nuevo en Mar del Plata. Te alojás en el Hotel Riazor, frente al shopping y a 400 metros del centro Güemes, con pensión completa. La noche del 31 hay cena especial, brindis de año nuevo, mesa de dulces, show y baile. Viajamos en bus mix con servicio a bordo.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Riazor",
+        "Pensión completa",
+        "Cena especial del 31 con brindis de año nuevo",
+        "Mesa de dulces, show y baile",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/mar-del-plata-5.jpg",
+      "imagenes": [
+        "/mar-del-plata-5.jpg",
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-2.jpg",
+        "/hotel-riazor-3.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-31",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "fin de año",
+        "playa",
+        "costa atlántica"
+      ],
+      "categoria": "fin_de_ano",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a Mar del Plata y check in en el Hotel Riazor.",
+        "Noche del 31: cena especial, brindis de año nuevo, mesa de dulces, show y baile.",
+        "Primer día del año libre en la ciudad.",
+        "Último día y regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-219",
+      "slug": "colon-termas-rio-ano-nuevo-31dic",
+      "titulo": "Colón — Año nuevo en el Hotel Termas y Río · 31 de diciembre",
+      "tipo": "viaje_completo",
+      "destino": "colon-entre-rios",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 350000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cuatro días en Colón para año nuevo, con media pensión, cenas show y entrada a las Termas de San José.",
+      "descripcionLarga": "Pasá el año nuevo en Colón, Entre Ríos. Te alojás en el Hotel Termas y Río, a 100 metros del complejo termal y 200 de la playa del río, con media pensión y cenas show. La entrada y el traslado a las Termas de San José están incluidos. La noche del 31 hay cena especial, brindis de año nuevo, mesa de dulces, show y baile. El regreso es el día 4 por la tarde desde las termas.",
+      "incluye": [
+        "Bus semi cama con servicio a bordo",
+        "3 noches en Hotel Termas y Río",
+        "Media pensión con cenas show",
+        "Cena especial del 31 con brindis de año nuevo",
+        "Mesa de dulces, show y baile",
+        "Entrada a Termas de San José",
+        "Traslado al complejo termal",
+        "Coordinador durante todo el viaje"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-termas-rio-2.jpg",
+      "imagenes": [
+        "/hotel-termas-rio-2.jpg",
+        "/hotel-termas-rio-1.jpg",
+        "/hotel-termas-rio-3.jpg",
+        "/termas-san-jose-1.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2026-12-31",
+      "frecuenciaSalidas": "mensual",
+      "tags": [
+        "fin de año",
+        "termas",
+        "litoral"
+      ],
+      "categoria": "fin_de_ano",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus semi cama.",
+        "Llegada a Colón y check in en el Hotel Termas y Río.",
+        "Noche del 31: cena especial, brindis de año nuevo, mesa de dulces, show y baile.",
+        "Primer día del año en las Termas de San José.",
+        "Último día y regreso a Buenos Aires por la tarde desde las termas."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-220",
+      "slug": "mar-del-plata-riazor-verano-27",
+      "titulo": "Mar del Plata — Hotel Riazor · temporada 2027 · enero y febrero de 2027",
+      "tipo": "viaje_completo",
+      "destino": "mar-del-plata",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 275000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cuatro días en Mar del Plata durante el verano 2027, con pensión completa y show en el Hotel Riazor. Salidas cada tres días.",
+      "descripcionLarga": "Temporada de verano 2027 en Mar del Plata, con salidas cada tres días durante enero y febrero. Te alojás en el Hotel Riazor, frente al shopping y a 400 metros del centro Güemes, con pensión completa y show en el hotel. Viajamos en bus mix con servicio a bordo y coordinador permanente.\n\nSalidas: Enero: 6, 9, 12, 15, 18, 21, 24, 27 y 30. Febrero: 2, 8, 11, 14, 17, 20, 23 y 26.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Riazor",
+        "Pensión completa",
+        "Show en el hotel",
+        "Coordinador permanente"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/hotel-riazor-1.jpg",
+      "imagenes": [
+        "/hotel-riazor-1.jpg",
+        "/hotel-riazor-2.jpg",
+        "/hotel-riazor-3.jpg",
+        "/mar-del-plata-5.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2027-01-06",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "verano 2027",
+        "playa",
+        "costa atlántica"
+      ],
+      "categoria": "verano27",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a Mar del Plata y check in en el Hotel Riazor.",
+        "Días libres de playa, con pensión completa y show en el hotel.",
+        "Último día y regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-221",
+      "slug": "san-bernardo-stromboli-verano-27",
+      "titulo": "San Bernardo — Hotel Stromboli o similar · temporada 2027 · enero y febrero de 2027",
+      "tipo": "viaje_completo",
+      "destino": "san-bernardo",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 245000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cuatro días en San Bernardo durante el verano 2027, en el Hotel Stromboli o similar, sobre la peatonal y a 100 metros de la playa.",
+      "descripcionLarga": "Temporada de verano 2027 en San Bernardo, con salidas cada tres días durante enero y febrero. Te alojás en el Hotel Stromboli o similar, sobre la peatonal y a 100 metros de la playa, con desayuno. Viajamos en bus mix con coordinador en el bus. En destino, el ascenso y descenso se hace en la terminal de micros de la ciudad por disposición municipal.\n\nSalidas: Enero: 7, 10, 13, 16, 19, 22, 25, 28 y 31. Febrero: 3, 9, 12, 15, 18, 21, 24 y 27.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Stromboli o similar",
+        "Desayuno",
+        "Coordinador en el bus"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "/san-bernardo.jpg",
+      "imagenes": [
+        "/san-bernardo.jpg",
+        "/hostal-del-sol-1.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2027-01-07",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "verano 2027",
+        "playa",
+        "costa atlántica"
+      ],
+      "categoria": "verano27",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a San Bernardo y check in en el hotel.",
+        "Días libres de playa, con desayuno en el hotel.",
+        "Último día y regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-222",
+      "slug": "santa-teresita-ezpeleta-verano-27",
+      "titulo": "Santa Teresita — Hotel Ezpeleta o similar · temporada 2027 · enero y febrero de 2027",
+      "tipo": "viaje_completo",
+      "destino": "santa-teresita",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 230000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cuatro días en Santa Teresita durante el verano 2027, en el Hotel Ezpeleta o similar, a 30 metros de la peatonal y 100 de la playa.",
+      "descripcionLarga": "Temporada de verano 2027 en Santa Teresita, con salidas cada tres días durante enero y febrero. Te alojás en el Hotel Ezpeleta o similar, a 30 metros de la peatonal y 100 de la playa, con desayuno. Viajamos en bus mix con coordinador en el bus. En destino, el ascenso y descenso se hace en la terminal de micros de la ciudad por disposición municipal.\n\nSalidas: Enero: 7, 10, 13, 16, 19, 22, 25, 28 y 31. Febrero: 3, 9, 12, 15, 18, 21, 24 y 27.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Ezpeleta o similar",
+        "Desayuno",
+        "Coordinador en el bus"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "",
+      "imagenes": [],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2027-01-07",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "verano 2027",
+        "playa",
+        "costa atlántica"
+      ],
+      "categoria": "verano27",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a Santa Teresita y check in en el hotel.",
+        "Días libres de playa, con desayuno en el hotel.",
+        "Último día y regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
+    },
+    {
+      "id": "pkg-223",
+      "slug": "mar-de-ajo-oceano-verano-27",
+      "titulo": "Mar de Ajó — Hotel Océano o similar · temporada 2027 · enero y febrero de 2027",
+      "tipo": "viaje_completo",
+      "destino": "mar-de-ajo",
+      "duracionDias": 4,
+      "duracionNoches": 3,
+      "precioBase": 230000,
+      "gastosAdmin": 10000,
+      "suplementoSingle": 0,
+      "cocheCamaExtra": 10000,
+      "descripcionCorta": "Cuatro días en Mar de Ajó durante el verano 2027, en el Hotel Océano o similar, a 300 metros de la playa.",
+      "descripcionLarga": "Temporada de verano 2027 en Mar de Ajó, con salidas cada tres días durante enero y febrero. Te alojás en el Hotel Océano o similar, a 300 metros de la playa y 200 de la peatonal, con desayuno. Viajamos en bus mix con coordinador en el bus. En destino, el ascenso y descenso se hace en la terminal de micros de la ciudad por disposición municipal.\n\nSalidas: Enero: 7, 10, 13, 16, 19, 22, 25, 28 y 31. Febrero: 3, 9, 12, 15, 18, 21, 24 y 27.",
+      "incluye": [
+        "Bus mix con servicio a bordo",
+        "3 noches en Hotel Océano o similar",
+        "Desayuno",
+        "Coordinador en el bus"
+      ],
+      "noIncluye": [
+        "Gastos personales",
+        "Bebidas",
+        "Excursiones opcionales"
+      ],
+      "imagenPrincipal": "",
+      "imagenes": [],
+      "rating": 4.8,
+      "reviews": 0,
+      "cuposPorSalida": 30,
+      "proximaSalida": "2027-01-07",
+      "frecuenciaSalidas": "semanal",
+      "tags": [
+        "verano 2027",
+        "playa",
+        "costa atlántica"
+      ],
+      "categoria": "verano27",
+      "itinerario": [
+        "Salida desde el Gran Buenos Aires en bus mix con servicio a bordo.",
+        "Llegada a Mar de Ajó y check in en el hotel.",
+        "Días libres de playa, con desayuno en el hotel.",
+        "Último día y regreso a Buenos Aires."
+      ],
+      "puntosDeSubida": [
+        "Cruce Varela",
+        "Rotonda Los Pinos",
+        "Rotonda Lavallol",
+        "Rotonda San Justo",
+        "Ciudadela (Gral. Paz)",
+        "Morón (frente al Plaza Oeste)",
+        "Moreno (Axion Ruta 23 y Acceso Oeste)",
+        "Tigre — Pacheco (Pdor. El Turista)"
+      ],
+      "politicas": {}
     }
   ]
 }

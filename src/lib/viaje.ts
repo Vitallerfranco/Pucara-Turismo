@@ -19,8 +19,12 @@ export interface PartesTitulo {
 }
 
 export function partesTitulo(titulo: string): PartesTitulo {
-  const [lugarYDetalle = '', ...resto] = titulo.split(' · ');
-  const cuando = resto.join(' · ').trim();
+  // El cuándo va SIEMPRE al final, después del último " · ".
+  // Partimos por el último separador, no por el primero: hay títulos que
+  // usan el punto medio también en el detalle ("Florianópolis · Hotel X · 29 de noviembre").
+  const corte = titulo.lastIndexOf(' · ');
+  const lugarYDetalle = corte === -1 ? titulo : titulo.slice(0, corte);
+  const cuando = corte === -1 ? '' : titulo.slice(corte + 3).trim();
 
   const guion = lugarYDetalle.indexOf(' — ');
   let titular = lugarYDetalle.trim();
@@ -64,6 +68,74 @@ export function transporte(incluye: string[] = []): string | null {
   if (texto.includes('bus') || texto.includes('micro') || texto.includes('combi')) return 'Bus';
   if (texto.includes('aéreo') || texto.includes('aereo') || texto.includes('vuelo')) return 'Avión';
   return null;
+}
+
+/* ── Agrupado del listado ───────────────────────────────────────────────
+   Los viajes "por mes" se agrupan solos por la fecha de salida; recitales,
+   fin de año y verano 27 tienen bloque propio porque no son un mes.       */
+
+export type Categoria = 'mes' | 'recital' | 'fin_de_ano' | 'verano27';
+
+export interface Grupo<T> {
+  clave: string;
+  titulo: string;
+  /** 'micro' | 'copa' | 'sol' | null — lo dibuja el componente */
+  icono: 'micro' | 'copa' | 'sol' | null;
+  orden: number;
+  viajes: T[];
+}
+
+// Los meses ordenan por año*100+mes (ej. 202610), así que los bloques
+// especiales van con números más altos para quedar siempre al final.
+const ESPECIALES: Record<Exclude<Categoria, 'mes'>, { titulo: string; icono: Grupo<unknown>['icono']; orden: number }> = {
+  recital:    { titulo: 'Recitales',   icono: 'micro', orden: 900_001 },
+  fin_de_ano: { titulo: 'Fin de año',  icono: 'copa',  orden: 900_002 },
+  verano27:   { titulo: 'Verano 2027', icono: 'sol',   orden: 900_003 },
+};
+
+/** Agrupa los viajes en bloques listos para renderizar, ya ordenados. */
+export function agruparViajes<T extends { proximaSalida: string; categoria?: string }>(viajes: T[]): Grupo<T>[] {
+  const grupos = new Map<string, Grupo<T>>();
+
+  for (const v of viajes) {
+    const cat = (v.categoria ?? 'mes') as Categoria;
+
+    let clave: string, titulo: string, icono: Grupo<T>['icono'], orden: number;
+
+    if (cat !== 'mes' && ESPECIALES[cat]) {
+      ({ titulo, icono, orden } = ESPECIALES[cat]);
+      clave = cat;
+    } else {
+      const [a, m] = String(v.proximaSalida).split('-').map(Number);
+      const mes = MESES[(m || 1) - 1];
+      clave = `${a}-${String(m).padStart(2, '0')}`;
+      // "Octubre" si es de este año, "Enero 2027" si es de otro
+      titulo = mes.charAt(0).toUpperCase() + mes.slice(1);
+      const esteAnio = new Date().getFullYear();
+      if (a !== esteAnio) titulo += ` ${a}`;
+      icono = null;
+      orden = a * 100 + (m || 0);
+    }
+
+    if (!grupos.has(clave)) grupos.set(clave, { clave, titulo, icono, orden, viajes: [] });
+    grupos.get(clave)!.viajes.push(v);
+  }
+
+  for (const g of grupos.values()) {
+    g.viajes.sort((a, b) => String(a.proximaSalida).localeCompare(String(b.proximaSalida)));
+  }
+
+  return [...grupos.values()].sort((a, b) => a.orden - b.orden);
+}
+
+/**
+ * "Sale el 25 de octubre" pero "Sale en enero y febrero de 2027".
+ * Si el texto arranca con un número es una fecha puntual; si arranca con el
+ * nombre de un mes es un período.
+ */
+export function frasecuando(cuando: string): string {
+  if (!cuando) return '';
+  return /^\d/.test(cuando.trim()) ? `Sale el ${cuando}` : `Sale en ${cuando}`;
 }
 
 /** Días que faltan para la salida (negativo si ya pasó). */
